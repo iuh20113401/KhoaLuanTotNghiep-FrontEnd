@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { debounce } from "lodash"; // Add lodash for debouncing
 import { useEffect, useState, useCallback } from "react";
-import FilterBaoCao from "../components/GiangVien/QuanLyThucTap/DanhSachBaoCaoThucTap/filterBaoCao";
+import FilterBaoCao from "../components/GiangVien/QuanLyThucTap/DanhSachBaoCaoThucTap/FilterBaoCao";
 
 export const useDanhSachBaoCao = ({ key, fn }) => {
   const { data, isLoading } = useQuery({

@@ -9,7 +9,7 @@ import UseUser from "../../context/UseUser";
 import { layDanhSachThucTapTheoGiangVien } from "../../services/ThucTap";
 import DanhSachBieuMau from "../../components/GiangVien/QuanLyDoAn/DanhSachBieuMau";
 import DanhSachBaoCaoContainer from "../../components/GiangVien/QuanLyThucTap/DanhSachBaoCaoThucTap/DanhSachBaoCao";
-import FilterBaoCao from "../../components/GiangVien/QuanLyThucTap/DanhSachBaoCaoThucTap/filterBaoCao";
+import FilterBaoCao from "../../components/GiangVien/QuanLyThucTap/DanhSachBaoCaoThucTap/FilterBaoCao";
 import { useDanhSachBaoCao } from "../../hooks/useDanhSachBaoCao";
 import { useSearchParams } from "react-router-dom";
 import { sortDoAnList } from "../../utils/SortDoAn";

@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Card from "../../ui/Card";
 import DanhSachBaoCaoContainer from "../../components/GiangVien/QuanLyThucTap/DanhSachBaoCaoThucTap/DanhSachBaoCao";
-import FilterBaoCao from "../../components/GiangVien/QuanLyThucTap/DanhSachBaoCaoThucTap/filterBaoCao";
+import FilterBaoCao from "../../components/GiangVien/QuanLyThucTap/DanhSachBaoCaoThucTap/FilterBaoCao";
 import {
   layTieuChiThucTapChoDoanhNghiep,
   layTieuChiThucTapChoGiangVien,
