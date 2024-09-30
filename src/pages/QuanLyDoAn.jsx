@@ -4,7 +4,7 @@ import ThongTinChung from "../components/QuanLyDoAn/ThongTinChung";
 import styled from "styled-components";
 import ThanhVien from "../components/QuanLyDoAn/ThanhVien";
 import BieuMauDoAn from "../components/QuanLyDoAn/BieuMauDoAn";
-import TaiLieuDoAn from "../components/QuanLyDoAn/TaiLieuDoAN";
+import TaiLieuDoAn from "../components/QuanLyDoAn/TaiLieuDoAn";
 import Diem from "../components/QuanLyDoAn/Diem";
 import UseUser from "../context/UseUser";
 import { useQuery } from "@tanstack/react-query";
