@@ -6,7 +6,7 @@ import { layDanhSachDoAnPhanBien } from "../../services/DoAn";
 import { layTieuChiPhanBien } from "../../services/TieuChi";
 import { useDanhSachDoAn } from "../../hooks/UseDanhSachDoAn";
 import { useSearchParams } from "react-router-dom";
-import { sortDoAnList } from "../../utils/sortDoAn";
+import { sortDoAnList } from "../../utils/SortDoAn";
 
 function ChamDiemPhanBien() {
   const [searchParams] = useSearchParams();

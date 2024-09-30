@@ -3,7 +3,7 @@ import FilterDoAn from "../../components/GiangVien/QuanLyDoAn/FilterDoAn";
 import { useSearchParams } from "react-router-dom";
 import Card from "../../ui/Card";
 import BieuMauChung from "../../components/GiangVien/QuanLyDoAn/BieuMauChung";
-import { sortDoAnList } from "../../utils/sortDoAn"; // Sorting logic
+import { sortDoAnList } from "../../utils/SortDoAn"; // Sorting logic
 import { useDanhSachDoAn } from "../../hooks/UseDanhSachDoAn";
 import { layDanhSachDoAnTheoGiangVien } from "../../services/DoAn";
 

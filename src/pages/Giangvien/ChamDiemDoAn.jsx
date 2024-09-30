@@ -2,7 +2,7 @@ import DanhSachDoAnContainer from "../../components/GiangVien/QuanLyDoAn/DanhSac
 import FilterDoAn from "../../components/GiangVien/QuanLyDoAn/FilterDoAn";
 import { useSearchParams } from "react-router-dom";
 import Card from "../../ui/Card";
-import { sortDoAnList } from "../../utils/sortDoAn"; // Sorting logic
+import { sortDoAnList } from "../../utils/SortDoAn"; // Sorting logic
 import { useDanhSachDoAn } from "../../hooks/UseDanhSachDoAn";
 import { layDanhSachDoAnTheoGiangVien } from "../../services/DoAn";
 import { useQuery } from "@tanstack/react-query";

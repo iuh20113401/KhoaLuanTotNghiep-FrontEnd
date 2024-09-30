@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { layDanhSachDeTai } from "../../services/DeTaiApi";
 import SuaDeTai from "./SuaDeTai";
 import { useSearchParams } from "react-router-dom";
-import { sortDoAnList } from "../../utils/sortDoAn";
+import { sortDoAnList } from "../../utils/SortDoAn";
 
 function QuanLyDeTai() {
   const [isAdd, setIsAdd] = useState(false);

@@ -12,7 +12,7 @@ import DanhSachBaoCaoContainer from "../../components/GiangVien/QuanLyThucTap/Da
 import FilterBaoCao from "../../components/GiangVien/QuanLyThucTap/DanhSachBaoCaoThucTap/filterBaoCao";
 import { useDanhSachBaoCao } from "../../hooks/useDanhSachBaoCao";
 import { useSearchParams } from "react-router-dom";
-import { sortDoAnList } from "../../utils/sortDoAn";
+import { sortDoAnList } from "../../utils/SortDoAn";
 import { sortBaoCaoList } from "../../utils/SortBaoCao";
 
 function XemDanhSachBaoCao() {
