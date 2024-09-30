@@ -3,7 +3,7 @@ import Card from "../../ui/Card";
 import { layThongTinSinhVien } from "../../services/SinhVien";
 import SinhVienXemDiem from "./XemDiem/SinhVienXemDiem";
 import GiangVienXemDiem from "./XemDiem/GiangVienXemDiem";
-import { layThongTinSinhVienTheoDoAn } from "../../services/doAn";
+import { layThongTinSinhVienTheoDoAn } from "../../services/DoAn";
 
 function Diem({ doAn, user }) {
   const { data, isLoading } = useQuery({

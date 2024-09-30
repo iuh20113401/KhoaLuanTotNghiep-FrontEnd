@@ -5,7 +5,7 @@ import { StyledTextarea } from "../../../ui/Input";
 import { ColLg, StyledRow } from "../../../ui/Row";
 import Avatar from "../../../ui/Avatar";
 import { useMutation } from "@tanstack/react-query";
-import { themComment } from "../../../services/doAn";
+import { themComment } from "../../../services/DoAn";
 import UseUser from "../../../context/UseUser";
 import { useState } from "react";
 import formatVieNamDate from "../../../utils/FormatDate";

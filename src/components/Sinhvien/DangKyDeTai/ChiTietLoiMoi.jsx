@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import Button from "../../../ui/Button";
-import { themSinhVien2 } from "../../../services/doAn";
+import { themSinhVien2 } from "../../../services/DoAn";
 import toast from "react-hot-toast";
 import UseUser from "../../../context/UseUser";
 import { useNavigate } from "react-router-dom";

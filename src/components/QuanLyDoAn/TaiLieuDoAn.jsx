@@ -8,7 +8,7 @@ import Button from "../../ui/Button";
 import Card from "../../ui/Card";
 import StyledTable from "../../ui/Table";
 import { useEffect, useRef, useState } from "react";
-import { themTaiLieu } from "../../services/doAn";
+import { themTaiLieu } from "../../services/DoAn";
 
 function TaiLieuDoAn({ doAn, refetch }) {
   const TaiLieu = doAn.taiLieu;

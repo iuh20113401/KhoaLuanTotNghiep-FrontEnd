@@ -8,8 +8,8 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import chamDiemHuongDan from "./ModalChamDiem/ChamDiemHuongDan";
 import chamDiemPhanBien from "./ModalChamDiem/ChamDiemPhanBien";
-import { capNhatDoAn } from "../../../services/doAn";
-import { capNhatSinhVien } from "../../../services/sinhVien";
+import { capNhatDoAn } from "../../../services/DoAn";
+import { capNhatSinhVien } from "../../../services/SinhVien";
 
 // Helper functions to update SinhVien and DoAn
 const updateSinhVien = (data) => capNhatSinhVien(data);

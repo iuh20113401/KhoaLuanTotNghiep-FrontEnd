@@ -2,12 +2,10 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import LapHoiDongContainer from "../../components/ChuNhiemBoMon/PhanCongGiangVienHoiDong/LapHoiDongContainer";
 import { layDanhSachToanBoGiangVien } from "../../services/User";
 import Card from "../../ui/Card";
-import StyledTable from "../../ui/Table";
 import {
   layDanhSachDoAnDatPhanBien,
-  layDanhSachDoAnHoiDong,
   themNhiemGiangVienHoiDong,
-} from "../../services/doAn";
+} from "../../services/DoAn";
 import DanhSachDoAnContainer from "../../components/ChuNhiemBoMon/PhanCongGiangVienHoiDong/DanhSachDoAnContainer";
 import toast from "react-hot-toast";
 import { createContext, useEffect, useMemo, useState } from "react";

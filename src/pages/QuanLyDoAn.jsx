@@ -8,7 +8,7 @@ import TaiLieuDoAn from "../components/QuanLyDoAn/TaiLieuDoAN";
 import Diem from "../components/QuanLyDoAn/Diem";
 import UseUser from "../context/UseUser";
 import { useQuery } from "@tanstack/react-query";
-import { getThongTinDoAn } from "../services/doAn";
+import { getThongTinDoAn } from "../services/DoAn";
 import { useParams } from "react-router-dom";
 import DiemDanhContainer from "../components/QuanLyDoAn/DiemDanhContainer";
 

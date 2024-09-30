@@ -3,7 +3,7 @@ import { CheckboxContainer } from "../../../ui/Input";
 import Modal from "../../../ui/Modal";
 import Button from "../../../ui/Button";
 import { useMutation } from "@tanstack/react-query";
-import { capNhatDoAn } from "../../../services/doAn";
+import { capNhatDoAn } from "../../../services/DoAn";
 import toast from "react-hot-toast";
 
 function CardXacNhan({ trangThai, id, refetch }) {

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import DanhSachDoAnPhanBien from "../../components/ChuNhiemBoMon/PhanCongGiangVienPhanBien/DanhSachDoAnPhanBien";
 import Card from "../../ui/Card";
-import { layDanhSachDoAnDat } from "../../services/doAn";
+import { layDanhSachDoAnDat } from "../../services/DoAn";
 
 function PhanCongGiangVienPhanBien() {
   const { data, isLoading, refetch } = useQuery({

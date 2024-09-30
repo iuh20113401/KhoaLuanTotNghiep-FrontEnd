@@ -6,8 +6,8 @@ import Modal from "../../../ui/Modal";
 import StyledTable from "../../../ui/Table";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { capNhatDoAn } from "../../../services/doAn";
-import { capNhatSinhVien } from "../../../services/sinhVien";
+import { capNhatDoAn } from "../../../services/DoAn";
+import { capNhatSinhVien } from "../../../services/SinhVien";
 import chamDiemHoiDong from "./chamDiemHoiDong";
 import { layTieuChiPhanBien } from "../../../services/TieuChi";
 

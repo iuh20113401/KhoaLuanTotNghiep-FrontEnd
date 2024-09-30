@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import DanhSachDoAnContainer from "../../components/GiangVien/QuanLyDoAn/DanhSachDoAn";
 import FilterDoAn from "../../components/GiangVien/QuanLyDoAn/FilterDoAn";
 import Card from "../../ui/Card";
-import { layDanhSachDoAnPhanBien } from "../../services/doAn";
+import { layDanhSachDoAnPhanBien } from "../../services/DoAn";
 import { layTieuChiPhanBien } from "../../services/TieuChi";
 import { useDanhSachDoAn } from "../../hooks/UseDanhSachDoAn";
 import { useSearchParams } from "react-router-dom";

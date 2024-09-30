@@ -3,7 +3,7 @@ import DanhSachDoAnHoiDongContainer from "../../components/GiangVien/ChamDiemHoi
 import FilterDoAnHoiDong from "../../components/GiangVien/ChamDiemHoiDong/FilterDoAnHoiDong";
 
 import DanhSachTieuChi from "../../data/tieuchi";
-import { layDanhSachDoAnHoiDong } from "../../services/doAn";
+import { layDanhSachDoAnHoiDong } from "../../services/DoAn";
 import Card from "../../ui/Card";
 
 function ChamDiemHoiDong() {
