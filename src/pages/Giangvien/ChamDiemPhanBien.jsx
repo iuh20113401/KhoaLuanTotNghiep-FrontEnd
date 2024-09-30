@@ -4,7 +4,7 @@ import FilterDoAn from "../../components/GiangVien/QuanLyDoAn/FilterDoAn";
 import Card from "../../ui/Card";
 import { layDanhSachDoAnPhanBien } from "../../services/DoAn";
 import { layTieuChiPhanBien } from "../../services/TieuChi";
-import { useDanhSachDoAn } from "../../hooks/UseDanhSachDoAn";
+import { useDanhSachDoAn } from "../../hooks/useDanhSachDoAn";
 import { useSearchParams } from "react-router-dom";
 import { sortDoAnList } from "../../utils/SortDoAn";
 

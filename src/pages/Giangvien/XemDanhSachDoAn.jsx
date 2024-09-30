@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import Card from "../../ui/Card";
 import BieuMauChung from "../../components/GiangVien/QuanLyDoAn/BieuMauChung";
 import { sortDoAnList } from "../../utils/SortDoAn"; // Sorting logic
-import { useDanhSachDoAn } from "../../hooks/UseDanhSachDoAn";
+import { useDanhSachDoAn } from "../../hooks/useDanhSachDoAn";
 import { layDanhSachDoAnTheoGiangVien } from "../../services/DoAn";
 
 function XemDanhSachDoAn() {
