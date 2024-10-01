@@ -6,12 +6,18 @@ import BarChart from "./BieuDoCot";
 import { StyledSelect } from "../../../ui/Input";
 
 function DashboardDeTai({ thongTinDashboad }) {
-  console.log(thongTinDashboad);
   if (!thongTinDashboad) return;
   const tiLeDauRot = thongTinDashboad.tiLeDauRot.doAn;
   const diemAbetData = thongTinDashboad.diemAbet;
   const diemHuongDan = thongTinDashboad.diemHuongDan;
-
+  console.log(
+    tiLeDauRot,
+    diemAbetData,
+    diemHuongDan,
+    !tiLeDauRot && !diemAbetData && !diemHuongDan
+  );
+  if (!tiLeDauRot.length && !diemAbetData.length && !diemHuongDan.length)
+    return;
   const tiLeDauRotLabel = tiLeDauRot.map((dr) =>
     dr.trangThai === 1 ? "Đậu" : dr.trangThai === 2 ? "Rớt" : "Chưa phân loại"
   );

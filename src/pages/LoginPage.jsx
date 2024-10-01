@@ -53,8 +53,8 @@ function LoginPage() {
   const { data, isLoading: userLoading } = UseUser();
   useEffect(() => {
     if (data?.user) {
-      if (data.user.vaiTro === 0) navigate("/sinhVien");
-      navigate("/giangVien");
+      if (+data.user.vaiTro === 0) navigate("/sinhVien");
+      else navigate("/giangVien");
     }
   }, [data, navigate]);
 
@@ -70,8 +70,8 @@ function LoginPage() {
       const token = data.token;
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", `Bearer ${token}`);
-      if (data?.data.user.vaiTro === 0) navigate("/sinhVien");
-      if (data?.data.user.vaiTro > 0) navigate("/giangVien");
+      if (+data?.data.user.vaiTro === 0) navigate("/sinhVien");
+      if (+data?.data.user.vaiTro > 0) navigate("/giangVien");
     },
   });
 
