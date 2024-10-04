@@ -1,4 +1,3 @@
-import { SERVER } from "../../../context/env";
 import { HiShare } from "react-icons/hi";
 import Button from "../../../ui/Button";
 import { ColLg, StyledRow } from "../../../ui/Row";
@@ -7,6 +6,9 @@ import UseUser from "../../../context/UseUser";
 import { useState } from "react";
 import LapNhomModal from "../LapNhom/LapNhomModal";
 
+const SERVER = import.meta.env.PROD
+  ? import.meta.env.VITE_SERVER_API_URL
+  : import.meta.env.VITE_SERVER_API_URL_LOCAL;
 function CardThanhVien({ doAn }) {
   const { data, isLoading } = UseUser();
   const user = data.user;

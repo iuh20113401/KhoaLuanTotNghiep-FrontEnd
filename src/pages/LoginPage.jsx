@@ -4,10 +4,11 @@ import { CheckboxContainer, StyledInput } from "../ui/Input";
 import StyledForm from "../ui/Form";
 import Button from "../ui/Button";
 import { useEffect, useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { dangNhap } from "../services/AuthApi";
 import { useNavigate } from "react-router-dom";
 import UseUser from "../context/UseUser";
+import toast from "react-hot-toast";
 
 const StyledLoginPage = styled.div`
   height: 100%;
@@ -50,7 +51,9 @@ function LoginPage() {
   const [maSo, setMaSo] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { data, isLoading: userLoading } = UseUser();
+
   useEffect(() => {
     if (data?.user) {
       if (+data.user.vaiTro === 0) navigate("/sinhVien");
@@ -66,12 +69,17 @@ function LoginPage() {
     mutationFn: dangNhap,
     mutationKey: ["user"],
     onSuccess: (data) => {
+      // Update the query data
+      queryClient.setQueryData(["user"], data.data);
+      toast.success("Đăng nhập thành công");
+
+      // Navigate immediately after login success based on role
       const user = data.data.user;
-      const token = data.token;
-      localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem("token", `Bearer ${token}`);
-      if (+data?.data.user.vaiTro === 0) navigate("/sinhVien");
-      if (+data?.data.user.vaiTro > 0) navigate("/giangVien");
+      if (+user?.vaiTro === 0) {
+        navigate("/sinhVien", { replace: true });
+      } else {
+        navigate("/giangVien", { replace: true });
+      }
     },
   });
 

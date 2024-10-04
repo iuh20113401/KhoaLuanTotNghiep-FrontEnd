@@ -9,7 +9,9 @@ import { themComment } from "../../../services/ThucTap";
 import UseUser from "../../../context/UseUser";
 import { useState } from "react";
 import formatVieNamDate from "../../../utils/FormatDate";
-
+const SERVER = import.meta.env.PROD
+  ? import.meta.env.VITE_SERVER_URL
+  : import.meta.env.VITE_SERVER_URL_LOCAL;
 const StyledCommentSection = styled.div`
   height: 300px;
   overflow: scroll;
@@ -48,7 +50,7 @@ function Comment({ idDoAn, comment, refetch }) {
       <StyledCommentSection>
         {comment?.map((com) => (
           <StyledRow gap=".8rem">
-            <Avatar src={`http://localhost:3000/${com.hinhAnh}`} />
+            <Avatar src={`${SERVER}${com.hinhAnh}`} />
             <ColLg>
               <p>
                 <b>{com.hoTen}</b>

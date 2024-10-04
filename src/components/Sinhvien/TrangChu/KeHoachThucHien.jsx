@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { layKeHoachThucHien } from "../../../services/ThongBao";
 import ThongBaoContainer from "./ThongBaoContainer";
-
+const SERVER = import.meta.env.PROD
+  ? import.meta.env.VITE_SERVER_URL
+  : import.meta.env.VITE_SERVER_URL_LOCAL;
 function KeHoachThucHien() {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["KeHoachThucHien"],
@@ -16,7 +18,7 @@ function KeHoachThucHien() {
           <>
             <img
               crossorigin="anonymous | use-credentials"
-              src={`http://localhost:3000${keHoach.noiDung}`}
+              src={`${SERVER}${keHoach.noiDung}`}
               alt="hinhAnh"
               width="100%"
               height="1000px"

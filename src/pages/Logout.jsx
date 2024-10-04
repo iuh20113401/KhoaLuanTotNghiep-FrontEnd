@@ -17,12 +17,14 @@ const StyledDiv = styled.div`
 function Logout() {
   const queryClient = useQueryClient();
   const { data, isLoading, isSuccess } = useQuery({
+    queryKey: ["logout"],
     queryFn: logOut,
   });
   const navigate = useNavigate();
   useEffect(() => {
-    if (isSuccess && data?.message) {
-      toast.success(data.message);
+    console.log(isSuccess, data);
+    if (isSuccess && data?.status === "success") {
+      toast.success("Đăng xuất thành công");
       localStorage.clear();
       queryClient.removeQueries();
 

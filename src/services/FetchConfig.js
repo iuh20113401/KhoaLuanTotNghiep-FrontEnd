@@ -1,10 +1,14 @@
-const URL = "https://khoaluantotnghiep-kcc7.onrender.com/api";
+const URL = import.meta.env.PROD
+  ? import.meta.env.VITE_SERVER_API_URL
+  : import.meta.env.VITE_SERVER_API_URL_LOCAL;
 export default async function fetchApi(url, options) {
   try {
-    const token = localStorage.getItem("token");
     options.headers = {
       ...options.headers,
-      Authorization: `${token}`,
+    };
+    options = {
+      ...options,
+      credentials: "include",
     };
     const response = await fetch(URL + url, options);
     const data = await response.json();

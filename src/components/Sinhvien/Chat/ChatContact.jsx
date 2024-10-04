@@ -4,7 +4,9 @@ import { ColLg, StyledRow } from "../../../ui/Row";
 import Avatar from "../../../ui/Avatar";
 import { StyledInput } from "../../../ui/Input";
 import { Link } from "react-router-dom";
-
+const SERVER = import.meta.env.PROD
+  ? import.meta.env.VITE_SERVER_URL
+  : import.meta.env.VITE_SERVER_URL_LOCAL;
 const StyledChatContact = styled.div`
   position: static;
   border-right: 1px solid #e6e6e8 !important;
@@ -72,7 +74,7 @@ function ChatContact({ contact, setContact, DanhSachTroChuyen }) {
             onClick={() => setContact(user)}
           >
             <StyledRow gap=".8rem">
-              <Avatar src={`http://localhost:3000/${contact.hinhAnh}`} />
+              <Avatar src={`${SERVER}${contact.hinhAnh}`} />
               <StyledName>
                 <h6>{user.hoTen}</h6>
                 <p className="light">

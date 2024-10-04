@@ -5,29 +5,32 @@ import { useEffect } from "react";
 
 function UseUser() {
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    if (!token) {
-      navigate("/login");
-    }
-  }, [token, navigate]);
-
+  // Check if JWT exists before making the server call
   const { data, isLoading, refetch, error } = useQuery({
     queryKey: ["user"],
     queryFn: getMe,
-    enabled: !!token,
     onError: (err) => {
       if (err.response?.status === 401) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        navigate("/login");
+        navigate("/login"); // Redirect to login if unauthorized (e.g., token expired)
       }
     },
     staleTime: 5 * 60 * 1000,
+    retry: 3,
+    retryOnMount: 3,
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 3000),
   });
 
-  return { data, isLoading, refetch, error, isAuthenticated: !!token };
+  // Check if user is authenticated by the presence of `data`
+  const isAuthenticated = !!data?.user;
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/login"); // Redirect if not authenticated or no JWT
+    }
+  }, [isAuthenticated, navigate]);
+
+  return { data, isLoading, refetch, error, isAuthenticated };
 }
 
 export default UseUser;

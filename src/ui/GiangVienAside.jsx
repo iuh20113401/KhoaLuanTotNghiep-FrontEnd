@@ -5,6 +5,9 @@ import { useState } from "react";
 import Logo from "../../public/hinhanh/iuh_logo_2.png";
 import { Link, NavLink } from "react-router-dom";
 import { FiCircle } from "react-icons/fi";
+const SERVER = import.meta.env.PROD
+  ? import.meta.env.VITE_SERVER_URL
+  : import.meta.env.VITE_SERVER_URL_LOCAL;
 const StyledAside = styled.aside`
   display: flex;
   position: fixed;
@@ -420,10 +423,7 @@ function GiangVienAside({ user }) {
             }
           >
             <FooterLogo>
-              <img
-                src={`http://localhost:3000/${user.hinhAnh}`}
-                alt="logo iuh"
-              />
+              <img src={`${SERVER}${user.hinhAnh}`} alt="logo iuh" />
             </FooterLogo>
             <span>{user.hoTen}</span>
           </StyledRow>

@@ -1,8 +1,10 @@
 import fetchApi from "./FetchConfig";
-const URL = "https://khoaluantotnghiep-kcc7.onrender.com/api";
+const URL = import.meta.env.PROD
+  ? import.meta.env.VITE_SERVER_API_URL
+  : import.meta.env.VITE_SERVER_API_URL_LOCAL;
 async function dangNhap({ maSo, password }) {
   try {
-    const response = await fetch(URL + "/user/singin", {
+    const response = await fetch(URL + "/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -11,10 +13,13 @@ async function dangNhap({ maSo, password }) {
         maSo,
         password,
       }),
+      credentials: "include", // Include cookies
     });
+
     const data = await response.json();
+
     if (response.status === 409) {
-      throw new Error(data || " có lỗi xuất hiện");
+      throw new Error(data || "Có lỗi xuất hiện");
     }
     if (!response.ok) {
       throw new Error(
@@ -23,12 +28,13 @@ async function dangNhap({ maSo, password }) {
         }`
       );
     }
-    localStorage.setItem("token", `Bearer ${data.token}`);
+    // No more localStorage handling for token, token will be in cookies now
     return data;
   } catch (error) {
     throw new Error(`${error.message}`);
   }
 }
+
 const logOut = () =>
   fetchApi(`/user/logout`, {
     method: "GET",
