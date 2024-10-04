@@ -9,7 +9,6 @@ function DanhSachToanBoThucTap() {
     queryFn: layDanhSachDangKyThucTap,
   });
   const DanhSachSinhVienThucTap = data?.results;
-  console.log(data);
   return (
     <StyledTable>
       <thead>

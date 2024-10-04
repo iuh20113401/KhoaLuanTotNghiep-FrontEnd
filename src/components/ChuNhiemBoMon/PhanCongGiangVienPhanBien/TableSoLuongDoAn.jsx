@@ -1,7 +1,6 @@
 import StyledTable from "../../../ui/Table";
 
 const calculateGiangVienAssignment = (DanhSachGiangVien, updatedDoAn) => {
-  console.log(DanhSachGiangVien, updatedDoAn);
   if (!DanhSachGiangVien && !updatedDoAn) return;
   const giangVienAssignments = DanhSachGiangVien.map((gv) => {
     const soLuongDoAnPhanBien = updatedDoAn.filter(
@@ -18,7 +17,6 @@ const calculateGiangVienAssignment = (DanhSachGiangVien, updatedDoAn) => {
   return giangVienAssignments;
 };
 function DanhSachGiangVienPhanBienTable({ DanhSachGiangVien, updatedDoAn }) {
-  console.log(DanhSachGiangVien, updatedDoAn);
   const giangVienAssignmentData = calculateGiangVienAssignment(
     DanhSachGiangVien,
     updatedDoAn

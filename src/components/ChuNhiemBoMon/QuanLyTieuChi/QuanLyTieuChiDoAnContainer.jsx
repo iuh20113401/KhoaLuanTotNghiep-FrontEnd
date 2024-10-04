@@ -3,7 +3,6 @@ import StyledTable from "../../../ui/Table";
 import ChiTietTieuChiDoAn from "./ChiTietTieuChiDoAn";
 
 function QuanLyTieuChiDoAnContainer({ TieuChi, setIsThem }) {
-  console.log(TieuChi);
   return (
     <div>
       <div className="">

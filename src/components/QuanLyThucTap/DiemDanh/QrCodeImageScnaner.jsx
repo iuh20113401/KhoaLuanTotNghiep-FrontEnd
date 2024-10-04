@@ -14,7 +14,6 @@ function QrCodeImageScanner({ inputRef, mutate, location }) {
           mutate({ id: decodedText.replace(/"/g, ""), location });
         })
         .catch((err) => {
-          console.log(err);
           toast.error("Quét ảnh không thành công");
         });
     }

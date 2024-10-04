@@ -17,7 +17,6 @@ function DiemDanhButton() {
       toast.success("Điểm danh thành công");
     },
     onError: (err) => {
-      console.log(err);
       toast.error(err.message);
     },
   });

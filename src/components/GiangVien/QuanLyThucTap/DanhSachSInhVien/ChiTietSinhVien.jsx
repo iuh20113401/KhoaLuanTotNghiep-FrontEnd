@@ -13,7 +13,6 @@ const TRANG_THAI_STYLE = {
 };
 function ChiTietSinhVien({ sinhvien, index }) {
   const trangThai = sinhvien.diem.ketQua;
-  console.log(sinhvien);
   const [showModal, setShowModal] = useState(false);
   return (
     <>

@@ -22,7 +22,6 @@ function Logout() {
   });
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(isSuccess, data);
     if (isSuccess && data?.status === "success") {
       toast.success("Đăng xuất thành công");
       localStorage.clear();

@@ -71,7 +71,6 @@ function ChiTietDiem({ doAn, loai }) {
     doAn.sinhVien[0].diem,
     newLoai
   )?.diemTong;
-  console.log(diem, diem2);
   const sinhVien2DiemTong =
     doAn.sinhVien[1] !== null && Object.values(doAn.sinhVien[1]).length > 0
       ? getNestedValue(doAn.sinhVien[0].diem, newLoai)?.diemTong

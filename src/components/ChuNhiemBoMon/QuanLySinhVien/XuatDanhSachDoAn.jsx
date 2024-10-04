@@ -50,9 +50,7 @@ function XuatDanhSachDoAnWord({ DanhSachDoAn, setShowModal }) {
     Export2Doc("document");
   }, []);
   let index = 0;
-  console.log(
-    DanhSachDoAn[0].sinhVien1.hoTen.split(" ").slice(0, -1).join(" ")
-  );
+
   return (
     <div>
       <button onClick={() => Export2Doc("document")}>Print</button>

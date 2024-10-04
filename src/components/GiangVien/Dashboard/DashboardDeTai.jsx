@@ -10,12 +10,7 @@ function DashboardDeTai({ thongTinDashboad }) {
   const tiLeDauRot = thongTinDashboad.tiLeDauRot.doAn;
   const diemAbetData = thongTinDashboad.diemAbet;
   const diemHuongDan = thongTinDashboad.diemHuongDan;
-  console.log(
-    tiLeDauRot,
-    diemAbetData,
-    diemHuongDan,
-    !tiLeDauRot && !diemAbetData && !diemHuongDan
-  );
+
   if (!tiLeDauRot.length && !diemAbetData.length && !diemHuongDan.length)
     return;
   const tiLeDauRotLabel = tiLeDauRot.map((dr) =>
@@ -112,11 +107,7 @@ function DiemAbetTheoLo({ diemAbetData }) {
       return +abet.lo === +LO;
     })[0]
     .diemCounts.map((d) => d.diem);
-  console.log(
-    diemAbetData.filter((abet) => {
-      return +abet.lo === +LO;
-    })[0]
-  );
+
   const LoData = diemAbetData
     .filter((abet) => {
       return +abet.lo === +LO;

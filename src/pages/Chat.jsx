@@ -29,7 +29,6 @@ function Chat() {
   });
   const DanhSachTroChuyen = data?.danhSachTroChuyen;
   useEffect(() => {
-    console.log(DanhSachTroChuyen);
     if (DanhSachTroChuyen) setContact(DanhSachTroChuyen[0]);
   }, [DanhSachTroChuyen]);
   return (

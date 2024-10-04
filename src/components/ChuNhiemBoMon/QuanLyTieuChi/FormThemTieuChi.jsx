@@ -29,7 +29,6 @@ function FormThemTieuChi() {
     mode: "onChange", // Validate on change
   });
   function onSubmit(data) {
-    console.log(data);
     const newData = {
       ten: "Tiêu chí đồ án",
       LO: Array.from({ length: LOIndex }).map((x, i) => {
@@ -57,7 +56,6 @@ function FormThemTieuChi() {
     const currentLO = field.split("-")[0]; // Extract LO index from the field name
     const currentd = +field.split("-")[1].split("")[1];
 
-    console.log(parseFloat(allValues[`${currentLO}-${currentd}-nn`]));
     if (
       (parseFloat(allValues[`${currentLO}-d${currentd}-nn`]) || 0) >=
         (parseFloat(allValues[`${currentLO}-d${currentd}-ln`]) || 10) ||

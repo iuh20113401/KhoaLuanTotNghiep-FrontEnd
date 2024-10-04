@@ -50,7 +50,6 @@ function ModalChamDiemHoiDong({
     } else {
       if (+newData.ketQua === 2) doAnUpdate = await updateDoAn(doAn._id, 7);
     }
-    console.log(sinhVienUpdate1, sinhVienUpdate2);
     return sinhVienUpdate1 && sinhVienUpdate2 && doAnUpdate;
   };
 

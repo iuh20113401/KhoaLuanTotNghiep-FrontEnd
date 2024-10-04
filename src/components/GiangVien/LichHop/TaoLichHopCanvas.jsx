@@ -30,7 +30,6 @@ function TaoLichHopCanvas({ setShowCanvas, refetch }) {
   const batDau = watch("batDau");
 
   function onSubmit(data) {
-    console.log("Form data:", data);
     mutate(data);
   }
 

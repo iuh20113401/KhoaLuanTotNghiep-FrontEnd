@@ -201,7 +201,6 @@ export default function XuatDanhSachTongHop({ DanhSachDoAn }) {
     (acc, vl) => acc + vl,
     0
   );
-  console.log(tongSoDiemLan1, tongSoDiemLan2);
   const SLDoAnDat = Object.keys(DanhSachTrangThai).reduce(
     (acc, tt) =>
       +tt >= 1 && +tt <= 4 ? (acc = acc + DanhSachTrangThai[tt]) : acc,

@@ -1,7 +1,6 @@
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 export default function exportToExcel(data, fileName) {
-  console.log(data);
   const worksheet = XLSX.utils.json_to_sheet(data);
 
   const workbook = XLSX.utils.book_new();

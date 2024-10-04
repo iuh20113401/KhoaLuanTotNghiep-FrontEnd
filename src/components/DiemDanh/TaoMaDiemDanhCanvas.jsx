@@ -33,7 +33,6 @@ function TaoMaDiemDanhCanvas({ setIsDiemDanh }) {
     mutationFn: taoMaDiemDanh,
     onSuccess: (data) => {
       toast.success("Tạo mã điểm danh thành công");
-      console.log(data.qrCode);
       setQrCode(data.qrCode); // Save the QR code data
     },
     onError: () => {
@@ -68,7 +67,6 @@ function TaoMaDiemDanhCanvas({ setIsDiemDanh }) {
           lng: position.coords.longitude,
         };
         setDiaDiem(coords);
-        console.log("Location:", coords);
       },
       (error) => {
         alert(
@@ -158,8 +156,6 @@ function TaoMaDiemDanhCanvas({ setIsDiemDanh }) {
         : null,
       sinhVien: data.sinhVien || selectedSinhVien,
     };
-    console.log(formData);
-
     taoMaDiemDanhMutate(formData);
   }
 

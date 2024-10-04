@@ -39,7 +39,6 @@ function ChatContent({ contact }) {
       socket.disconnect();
     };
   }, [User?._id, contact?._id, userLoading, messagesLoading]);
-  console.log(messages);
   return (
     <div className="chat-window">
       {messages?.map((msg, index) => (

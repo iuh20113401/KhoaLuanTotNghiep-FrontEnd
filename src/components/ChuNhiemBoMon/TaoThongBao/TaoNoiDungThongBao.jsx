@@ -79,7 +79,6 @@ function TaoNoiDungThongBao() {
     };
   };
   function onSubmit(data) {
-    console.log(value);
     // if (!value || !data.tieuDe) return;
     // const newData = { ...data, noiDung: value };
     // mutate(newData);
