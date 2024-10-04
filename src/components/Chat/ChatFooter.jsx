@@ -4,7 +4,9 @@ import io from "socket.io-client";
 import { StyledInput } from "../../ui/Input";
 import { Col10, Col2, StyledRow } from "../../ui/Row";
 import Button from "../../ui/Button";
-
+const SERVER = import.meta.env.PROD
+  ? import.meta.env.VITE_SERVER_URL
+  : import.meta.env.VITE_SERVER_URL_LOCAL;
 function ChatFooter({ contact }) {
   const [inputMessage, setInputMessage] = useState("");
   const { data, isLoading } = UseUser();
@@ -12,7 +14,7 @@ function ChatFooter({ contact }) {
 
   const sendMessage = () => {
     if (inputMessage.trim() && User?._id && contact?._id) {
-      const socket = io("http://localhost:3000");
+      const socket = io("SERVER");
       socket.emit("chatMessage", {
         content: inputMessage,
         userId: User._id,

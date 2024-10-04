@@ -10,7 +10,9 @@ import {
 import toast from "react-hot-toast";
 import { useEffect, useRef, useState } from "react";
 import Editor from "./KeHoachThucHienTable";
-
+const SERVER = import.meta.env.PROD
+  ? import.meta.env.VITE_SERVER_URL
+  : import.meta.env.VITE_SERVER_URL_LOCAL;
 function KeHoachThucHien({ vaiTro }) {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["KeHoachThucHien"],
@@ -101,7 +103,7 @@ function KeHoachThucHien({ vaiTro }) {
             <>
               <img
                 crossorigin="anonymous | use-credentials"
-                src={`http://localhost:3000${keHoach.noiDung}`}
+                src={`${SERVER}${keHoach.noiDung}`}
                 alt="hinhAnh"
                 width="100%"
                 height="1000px"

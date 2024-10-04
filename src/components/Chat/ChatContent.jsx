@@ -4,7 +4,9 @@ import { layMessages } from "../../services/Chat";
 import { useEffect, useState } from "react";
 import UseUser from "../../context/UseUser";
 import { MessageDiv, MessageWrapper } from "../../ui/Message";
-
+const SERVER = import.meta.env.PROD
+  ? import.meta.env.VITE_SERVER_URL
+  : import.meta.env.VITE_SERVER_URL_LOCAL;
 function ChatContent({ contact }) {
   const [messages, setMessages] = useState([]);
   const { data: user, isLoading: userLoading } = UseUser();
@@ -24,7 +26,7 @@ function ChatContent({ contact }) {
     if (userLoading || messagesLoading || !User?._id || !contact?._id) return;
 
     // Initialize socket connection when User and contact data are ready
-    const socket = io("http://localhost:3000");
+    const socket = io(SERVER);
 
     // Join room for the two users
     socket.emit("joinRoom", { userId: User._id, partnerId: contact._id });
