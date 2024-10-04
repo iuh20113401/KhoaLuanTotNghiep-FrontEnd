@@ -26,7 +26,7 @@ function ChatContent({ contact }) {
     if (userLoading || messagesLoading || !User?._id || !contact?._id) return;
 
     // Initialize socket connection when User and contact data are ready
-    const socket = io(SERVER);
+    const socket = io(`${SERVER}`);
 
     // Join room for the two users
     socket.emit("joinRoom", { userId: User._id, partnerId: contact._id });

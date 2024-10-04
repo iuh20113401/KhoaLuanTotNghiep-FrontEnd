@@ -14,7 +14,7 @@ function ChatFooter({ contact }) {
 
   const sendMessage = () => {
     if (inputMessage.trim() && User?._id && contact?._id) {
-      const socket = io("SERVER");
+      const socket = io(`${SERVER}`);
       socket.emit("chatMessage", {
         content: inputMessage,
         userId: User._id,
