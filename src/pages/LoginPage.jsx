@@ -71,6 +71,7 @@ function LoginPage() {
     onSuccess: (data) => {
       // Update the query data
       queryClient.setQueryData(["user"], data.data);
+      
       toast.success("Đăng nhập thành công");
 
       // Navigate immediately after login success based on role

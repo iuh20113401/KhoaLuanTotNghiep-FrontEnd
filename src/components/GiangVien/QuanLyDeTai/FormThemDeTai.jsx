@@ -84,7 +84,6 @@ function FormThemDeTai({ deTai = null }) {
         <StyledSelect
           value={danhMuc}
           onChange={(e) => setDanhMuc(e.target.value)}
-          {...register("danhMuc", { required: "Danh mục là bắt buộc" })}
         >
           <option value="">Chọn danh mục đề tài</option>
           <option value="ERP">ERP</option>

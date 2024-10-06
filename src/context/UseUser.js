@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 function UseUser() {
   const navigate = useNavigate();
-
+  console.log(document.cookie);
   // Check if JWT exists before making the server call
   const { data, isLoading, refetch, error } = useQuery({
     queryKey: ["user"],
@@ -21,16 +21,7 @@ function UseUser() {
     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 3000),
   });
 
-  // Check if user is authenticated by the presence of `data`
-  const isAuthenticated = !!data?.user;
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/login"); // Redirect if not authenticated or no JWT
-    }
-  }, [isAuthenticated, navigate]);
-
-  return { data, isLoading, refetch, error, isAuthenticated };
+  return { data, isLoading, refetch, error };
 }
 
 export default UseUser;

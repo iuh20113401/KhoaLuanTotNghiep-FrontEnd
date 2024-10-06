@@ -13,10 +13,10 @@ const Main = styled.article`
   margin: auto;
 `;
 function SinhVienLayout() {
-  const { data, isLoading, isAuthenticated } = UseUser();
+  const { data, isLoading } = UseUser();
   const user = data?.user;
 
-  if (isLoading || !isAuthenticated) {
+  if (isLoading) {
     return null; // Return null or a loader while checking authentication
   }
   return (
