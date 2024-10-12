@@ -1,13 +1,12 @@
-import { BsFileWord } from "react-icons/bs";
 import DanhSachToanBoDoAnContainer from "../../components/ChuNhiemBoMon/QuanLySinhVien/DanhSachToanBoDoAn";
 import FilterDoAn from "../../components/GiangVien/QuanLyDoAn/FilterDoAn";
-import Button from "../../ui/Button";
 import Card from "../../ui/Card";
 import XuatDanhSachDoAnContainer from "../../components/ChuNhiemBoMon/QuanLySinhVien/XuatDanhSachDoAnContainer";
 import { layDanhSachToanBoDoAn } from "../../services/DoAn";
 import { useQuery } from "@tanstack/react-query";
 import XuatDanhSachDiemContainer from "../../components/ChuNhiemBoMon/QuanLySinhVien/XuatDanhSachDiemContainer";
 import XuatDanhSachTongHopContainer from "../../components/ChuNhiemBoMon/QuanLySinhVien/XuatDanhSachTongHopContainer";
+import XuatDanhSachTrangThaiDoAnGiuaKyContainer from "../../components/ChuNhiemBoMon/QuanLySinhVien/XuatDanhSachTrangThaiDoAnGiuaKyContainer";
 
 function QuanLyThongTinDoAn() {
   const { data, isLoading } = useQuery({
@@ -32,6 +31,13 @@ function QuanLyThongTinDoAn() {
                 <XuatDanhSachTongHopContainer DanhSachDoAn={DanhSachDoAn} />
               </span>
             </div>
+          </div>
+          <div className="pt-2 pr-2 text-end">
+            <span>
+              <XuatDanhSachTrangThaiDoAnGiuaKyContainer
+                DanhSachDoAn={DanhSachDoAn}
+              />
+            </span>
           </div>
           <FilterDoAn DanhSachDoAn={DanhSachDoAn} />
           <DanhSachToanBoDoAnContainer DanhSachDoAn={DanhSachDoAn} />

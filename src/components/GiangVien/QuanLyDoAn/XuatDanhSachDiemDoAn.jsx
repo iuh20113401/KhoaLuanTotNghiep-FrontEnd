@@ -14,7 +14,7 @@ const mapDataForExport = (data) => {
     // Prepare fields for diemAbet under diemHuongDan
 
     const diemHD = {
-      diemTong: diemHuongDan.diemTong || "N/A",
+      diemTong: diemHuongDan?.diemTong || "N/A",
       diemAbet: {
         ...diemHuongDan?.diemAbet?.reduce((acc, diem, idx) => {
           acc[`dhd_Lo${idx + 1}`] = diem.diem || "N/A"; // dhd_1, dhd_2,... for each điểm abet
@@ -25,8 +25,8 @@ const mapDataForExport = (data) => {
 
     // Prepare diemAbet under diemPhanBien
     const diemPB = {
-      diemTong: diemPhanBien.diemPhanBien1.diemTong || "N/A",
-      ...diemPhanBien.diemPhanBien1.diemAbet.reduce((acc, diem, idx) => {
+      diemTong: diemPhanBien?.diemPhanBien1?.diemTong || "N/A",
+      ...diemPhanBien?.diemPhanBien1?.diemAbet.reduce((acc, diem, idx) => {
         acc[`dpb_${idx + 1}`] = diem.diem || "N/A"; // dpb_1, dpb_2,... for each điểm abet
         return acc;
       }, {}),

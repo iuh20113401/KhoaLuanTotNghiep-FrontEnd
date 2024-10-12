@@ -22,6 +22,7 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
   const getNestedValue = (obj, path) => {
     return path.split(".").reduce((acc, part) => acc && acc[part], obj);
   };
+
   return (
     <>
       <tr className={isOdd ? "strip" : ""}>
@@ -40,7 +41,7 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
             </Link>
           </td>
         ) : (
-          <td rowSpan={countSinhVien}>
+          <td rowSpan={countSinhVien} width="25%">
             <div>
               <Button
                 bgcolor="var(--bs-blue)"
@@ -70,14 +71,14 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
                 bgcolor="var(--bs-danger)"
                 state={
                   getNestedValue(doAn.sinhVien[0].diem, newLoai)?.diemAbet
-                    .length > 0
+                    .length > 0 || !(+doAn.trangThai === 2)
                     ? "disabled"
                     : ""
                 }
                 onClick={() => setShowModal(true)}
                 disabled={
                   getNestedValue(doAn.sinhVien[0].diem, newLoai)?.diemAbet
-                    .length > 0
+                    .length > 0 || !(+doAn.trangThai === 2)
                 }
               >
                 <span>
@@ -85,6 +86,12 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
                 </span>
                 Chấm điểm
               </Button>
+
+              {doAn.trangThai <= 1 ? (
+                <p className="error">Đồ án chưa cập nhật trạng thái</p>
+              ) : (
+                <p className="error"></p>
+              )}
             </div>
           </td>
         )}

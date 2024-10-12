@@ -336,6 +336,9 @@ img {
 .justify-end{
   justify-content: end;
 }
+.text-left{
+  text-align: left !important;
+}
 .text-end{
   text-align: right !important;
 }

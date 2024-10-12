@@ -28,36 +28,41 @@ const StyledTrangThai = {
     color: "var(--bs-white)",
   },
   1: {
-    content: "Chờ phản biện",
+    content: "Đạt giữa kỳ",
     bgcolor: "var(--bs-warning)",
     color: "var(--bs-white)",
   },
   2: {
-    content: "Chờ chấm điểm hội động",
+    content: "Chờ phản biện",
     bgcolor: "var(--bs-warning)",
     color: "var(--bs-white)",
   },
   3: {
-    content: "Chờ chám diểm poster",
+    content: "Chờ chấm điểm hội động",
     bgcolor: "var(--bs-warning)",
     color: "var(--bs-white)",
   },
   4: {
     content: "Chờ chám diểm poster",
-    bgcolor: "var(--bs-success)",
+    bgcolor: "var(--bs-warning)",
     color: "var(--bs-white)",
   },
   5: {
+    content: "Chờ chám diểm poster",
+    bgcolor: "var(--bs-success)",
+    color: "var(--bs-white)",
+  },
+  6: {
     content: "Cấm thi",
     bgcolor: "var(--bs-danger)",
     color: "var(--bs-white)",
   },
-  6: {
+  7: {
     content: "Không đạt phản biện ",
     bgcolor: "var(--bs-danger)",
     color: "var(--bs-white)",
   },
-  7: {
+  8: {
     content: "Không đạt hội đồng",
     bgcolor: "var(--bs-danger)",
     color: "var(--bs-white)",

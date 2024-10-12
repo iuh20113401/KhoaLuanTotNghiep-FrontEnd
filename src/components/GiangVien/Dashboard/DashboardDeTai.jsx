@@ -11,7 +11,7 @@ function DashboardDeTai({ thongTinDashboad }) {
   const diemAbetData = thongTinDashboad.diemAbet;
   const diemHuongDan = thongTinDashboad.diemHuongDan;
 
-  if (!tiLeDauRot.length && !diemAbetData.length && !diemHuongDan.length)
+  if (!tiLeDauRot.length || !diemAbetData.length || !diemHuongDan.length)
     return;
   const tiLeDauRotLabel = tiLeDauRot.map((dr) =>
     dr.trangThai === 1 ? "Đậu" : dr.trangThai === 2 ? "Rớt" : "Chưa phân loại"
@@ -44,13 +44,13 @@ function DashboardDeTai({ thongTinDashboad }) {
       "#FF9F40",
     ],
   };
-  const abetScores = diemAbetData.map((abet) =>
+  const abetScores = diemAbetData?.map((abet) =>
     abet.diemCounts.map((countObj) => countObj.diem)
   );
-  const abetLabels = diemAbetData.map((abet) => `Lo ${abet.lo}`);
-  const abetDataset = abetScores[0].map((_, index) => ({
+  const abetLabels = diemAbetData?.map((abet) => `Lo ${abet.lo}`);
+  const abetDataset = abetScores[0]?.map((_, index) => ({
     label: `Diem ${index + 1}`, // Dynamically labeling each diem
-    data: diemAbetData.map((abet) => abet.diemCounts[index]?.diem || 0),
+    data: diemAbetData?.map((abet) => abet.diemCounts[index]?.diem || 0),
     backgroundColor: `rgba(${index * 50}, 99, 132, 0.6)`, // Dynamically assign colors
     borderColor: `rgba(${index * 50}, 99, 132, 1)`,
     borderWidth: 1,
@@ -101,18 +101,19 @@ function DashboardDeTai({ thongTinDashboad }) {
 
 function DiemAbetTheoLo({ diemAbetData }) {
   const [LO, setLO] = useState(1);
-  const abetLo = diemAbetData.map((abet) => abet.lo);
+  if (!diemAbetData.length) return;
+  const abetLo = diemAbetData?.map((abet) => abet.lo);
   const LoLabel = diemAbetData
-    .filter((abet) => {
+    ?.filter((abet) => {
       return +abet.lo === +LO;
     })[0]
-    .diemCounts.map((d) => d.diem);
+    .diemCounts?.map((d) => d.diem);
 
   const LoData = diemAbetData
-    .filter((abet) => {
+    ?.filter((abet) => {
       return +abet.lo === +LO;
-    })[0]
-    .diemCounts.map((d) => d.count);
+    })?.[0]
+    .diemCounts?.map((d) => d.count);
 
   const LoOptions = {
     backgroundColor: [
@@ -136,7 +137,7 @@ function DiemAbetTheoLo({ diemAbetData }) {
     <>
       <h6>Điểm abet theo Lo</h6>
       <StyledSelect value={LO} onChange={(e) => setLO(e.target.value)}>
-        {abetLo.map((lo) => {
+        {abetLo?.map((lo) => {
           return <option value={lo}> {`LO ${lo}`}</option>;
         })}
       </StyledSelect>

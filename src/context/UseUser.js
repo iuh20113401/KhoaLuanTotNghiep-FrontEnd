@@ -5,7 +5,6 @@ import { useEffect } from "react";
 
 function UseUser() {
   const navigate = useNavigate();
-  console.log(document.cookie);
   // Check if JWT exists before making the server call
   const { data, isLoading, refetch, error } = useQuery({
     queryKey: ["user"],

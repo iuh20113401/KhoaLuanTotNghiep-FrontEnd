@@ -27,9 +27,10 @@ function ChiTietSInhVien({ sinhvien, index }) {
         <td>{sinhvien.Info.soDienThoai}</td>
         <td>
           <Button
-            bgcolor={TRANG_THAI_STYLE[trangThai].bgcolor}
+            bgcolor={TRANG_THAI_STYLE[trangThai]?.bgcolor}
             onClick={() => setShowModal((showModal) => !showModal)}
-            disabled={sinhvien.diem.ketQua <= 0}
+            disabled={!sinhvien.diem.ketQua}
+            state={sinhvien.diem.ketQua || "disabled"}
           >
             Xem
           </Button>

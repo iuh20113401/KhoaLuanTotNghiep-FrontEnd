@@ -6,6 +6,7 @@ import decodeHtml from "../../utils/ChangeHtmlCode";
 import CardTaiLieu from "./ThongTinChung/CardTaiLieu";
 import Comment from "./ThongTinChung/Comment";
 import CardXacNhan from "./ThongTinChung/CardXacNhan";
+import CardXacNhanCuoiKy from "./ThongTinChung/CardXacNhanCuoiKy";
 
 const StyledInfoDiv = styled.div`
   display: flex;
@@ -60,9 +61,18 @@ function ThongTinChung({ user, doAn, refetch }) {
         </div>
       </Col9>
       <Col3 className="pl-3 pr-3">
-        {user.vaiTro !== 0 && (
+        {user.vaiTro !== 0 && doAn.trangThai === 0 && (
           <Card>
             <CardXacNhan
+              id={doAn._id}
+              trangThai={doAn.trangThai}
+              refetch={refetch}
+            />
+          </Card>
+        )}
+        {user.vaiTro !== 0 && doAn.trangThai >= 1 && (
+          <Card>
+            <CardXacNhanCuoiKy
               id={doAn._id}
               trangThai={doAn.trangThai}
               refetch={refetch}

@@ -6,7 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { capNhatDoAn } from "../../../services/DoAn";
 import toast from "react-hot-toast";
 
-function CardXacNhan({ trangThai, id, refetch }) {
+function CardXacNhanCuoiKy({ trangThai, id, refetch }) {
   const [showModal, setShowModal] = useState(false);
   const [value, setValue] = useState(null);
   const { mutate, isPending } = useMutation({
@@ -23,12 +23,12 @@ function CardXacNhan({ trangThai, id, refetch }) {
   return (
     <>
       <div className="p-3">
-        <h6>Đánh giá giữa kỳ</h6>
+        <h6>Đánh giá cuối kỳ</h6>
         <div className="mt-2">
           <CheckboxContainer
             label={"Đạt"}
-            value="1"
-            checked={+trangThai === 1}
+            value="2"
+            checked={+trangThai === 2}
             disabled={+trangThai === 6}
             onClick={(e) => {
               setShowModal(true);
@@ -41,7 +41,7 @@ function CardXacNhan({ trangThai, id, refetch }) {
             label={"Không đạt"}
             value="6"
             checked={+trangThai === 6}
-            disabled={+trangThai === 1}
+            disabled={+trangThai === 2}
             onClick={(e) => {
               setShowModal(true);
               setValue(e.target.value);
@@ -90,4 +90,4 @@ function CardXacNhan({ trangThai, id, refetch }) {
   );
 }
 
-export default CardXacNhan;
+export default CardXacNhanCuoiKy;
