@@ -11,7 +11,7 @@ function DisplayQuillContent({ content }) {
   const decodedContent = decodeHtml(content);
   return <div dangerouslySetInnerHTML={{ __html: decodedContent }} />;
 }
-function ChiTietDeTai({ deTai }) {
+function ChiTietDeTai({ deTai, caiDatInfo }) {
   const [isDangKy, setIsDangKy] = useState(false);
   const [rowHeight, setRowHeight] = useState("auto");
   const { refetch } = UseUser();
@@ -40,6 +40,8 @@ function ChiTietDeTai({ deTai }) {
       maDoAn: Math.floor(100000 + Math.random() * 900000),
       tenDoAn: deTai.tenDeTai,
       giangVien: deTai.giangVien._id,
+      namHoc: caiDatInfo.namHoc,
+      hocKy: caiDatInfo.hocKy,
     });
   }
   return (
@@ -63,7 +65,13 @@ function ChiTietDeTai({ deTai }) {
               <p>{deTai.giangVien.hoTen}</p>
             </td>
             <td>
-              <Button onClick={handleDangKyClick}>Đăng ký</Button>
+              <Button
+                onClick={handleDangKyClick}
+                disabled={!caiDatInfo.isDangKyDeTai}
+                state={caiDatInfo.isDangKyDeTai ? "" : "disabled"}
+              >
+                Đăng ký
+              </Button>
             </td>
           </>
         )}

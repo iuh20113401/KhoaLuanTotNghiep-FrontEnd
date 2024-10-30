@@ -10,6 +10,13 @@ const StyledRow = styled.div`
   margin-top: calc(-1 * var(--bs-gutter-y));
   gap: ${(props) => props.gap || "0px"};
   box-sizing: border-box;
+  &.mobile-row {
+    @media (max-width: 768px) {
+      & > div {
+        width: 100%;
+      }
+    }
+  }
 `;
 const ColLg = styled.div`
   flex: 1 0 0%;

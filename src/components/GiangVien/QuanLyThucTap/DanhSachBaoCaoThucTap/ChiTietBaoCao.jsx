@@ -39,7 +39,7 @@ function ChiTietBaoCao({
               <Button
                 size="sm"
                 bgcolor={`${
-                  diemGiangVien ? "var(--bs-blue)" : "var(--bs - danger)"
+                  diemGiangVien ? "var(--bs-blue)" : "var(--bs-danger)"
                 }`}
                 onClick={() => setShowModal(0)}
               >
@@ -51,7 +51,7 @@ function ChiTietBaoCao({
               <Button
                 size="sm"
                 bgcolor={`${
-                  diemDoanhNghiep ? "var(--bs-blue)" : "var(--bs - danger)"
+                  diemDoanhNghiep ? "var(--bs-blue)" : "var(--bs-danger)"
                 }`}
                 onClick={() => setShowModal(1)}
               >

@@ -7,13 +7,27 @@ import { useQuery } from "@tanstack/react-query";
 import XuatDanhSachDiemContainer from "../../components/ChuNhiemBoMon/QuanLySinhVien/XuatDanhSachDiemContainer";
 import XuatDanhSachTongHopContainer from "../../components/ChuNhiemBoMon/QuanLySinhVien/XuatDanhSachTongHopContainer";
 import XuatDanhSachTrangThaiDoAnGiuaKyContainer from "../../components/ChuNhiemBoMon/QuanLySinhVien/XuatDanhSachTrangThaiDoAnGiuaKyContainer";
+import { useDanhSachDoAn } from "../../hooks/useDanhSachDoAn";
+import { useSearchParams } from "react-router-dom";
+import { sortDoAnList } from "../../utils/SortDoAn";
 
 function QuanLyThongTinDoAn() {
-  const { data, isLoading } = useQuery({
-    queryKey: ["DanhSachToanBoDoAn"],
-    queryFn: layDanhSachToanBoDoAn,
+  const [searchParams] = useSearchParams();
+  const {
+    DanhSachDoAn,
+    filterDoAn,
+    handleFilterDoAn,
+    isLoading,
+    hocKy,
+    namHoc,
+  } = useDanhSachDoAn({
+    key: "DanhSachToanBoDoAn",
+    fn: layDanhSachToanBoDoAn,
   });
-  const DanhSachDoAn = data?.results;
+  const sortBy = searchParams.get("sortBy");
+
+  const sortedDoAn = sortDoAnList(filterDoAn, sortBy);
+  console.log(sortedDoAn);
   return (
     <div>
       <h5>Quản lý thông tin đồ án</h5>
@@ -39,8 +53,14 @@ function QuanLyThongTinDoAn() {
               />
             </span>
           </div>
-          <FilterDoAn DanhSachDoAn={DanhSachDoAn} />
-          <DanhSachToanBoDoAnContainer DanhSachDoAn={DanhSachDoAn} />
+          <FilterDoAn
+            handleFilterDoAn={handleFilterDoAn}
+            hocKy={hocKy}
+            namHoc={namHoc}
+          />
+          {sortedDoAn && (
+            <DanhSachToanBoDoAnContainer DanhSachDoAn={sortedDoAn} />
+          )}
         </Card>
       )}
     </div>

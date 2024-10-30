@@ -5,24 +5,33 @@ import { StyledInput, StyledSelect } from "../../../ui/Input";
 import { Col3, Col9, StyledRow } from "../../../ui/Row";
 import { useMutation } from "@tanstack/react-query";
 import { dangKyThucTap } from "../../../services/ThucTap";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
-function FormDangKy() {
+function FormDangKy({ caiDatInfo }) {
   const {
     register,
     handleSubmit,
     formState: { errors }, // Access the form errors here
   } = useForm();
+  const navigate = useNavigate();
   const { mutate, isPending } = useMutation({
     mutationFn: dangKyThucTap,
+    onSuccess: () => {
+      toast.success("Đăng ký thành công");
+      navigate("/quanLyThucTap");
+    },
   });
 
   function onSubmit(data) {
+    data.namHoc = caiDatInfo.namHoc;
+    data.hocKy = caiDatInfo.hocKy;
     mutate(data);
   }
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
-      <StyledRow>
+      <StyledRow className="mobile-row">
         <Col3>
           <label htmlFor="tenCongTy">Tên công ty</label>
         </Col3>
@@ -39,7 +48,7 @@ function FormDangKy() {
         </Col9>
       </StyledRow>
 
-      <StyledRow>
+      <StyledRow className="mobile-row">
         <Col3>
           <label htmlFor="maSoThue">Mã số thuế</label>
         </Col3>
@@ -56,7 +65,7 @@ function FormDangKy() {
         </Col9>
       </StyledRow>
 
-      <StyledRow>
+      <StyledRow className="mobile-row">
         <Col3>
           <label htmlFor="diaChiCongTy">Địa chỉ công ty</label>
         </Col3>
@@ -73,7 +82,7 @@ function FormDangKy() {
         </Col9>
       </StyledRow>
 
-      <StyledRow>
+      <StyledRow className="mobile-row">
         <Col3>
           <label htmlFor="tenNguoiDaiDien">Tên người đại diện</label>
         </Col3>
@@ -92,7 +101,7 @@ function FormDangKy() {
         </Col9>
       </StyledRow>
 
-      <StyledRow>
+      <StyledRow className="mobile-row">
         <Col3>
           <label htmlFor="emailCongTy">Email công ty</label>
         </Col3>
@@ -115,7 +124,7 @@ function FormDangKy() {
         </Col9>
       </StyledRow>
 
-      <StyledRow>
+      <StyledRow className="mobile-row">
         <Col3>
           <label htmlFor="tenNguoiGiamSat">Tên người giám sát thực tập</label>
         </Col3>
@@ -134,7 +143,7 @@ function FormDangKy() {
         </Col9>
       </StyledRow>
 
-      <StyledRow>
+      <StyledRow className="mobile-row">
         <Col3>
           <label htmlFor="soDienThoaiNguoiGiamSat">
             Số điện thoại người giám sát
@@ -161,7 +170,7 @@ function FormDangKy() {
         </Col9>
       </StyledRow>
 
-      <StyledRow>
+      <StyledRow className="mobile-row">
         <Col3>
           <label htmlFor="trangThaiThucTap">Trạng thái</label>
         </Col3>
@@ -181,9 +190,19 @@ function FormDangKy() {
         </Col9>
       </StyledRow>
 
-      <Button type="submit" size="block" disabled={isPending}>
+      <Button
+        type="submit"
+        size="block"
+        disabled={isPending || !caiDatInfo.isDangKyThucTap}
+        state={isPending || !caiDatInfo.isDangKyThucTap ? "disabled" : ""}
+      >
         Đăng ký thực tập
       </Button>
+      {!caiDatInfo.isDangKyThucTap && (
+        <h6 className="error text-center">
+          Hiện tại sinh viên không thể đăng ký thực tập
+        </h6>
+      )}
     </StyledForm>
   );
 }

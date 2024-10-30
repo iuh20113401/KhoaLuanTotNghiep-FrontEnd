@@ -9,12 +9,12 @@ function DanhSachDeTai({ danhSachDeTai, refetch }) {
         <StyledTable>
           <thead>
             <tr>
-              <td style={{ width: "15%" }}>Tên đề tài</td>
-              <td style={{ width: "25%" }}>Mô tả </td>
-              <td style={{ width: "20%" }}>Kỹ năng cần có</td>
-              <td style={{ width: "15%" }}>Kết quả cần đạt</td>
-              <td style={{ width: "15%" }}>Giảng viên</td>
-              <td></td>
+              <th style={{ width: "15%" }}>Tên đề tài</th>
+              <th style={{ width: "25%" }}>Mô tả </th>
+              <th style={{ width: "20%" }}>Kỹ năng cần có</th>
+              <th style={{ width: "15%" }}>Kết quả cần đạt</th>
+              <th style={{ width: "15%" }}>Giảng viên</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>

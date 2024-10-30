@@ -7,9 +7,8 @@ import { HiPencilSquare } from "react-icons/hi2";
 import ModalXemDiemHuongDan from "./ModalXemDiemHuongDan";
 
 function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
-  const countSinhVien = doAn.sinhVien.filter(
-    (sv) => sv != null && Object.keys(sv).length > 0
-  ).length;
+  const countSinhVien = doAn.sinhVien2 ? 2 : 1;
+
   const [showModal, setShowModal] = useState(false);
   const [showDiem, setShowDiem] = useState(false);
   const isOdd = (index + 1) % 2 === 0;
@@ -31,8 +30,8 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
         <td width="20%" rowSpan={countSinhVien}>
           {doAn.tenDoAn}
         </td>
-        <td>{doAn?.sinhVien[0].maSo}</td>
-        <td>{doAn?.sinhVien[0].hoTen}</td>
+        <td>{doAn?.sinhVien1.maSo}</td>
+        <td>{doAn?.sinhVien1.hoTen}</td>
 
         {!chamDiem ? (
           <td rowSpan={countSinhVien}>
@@ -46,14 +45,14 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
               <Button
                 bgcolor="var(--bs-blue)"
                 state={
-                  !getNestedValue(doAn.sinhVien[0].diem, newLoai)?.diemAbet
+                  !getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
                     ?.length > 0
                     ? "disabled"
                     : ""
                 }
                 disabled={
                   !(
-                    getNestedValue(doAn.sinhVien[0].diem, newLoai)?.diemAbet
+                    getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
                       ?.length > 0
                   )
                 }
@@ -70,14 +69,14 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
                 size="sm"
                 bgcolor="var(--bs-danger)"
                 state={
-                  getNestedValue(doAn.sinhVien[0].diem, newLoai)?.diemAbet
+                  getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
                     .length > 0 || !(+doAn.trangThai === 2)
                     ? "disabled"
                     : ""
                 }
                 onClick={() => setShowModal(true)}
                 disabled={
-                  getNestedValue(doAn.sinhVien[0].diem, newLoai)?.diemAbet
+                  getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
                     .length > 0 || !(+doAn.trangThai === 2)
                 }
               >
@@ -96,13 +95,12 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
           </td>
         )}
       </tr>
-      {doAn.sinhVien[1] != null &&
-        Object.values(doAn.sinhVien[1]).length > 0 && (
-          <tr className={isOdd ? "strip" : ""}>
-            <td>{doAn?.sinhVien[1].maSo}</td>
-            <td>{doAn?.sinhVien[1].hoTen}</td>
-          </tr>
-        )}
+      {doAn.sinhVien2 != null && Object.values(doAn.sinhVien2).length > 0 && (
+        <tr className={isOdd ? "strip" : ""}>
+          <td>{doAn?.sinhVien2.maSo}</td>
+          <td>{doAn?.sinhVien2.hoTen}</td>
+        </tr>
+      )}
       {showModal && (
         <ModalChamDiem
           doAn={doAn}

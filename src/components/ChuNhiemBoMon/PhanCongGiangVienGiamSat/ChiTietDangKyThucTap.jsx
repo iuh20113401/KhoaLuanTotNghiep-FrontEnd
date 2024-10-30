@@ -16,8 +16,8 @@ function ChiTietDangKyThucTap({
         <td>{index + 1}</td>
         <td>{thucTap.tenCongTy}</td>
         <td>{thucTap.diaChiCongTy}</td>
-        <td>{thucTap.userId.maSo}</td>
-        <td>{thucTap.userId.hoTen}</td>
+        <td>{thucTap.userInfo.maSo}</td>
+        <td>{thucTap.userInfo.hoTen}</td>
         <td>
           {thucTap.trangThaiThucTap === 0 ? "Chờ phỏng vấn" : "Đang làm việc"}
         </td>

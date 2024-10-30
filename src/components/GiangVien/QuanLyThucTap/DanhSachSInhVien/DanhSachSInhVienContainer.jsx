@@ -18,9 +18,11 @@ function DanhSachSinhVienContainer({ danhSachSinhVien }) {
             <th width="">Điểm</th>
           </tr>
         </thead>
-        {danhSachSinhVien.map((sv, index) => (
-          <ChiTietSinhVien sinhvien={sv} index={index} />
-        ))}
+        <tbody>
+          {danhSachSinhVien.map((sv, index) => (
+            <ChiTietSinhVien sinhvien={sv} index={index} />
+          ))}
+        </tbody>
       </StyledTable>
     </div>
   );

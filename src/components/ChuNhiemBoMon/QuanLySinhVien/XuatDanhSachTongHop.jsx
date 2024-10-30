@@ -192,15 +192,13 @@ export default function XuatDanhSachTongHop({ DanhSachDoAn }) {
   const contentRef = useRef();
   const [danhSachSinhVien, DanhSachDiemTheoLO, DanhSachTrangThai] =
     getDanhSachSinhVien(DanhSachDoAn);
-
   const tongSoDiemLan1 = Object.values(DanhSachDiemTheoLO[1].lan1).reduce(
     (acc, vl) => acc + vl,
     0
   );
-  const tongSoDiemLan2 = Object.values(DanhSachDiemTheoLO[1].lan2).reduce(
-    (acc, vl) => acc + vl,
-    0
-  );
+  const tongSoDiemLan2 =
+    DanhSachDiemTheoLO[1].lan2 &&
+    Object.values(DanhSachDiemTheoLO[1].lan2).reduce((acc, vl) => acc + vl, 0);
   const SLDoAnDat = Object.keys(DanhSachTrangThai).reduce(
     (acc, tt) =>
       +tt >= 1 && +tt <= 4 ? (acc = acc + DanhSachTrangThai[tt]) : acc,
@@ -388,8 +386,9 @@ export default function XuatDanhSachTongHop({ DanhSachDoAn }) {
                 b. Đánh giá theo chuẩn đầu ra:
               </span>
             </p>
-            {Array.from({ length: 9 }).map((a, i) => {
-              const LO = DanhSachDiemTheoLO[i + 1];
+            {Object.keys(DanhSachDiemTheoLO).map((a, i) => {
+              const LO = DanhSachDiemTheoLO[a];
+
               return (
                 <>
                   <p
@@ -408,8 +407,8 @@ export default function XuatDanhSachTongHop({ DanhSachDoAn }) {
                         fontSize: "12pt",
                       }}
                     >
-                      <strong>Chuẩn đầu ra {i + 1}:</strong> Thiết kế một hệ
-                      thống thông tin/đưa ra giải pháp đáp ứng được yêu cầu bài
+                      <strong>Chuẩn đầu ra {a}:</strong> Thiết kế một hệ thống
+                      thông tin/đưa ra giải pháp đáp ứng được yêu cầu bài
                       toán/hệ thống.
                     </span>
                   </p>

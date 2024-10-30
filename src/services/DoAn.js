@@ -44,10 +44,13 @@ const themTaiLieu = (_id, formData) =>
     body: formData,
   });
 
-const layDanhSachDoAnTheoGiangVien = () =>
-  fetchApi(`${BASE_URL}/DanhSachDoAn/GiangVien`, {
-    method: "GET",
-  });
+const layDanhSachDoAnTheoGiangVien = (hocKy, namHoc) =>
+  fetchApi(
+    `${BASE_URL}/DanhSachDoAn/GiangVien?hocKy=${hocKy}&namHoc=${namHoc}`,
+    {
+      method: "GET",
+    }
+  );
 const layThongTinSinhVienTheoDoAn = (id) =>
   fetchApi(`${BASE_URL}/${id}/sinhVien`, {
     method: "GET",
@@ -70,8 +73,8 @@ const layDanhSachDoAnPhanBien = () =>
   fetchApi(`${BASE_URL}/DanhSachDoAn/PhanBien`, {
     method: "GET",
   });
-const layDanhSachToanBoDoAn = () =>
-  fetchApi(`${BASE_URL}/`, {
+const layDanhSachToanBoDoAn = (hocKy, namHoc) =>
+  fetchApi(`${BASE_URL}?hocKy=${hocKy}&namHoc=${namHoc}`, {
     method: "GET",
   });
 const layDanhSachDoAnDatPhanBien = () =>

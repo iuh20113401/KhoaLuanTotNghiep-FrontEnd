@@ -36,13 +36,16 @@ const themTaiLieu = (_id, formData) =>
     body: formData,
   });
 
-const layDanhSachThucTapTheoGiangVien = () =>
-  fetchApi(`${BASE_URL}/DanhSachThucTap/GiangVien`, {
-    method: "GET",
-  });
+const layDanhSachThucTapTheoGiangVien = (hocKy, namHoc) =>
+  fetchApi(
+    `${BASE_URL}/DanhSachThucTap/GiangVien?hocKy=${hocKy}&namHoc=${namHoc}`,
+    {
+      method: "GET",
+    }
+  );
 
-const layDanhSachDangKyThucTap = () =>
-  fetchApi(`${BASE_URL}/`, {
+const layDanhSachDangKyThucTap = (hocKy, namHoc) =>
+  fetchApi(`${BASE_URL}?hocKy=${hocKy}&namHoc=${namHoc}`, {
     method: "GET",
   });
 

@@ -15,16 +15,44 @@ const StyledInfoDiv = styled.div`
   margin-bottom: 0.4rem;
 `;
 
+// Make StyledRow and columns responsive for mobile
+const ResponsiveRow = styled(StyledRow)`
+  flex-wrap: wrap;
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+  }
+`;
+
+const ResponsiveCol9 = styled(Col9)`
+  @media (max-width: 768px) {
+    flex: 1 1 100%;
+    padding: 0;
+    width: 100%;
+    padding-right: 1.2rem;
+    padding-left: 1.2rem;
+    margin-top: 0.8rem;
+  }
+`;
+
+const ResponsiveCol3 = styled(Col3)`
+  @media (max-width: 768px) {
+    flex: 1 1 100%;
+    padding: 0;
+    width: 100%;
+  }
+`;
+
 function DisplayQuillContent({ content }) {
   const decodedContent = decodeHtml(content);
-
   return <div dangerouslySetInnerHTML={{ __html: decodedContent }} />;
 }
+
 function ThongTinChung({ user, doAn, refetch }) {
   const DeTai = doAn.deTai;
+
   return (
-    <StyledRow>
-      <Col9>
+    <ResponsiveRow>
+      <ResponsiveCol9>
         <Card className="p-2">
           <StyledInfoDiv>
             <h6>
@@ -59,8 +87,9 @@ function ThongTinChung({ user, doAn, refetch }) {
         <div className="mt-3">
           <Comment comment={doAn.comment} idDoAn={doAn._id} refetch={refetch} />
         </div>
-      </Col9>
-      <Col3 className="pl-3 pr-3">
+      </ResponsiveCol9>
+
+      <ResponsiveCol3 className="pl-3 pr-3">
         {user.vaiTro !== 0 && doAn.trangThai === 0 && (
           <Card>
             <CardXacNhan
@@ -85,8 +114,8 @@ function ThongTinChung({ user, doAn, refetch }) {
         <Card className="p-3 mt-2">
           <CardTaiLieu taiLieu={doAn.taiLieu} />
         </Card>
-      </Col3>
-    </StyledRow>
+      </ResponsiveCol3>
+    </ResponsiveRow>
   );
 }
 

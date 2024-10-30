@@ -10,7 +10,6 @@ import DangKyThucTap from "./pages/Sinhvien/DangKyThucTap";
 import Chat from "./pages/Chat";
 import QuanLyDoAn from "./pages/QuanLyDoAn";
 import GiangVIenLayout from "./ui/GiangVIenLayout";
-import GiangVienTrangChu from "./pages/Giangvien/TrangChu";
 import QuanLyDeTai from "./pages/Giangvien/QuanLyDeTai";
 import XemDanhSachSinhVien from "./pages/Giangvien/XemDanhSachSinhVien";
 import XemDanhSachDoAn from "./pages/Giangvien/XemDanhSachDoAn";
@@ -38,11 +37,11 @@ import ThongBao from "./pages/Giangvien/ThongBao";
 import LichHopSinhVien from "./pages/Sinhvien/LichHop";
 import Logout from "./pages/Logout";
 import DashBoard from "./pages/Giangvien/DashBoard";
-import TestHtmlFile from "./pages/TestHtmlFile";
-import TestHtml2 from "./pages/TestHtml2";
+
 import PhanCongGiangVienHoiDong from "./pages/ChuNhiemBoMon/PhanCongGiangVienHoiDong";
-import TestHTML3 from "./pages/TestHTML3";
 import QuanLyTieuChi from "./pages/ChuNhiemBoMon/QuanLyTieuChi";
+import CaiDat from "./pages/ChuNhiemBoMon/CaiDat";
+import { MobileProvider } from "./context/MobileContext";
 
 const queryClient = new QueryClient({
   defaultOption: {
@@ -56,95 +55,104 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <GlobalStyles />
-      <BrowserRouter>
-        <Routes>
-          <Route path="*" element={<Navigate to="login" />} />
-          <Route path="Login" element={<LoginPage />} />
-          <Route path="Logout" element={<Logout />} />
-          {/* note dành cho sinh viên */}
-          <Route path="sinhvien" element={<SinhVienLayout />}>
-            <Route path="" element={<Navigate to="trangChu" />} />{" "}
-            <Route path="trangChu" index element={<TrangChu />} />
-            <Route path="dangKyDeTai" element={<DangKyDeTai />} />
-            <Route path="dangKyThucTap" element={<DangKyThucTap />} />
-            <Route path="chat" element={<Chat />} />
-            <Route path="QuanLyDoAn" element={<QuanLyDoAn />} />
-            <Route path="quanLyThucTap" element={<QuanLyThucTap />} />
-            <Route path="LichHop" element={<LichHopSinhVien />} />
-          </Route>
-          {/* note dành cho giảng viên */}
-          <Route path="giangvien" element={<GiangVIenLayout />}>
-            <Route path="" element={<Navigate to="trangChu" />} />{" "}
-            <Route path="trangChu" element={<DashBoard />} />
-            <Route path="thongBao" element={<ThongBao />} />
-            <Route path="quanlydetai" element={<QuanLyDeTai />} />
-            <Route path="doAn">
+      <MobileProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="*" element={<Navigate to="login" />} />
+            <Route path="Login" element={<LoginPage />} />
+            <Route path="Logout" element={<Logout />} />
+            {/* note dành cho sinh viên */}
+            <Route path="sinhvien" element={<SinhVienLayout />}>
+              <Route path="" element={<Navigate to="trangChu" />} />{" "}
+              <Route path="trangChu" index element={<TrangChu />} />
+              <Route path="dangKyDeTai" element={<DangKyDeTai />} />
+              <Route path="dangKyThucTap" element={<DangKyThucTap />} />
+              <Route path="chat" element={<Chat />} />
+              <Route path="QuanLyDoAn" element={<QuanLyDoAn />} />
+              <Route path="quanLyThucTap" element={<QuanLyThucTap />} />
+              <Route path="LichHop" element={<LichHopSinhVien />} />
+            </Route>
+            {/* note dành cho giảng viên */}
+            <Route path="giangvien" element={<GiangVIenLayout />}>
+              <Route path="" element={<Navigate to="trangChu" />} />{" "}
+              <Route path="trangChu" element={<DashBoard />} />
+              <Route path="thongBao" element={<ThongBao />} />
+              <Route path="quanlydetai" element={<QuanLyDeTai />} />
+              <Route path="doAn">
+                <Route
+                  path="danhsachsinhvien"
+                  element={<XemDanhSachSinhVien />}
+                />
+                <Route path="danhsachdoan" element={<XemDanhSachDoAn />} />
+                <Route
+                  path="danhsachdoan/chitietdoan/:maDoAn"
+                  element={<QuanLyDoAn />}
+                />
+                <Route path="chamdiemdoan" element={<ChamDiemDoAn />} />{" "}
+                <Route path="diemDanhDoAn" element={<DiemDanhDoAn />} />{" "}
+              </Route>
+              <Route path="thucTap">
+                <Route
+                  path="danhsachsinhvien"
+                  element={<XemDanhSachSinhVienThucTap />}
+                />
+                <Route path="danhSachBaoCao" element={<XemDanhSachBaoCao />} />
+                <Route
+                  path="danhSachBaoCao/chiTietBaoCao/:maBaoCao"
+                  element={<QuanLyThucTap />}
+                />
+                <Route path="chamDiem" element={<ChamDiemBaoCaoThucTap />} />{" "}
+                <Route path="diemDanh" element={<DiemDanhThucTap />} />
+              </Route>
+              <Route path="chamdiemphanbien" element={<ChamDiemPhanBien />} />
               <Route
-                path="danhsachsinhvien"
-                element={<XemDanhSachSinhVien />}
+                path="chamdiemhoidong"
+                element={<ChamDiemHoiDong />}
+              />{" "}
+              <Route path="lichHop" element={<LichHopGiangVien />} />
+              <Route path="troChuyen" element={<Chat />} />
+              {/* note dành cho chủ nhiệm bộ môn */}
+              <Route path="taoThongBao" element={<TaoThongBao />} />
+              <Route path="thongBao/:id" element={<NoiDungThongBao />} />
+              <Route
+                path="taothongBao/TaoThongBao"
+                element={<TaoNoiDungThongBao />}
               />
-              <Route path="danhsachdoan" element={<XemDanhSachDoAn />} />
               <Route
-                path="danhsachdoan/chitietdoan/:maDoAn"
+                path="xemthongtinsinhvien"
+                element={<QuanLyThongTinSInhVien />}
+              />
+              <Route
+                path="quanlythongtindoan"
+                element={<QuanLyThongTinDoAn />}
+              />
+              <Route
+                path="quanlythongtindoan/chitietdoan/:maDoAn"
                 element={<QuanLyDoAn />}
               />
-              <Route path="chamdiemdoan" element={<ChamDiemDoAn />} />{" "}
-              <Route path="diemDanhDoAn" element={<DiemDanhDoAn />} />{" "}
-            </Route>
-            <Route path="thucTap">
               <Route
-                path="danhsachsinhvien"
-                element={<XemDanhSachSinhVienThucTap />}
+                path="quanlythongtinthuctap"
+                element={<QuanLyThongTinThucTap />}
               />
-              <Route path="danhSachBaoCao" element={<XemDanhSachBaoCao />} />
+              <Route path="quanLyTieuChi" element={<QuanLyTieuChi />} />
+              <Route path="duyetdetai" element={<DuyetDeTai />} />
               <Route
-                path="danhSachBaoCao/chiTietBaoCao/:maBaoCao"
-                element={<QuanLyThucTap />}
+                path="phanconggiangvienphanbien"
+                element={<PhanCongGiangVienPhanBien />}
               />
-              <Route path="chamDiem" element={<ChamDiemBaoCaoThucTap />} />{" "}
-              <Route path="diemDanh" element={<DiemDanhThucTap />} />
+              <Route
+                path="phanconggiangvienhoidong"
+                element={<PhanCongGiangVienHoiDong />}
+              />
+              <Route
+                path="phanCongGiangVienGiamSat"
+                element={<PhanCongGiangVienGiamSat />}
+              />
+              <Route path="CaiDat" element={<CaiDat />} />
             </Route>
-            <Route path="chamdiemphanbien" element={<ChamDiemPhanBien />} />
-            <Route path="chamdiemhoidong" element={<ChamDiemHoiDong />} />{" "}
-            <Route path="lichHop" element={<LichHopGiangVien />} />
-            <Route path="troChuyen" element={<Chat />} />
-            {/* note dành cho chủ nhiệm bộ môn */}
-            <Route path="taoThongBao" element={<TaoThongBao />} />
-            <Route path="thongBao/:id" element={<NoiDungThongBao />} />
-            <Route
-              path="taothongBao/TaoThongBao"
-              element={<TaoNoiDungThongBao />}
-            />
-            <Route
-              path="xemthongtinsinhvien"
-              element={<QuanLyThongTinSInhVien />}
-            />
-            <Route path="quanlythongtindoan" element={<QuanLyThongTinDoAn />} />
-            <Route
-              path="quanlythongtindoan/chitietdoan/:maDoAn"
-              element={<QuanLyDoAn />}
-            />
-            <Route
-              path="quanlythongtinthuctap"
-              element={<QuanLyThongTinThucTap />}
-            />
-            <Route path="quanLyTieuChi" element={<QuanLyTieuChi />} />
-            <Route path="duyetdetai" element={<DuyetDeTai />} />
-            <Route
-              path="phanconggiangvienphanbien"
-              element={<PhanCongGiangVienPhanBien />}
-            />
-            <Route
-              path="phanconggiangvienhoidong"
-              element={<PhanCongGiangVienHoiDong />}
-            />
-            <Route
-              path="phanCongGiangVienGiamSat"
-              element={<PhanCongGiangVienGiamSat />}
-            />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </MobileProvider>
       <Toaster
         position="top-center"
         gutter={12}

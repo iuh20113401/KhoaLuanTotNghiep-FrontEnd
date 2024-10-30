@@ -1,16 +1,19 @@
 import styled from "styled-components";
 import FormDangKy from "../../components/Sinhvien/DangKyThucTap/FormDangKy";
 import Card from "../../ui/Card";
+import useCaiDatInfo from "../../hooks/useCaiDatInfo";
 const StyledDiv = styled.div`
   padding: 1.6rem;
 `;
 function DangKyThucTap() {
+  const { caiDatInfo, isLoading: caiDatLoading } = useCaiDatInfo();
+
   return (
     <>
       <h5>Đăng ký thực tập doanh nghiệp</h5>
       <Card>
         <StyledDiv>
-          <FormDangKy />
+          {!caiDatLoading && <FormDangKy caiDatInfo={caiDatInfo} />}
         </StyledDiv>
       </Card>
     </>

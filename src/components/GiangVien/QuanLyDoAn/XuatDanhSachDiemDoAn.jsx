@@ -52,18 +52,23 @@ const transformData = (data) => {
       // Extract the common fields from each doAn (project)
       const maDoAn = item.maDoAn;
       const tenDoAn = item.tenDoAn;
-
-      // Extract sinhVien array and map each student to a new object
-      return item.sinhVien.map(
-        (sv) =>
-          sv !== null && {
-            maDoAn,
-            tenDoAn,
-            maSo: sv?.maSo,
-            hoTen: sv?.hoTen,
-            diem: sv?.diem || [], // Assuming `diem` is part of the parent `doAn` object
-          }
-      );
+      const newArray = [];
+      newArray.push({
+        maDoAn,
+        tenDoAn,
+        maSo: item.sinhVien1.maSo,
+        hoTen: item.sinhVien1?.hoTen,
+        diem: item.sinhVien1Info?.diem || [],
+      });
+      if (item?.sinhVien2)
+        newArray.push({
+          maDoAn,
+          tenDoAn,
+          maSo: item.sinhVien2?.maSo,
+          hoTen: item.sinhVien2?.hoTen,
+          diem: item.sinhVien2Info?.diem || [],
+        });
+      return newArray;
     })
     .filter((sv) => sv);
 };

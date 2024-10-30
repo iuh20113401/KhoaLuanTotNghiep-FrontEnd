@@ -6,118 +6,129 @@ import avatarSrc from "../../public/hinhanh/avatar_1.png";
 import { Link, NavLink } from "react-router-dom";
 import UseUser from "../context/UseUser";
 import { useState } from "react";
+import { useMobile } from "../context/MobileContext";
+
 const NavVar = css`
   --bs-navbar-padding-x: 0;
   --bs-navbar-padding-y: 0.5rem;
-  --bs-navbar-color: rgba(47, 43, 61, 0.5);
-  --bs-navbar-hover-color: #6d6b77;
-  --bs-navbar-disabled-color: rgba(47, 43, 61, 0.3);
-  --bs-navbar-active-color: #6d6b77;
-  --bs-navbar-brand-padding-y: 0.50053125rem;
-  --bs-navbar-brand-margin-end: 1rem;
-  --bs-navbar-brand-font-size: 1rem;
-  --bs-navbar-brand-color: #6d6b77;
-  --bs-navbar-brand-hover-color: #6d6b77;
-  --bs-navbar-nav-link-padding-x: 0.5rem;
-  --bs-navbar-toggler-padding-y: 0.5rem;
-  --bs-navbar-toggler-padding-x: 0.7rem;
-  --bs-navbar-toggler-font-size: 0.625rem;
-
-  --bs-navbar-toggler-border-color: rgba(47, 43, 61, 0.06);
-  --bs-navbar-toggler-border-radius: var(--bs-border-radius);
-  --bs-navbar-toggler-focus-width: 0.05rem;
-  --bs-navbar-toggler-transition: box-shadow 0.15s ease-in-out;
 `;
+
 const StyledNav = styled.nav`
   ${NavVar}
-  width: 99%;
+  width: 100%;
   background-color: rgba(255, 255, 255, 0.88) !important;
   color: #2f2b3d;
   z-index: auto;
-  --bs-bg-opacity: 1;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  position: relative;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
+  position: relative;
   & > div {
-    width: 100%;
-    display: flex;
-    flex-wrap: inherit;
-    align-items: center;
-    padding-right: 3rem;
-    padding-left: 1.5rem;
+    width: 95%;
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    & > div {
+      width: 100%;
+    }
   }
 `;
+
 const StyledNavLogo = styled.div`
-  margin-right: 1rem !important;
-  display: flex !important;
-  color: #444050;
-  flex-grow: 0;
-  flex-shrink: 0;
-  overflow: hidden;
-  line-height: 1;
-  min-height: 1px;
+  margin-right: 1rem;
+  display: flex;
   align-items: center;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+  color: #444050;
+  height: 100%;
+  align-items: center;
   & > a {
     display: flex;
     align-items: center;
     text-decoration: none;
     & > img {
-      align-items: center;
-      -ms-flex-pack: center;
-      justify-content: center;
-      display: -ms-flexbox;
-      display: flex;
       width: 34px;
       height: 24px;
-      display: block;
-      vertical-align: middle;
     }
   }
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
 `;
+
 const StyledAvatarBox = styled.div`
   display: flex;
   justify-content: end;
+  height: 100%;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    order: -1;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
 `;
-const SyledMenuDropDowm = styled.div`
-  position: absolute;
-  padding: 0.5rem;
-  bottom: 100;
-  right: 0;
-  background-color: var(--bs-white);
-  box-shadow: var(--bs-box-shadow-sm);
-  z-index: 100;
-`;
+
 const StyledMenu = styled.ul`
   width: 100%;
+  height: 100%;
+  padding-right: 1.6rem;
   display: flex;
   gap: 1.6rem;
   justify-content: space-between;
-  padding-right: 1.6rem;
+  align-items: center;
   & > li {
     width: max-content;
   }
+
   & a {
     padding: 15px;
-    padding-bottom: 20px;
     width: 100%;
     &.active {
       box-shadow: 0 -2px 0 #7367f0 inset;
-      background-color: rgba(0, 0, 0, 0);
       color: #7367f0;
       font-weight: 500;
     }
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+    width: 70%;
+    margin: auto;
+    padding-right: 0;
+    margin-top: 1rem;
+
+    & > li {
+      width: 100%;
+    }
+    & a {
+      display: block;
+      padding: 0px;
+      padding-bottom: 0px;
+    }
+  }
 `;
+
+const SyledMenuDropDowm = styled.div`
+  position: absolute;
+  padding: 0.5rem;
+  background-color: var(--bs-white);
+  box-shadow: var(--bs-box-shadow-sm);
+  z-index: 100;
+  right: 0;
+`;
+
 function Navbar({ user }) {
   const [toggleDropdown, setToggleDropdown] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
+  const isMobile = useMobile();
   return (
     <StyledNav>
       <StyledRow>
@@ -130,7 +141,25 @@ function Navbar({ user }) {
           </StyledNavLogo>
         </Col2>
         <Col8>
-          <StyledMenu>
+          {isMobile ? (
+            <div className="text-center">
+              <button
+                onClick={() => setMenuOpen((prev) => !prev)}
+                style={{
+                  fontSize: "1.5rem",
+                  cursor: "pointer",
+                  background: "none",
+                  border: "none",
+                }}
+              >
+                ☰
+              </button>
+            </div>
+          ) : (
+            ""
+          )}
+
+          <StyledMenu isOpen={menuOpen}>
             <li>
               <NavLink to="trangChu">Trang chủ</NavLink>
             </li>
@@ -145,11 +174,11 @@ function Navbar({ user }) {
               {user?.thucTap ? (
                 <NavLink to="quanLyThucTap">Quản lý thực tập</NavLink>
               ) : (
-                <NavLink to="dangKyThucTap">Đăng ký thục tập</NavLink>
+                <NavLink to="dangKyThucTap">Đăng ký thực tập</NavLink>
               )}
             </li>
             <li>
-              <NavLink to="lichhop">Lịch họp</NavLink>{" "}
+              <NavLink to="lichhop">Lịch họp</NavLink>
             </li>
             <li>
               <NavLink to="chat">Trò chuyện</NavLink>
@@ -157,11 +186,7 @@ function Navbar({ user }) {
           </StyledMenu>
         </Col8>
         <Col2 style={{ position: "relative" }}>
-          <StyledAvatarBox
-            onClick={() =>
-              setToggleDropdown((toggleDropdown) => !toggleDropdown)
-            }
-          >
+          <StyledAvatarBox onClick={() => setToggleDropdown((prev) => !prev)}>
             <Avatar src={avatarSrc} />
           </StyledAvatarBox>
           {toggleDropdown && (
@@ -170,7 +195,7 @@ function Navbar({ user }) {
                 <li className="mt-2 p-1 hover-secondary">
                   <Link>Thông tin tài khoản</Link>
                 </li>
-                <li className="mt-2 p-1  hover-secondary">
+                <li className="mt-2 p-1 hover-secondary">
                   <Link to={"/logout"}>Đăng xuất</Link>
                 </li>
               </ul>

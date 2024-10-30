@@ -1,14 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
 import StyledTable from "../../../ui/Table";
 import ChiTietSinhVienThucTap from "./ChiTietSinhVienThucTap";
-import { layDanhSachDangKyThucTap } from "../../../services/ThucTap";
 
-function DanhSachToanBoThucTap() {
-  const { data, isLoading } = useQuery({
-    queryKey: ["DanhSachToanBoSinhVienThucTap"],
-    queryFn: layDanhSachDangKyThucTap,
-  });
-  const DanhSachSinhVienThucTap = data?.results;
+function DanhSachToanBoThucTap({ DanhSachSinhVienThucTap }) {
   return (
     <StyledTable>
       <thead>
@@ -24,10 +17,9 @@ function DanhSachToanBoThucTap() {
         </tr>
       </thead>
       <tbody>
-        {!isLoading &&
-          DanhSachSinhVienThucTap.map((sv, index) => (
-            <ChiTietSinhVienThucTap sinhvien={sv} index={index} key={index} />
-          ))}
+        {DanhSachSinhVienThucTap?.map((sv, index) => (
+          <ChiTietSinhVienThucTap sinhvien={sv} index={index} key={index} />
+        ))}
       </tbody>
     </StyledTable>
   );

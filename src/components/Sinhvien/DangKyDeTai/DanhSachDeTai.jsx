@@ -2,7 +2,7 @@ import Card from "../../../ui/Card";
 import StyledTable from "../../../ui/Table";
 import ChiTietDeTai from "./ChiTietDeTai";
 
-function DanhSachDeTai({ danhSachDeTai }) {
+function DanhSachDeTai({ danhSachDeTai, caiDatInfo }) {
   return (
     <div>
       <Card>
@@ -19,7 +19,7 @@ function DanhSachDeTai({ danhSachDeTai }) {
           </thead>
           <tbody>
             {danhSachDeTai.map((deTai) => (
-              <ChiTietDeTai deTai={deTai} />
+              <ChiTietDeTai deTai={deTai} caiDatInfo={caiDatInfo} />
             ))}
           </tbody>
         </StyledTable>

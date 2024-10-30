@@ -9,8 +9,17 @@ import { layDanhSachDoAnTheoGiangVien } from "../../services/DoAn";
 
 function XemDanhSachDoAn() {
   const [searchParams] = useSearchParams();
-  const { DanhSachDoAn, filterDoAn, handleFilterDoAn, isLoading } =
-    useDanhSachDoAn({ key: "DanhSachDoAn", fn: layDanhSachDoAnTheoGiangVien });
+  const {
+    DanhSachDoAn,
+    filterDoAn,
+    handleFilterDoAn,
+    isLoading,
+    hocKy,
+    namHoc,
+  } = useDanhSachDoAn({
+    key: "DanhSachDoAn",
+    fn: layDanhSachDoAnTheoGiangVien,
+  });
   const sortBy = searchParams.get("sortBy");
 
   const sortedDoAn = sortDoAnList(filterDoAn, sortBy);
@@ -23,7 +32,11 @@ function XemDanhSachDoAn() {
           <BieuMauChung />
         </Card>
         <Card className="mt-3">
-          <FilterDoAn handleFilterDoAn={handleFilterDoAn} />
+          <FilterDoAn
+            handleFilterDoAn={handleFilterDoAn}
+            hocKy={hocKy}
+            namHoc={namHoc}
+          />
           {sortedDoAn && <DanhSachDoAnContainer DanhSachDoAn={sortedDoAn} />}
         </Card>
       </div>

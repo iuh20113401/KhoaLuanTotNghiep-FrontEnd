@@ -6,21 +6,46 @@ import Badges from "../../ui/Badges";
 import { StyledTabHeader } from "../../ui/Tab";
 import Logo from "../../../public/hinhanh/iuh_logo_1.png";
 import formatVieNamDate from "../../utils/FormatDate";
+
 const StyledHeader = styled.div`
   padding: 0.8rem 1.6rem;
   padding-bottom: 0;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 1rem;
+  }
 `;
+
 const StyledInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0;
-  & h4 {
+
+  h4 {
     margin-bottom: 0.5rem;
   }
+
+  @media (max-width: 768px) {
+    h4 {
+      font-size: 1.25rem;
+    }
+  }
 `;
+
+const StyledRowResponsive = styled(StyledRow)`
+  align-items: center;
+  gap: 1.6rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
+`;
+
 const StyledTrangThai = {
   0: {
     content: "Đang tiến hành",
@@ -38,17 +63,17 @@ const StyledTrangThai = {
     color: "var(--bs-white)",
   },
   3: {
-    content: "Chờ chấm điểm hội động",
+    content: "Chờ chấm điểm hội đồng",
     bgcolor: "var(--bs-warning)",
     color: "var(--bs-white)",
   },
   4: {
-    content: "Chờ chám diểm poster",
+    content: "Chờ chám điểm poster",
     bgcolor: "var(--bs-warning)",
     color: "var(--bs-white)",
   },
   5: {
-    content: "Chờ chám diểm poster",
+    content: "Chờ chám điểm poster",
     bgcolor: "var(--bs-success)",
     color: "var(--bs-white)",
   },
@@ -58,7 +83,7 @@ const StyledTrangThai = {
     color: "var(--bs-white)",
   },
   7: {
-    content: "Không đạt phản biện ",
+    content: "Không đạt phản biện",
     bgcolor: "var(--bs-danger)",
     color: "var(--bs-white)",
   },
@@ -68,36 +93,41 @@ const StyledTrangThai = {
     color: "var(--bs-white)",
   },
 };
-function QuanLyDeTaIHeader({ content, active, setActive, doAn }) {
+
+function QuanLyDeTaiHeader({ content, active, setActive, doAn }) {
   return (
     <Card>
       <StyledHeader>
-        <StyledRow className="align-center" gap="1.6rem">
+        <StyledRowResponsive gap="1.6rem">
           <Avatar size="xl" src={Logo} />
           <ColLg>
             <StyledInfo>
-              <h4 class="fw-bold"> {doAn?.tenDoAn}</h4>
-              <StyledRow gap="1.6rem" className="align-center">
-                <div>Mã đồ án: {doAn?.maDoAn}</div>
-                <div class="vr"></div>
+              <h4 className="fw-bold">{doAn?.tenDoAn}</h4>
+              <StyledRowResponsive>
                 <div>
-                  Ngày tham gia :{" "}
-                  <span class="fw-medium">
-                    {formatVieNamDate(doAn?.ngayThamGia)}
-                  </span>
+                  <p>Mã đồ án: {doAn?.maDoAn}</p>
+                </div>
+                <div>
+                  <p>
+                    {" "}
+                    Ngày tham gia:{" "}
+                    <span className="fw-medium">
+                      {formatVieNamDate(doAn?.ngayThamGia)}
+                    </span>
+                  </p>
                 </div>
                 <Badges
                   content={StyledTrangThai[doAn.trangThai].content}
                   bgcolor={StyledTrangThai[doAn.trangThai].bgcolor}
                   color={StyledTrangThai[doAn.trangThai].color}
                 />
-              </StyledRow>
+              </StyledRowResponsive>
             </StyledInfo>
           </ColLg>
-        </StyledRow>
+        </StyledRowResponsive>
         <StyledTabHeader>
           {content.map((ct, index) => (
-            <li class="nav-item" role="presentation" key={index}>
+            <li className="nav-item" role="presentation" key={index}>
               <button
                 type="button"
                 className={active === index ? "active" : ""}
@@ -113,4 +143,4 @@ function QuanLyDeTaIHeader({ content, active, setActive, doAn }) {
   );
 }
 
-export default QuanLyDeTaIHeader;
+export default QuanLyDeTaiHeader;

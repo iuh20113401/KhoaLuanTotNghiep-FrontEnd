@@ -3,22 +3,24 @@ import Card from "../../../ui/Card";
 import StyledTable from "../../../ui/Table";
 import ChiTietLoiMoi from "./ChiTietLoiMoi";
 
-function DanhSachLoiMoiContainer() {
-  const { data: user, isLoading } = UseUser();
-  const loiMoi = user.user.loiMoi;
+function DanhSachLoiMoiContainer({ loiMoi }) {
   return (
     <Card>
       <StyledTable>
         <thead>
           <tr>
-            <td>Mã số</td>
-            <td>Họ tên</td>
-            <td width="40%">Đồ án</td>
-            <td>Giảng viên</td>
-            <td></td>
+            <th>Mã số</th>
+            <th>Họ tên</th>
+            <th width="40%">Đồ án</th>
+            <th>Giảng viên</th>
+            <th></th>
           </tr>
         </thead>
-        {!isLoading && loiMoi.map((lm) => <ChiTietLoiMoi loiMoi={lm} />)}
+        <tbody>
+          {loiMoi.map((lm) => (
+            <ChiTietLoiMoi loiMoi={lm} />
+          ))}
+        </tbody>
       </StyledTable>
     </Card>
   );

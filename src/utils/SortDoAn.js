@@ -5,9 +5,9 @@ export const sortDoAnList = (list, sortBy) => {
   const direction = sortBy.split("-")[1] === "asc" ? 1 : -1;
   return list.sort((a, b) => {
     if (field === "hoTen") {
-      return a.sinhVien[0].hoTen.localeCompare(b.sinhVien[0].hoTen) * direction;
+      return a.sinhVien1.hoTen.localeCompare(b.sinhVien1.hoTen) * direction;
     } else if (field === "maSo") {
-      return (a.sinhVien[0].maSo - b.sinhVien[0].maSo) * direction;
+      return (a.sinhVien1.maSo - b.sinhVien1.maSo) * direction;
     } else if (field === "maDoAn") {
       return (a.maDoAn - b.maDoAn) * direction;
     } else if (field === "slda") {

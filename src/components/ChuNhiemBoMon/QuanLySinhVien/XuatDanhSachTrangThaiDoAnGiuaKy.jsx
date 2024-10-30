@@ -40,12 +40,10 @@ function XuatDanhSachTrangThaiDoAnGiuaKy({ danhSachDoAn }) {
     // Create a worksheet
     const ws = utils.json_to_sheet(data);
 
-    // Define merges for columns that need rowspan-like behavior
     const merges = [];
     let rowIndex = 1; // Excel rows start at 1 (not 0)
     danhSachDoAn.forEach((doAn, index) => {
       if (doAn.sinhVien2) {
-        // Merge STT, Mã đồ án, Tên đồ án, Pass, Fail, and N/A cells for two rows (if sinhVien2 exists)
         merges.push(
           { s: { r: rowIndex, c: 0 }, e: { r: rowIndex + 1, c: 0 } }, // STT
           { s: { r: rowIndex, c: 1 }, e: { r: rowIndex + 1, c: 1 } }, // Mã đồ án
@@ -60,27 +58,23 @@ function XuatDanhSachTrangThaiDoAnGiuaKy({ danhSachDoAn }) {
       }
     });
 
-    // Apply merges to the worksheet
     ws["!merges"] = merges;
 
-    // Adjust column widths
     const wsCols = [
-      { wch: 5 }, // STT
-      { wch: 15 }, // Mã đồ án
-      { wch: 30 }, // Tên đồ án
-      { wch: 15 }, // Mã sinh viên
-      { wch: 25 }, // Tên sinh viên
-      { wch: 5 }, // Pass
-      { wch: 5 }, // Fail
-      { wch: 5 }, // N/A
+      { wch: 5 },
+      { wch: 15 },
+      { wch: 30 },
+      { wch: 15 },
+      { wch: 25 },
+      { wch: 5 },
+      { wch: 5 },
+      { wch: 5 },
     ];
     ws["!cols"] = wsCols;
 
-    // Create a workbook
     const wb = utils.book_new();
     utils.book_append_sheet(wb, ws, "DanhSach");
 
-    // Export to Excel
     writeFile(wb, "DanhSachDoAnGiuaKy.xlsx");
   };
   return (

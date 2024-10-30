@@ -8,6 +8,10 @@ import {
   layTieuChiThucTapChoGiangVien,
 } from "../../services/TieuChi";
 import { layDanhSachThucTapTheoGiangVien } from "../../services/ThucTap";
+import Button from "../../ui/Button";
+import { BsFileExcel } from "react-icons/bs";
+
+import XuatDanhSachDiemThucTapContainer from "../../components/GiangVien/QuanLyThucTap/DanhSachBaoCaoThucTap/XuatDanhSachDiemThucTapContainer";
 
 export const ChamDiemThucTapContext = createContext();
 
@@ -44,6 +48,11 @@ function ChamDiemBaoCaoThucTap() {
           }}
         >
           <Card className="mt-3">
+            <div className="text-end mt-2 mr-2">
+              <XuatDanhSachDiemThucTapContainer
+                DanhSachBaoCao={DanhSachBaoCao}
+              />
+            </div>
             <FilterBaoCao />
             <DanhSachBaoCaoContainer
               chamDiem={true}

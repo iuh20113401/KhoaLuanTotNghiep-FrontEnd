@@ -8,26 +8,18 @@ import { FiCircle } from "react-icons/fi";
 const SERVER = import.meta.env.PROD
   ? import.meta.env.VITE_SERVER_URL
   : import.meta.env.VITE_SERVER_URL_LOCAL;
+
 const StyledAside = styled.aside`
-  display: flex;
+  display: ${({ isAsideHidden }) => (isAsideHidden ? "none" : "flex")};
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
-  margin-right: 0 !important;
-  margin-left: 0 !important;
+  width: 16.25rem;
+  background-color: #fff;
   z-index: 100;
-  touch-action: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   transition: width 0.3s;
   box-shadow: 0 0.125rem 0.5rem 0 rgba(47, 43, 61, 0.12);
-  background-color: #fff !important;
-  color: #444050;
-  flex: 1 0 auto;
-  width: 16.25rem;
-
   flex-direction: column;
 `;
 const NavLogo = styled.div`
@@ -223,11 +215,11 @@ const StyledItemLink = styled(NavLink)`
   }
   ${StyledMenuToggle}
 `;
-function GiangVienAside({ user }) {
+function GiangVienAside({ user, toggleAside, isAsideHidden }) {
   const [toggleDropdown, setToggleDropdown] = useState(false);
-
+  const [toggleHide, setToggleHide] = useState(false);
   return (
-    <StyledAside>
+    <StyledAside isAsideHidden={isAsideHidden}>
       <StyledRow>
         <LogoLink href="#">
           <StyledRow className="p-2 align-center">
@@ -238,7 +230,7 @@ function GiangVienAside({ user }) {
           </StyledRow>
         </LogoLink>
         <ColLg className="text-end pr-2 pt-1 align-center justify-end flex">
-          <IconLink>
+          <IconLink onClick={toggleAside}>
             <HiViewList />
           </IconLink>
         </ColLg>
@@ -411,6 +403,11 @@ function GiangVienAside({ user }) {
                 />
               </StyledMenuList>
             </ToggleItem>
+            <MenuItem
+              icon={<HiOutlineHome />}
+              title="Cài đặt "
+              href={"./CaiDat"}
+            />
           </div>
         )}
       </StyledMenuList>

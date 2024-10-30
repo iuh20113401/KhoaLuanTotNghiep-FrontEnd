@@ -18,11 +18,17 @@ import { sortBaoCaoList } from "../../utils/SortBaoCao";
 function XemDanhSachBaoCao() {
   const [searchParams] = useSearchParams();
 
-  const { DanhSachBaoCao, filterBaoCao, handleFilterBaoCao, isLoading } =
-    useDanhSachBaoCao({
-      key: "DanhSachBaoCao",
-      fn: layDanhSachThucTapTheoGiangVien,
-    });
+  const {
+    DanhSachBaoCao,
+    filterBaoCao,
+    handleFilterBaoCao,
+    isLoading,
+    hocKy,
+    namHoc,
+  } = useDanhSachBaoCao({
+    key: "DanhSachBaoCao",
+    fn: layDanhSachThucTapTheoGiangVien,
+  });
   const sortBy = searchParams.get("sortBy");
 
   const sortedDoAn = sortBaoCaoList(filterBaoCao, sortBy);
@@ -92,11 +98,15 @@ function XemDanhSachBaoCao() {
             />
           </div>
           {!BieuMauLoading && (
-            <DanhSachBieuMau DanhSachBieuMau={BieuMauData.danhSachBieuMau} />
+            <DanhSachBieuMau DanhSachBieuMau={BieuMauData?.danhSachBieuMau} />
           )}
         </Card>
         <Card className="mt-3">
-          <FilterBaoCao handleFilterBaoCao={handleFilterBaoCao} />
+          <FilterBaoCao
+            handleFilterBaoCao={handleFilterBaoCao}
+            hocKy={hocKy}
+            namHoc={namHoc}
+          />
           {sortedDoAn && (
             <DanhSachBaoCaoContainer DanhSachBaoCao={sortedDoAn} />
           )}

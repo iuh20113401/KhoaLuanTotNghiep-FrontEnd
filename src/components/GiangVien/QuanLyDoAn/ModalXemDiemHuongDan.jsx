@@ -49,9 +49,7 @@ function ModalXemDiemHuongDan({ doAn, setShowModal, loai }) {
 }
 
 function ChiTietDiem({ doAn, loai }) {
-  const countSoLuong = doAn.sinhVien.filter(
-    (sv) => sv !== null && Object.values(sv).length > 0
-  ).length;
+  const countSoLuong = doAn.sinhVien2 ? 2 : 1;
   let newLoai = loai;
   if (loai === "diemPhanBien")
     newLoai =
@@ -62,18 +60,18 @@ function ChiTietDiem({ doAn, loai }) {
     return path.split(".").reduce((acc, part) => acc && acc[part], obj);
   };
 
-  const diem = getNestedValue(doAn.sinhVien[0].diem, newLoai)?.diemAbet;
+  const diem = getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet;
   const diem2 =
-    doAn.sinhVien[1] !== null && Object.values(doAn.sinhVien[1]).length > 0
-      ? getNestedValue(doAn.sinhVien[0].diem, newLoai)?.diemAbet
+    doAn.sinhVien2 !== null && Object.values(doAn.sinhVien2).length > 0
+      ? getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
       : [];
   const sinhVien1DiemTong = getNestedValue(
-    doAn.sinhVien[0].diem,
+    doAn.sinhVien1Info.diem,
     newLoai
   )?.diemTong;
   const sinhVien2DiemTong =
-    doAn.sinhVien[1] !== null && Object.values(doAn.sinhVien[1]).length > 0
-      ? getNestedValue(doAn.sinhVien[0].diem, newLoai)?.diemTong
+    doAn.sinhVien2 !== null && Object.values(doAn.sinhVien2).length > 0
+      ? getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemTong
       : "";
   return (
     <>
@@ -101,14 +99,14 @@ function ChiTietDiem({ doAn, loai }) {
               Ghi chú
             </th>
           </tr>
-          {doAn.sinhVien[1] != null &&
-            Object.values(doAn.sinhVien[1]).length > 0 && (
+          {doAn.sinhVien2 != null &&
+            Object.values(doAn.sinhVien2).length > 0 && (
               <tr>
                 <th width="%" className="text-center">
-                  {doAn.sinhVien[0].hoTen}
+                  {doAn.sinhVien1.hoTen}
                 </th>
                 <th width="%" className="text-center">
-                  {doAn.sinhVien[1].hoTen}
+                  {doAn.sinhVien2.hoTen}
                 </th>
               </tr>
             )}
@@ -130,20 +128,19 @@ function ChiTietDiem({ doAn, loai }) {
                     readOnly
                   />
                 </td>
-                {doAn.sinhVien[1] &&
-                  Object.values(doAn.sinhVien[1]).length > 0 && (
-                    <td>
-                      <StyledInput
-                        type="number"
-                        min={0}
-                        max={10}
-                        step={1}
-                        className="text-center"
-                        value={diem2[index].diem}
-                        readOnly
-                      />
-                    </td>
-                  )}
+                {doAn.sinhVien2 && Object.values(doAn.sinhVien2).length > 0 && (
+                  <td>
+                    <StyledInput
+                      type="number"
+                      min={0}
+                      max={10}
+                      step={1}
+                      className="text-center"
+                      value={diem2[index].diem}
+                      readOnly
+                    />
+                  </td>
+                )}
                 <td>
                   <StyledInput
                     type="text"
@@ -173,8 +170,8 @@ function ChiTietDiem({ doAn, loai }) {
                 readOnly
               />
             </td>
-            {doAn.sinhVien[1] != null &&
-            Object.values(doAn.sinhVien[1]).length > 0 ? (
+            {doAn.sinhVien2 != null &&
+            Object.values(doAn.sinhVien2).length > 0 ? (
               <td>
                 <StyledInput
                   type="number"
@@ -202,27 +199,27 @@ function ChiTietDiem({ doAn, loai }) {
                 name="sv1_ketQua"
                 label={"Đạt"}
                 value="1"
-                checked={doAn.sinhVien[0].diem.ketQua === 1}
+                checked={doAn.sinhVien1Info.diem.ketQua === 1}
               />
               <RadioContainer
                 name="sv1_ketQua"
                 label={"Không đạt"}
                 value="2"
-                checked={doAn.sinhVien[0].diem.ketQua === 2}
+                checked={doAn.sinhVien1Info.diem.ketQua === 2}
               />
             </td>
-            {doAn.sinhVien[1] != null &&
-            Object.values(doAn.sinhVien[1]).length > 0 ? (
+            {doAn.sinhVien2 != null &&
+            Object.values(doAn.sinhVien2).length > 0 ? (
               <td>
                 <RadioContainer
                   label={"Đạt"}
                   value="1"
-                  checked={doAn.sinhVien[1].diem.ketQua === 1}
+                  checked={doAn.sinhVien2Info.diem.ketQua === 1}
                 />
                 <RadioContainer
                   label={"Không đạt"}
                   value="2"
-                  checked={doAn.sinhVien[1].diem.ketQua === 2}
+                  checked={doAn.sinhVien2Info.diem.ketQua === 2}
                 />
               </td>
             ) : (

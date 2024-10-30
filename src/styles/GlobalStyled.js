@@ -207,51 +207,106 @@ ul {
   list-style: none;
 }
 
-p{
-   overflow-wrap: break-word;
-  hyphens: auto;    
+p {
+  overflow-wrap: break-word;
+  hyphens: auto;
   margin-top: 0;
   line-height: 1.37;
   font-weight: 400;
   color: var(--bs-heading-color);
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+
+/* Base styles for headings */
+h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
-  hyphens: auto;    
+  hyphens: auto;
   margin-top: 0;
   font-weight: 500;
-  line-height: 1.37;
   color: var(--bs-heading-color);
 }
-h1{
-    line-height: 4.25rem;
-    font-size: 2.875rem;
+
+/* Responsive font sizes for headings */
+h1 {
+  line-height: 3.5rem;
+  font-size: 2.5rem;
 }
-h2{
+h2 {
+  line-height: 3rem;
+  font-size: 2rem;
+}
+h3 {
+  line-height: 2.25rem;
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+h5 {
+  line-height: 1.5rem;
+  font-size: 1rem;
+}
+h6 {
+  line-height: 1.25rem;
+  font-size: 0.875rem;
+}
+
+/* Adjustments for larger screens */
+@media (min-width: 768px) {
+  h1 {
+    line-height: 4rem;
+    font-size: 2.875rem;
+  }
+  h2 {
     line-height: 3.5rem;
     font-size: 2.375rem;
-}
-h3{
+  }
+  h3 {
     line-height: 2.625rem;
     font-size: 1.75rem;
-}
-h4{
+  }
+  h4 {
     font-size: 1.5rem;
     line-height: 2.375rem;
-}
-h5{
+  }
+  h5 {
     line-height: 1.75rem;
     font-size: 1.125rem;
-}
-h6{
+  }
+  h6 {
     line-height: 1.375rem;
     font-size: 0.9375rem;
+  }
 }
+
+/* Further adjustments for extra-large screens */
+@media (min-width: 1200px) {
+  h1 {
+    line-height: 4.25rem;
+    font-size: 3.25rem;
+  }
+  h2 {
+    line-height: 3.75rem;
+    font-size: 2.625rem;
+  }
+  h3 {
+    line-height: 3rem;
+    font-size: 2rem;
+  }
+  h4 {
+    font-size: 1.75rem;
+    line-height: 2.625rem;
+  }
+  h5 {
+    line-height: 2rem;
+    font-size: 1.25rem;
+  }
+  h6 {
+    line-height: 1.5rem;
+    font-size: 1rem;
+  }
+}
+
 p{
     margin-top: 0;
     
