@@ -11,39 +11,50 @@ function ModalXemDiemHuongDan({ doAn, setShowModal, loai }) {
   const [showFile, setShowFIle] = useState(false);
   return (
     <Modal size="xl">
-      {!showFile && (
-        <>
-          <Modal.Header>
-            <h5>{doAn.tenDoAn}</h5>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              onClick={() => setShowModal((showModal) => !showModal)}
-            >
-              X
-            </button>
-          </Modal.Header>
-          <Modal.Body>
-            <StyledRow className="align-center">
-              <h6 className="text-primary">Điểm hướng dãn</h6>
-              <ColLg className="text-end">
-                <Button onClick={() => setShowFIle(true)}>
-                  <span>
-                    <BsFileWord />
-                  </span>
-                  Xuất ra file word
-                </Button>
-              </ColLg>
-            </StyledRow>
-            <ChiTietDiem doAn={doAn} loai={loai} />
-          </Modal.Body>
-        </>
-      )}
-      {showFile && (
-        <FileDiemHuongDan doAn={doAn} loai={loai} setShowModal={setShowModal} />
-      )}
+      (
+      <>
+        <Modal.Header>
+          {!showFile && (
+            <>
+              <h5>{doAn.tenDoAn}</h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                onClick={() => setShowModal((showModal) => !showModal)}
+              >
+                X
+              </button>
+            </>
+          )}
+        </Modal.Header>
+        <Modal.Body>
+          {showFile ? (
+            <FileDiemHuongDan
+              doAn={doAn}
+              loai={loai}
+              setShowModal={setShowModal}
+            />
+          ) : (
+            <>
+              <StyledRow className="align-center">
+                <h6 className="text-primary">Điểm hướng dãn</h6>
+                <ColLg className="text-end">
+                  <Button onClick={() => setShowFIle(true)}>
+                    <span>
+                      <BsFileWord />
+                    </span>
+                    Xuất ra file word
+                  </Button>
+                </ColLg>
+              </StyledRow>
+              <ChiTietDiem doAn={doAn} loai={loai} />
+            </>
+          )}
+        </Modal.Body>
+      </>
+      )
     </Modal>
   );
 }

@@ -34,7 +34,7 @@ const StyledModal = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
   z-index: var(--modal-zindex);
   padding-left: 0;
   background: rgba(0, 0, 0, 0.3);
@@ -58,8 +58,6 @@ const StyledModalContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: max-content;
-
   padding: var(--modal-padding);
   color: var(--modal-color);
   background-color: var(--modal-bg);
@@ -99,8 +97,8 @@ const StyledModalHeader = styled.div`
 const StyledModalBody = styled.div`
   flex: 1;
   padding: var(--modal-padding);
-  overflow-y: auto;
-  max-height: 80%;
+  overflow-y: auto; // Enable scrolling when content is too high
+  max-height: 90vh;
 `;
 
 const StyledModalFooter = styled.div`
