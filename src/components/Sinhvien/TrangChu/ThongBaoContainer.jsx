@@ -17,7 +17,7 @@ function ThongBaoContainer({ vaiTro }) {
     queryKey: ["DanhSachThongBao"],
     queryFn: layDanhSachChoSinhVien,
   });
-  const DanhSachThongBao = data?.results;
+  const DanhSachThongBao = data?.data;
   return (
     !isLoading && (
       <div className="mt-3">
@@ -43,7 +43,7 @@ function ThongBaoContainer({ vaiTro }) {
           <div className="mt-2">
             <StyledTable>
               <tbody>
-                {DanhSachThongBao.map((tb) => (
+                {DanhSachThongBao?.map((tb) => (
                   <ChiTietThongBao thongBao={tb} key={tb._id} />
                 ))}
               </tbody>
@@ -67,7 +67,7 @@ function ChiTietThongBao({ thongBao }) {
         </Link>
       </td>
       <td>
-        <StyledLink to={`/giangvien/thongBao/${thongBao._id}`}>
+        <StyledLink to={`/sinhVien/thongBao/${thongBao._id}`}>
           {thongBao.tieuDe}
         </StyledLink>
       </td>

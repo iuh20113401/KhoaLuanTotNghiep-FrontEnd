@@ -1,7 +1,6 @@
 function chamDiemHuongDan(data, doAn, tieuChi, sv1 = true) {
-  console.log(tieuChi);
   const newData = {
-    _id: doAn.sinhVien[`${sv1 ? 0 : 1}`].sinhVienId, // ID of the student to update
+    _id: doAn[sv1 ? "sinhVien1Info" : "sinhVien2Info"].sinhVienId, // ID of the student to update
     ketQua: data[`${sv1 ? "sv1" : "sv2"}_ketQua`], // Update ketQua under "diem"
     diemHuongDan: {
       diemAbet: tieuChi.map((tc, index) => ({

@@ -79,9 +79,9 @@ function TaoNoiDungThongBao() {
     };
   };
   function onSubmit(data) {
-    // if (!value || !data.tieuDe) return;
-    // const newData = { ...data, noiDung: value };
-    // mutate(newData);
+    if (!value || !data.tieuDe) return;
+    const newData = { ...data, noiDung: value };
+    mutate(newData);
   }
 
   // Quill module settings

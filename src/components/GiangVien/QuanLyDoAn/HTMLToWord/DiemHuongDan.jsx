@@ -21,22 +21,20 @@ function FileDiemHuongDan({ setShowModal, doAn, loai }) {
   };
 
   const contentRef = useRef();
-  const countSoLuong = doAn.sinhVien.filter(
-    (sv) => sv !== null && Object.values(sv).length > 0
-  ).length;
+  const countSoLuong = doAn.sinhVien2 ? 2 : 1;
   const contentLoai = ContentLoai[loai];
-  const diem = getNestedValue(doAn.sinhVien[0].diem, newLoai)?.diemAbet;
+  const diem = getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet;
   const diem2 =
     countSoLuong > 1
-      ? getNestedValue(doAn.sinhVien[1].diem, newLoai)?.diemAbet
+      ? getNestedValue(doAn.sinhVien2Info.diem, newLoai)?.diemAbet
       : [];
   const sinhVien1DiemTong = getNestedValue(
-    doAn.sinhVien[0].diem,
+    doAn.sinhVien1Info.diem,
     newLoai
   )?.diemTong;
   const sinhVien2DiemTong =
     countSoLuong > 1
-      ? getNestedValue(doAn.sinhVien[1].diem, newLoai)?.diemTong
+      ? getNestedValue(doAn.sinhVien2Info.diem, newLoai)?.diemTong
       : "";
   function Export2Doc(filename = "") {
     var preHtml =
@@ -405,7 +403,7 @@ function FileDiemHuongDan({ setShowModal, doAn, loai }) {
                   fontSize: "12pt",
                 }}
               >
-                {doAn.sinhVien[0].hoTen}{" "}
+                {doAn.sinhVien1.hoTen}{" "}
               </span>
               <span
                 style={{
@@ -433,7 +431,7 @@ function FileDiemHuongDan({ setShowModal, doAn, loai }) {
                   fontSize: "12pt",
                 }}
               >
-                {doAn.sinhVien[0].maSo}
+                {doAn.sinhVien1.maSo}
               </span>
             </p>
             {countSoLuong > 1 && (
@@ -465,7 +463,7 @@ function FileDiemHuongDan({ setShowModal, doAn, loai }) {
                     fontSize: "12pt",
                   }}
                 >
-                  {doAn.sinhVien[1].hoTen}
+                  {doAn.sinhVien2.hoTen}
                 </span>
                 <span
                   style={{
@@ -493,7 +491,7 @@ function FileDiemHuongDan({ setShowModal, doAn, loai }) {
                     fontSize: "12pt",
                   }}
                 >
-                  {doAn.sinhVien[1].maSo}
+                  {doAn.sinhVien2.maSo}
                 </span>
               </p>
             )}
@@ -1047,7 +1045,7 @@ function FileDiemHuongDan({ setShowModal, doAn, loai }) {
                         fontSize: "12pt",
                       }}
                     >
-                      {doAn.sinhVien[0].diem.ketQua === 1 ? (
+                      {doAn.sinhVien1Info.diem.ketQua === 1 ? (
                         <span style={{ fontFamily: "Wingdings" }}></span>
                       ) : (
                         <span style={{ fontFamily: "Wingdings" }}></span>
@@ -1081,7 +1079,7 @@ function FileDiemHuongDan({ setShowModal, doAn, loai }) {
                         fontSize: "12pt",
                       }}
                     >
-                      {doAn.sinhVien[0].diem.ketQua === 2 ? (
+                      {doAn.sinhVien1Info.diem.ketQua === 2 ? (
                         <span style={{ fontFamily: "Wingdings" }}></span>
                       ) : (
                         <span style={{ fontFamily: "Wingdings" }}></span>
@@ -1130,7 +1128,7 @@ function FileDiemHuongDan({ setShowModal, doAn, loai }) {
                           fontSize: "12pt",
                         }}
                       >
-                        {doAn.sinhVien[1].diem.ketQua === 1 ? (
+                        {doAn.sinhVien2Info.diem.ketQua === 1 ? (
                           <span style={{ fontFamily: "Wingdings" }}></span>
                         ) : (
                           <span style={{ fontFamily: "Wingdings" }}></span>
@@ -1163,7 +1161,7 @@ function FileDiemHuongDan({ setShowModal, doAn, loai }) {
                           fontSize: "12pt",
                         }}
                       >
-                        {doAn.sinhVien[1].diem.ketQua === 2 ? (
+                        {doAn.sinhVien2Info.diem.ketQua === 2 ? (
                           <span style={{ fontFamily: "Wingdings" }}></span>
                         ) : (
                           <span style={{ fontFamily: "Wingdings" }}></span>
@@ -1385,12 +1383,12 @@ function FileDiemHuongDan({ setShowModal, doAn, loai }) {
           bgcolor="var(--bs-blue)"
           onClick={() =>
             Export2Doc(
-              `${doAn.maDoAn}_${doAn.sinhVien[0].hoTen
+              `${doAn.maDoAn}_${doAn.sinhVien1.hoTen
                 .normalize("NFD")
                 .replace(/[\u0300-\u036f]/g, "")
                 .replace(/\s+/g, "")}${
                 countSoLuong > 1
-                  ? `_${doAn.sinhVien[1].hoTen
+                  ? `_${doAn.sinhVien2.hoTen
                       .normalize("NFD")
                       .replace(/[\u0300-\u036f]/g, "")
                       .replace(/\s+/g, "")}`

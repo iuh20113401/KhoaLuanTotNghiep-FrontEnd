@@ -16,10 +16,10 @@ function DangKyDeTai() {
   const danhSachDeTai = data?.DanhSachDeTai;
   const { caiDatInfo, isLoading: caiDatLoading } = useCaiDatInfo();
   const { data: user, isLoading: loiMoiLoading } = UseUser();
-  const loiMoi = user.user.loiMoi;
+  const loiMoi = user.user?.loiMoi;
   return (
     <>
-      {loiMoi?.length > 0 && (
+      {!loiMoiLoading && loiMoi?.length > 0 && (
         <>
           <h5 className="mt-3 mb-2">Danh sách lời mời</h5>
           <DanhSachLoiMoiContainer loiMoi={loiMoi} />

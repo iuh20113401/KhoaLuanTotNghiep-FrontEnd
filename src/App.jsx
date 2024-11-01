@@ -70,7 +70,8 @@ function App() {
               <Route path="chat" element={<Chat />} />
               <Route path="QuanLyDoAn" element={<QuanLyDoAn />} />
               <Route path="quanLyThucTap" element={<QuanLyThucTap />} />
-              <Route path="LichHop" element={<LichHopSinhVien />} />
+              <Route path="LichHop" element={<LichHopSinhVien />} />{" "}
+              <Route path="thongBao/:id" element={<NoiDungThongBao />} />
             </Route>
             {/* note dành cho giảng viên */}
             <Route path="giangvien" element={<GiangVIenLayout />}>

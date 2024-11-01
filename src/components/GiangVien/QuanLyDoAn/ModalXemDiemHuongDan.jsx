@@ -75,15 +75,15 @@ function ChiTietDiem({ doAn, loai }) {
       : "";
   return (
     <>
-      {doAn.sinhVien.map(
-        (sv, index) =>
-          sv !== null &&
-          Object.values(sv).length > 0 && (
-            <p key={index}>
-              <strong>Sinh viên {index + 1}: </strong>
-              {sv.hoTen}
-            </p>
-          )
+      <p>
+        <strong>Sinh viên 1: </strong>
+        {doAn.sinhVien1.hoTen}
+      </p>
+      {doAn.sinhVien2 && (
+        <p>
+          <strong>Sinh viên 2: </strong>
+          {doAn.sinhVien2.hoTen}
+        </p>
       )}
       <StyledTable headvariation="dark">
         <thead>

@@ -27,7 +27,6 @@ function QuanLyThongTinDoAn() {
   const sortBy = searchParams.get("sortBy");
 
   const sortedDoAn = sortDoAnList(filterDoAn, sortBy);
-  console.log(sortedDoAn);
   return (
     <div>
       <h5>Quản lý thông tin đồ án</h5>
