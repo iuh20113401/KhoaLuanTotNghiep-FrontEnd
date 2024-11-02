@@ -2,7 +2,7 @@ import fetchApi from "./FetchConfig";
 const BASE_URL = "/thongBao";
 
 const layDanhSachToanBoThongBao = () =>
-  fetchApi(`${BASE_URL}`, {
+  fetchApi(`${BASE_URL}?loai[in]=[0,1]`, {
     method: "GET",
   });
 const layDanhSachChoSinhVien = () =>

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import ResetDeTai from "../../components/ChuNhiemBoMon/CaiDat/ResetDeTai";
 import Card from "../../ui/Card";
 import { layThongTinCaiDat } from "../../services/CaiDat";
-import MoDangKyDeTai from "../../components/ChuNhiemBoMon/CaiDat/moDangKyDeTai";
+import MoDangKyDeTai from "../../components/ChuNhiemBoMon/CaiDat/MoDangKyDeTai";
 import DongDangKyDeTai from "../../components/ChuNhiemBoMon/CaiDat/DongDangKyDeTai";
 import MoDangKyThucTap from "../../components/ChuNhiemBoMon/CaiDat/MoDangKyThucTap";
 import DongDangKyThucTap from "../../components/ChuNhiemBoMon/CaiDat/DongDangKyThucTap";

@@ -17,7 +17,7 @@ function ThongBaoContainer({ vaiTro }) {
     queryKey: ["DanhSachThongBao"],
     queryFn: layDanhSachToanBoThongBao,
   });
-  const DanhSachThongBao = data?.results;
+  const DanhSachThongBao = data?.data;
   return (
     !isLoading && (
       <div>
@@ -49,7 +49,7 @@ function ThongBaoContainer({ vaiTro }) {
           <div className="mt-2">
             <StyledTable>
               <tbody>
-                {DanhSachThongBao.map((tb) => (
+                {DanhSachThongBao?.map((tb) => (
                   <ChiTietThongBao thongBao={tb} key={tb._id} />
                 ))}
               </tbody>
