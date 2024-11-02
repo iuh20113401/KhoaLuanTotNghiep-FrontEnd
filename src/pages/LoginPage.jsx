@@ -16,7 +16,7 @@ const StyledLoginPage = styled.div`
   width: 100%;
   margin: 0 !important;
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 2fr 1fr;
   @media (max-width: 768px) {
     position: relative;
     display: block;
@@ -43,15 +43,13 @@ const StyledCoverImage = styled.div`
 `;
 const StyledFormContainer = styled.div`
   background-color: #fff;
-  padding: 3rem !important;
+  padding: 2rem !important;
   align-items: center !important;
   display: flex !important;
   & > div {
-    padding-top: 1.25rem !important;
-    margin-top: 3rem !important;
+    margin-top: 1rem !important;
     margin-right: auto !important;
     margin-left: auto !important;
-    width: 400px !important;
   }
   @media (max-width: 768px) {
     padding: 1.5rem !important;
@@ -141,7 +139,7 @@ function LoginPage() {
       </StyledCoverImage>
       <StyledFormContainer>
         <div>
-          <h4>Chào mừng👋</h4>
+          <h5>Chào mừng👋</h5>
           <p>
             Mật khẩu lần đầu đăng nhập là 123456. Hãy đổi mật khẩu trong lafn
             đăng nhập đầu tiên

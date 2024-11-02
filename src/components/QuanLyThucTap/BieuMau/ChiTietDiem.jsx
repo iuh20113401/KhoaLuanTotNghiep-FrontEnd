@@ -13,7 +13,7 @@ function ChiTietDiem({ diem }) {
         </tr>
       </thead>
       <tbody>
-        {diem.diemAbet.map((d, index) => (
+        {diem?.diemAbet?.map((d, index) => (
           <tr key={d.stt}>
             <td>{d.stt}</td>
             <td>{d.ten}</td>

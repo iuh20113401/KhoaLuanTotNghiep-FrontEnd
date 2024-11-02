@@ -18,7 +18,6 @@ const updateDoAn = (id, status) => capNhatDoAn({ _id: id, trangThai: status });
 
 function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
   const isMobile = useMobile();
-  console.log(isMobile);
   const {
     register,
     handleSubmit,

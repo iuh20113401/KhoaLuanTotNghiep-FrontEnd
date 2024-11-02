@@ -1,5 +1,4 @@
 function ChiTietSinhVienThucTap({ sinhvien, index }) {
-  console.log(sinhvien);
   return (
     <tr>
       <td>{index + 1}</td>

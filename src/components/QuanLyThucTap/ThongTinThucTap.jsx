@@ -13,7 +13,29 @@ const StyledInfoDiv = styled.div`
   gap: 0.2rem;
   margin-bottom: 0.4rem;
 `;
+const ResponsiveCol9 = styled(Col9)`
+  @media (max-width: 768px) {
+    flex: 1 1 100%;
+    padding: 0;
+    width: 100%;
+    padding-right: 1.2rem;
+    padding-left: 1.2rem;
+    margin-top: 0.8rem;
+  }
+`;
+const ResponsiveRow = styled(StyledRow)`
+  flex-wrap: wrap;
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+  }
+`;
 
+const ResponsiveCol3 = styled(Col3)`
+  @media (max-width: 768px) {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+`;
 function DisplayQuillContent({ content }) {
   const decodedContent = decodeHtml(content);
 
@@ -21,8 +43,8 @@ function DisplayQuillContent({ content }) {
 }
 function ThongTinThucTap({ user, thucTap, refetch }) {
   return (
-    <StyledRow>
-      <Col9>
+    <ResponsiveRow>
+      <ResponsiveCol9>
         <Card className="p-2">
           <StyledInfoDiv>
             <h6>
@@ -76,8 +98,8 @@ function ThongTinThucTap({ user, thucTap, refetch }) {
             refetch={refetch}
           />
         </div>
-      </Col9>
-      <Col3 className="pl-3 pr-3">
+      </ResponsiveCol9>
+      <ResponsiveCol3 className="pl-3 pr-3">
         {user.vaiTro !== 0 && (
           <Card>
             <CardXacNhan
@@ -93,8 +115,8 @@ function ThongTinThucTap({ user, thucTap, refetch }) {
         <Card className="p-3 mt-2">
           <CardTaiLieu taiLieu={thucTap.taiLieu} />
         </Card>
-      </Col3>
-    </StyledRow>
+      </ResponsiveCol3>
+    </ResponsiveRow>
   );
 }
 

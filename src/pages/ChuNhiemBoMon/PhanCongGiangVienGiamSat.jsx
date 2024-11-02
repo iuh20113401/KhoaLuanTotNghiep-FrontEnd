@@ -15,7 +15,6 @@ function PhanCongGiangVienGiamSat() {
     enabled: !!caiDatLoading,
   });
   const DangSachDangKyThucTap = data?.results;
-  console.log(data, DangSachDangKyThucTap);
   return (
     <div>
       <h5>Phân công giảng viên giám sát</h5>
