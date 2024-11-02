@@ -1,8 +1,10 @@
-import { SERVER } from "../../../context/env";
 import { HiDownload } from "react-icons/hi";
 import Button from "../../../ui/Button";
 import { Col10, Col2, StyledRow } from "../../../ui/Row";
 import { Link } from "react-router-dom";
+const SERVER = import.meta.env.PROD
+  ? import.meta.env.VITE_SERVER_URL
+  : import.meta.env.VITE_SERVER_URL_LOCAL;
 function CardTaiLieu({ taiLieu }) {
   return (
     <>

@@ -33,7 +33,6 @@ const StyledSwiperSlide = styled.div`
   height: 100%;
   position: relative;
   transition-property: transform;
-  width: 1349px;
 
   & > a {
     color: #333e44;
@@ -59,12 +58,9 @@ function StyledBanner({ content }) {
         <StyledSwiperSlide>
           <a href={content.href}>
             <picture>
-              {content?.source?.map((sr, i) => (
-                <source key={i} media={sr.width} srcSet={sr.src} />
-              ))}
               <img
                 src={content.src}
-                data-src={content.dataSrc}
+                data-src={content.src}
                 alt="Khai trương VNB Phú Mỹ"
               />
             </picture>

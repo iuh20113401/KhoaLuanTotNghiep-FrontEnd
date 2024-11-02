@@ -3,13 +3,14 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { HiDownload, HiUpload } from "react-icons/hi";
 
-import { SERVER } from "../../context/env";
 import Button from "../../ui/Button";
 import Card from "../../ui/Card";
 import StyledTable from "../../ui/Table";
 import { useEffect, useRef, useState } from "react";
 import { themTaiLieu } from "../../services/DoAn";
-
+const SERVER = import.meta.env.PROD
+  ? import.meta.env.VITE_SERVER_URL
+  : import.meta.env.VITE_SERVER_URL_LOCAL;
 function TaiLieuDoAn({ doAn, refetch }) {
   const TaiLieu = doAn.taiLieu;
   const inputref = useRef();

@@ -10,6 +10,7 @@ function KeHoachThucHien() {
     queryFn: layKeHoachThucHien,
   });
   const keHoach = data?.thongBao;
+
   return (
     <div className="mt-3">
       <h4>Kế hoạch thực hiện</h4>
@@ -18,10 +19,10 @@ function KeHoachThucHien() {
           <>
             <img
               crossorigin="anonymous | use-credentials"
-              src={`${SERVER}${keHoach.noiDung}`}
+              src={`${SERVER}${keHoach?.noiDung.replace("/", "")}`}
               alt="hinhAnh"
               width="100%"
-              height="1000px"
+              height="100%"
             />
           </>
         ) : (

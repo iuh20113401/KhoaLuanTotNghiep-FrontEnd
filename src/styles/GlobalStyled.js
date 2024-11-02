@@ -225,7 +225,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--bs-heading-color);
 }
 
-/* Responsive font sizes for headings */
 h1 {
   line-height: 3.5rem;
   font-size: 2.5rem;
@@ -241,6 +240,7 @@ h3 {
 h4 {
   font-size: 1.25rem;
   line-height: 1.75rem;
+  
 }
 h5 {
   line-height: 1.5rem;
@@ -251,31 +251,33 @@ h6 {
   font-size: 0.875rem;
 }
 
-/* Adjustments for larger screens */
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   h1 {
-    line-height: 4rem;
+    line-height: 2.25rem;
     font-size: 2.875rem;
   }
   h2 {
-    line-height: 3.5rem;
+    line-height: 1.875rem;
     font-size: 2.375rem;
   }
   h3 {
-    line-height: 2.625rem;
+    line-height: 1.5rem;
     font-size: 1.75rem;
   }
   h4 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     line-height: 2.375rem;
   }
   h5 {
-    line-height: 1.75rem;
+    line-height: 1.125rem;
     font-size: 1.125rem;
   }
   h6 {
-    line-height: 1.375rem;
+    line-height: 1rem;
     font-size: 0.9375rem;
+  }
+  p {
+    font-size: 0.6rem;
   }
 }
 
@@ -309,7 +311,6 @@ h6 {
 
 p{
     margin-top: 0;
-    
 }
 .lead{
     font-size: 1.125rem;

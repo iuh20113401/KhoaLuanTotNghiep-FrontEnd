@@ -100,10 +100,12 @@ const StyledMenu = styled.ul`
     flex-direction: column;
     display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
     width: 70%;
+    height: max-content;
+    z-index: 100;
+    background-color: white;
     margin: auto;
-    padding-right: 0;
-    margin-top: 1rem;
-
+    padding: 1rem;
+    position: absolute;
     & > li {
       width: 100%;
     }
@@ -142,7 +144,10 @@ function Navbar({ user }) {
         </Col2>
         <Col8>
           {isMobile ? (
-            <div className="text-center">
+            <div
+              className="text-center justify-center flex "
+              style={{ height: "100%" }}
+            >
               <button
                 onClick={() => setMenuOpen((prev) => !prev)}
                 style={{

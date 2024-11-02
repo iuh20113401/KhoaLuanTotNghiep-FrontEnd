@@ -7,6 +7,7 @@ import StyledTable from "../../../ui/Table";
 import styled from "styled-components";
 import KeHoachThucHien from "./KeHoachThucHien";
 import { layDanhSachChoSinhVien } from "../../../services/ThongBao";
+import { useMobile } from "../../../context/MobileContext";
 const StyledLink = styled(Link)`
   &:hover {
     color: var(--bs-primary);
@@ -55,9 +56,10 @@ function ThongBaoContainer({ vaiTro }) {
   );
 }
 function ChiTietThongBao({ thongBao }) {
+  const isMobile = useMobile();
   return (
     <tr>
-      <td width={"10%"}>
+      <td width={isMobile ? "20%" : "10%"}>
         <Link to={""}>
           {thongBao.loai === 0
             ? "Toàn bộ"

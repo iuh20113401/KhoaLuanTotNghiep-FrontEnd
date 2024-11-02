@@ -70,6 +70,10 @@ const StyledFormCheck = styled.div`
   input:disabled + label {
     opacity: 0.45;
   }
+  font-size: 0.9375rem;
+  @media (max-width: 768px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const checkboxRadioStyles = css`
