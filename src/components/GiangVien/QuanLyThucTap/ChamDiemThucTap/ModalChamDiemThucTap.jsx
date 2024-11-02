@@ -65,7 +65,7 @@ function ModalChamDiem({ thucTap, tieuChi, setShowModal, loai }) {
         </p>
 
         <StyledForm className="mt-2" onSubmit={handleSubmit(onSubmit)}>
-          <StyledTable headvariation="dark">
+          <StyledTable headvariation="dark" className="form">
             <thead>
               <tr>
                 <th rowSpan={2}>STT</th>
@@ -134,6 +134,7 @@ function ModalChamDiem({ thucTap, tieuChi, setShowModal, loai }) {
                       max={10}
                       value={diem && diem[index].diemThang10}
                       placeholder="Từ 0 đến 10"
+                      disabled={isValid}
                     />
                     {errors[`sv_10_Lo${index}`] && (
                       <p className="error-text">

@@ -157,7 +157,9 @@ body {
     text-align: var(--bs-body-text-align);
     background-color: var(--bs-body-bg);
     -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: rgba(47, 43, 61, 0);
+    -webkit-tap-highlight-color: rgba(47, 43, 61, 0); 
+    word-break: auto-phrase;
+
 }
 ol {
     list-style-position: inside;
@@ -214,6 +216,7 @@ p {
   line-height: 1.37;
   font-weight: 400;
   color: var(--bs-heading-color);
+  word-break: auto-phrase;
 }
 
 /* Base styles for headings */

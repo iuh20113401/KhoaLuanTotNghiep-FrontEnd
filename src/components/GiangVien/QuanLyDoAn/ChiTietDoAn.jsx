@@ -69,15 +69,19 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
                 size="sm"
                 bgcolor="var(--bs-danger)"
                 state={
-                  getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
-                    .length > 0
+                  doAn.trangThai < 2
                     ? "disabled"
-                    : ""
+                    : !(
+                        getNestedValue(doAn.sinhVien1Info.diem, newLoai)
+                          ?.diemAbet?.length > 0
+                      ) || doAn.trangThai < 2
+                    ? ""
+                    : "disabled"
                 }
                 onClick={() => setShowModal(true)}
                 disabled={
                   getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
-                    .length > 0
+                    .length > 0 || doAn.trangThai < 2
                 }
               >
                 <span>

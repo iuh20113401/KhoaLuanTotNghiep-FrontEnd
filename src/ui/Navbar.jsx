@@ -124,6 +124,10 @@ const SyledMenuDropDowm = styled.div`
   box-shadow: var(--bs-box-shadow-sm);
   z-index: 100;
   right: 0;
+  @media (max-width: 768px) {
+    font-size: 0.6rem;
+    width: max-content;
+  }
 `;
 
 function Navbar({ user }) {

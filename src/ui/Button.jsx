@@ -91,6 +91,39 @@ const Variations = {
 
 const StyledButton = styled.button`
   ${ButtonVar}
+
+  & > span {
+    margin-right: 0.5rem;
+    line-height: 0.9;
+    font-size: 1rem;
+    font-family: "tabler-icons";
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 992px) {
+    --bs-btn-padding-x: 1rem;
+    --bs-btn-padding-y: 0.5rem;
+    --bs-btn-font-size: 0.85rem;
+  }
+
+  @media (max-width: 768px) {
+    --bs-btn-padding-x: 0.75rem;
+    --bs-btn-padding-y: 0.4rem;
+    --bs-btn-font-size: 0.6rem;
+    width: max-content;
+  }
+
+  @media (max-width: 576px) {
+    --bs-btn-padding-x: 0.5rem;
+    --bs-btn-padding-y: 0.3rem;
+  }
+
   width: fit-content;
   height: fit-content;
   cursor: pointer;
@@ -119,40 +152,6 @@ const StyledButton = styled.button`
   ${(props) => Variations[props.variation]}
   ${(props) => Size[props.size]}
   ${(props) => States[props.state]}
-
-  & > span {
-    margin-right: 0.5rem;
-    line-height: 0.9;
-    font-size: 1rem;
-    font-family: "tabler-icons";
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    vertical-align: middle;
-    display: inline-block;
-  }
-
-  /* Responsive Adjustments */
-  @media (max-width: 992px) {
-    --bs-btn-padding-x: 1rem;
-    --bs-btn-padding-y: 0.5rem;
-    --bs-btn-font-size: 0.85rem;
-  }
-
-  @media (max-width: 768px) {
-    --bs-btn-padding-x: 0.75rem;
-    --bs-btn-padding-y: 0.4rem;
-    --bs-btn-font-size: 0.8rem;
-  }
-
-  @media (max-width: 576px) {
-    --bs-btn-padding-x: 0.5rem;
-    --bs-btn-padding-y: 0.3rem;
-    --bs-btn-font-size: 0.75rem;
-    width: 100%; /* Full-width for small screens */
-    font-size: 0.6rem;
-  }
 `;
 
 function Button({ children, icon, ...props }) {

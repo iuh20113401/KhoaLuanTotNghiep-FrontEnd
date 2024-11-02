@@ -82,7 +82,6 @@ const StyledTableContainer = styled.table`
     @media (max-width: 768px) {
       font-size: 0.5rem;
       padding: 0.5rem 1rem;
-      word-break: break-word;
     }
   }
 
@@ -91,18 +90,6 @@ const StyledTableContainer = styled.table`
   }
   &.form {
     @media (max-width: 768px) {
-      .responsive-input,
-      .responsive-textarea {
-        display: block;
-        margin-top: 10px;
-        width: 100%;
-      }
-
-      .responsive-input input,
-      .responsive-textarea textarea {
-        width: 100%;
-      }
-
       th,
       td {
         display: block;

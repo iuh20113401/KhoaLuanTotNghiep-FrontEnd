@@ -6,6 +6,7 @@ import ChiTietDangKyThucTap from "./ChiTietDangKyThucTap";
 import { layDanhSachToanBoGiangVien } from "../../../services/User";
 import toast from "react-hot-toast";
 import { themGiangVienGiamSat } from "../../../services/ThucTap";
+import Card from "../../../ui/Card";
 
 function DanhSachDangKyThucTapContainer({ DanhSachThucTap }) {
   const { data, isLoading } = useQuery({
@@ -23,7 +24,7 @@ function DanhSachDangKyThucTapContainer({ DanhSachThucTap }) {
   const DanhSachGiangVien = data?.danhSachGiangVien || [];
 
   const [updatedThucTap, setUpdatedThucTap] = useState(
-    DanhSachThucTap.map((tt) => ({
+    DanhSachThucTap?.map((tt) => ({
       ...tt,
       giangVien: tt.giangVien || "",
     }))
@@ -84,7 +85,15 @@ function DanhSachDangKyThucTapContainer({ DanhSachThucTap }) {
     }));
     mutate(data);
   }
-
+  if (!updatedThucTap || !updatedThucTap.length) {
+    return (
+      <Card className="p-2">
+        <div>
+          <p>Hiện chưa có sinh viên nào trong kỳ này đăng ký thực tập</p>
+        </div>
+      </Card>
+    );
+  }
   return (
     <div>
       <div className="p-2 text-end">
@@ -106,7 +115,7 @@ function DanhSachDangKyThucTapContainer({ DanhSachThucTap }) {
             </tr>
           </thead>
           <tbody>
-            {updatedThucTap.map((tt, index) => (
+            {updatedThucTap?.map((tt, index) => (
               <ChiTietDangKyThucTap
                 key={tt._id}
                 DanhSachGiangVien={DanhSachGiangVien}
