@@ -19,7 +19,7 @@ function FormDangKy({ caiDatInfo }) {
     mutationFn: dangKyThucTap,
     onSuccess: () => {
       toast.success("Đăng ký thành công");
-      navigate("/quanLyThucTap");
+      navigate("/sinhVien/quanLyThucTap");
     },
   });
 

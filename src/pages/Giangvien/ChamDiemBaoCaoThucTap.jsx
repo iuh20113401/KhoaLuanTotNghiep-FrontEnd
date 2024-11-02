@@ -8,21 +8,24 @@ import {
   layTieuChiThucTapChoGiangVien,
 } from "../../services/TieuChi";
 import { layDanhSachThucTapTheoGiangVien } from "../../services/ThucTap";
-import Button from "../../ui/Button";
-import { BsFileExcel } from "react-icons/bs";
 
 import XuatDanhSachDiemThucTapContainer from "../../components/GiangVien/QuanLyThucTap/DanhSachBaoCaoThucTap/XuatDanhSachDiemThucTapContainer";
+import useCaiDatInfo from "../../hooks/useCaiDatInfo";
 
 export const ChamDiemThucTapContext = createContext();
 
 function ChamDiemBaoCaoThucTap() {
+  const { caiDatInfo, isLoading: caiDatLoading } = useCaiDatInfo();
+
   const {
     data,
     isLoading: doAnLoading,
     refetch,
   } = useQuery({
     queryKey: ["DanhSachBaoCao"],
-    queryFn: layDanhSachThucTapTheoGiangVien,
+    queryFn: () =>
+      layDanhSachThucTapTheoGiangVien(caiDatInfo.hocKy, caiDatInfo.namHoc),
+    enabled: !caiDatLoading,
   });
   const { data: tieuChiDoanhNghiep, isLoading: doanhNghiepTCLoding } = useQuery(
     {

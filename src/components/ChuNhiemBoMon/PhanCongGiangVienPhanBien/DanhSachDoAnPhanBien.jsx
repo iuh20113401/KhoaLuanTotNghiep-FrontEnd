@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Button from "../../../ui/Button";
 import StyledTable from "../../../ui/Table";
@@ -14,6 +14,22 @@ function DanhSachDoAnPhanBien({ DanhSachDoAn, refetch }) {
     queryKey: ["DanhSachGiangVien"],
     queryFn: layDanhSachToanBoGiangVien,
   });
+
+  const DanhSachGiangVien = data?.danhSachGiangVien || [];
+  const [updatedDoAn, setUpdatedDoAn] = useState("");
+  useEffect(() => {
+    setUpdatedDoAn(
+      DanhSachDoAn.filter(
+        (da) => !da.giangVienPhanBien1 && !da.giangVienPhanBien2
+      ).map((da) => ({
+        ...da,
+        giangVienPhanBien: [
+          da.giangVienPhanBien1 || "",
+          da.giangVienPhanBien2 || "",
+        ],
+      }))
+    );
+  }, [DanhSachDoAn]);
   const { mutate, isPending } = useMutation({
     mutationFn: themNhieuGiangVienPhanBien,
     onSuccess: () => {
@@ -21,19 +37,6 @@ function DanhSachDoAnPhanBien({ DanhSachDoAn, refetch }) {
       refetch();
     },
   });
-  const DanhSachGiangVien = data?.danhSachGiangVien || [];
-  const [updatedDoAn, setUpdatedDoAn] = useState(
-    DanhSachDoAn.filter(
-      (da) => !da.giangVienPhanBien1 && !da.giangVienPhanBien2
-    ).map((da) => ({
-      ...da,
-      giangVienPhanBien: [
-        da.giangVienPhanBien1 || "",
-        da.giangVienPhanBien2 || "",
-      ],
-    }))
-  );
-
   const shuffleArray = (array) => {
     return array.sort(() => Math.random() - 0.5);
   };
@@ -146,16 +149,17 @@ function DanhSachDoAnPhanBien({ DanhSachDoAn, refetch }) {
               </tr>
             </thead>
             <tbody>
-              {updatedDoAn.map((da, index) => (
-                <ChiTietDoAnPhanBien
-                  key={da._id}
-                  DanhSachGiangVien={DanhSachGiangVien}
-                  doAn={da}
-                  index={index}
-                  handleChangePhanBien={handleChangePhanBien}
-                  isAssign={true}
-                />
-              ))}
+              {updatedDoAn &&
+                updatedDoAn.map((da, index) => (
+                  <ChiTietDoAnPhanBien
+                    key={da._id}
+                    DanhSachGiangVien={DanhSachGiangVien}
+                    doAn={da}
+                    index={index}
+                    handleChangePhanBien={handleChangePhanBien}
+                    isAssign={true}
+                  />
+                ))}
             </tbody>
           </StyledTable>
 

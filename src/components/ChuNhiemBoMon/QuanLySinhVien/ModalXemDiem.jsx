@@ -5,7 +5,7 @@ import Modal from "../../../ui/Modal";
 import StyledTable from "../../../ui/Table";
 
 function ModalXemDiem({ doAn, setShowModal }) {
-  const countSoLuong = doAn.sinhvien.length;
+  const countSoLuong = doAn.sinhVien2 ? 2 : 1;
   return (
     <Modal size="xl">
       <Modal.Header>
@@ -19,12 +19,16 @@ function ModalXemDiem({ doAn, setShowModal }) {
         </Button>
       </Modal.Header>
       <Modal.Body className="p-0 m-0">
-        {doAn.sinhvien.map((sv, index) => (
+        <p>
+          <strong>Sinh viên 1: </strong>
+          {doAn.sinhVien1.hoTen}
+        </p>
+        {doAn.sinhVien2 && (
           <p>
-            <strong>Sinh viên {index + 1}: </strong>
-            {sv.ten}
+            <strong>Sinh viên 2: </strong>
+            {doAn.sinhVien2.hoTen}
           </p>
-        ))}
+        )}
         <StyledForm className="mt-2">
           <StyledTable headvariation="dark">
             <thead>
@@ -40,19 +44,19 @@ function ModalXemDiem({ doAn, setShowModal }) {
                   Ghi chú
                 </th>
               </tr>{" "}
-              {doAn.sinhvien[1] && (
+              {doAn.sinhVien2 && (
                 <tr>
                   <th width="%" className="text-center">
-                    {doAn.sinhvien[0].ten}
+                    {doAn.sinhVien1.hoTen}
                   </th>
                   <th width="%" className="text-center">
-                    {doAn.sinhvien[1].ten}
+                    {doAn.sinhVien2.hoTen}
                   </th>
                 </tr>
               )}
             </thead>
             <tbody>
-              {doAn.sinhvien[0].diem.diemHuongDan.diemAbet.map((d, index) => (
+              {doAn.sinhVien1Info.diem.diemHuongDan.diemAbet.map((d, index) => (
                 <tr key={d.stt}>
                   <td>{d.stt}</td>
                   <td>{d.ten}</td>
@@ -64,13 +68,13 @@ function ModalXemDiem({ doAn, setShowModal }) {
                       readOnly
                     />
                   </td>
-                  {doAn.sinhvien[1] && (
+                  {doAn.sinhVien2 && (
                     <td>
                       <StyledInput
                         type="number"
                         className="text-center"
                         value={
-                          doAn.sinhvien[1].diem.diemHuongDan.diemAbet[index]
+                          doAn.sinhVien2Info.diem.diemHuongDan.diemAbet[index]
                             .diem
                         }
                         readOnly
@@ -92,16 +96,16 @@ function ModalXemDiem({ doAn, setShowModal }) {
                   <StyledInput
                     type="number"
                     className="text-center"
-                    value={doAn.sinhvien[0].diem.diemHuongDan.diemTong}
+                    value={doAn.sinhVien1Info.diem.diemHuongDan.diemTong}
                     readOnly
                   />
                 </td>{" "}
-                {doAn.sinhvien[1] ? (
+                {doAn.sinhVien2 ? (
                   <td>
                     <StyledInput
                       type="number"
                       className="text-center"
-                      value={doAn.sinhvien[1].diem.diemHuongDan.diemTong}
+                      value={doAn.sinhVien2Info.diem.diemHuongDan.diemTong}
                     />
                   </td>
                 ) : (
@@ -116,29 +120,29 @@ function ModalXemDiem({ doAn, setShowModal }) {
                 </td>
                 <td>
                   <RadioContainer
-                    name="sinhvien1"
-                    checked={doAn.sinhvien[0].diem.ketQua === 1}
+                    name="sinhVien1"
+                    checked={doAn.sinhVien1Info.diem.ketQua === 1}
                     label={"Đạt"}
                     readOnly
                   />
                   <RadioContainer
-                    name="sinhvien1"
-                    checked={doAn.sinhvien[0].diem.ketQua === 0}
+                    name="sinhVien1"
+                    checked={doAn.sinhVien1Info.diem.ketQua === 0}
                     label={"Không đạt"}
                     readOnly
                   />
                 </td>
-                {doAn.sinhvien[1] ? (
+                {doAn.sinhVien2 ? (
                   <td>
                     <RadioContainer
-                      name="sinhvien2"
-                      checked={doAn.sinhvien[1].diem.ketQua === 1}
+                      name="sinhVien2"
+                      checked={doAn.sinhVien2Info.diem.ketQua === 1}
                       label={"Đạt"}
                       readOnly
                     />
                     <RadioContainer
-                      name="sinhvien2"
-                      checked={doAn.sinhvien[1].diem.ketQua === 0}
+                      name="sinhVien2"
+                      checked={doAn.sinhVien2Info.diem.ketQua === 0}
                       label={"Không đạt"}
                       readOnly
                     />

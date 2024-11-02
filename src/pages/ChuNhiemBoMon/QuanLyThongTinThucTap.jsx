@@ -13,7 +13,7 @@ function QuanLyThongTinThucTap() {
     queryKey: ["DanhSachToanBoSinhVienThucTap"],
     queryFn: () =>
       layDanhSachDangKyThucTap(caiDatInfo.hocKy, caiDatInfo.namHoc),
-    enabled: !!caiDatLoading,
+    enabled: !caiDatLoading,
   });
   const DanhSachBaoCao = data?.results;
   return (

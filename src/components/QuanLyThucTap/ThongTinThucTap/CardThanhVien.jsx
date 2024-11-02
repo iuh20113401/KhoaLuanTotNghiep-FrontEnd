@@ -1,7 +1,9 @@
-import { SERVER } from "../../../context/env";
 import { ColLg, StyledRow } from "../../../ui/Row";
 import Avatar from "../../../ui/Avatar";
 
+const SERVER = import.meta.env.PROD
+  ? import.meta.env.VITE_SERVER_URL
+  : import.meta.env.VITE_SERVER_URL_LOCAL;
 function CardThanhVien({ thucTap }) {
   const user = thucTap?.userId;
   const giangVien = thucTap.giangVien;

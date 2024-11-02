@@ -61,7 +61,7 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
                 <span>
                   <HiOutlineEye />
                 </span>
-                Xem
+                Xem điểm
               </Button>
             </div>
             <div className="mt-2">
@@ -70,14 +70,14 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
                 bgcolor="var(--bs-danger)"
                 state={
                   getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
-                    .length > 0 || !(+doAn.trangThai === 2)
+                    .length > 0
                     ? "disabled"
                     : ""
                 }
                 onClick={() => setShowModal(true)}
                 disabled={
                   getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
-                    .length > 0 || !(+doAn.trangThai === 2)
+                    .length > 0
                 }
               >
                 <span>
