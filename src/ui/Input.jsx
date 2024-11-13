@@ -55,7 +55,7 @@ const StyledTextarea = styled.textarea`
 const StyledSelect = styled.select`
   ${inputStyles}
   @media (max-width: 768px) {
-    width: max-content;
+    max-width: max-content;
   }
 `;
 

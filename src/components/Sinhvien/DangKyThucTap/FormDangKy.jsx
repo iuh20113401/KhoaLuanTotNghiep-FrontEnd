@@ -7,6 +7,8 @@ import { useMutation } from "@tanstack/react-query";
 import { dangKyThucTap } from "../../../services/ThucTap";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../../../ui/Spinner";
+import UseUser from "../../../context/UseUser";
 
 function FormDangKy({ caiDatInfo }) {
   const {
@@ -15,10 +17,12 @@ function FormDangKy({ caiDatInfo }) {
     formState: { errors }, // Access the form errors here
   } = useForm();
   const navigate = useNavigate();
+  const { refetch } = UseUser();
   const { mutate, isPending } = useMutation({
     mutationFn: dangKyThucTap,
     onSuccess: () => {
       toast.success("Đăng ký thành công");
+      refetch();
       navigate("/sinhVien/quanLyThucTap");
     },
   });
@@ -28,7 +32,12 @@ function FormDangKy({ caiDatInfo }) {
     data.hocKy = caiDatInfo.hocKy;
     mutate(data);
   }
-
+  if (isPending)
+    return (
+      <div className="h-100">
+        <LoadingSpinner />
+      </div>
+    );
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <StyledRow className="mobile-row">

@@ -3,7 +3,7 @@ import DanhSachSinhVien from "../../components/GiangVien/QuanLyDoAn/DanhSachSinh
 import FilterSinhVien from "../../components/GiangVien/QuanLyDoAn/FilterSinhVien";
 import Card from "../../ui/Card";
 import { layDanhSachSinhVienTheoGiangVien } from "../../services/SinhVien";
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { debounce } from "lodash"; // Add lodash for debouncing
 import { useSearchParams } from "react-router-dom";
 import XuatDanhSachSinhVienExcel from "../../components/GiangVien/QuanLyDoAn/XuatDanhSachSInhVienExcel";
@@ -60,12 +60,16 @@ function XemDanhSachSinhVien() {
           <div className="p-5">
             <LoadingSpinner />
           </div>
-        ) : (
+        ) : danhSachSinhVien?.length > 0 ? (
           <>
             <XuatDanhSachSinhVienExcel DanhSachSinhVien={danhSachSinhVien} />
             <FilterSinhVien handleFilterSinhVien={handleFilterSinhVien} />
             <DanhSachSinhVien danhSachSinhVien={sortSinhVien} />
           </>
+        ) : (
+          <div className="p-3">
+            <p>Hiện tại chưa có sinh viên nào đăng ký đề tài</p>
+          </div>
         )}
       </Card>
     </div>

@@ -12,7 +12,6 @@ import DanhSachBaoCaoContainer from "../../components/GiangVien/QuanLyThucTap/Da
 import FilterBaoCao from "../../components/GiangVien/QuanLyThucTap/DanhSachBaoCaoThucTap/FilterBaoCao";
 import { useDanhSachBaoCao } from "../../hooks/useDanhSachBaoCao";
 import { useSearchParams } from "react-router-dom";
-import { sortDoAnList } from "../../utils/SortDoAn";
 import { sortBaoCaoList } from "../../utils/SortBaoCao";
 import LoadingSpinner from "../../ui/Spinner";
 
@@ -113,7 +112,7 @@ function XemDanhSachBaoCao() {
           <div className="p-5">
             <LoadingSpinner />
           </div>
-        ) : (
+        ) : DanhSachBaoCao?.length > 0 ? (
           <>
             <FilterBaoCao
               handleFilterBaoCao={handleFilterBaoCao}
@@ -124,6 +123,10 @@ function XemDanhSachBaoCao() {
               DanhSachBaoCao={sortedDoAn || DanhSachBaoCao}
             />
           </>
+        ) : (
+          <div className="p-3">
+            <p>Hiện tại chưa có báo cáo nào</p>
+          </div>
         )}
       </Card>
     </div>

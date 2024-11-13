@@ -20,7 +20,7 @@ function DanhSachBaoCaoContainer({
         </tr>
       </thead>
       <tbody>
-        {DanhSachBaoCao.map((bc, index) => {
+        {DanhSachBaoCao?.map((bc, index) => {
           return (
             <ChiTietBaoCao
               baoCao={bc}

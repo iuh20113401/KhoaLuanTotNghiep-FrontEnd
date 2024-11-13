@@ -6,7 +6,6 @@ import ChiTietDoAnPhanBien from "./ChiTietDoAnPhanBien";
 import { layDanhSachToanBoGiangVien } from "../../../services/User";
 import { themNhieuGiangVienPhanBien } from "../../../services/DoAn";
 import toast from "react-hot-toast";
-import Card from "../../../ui/Card";
 import DanhSachGiangVienPhanBienTable from "./TableSoLuongDoAn";
 
 function DanhSachDoAnPhanBien({ DanhSachDoAn, refetch }) {
@@ -136,63 +135,77 @@ function DanhSachDoAnPhanBien({ DanhSachDoAn, refetch }) {
           </div>
 
           <h5 className="mt-3">Đồ án chưa có giảng viên phản biện:</h5>
-          <StyledTable>
-            <thead>
-              <tr>
-                <th>STT</th>
-                <th width="12%">Mã đồ án</th>
-                <th width="19%">Tên đồ án</th>
-                <th width="13%">Mã sinh viên</th>
-                <th>Tên sinh viên</th>
-                <th>Giảng viên</th>
-                <th width="25%">Giảng viên phản biện</th>
-              </tr>
-            </thead>
-            <tbody>
-              {updatedDoAn &&
-                updatedDoAn.map((da, index) => (
-                  <ChiTietDoAnPhanBien
-                    key={da._id}
-                    DanhSachGiangVien={DanhSachGiangVien}
-                    doAn={da}
-                    index={index}
-                    handleChangePhanBien={handleChangePhanBien}
-                    isAssign={true}
-                  />
-                ))}
-            </tbody>
-          </StyledTable>
+          {updatedDoAn ? (
+            <div className="p-3">
+              <p>Hiện chưa có đồ án cần phân công</p>
+            </div>
+          ) : (
+            <StyledTable>
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th width="12%">Mã đồ án</th>
+                  <th width="19%">Tên đồ án</th>
+                  <th width="13%">Mã sinh viên</th>
+                  <th>Tên sinh viên</th>
+                  <th>Giảng viên</th>
+                  <th width="25%">Giảng viên phản biện</th>
+                </tr>
+              </thead>
+              <tbody>
+                {updatedDoAn &&
+                  updatedDoAn.map((da, index) => (
+                    <ChiTietDoAnPhanBien
+                      key={da._id}
+                      DanhSachGiangVien={DanhSachGiangVien}
+                      doAn={da}
+                      index={index}
+                      handleChangePhanBien={handleChangePhanBien}
+                      isAssign={true}
+                    />
+                  ))}
+              </tbody>
+            </StyledTable>
+          )}
 
-          <h5>Đồ án đã có giảng viên phản biện:</h5>
-          <StyledTable>
-            <thead>
-              <tr>
-                <th>STT</th>
-                <th width="12%">Mã đồ án</th>
-                <th width="19%">Tên đồ án</th>
-                <th width="13%">Mã sinh viên</th>
-                <th>Tên sinh viên</th>
-                <th>Giảng viên</th>
-                <th width="25%">Giảng viên phản biện</th>
-              </tr>
-            </thead>
-            <tbody>
-              {doAnWithGiangVienPhanBien.map((da, index) => (
-                <ChiTietDoAnPhanBien
-                  key={da._id}
-                  DanhSachGiangVien={DanhSachGiangVien}
-                  doAn={da}
-                  index={index}
-                  handleChangePhanBien={handleChangePhanBien}
-                  isAssign={false}
-                />
-              ))}
-            </tbody>
-          </StyledTable>
+          {doAnWithGiangVienPhanBien && (
+            <>
+              <h5>Đồ án đã có giảng viên phản biện:</h5>
+              <StyledTable>
+                <thead>
+                  <tr>
+                    <th>STT</th>
+                    <th width="12%">Mã đồ án</th>
+                    <th width="19%">Tên đồ án</th>
+                    <th width="13%">Mã sinh viên</th>
+                    <th>Tên sinh viên</th>
+                    <th>Giảng viên</th>
+                    <th width="25%">Giảng viên phản biện</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {doAnWithGiangVienPhanBien.map((da, index) => (
+                    <ChiTietDoAnPhanBien
+                      key={da._id}
+                      DanhSachGiangVien={DanhSachGiangVien}
+                      doAn={da}
+                      index={index}
+                      handleChangePhanBien={handleChangePhanBien}
+                      isAssign={false}
+                    />
+                  ))}
+                </tbody>
+              </StyledTable>
+            </>
+          )}
         </div>
       )}
       <div className="text-end mr-2 mb-2">
-        <Button onClick={handleXacNhan} disabled={isPending}>
+        <Button
+          onClick={handleXacNhan}
+          disabled={isPending || updatedDoAn.length <= 0}
+          state={isPending || updatedDoAn.length <= 0 ? "disabled" : ""}
+        >
           Xác nhận
         </Button>
       </div>

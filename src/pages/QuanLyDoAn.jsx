@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getThongTinDoAn } from "../services/DoAn";
 import { useParams } from "react-router-dom";
 import DiemDanhContainer from "../components/QuanLyDoAn/DiemDanhContainer";
+import LoadingSpinner from "../ui/Spinner";
 
 const StyledContainer = styled.section`
   display: flex;
@@ -70,9 +71,8 @@ function QuanLyDeTai() {
       content: <DiemDanhContainer />, // Add component or functionality as needed
     },
   ];
-
+  if (isLoading) return <LoadingSpinner />;
   return (
-    !isLoading &&
     doAn && (
       <StyledContainer>
         <QuanLyDeTaIHeader

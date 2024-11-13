@@ -12,6 +12,7 @@ import BieuMauThucTap from "../components/QuanLyThucTap/BieuMauThucTap";
 import Diem from "../components/QuanLyThucTap/DiemThucTap";
 import DiemDanhContainer from "../components/QuanLyThucTap/DiemDanhContainer";
 import QuanLyThucTapHeader from "../components/QuanLyThucTap/QuanLyThucTapHeader";
+import LoadingSpinner from "../ui/Spinner";
 
 const StyledContainer = styled.section`
   display: flex;
@@ -76,9 +77,14 @@ function QuanLyThucTap() {
       content: <DiemDanhContainer />, // Add component or functionality as needed
     },
   ];
-
+  if (isLoading)
+    return (
+      <div>
+        {" "}
+        <LoadingSpinner />
+      </div>
+    );
   return (
-    !isLoading &&
     thucTap && (
       <StyledContainer>
         <QuanLyThucTapHeader

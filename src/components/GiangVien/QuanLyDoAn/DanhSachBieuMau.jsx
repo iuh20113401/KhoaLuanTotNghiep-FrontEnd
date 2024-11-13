@@ -13,7 +13,7 @@ function DanhSachBieuMau({ DanhSachBieuMau }) {
   return (
     <div>
       <StyledTable>
-        {DanhSachBieuMau.map((bm) => (
+        {DanhSachBieuMau?.map((bm) => (
           <ChiTietBieuMau
             href={`${SERVER}${bm.duongDan}`}
             ten={bm.ten}

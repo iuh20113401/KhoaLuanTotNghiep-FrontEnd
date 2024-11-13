@@ -72,7 +72,7 @@ function BieuMauChung() {
         />
       </div>
       {!BieuMauLoading && (
-        <DanhSachBieuMau DanhSachBieuMau={BieuMauData.danhSachBieuMau} />
+        <DanhSachBieuMau DanhSachBieuMau={BieuMauData?.danhSachBieuMau} />
       )}
     </div>
   );

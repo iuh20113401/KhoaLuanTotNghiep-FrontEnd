@@ -39,7 +39,7 @@ function ChamDiemDoAn() {
           <div className="p-5">
             <LoadingSpinner />
           </div>
-        ) : (
+        ) : DanhSachDoAn?.length > 0 ? (
           <>
             {sortedDoAn && <XuatDanhSachDiemDoAn DanhSachDoAn={sortedDoAn} />}
             <FilterDoAn
@@ -57,6 +57,10 @@ function ChamDiemDoAn() {
               />
             )}
           </>
+        ) : (
+          <div className="p-3">
+            <p>Chưa có đồ án cần chấm</p>
+          </div>
         )}
       </Card>
     </div>

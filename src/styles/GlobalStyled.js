@@ -161,10 +161,7 @@ body {
     word-break: auto-phrase;
 
 }
-ol {
-    list-style-position: inside;
-    padding-left: 0;
-  }
+
 input,
 button,
 textarea,
@@ -208,8 +205,11 @@ a {
 ul {
   list-style: none;
 }
-
-p {
+ol {
+    list-style-position: inside;
+    padding-left: 0;
+  }
+p,li {
   overflow-wrap: break-word;
   hyphens: auto;
   margin-top: 0;
@@ -249,7 +249,7 @@ h5 {
   line-height: 1.5rem;
   font-size: 1rem;
 }
-h6 {
+p,li {
   line-height: 1.25rem;
   font-size: 0.875rem;
 }
@@ -257,29 +257,29 @@ h6 {
 @media (max-width: 768px) {
   h1 {
     line-height: 2.25rem;
-    font-size: 2.875rem;
+    font-size: 1.5rem;
   }
   h2 {
     line-height: 1.875rem;
-    font-size: 2.375rem;
+    font-size: 1.125rem;
   }
   h3 {
     line-height: 1.5rem;
-    font-size: 1.75rem;
+    font-size: 1.125rem;
   }
   h4 {
     font-size: 1.25rem;
-    line-height: 2.375rem;
+    line-height: 1rem;
   }
   h5 {
     line-height: 1.125rem;
-    font-size: 1.125rem;
+    font-size: 0.875rem;
   }
   h6 {
     line-height: 1rem;
-    font-size: 0.9375rem;
+    font-size: 0.75rem;
   }
-  p {
+  p,li {
     font-size: 0.6rem;
   }
 }

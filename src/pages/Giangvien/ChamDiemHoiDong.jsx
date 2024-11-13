@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import DanhSachDoAnHoiDongContainer from "../../components/GiangVien/ChamDiemHoiDong/DanhSachDoAnHoiDongContainer";
 
 import { layDanhSachDoAnHoiDong } from "../../services/DoAn";
@@ -8,7 +7,6 @@ import { useDanhSachDoAn } from "../../hooks/useDanhSachDoAn";
 import FilterDoAn from "../../components/GiangVien/QuanLyDoAn/FilterDoAn";
 import { useSearchParams } from "react-router-dom";
 import { sortDoAnList } from "../../utils/SortDoAn";
-import { layTieuChiPhanBien } from "../../services/TieuChi";
 
 function ChamDiemHoiDong() {
   const [searchParams] = useSearchParams();
@@ -38,7 +36,7 @@ function ChamDiemHoiDong() {
           <div className="p-5">
             <LoadingSpinner />
           </div>
-        ) : (
+        ) : DanhSachDoAn?.length > 0 ? (
           <>
             <FilterDoAn
               hocKy={hocKy}
@@ -51,6 +49,10 @@ function ChamDiemHoiDong() {
               refetch={refetch}
             />
           </>
+        ) : (
+          <div className="p-3">
+            <p>Chưa có đồ án cần chấm</p>
+          </div>
         )}
       </Card>
     </div>

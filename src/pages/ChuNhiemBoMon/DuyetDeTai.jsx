@@ -25,6 +25,10 @@ function DuyetDeTai() {
           <div className="p-5">
             <LoadingSpinner />
           </div>
+        ) : DanhSachDeTai?.length === 0 ? (
+          <div className="p-3">
+            <p>Hiện tại chưa có đề tài nào cần duyêt</p>
+          </div>
         ) : (
           <>
             <Filter

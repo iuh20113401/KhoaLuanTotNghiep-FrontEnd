@@ -10,10 +10,10 @@ import {
 import { layDanhSachThucTapTheoGiangVien } from "../../services/ThucTap";
 
 import XuatDanhSachDiemThucTapContainer from "../../components/GiangVien/QuanLyThucTap/DanhSachBaoCaoThucTap/XuatDanhSachDiemThucTapContainer";
-import useCaiDatInfo from "../../hooks/useCaiDatInfo";
 import { useDanhSachBaoCao } from "../../hooks/useDanhSachBaoCao";
 import { sortBaoCaoList } from "../../utils/SortBaoCao";
 import { useSearchParams } from "react-router-dom";
+import LoadingSpinner from "../../ui/Spinner";
 
 export const ChamDiemThucTapContext = createContext();
 
@@ -47,40 +47,49 @@ function ChamDiemBaoCaoThucTap() {
   const TieuChiDoanhNghiep = tieuChiDoanhNghiep?.result;
   const TieuChiGiangVien = tieuChiGiangVien?.result;
   const isLoading = baoCaoLoading || doanhNghiepTCLoding || giangVienTCLoading;
-  if (isLoading || !DanhSachBaoCao?.length) return;
   const sortBy = searchParams.get("sortBy");
 
   const sortedDoAn = sortBaoCaoList(filterBaoCao, sortBy);
   return (
-    !isLoading && (
-      <div>
-        <h5>Chấm điểm đồ án</h5>
-        <ChamDiemThucTapContext.Provider
-          value={{
-            refetch,
-          }}
-        >
-          <Card className="mt-3">
-            <div className="text-end mt-2 mr-2">
-              <XuatDanhSachDiemThucTapContainer
-                DanhSachBaoCao={DanhSachBaoCao}
-              />
+    <div>
+      <h5>Chấm điểm báo cáo thực tập</h5>
+      <ChamDiemThucTapContext.Provider
+        value={{
+          refetch,
+        }}
+      >
+        <Card className="mt-3">
+          {isLoading ? (
+            <div className="p-3">
+              <LoadingSpinner />
             </div>
-            <FilterBaoCao
-              hocKy={hocKy}
-              namHoc={namHoc}
-              handleFilterBaoCao={handleFilterBaoCao}
-            />
-            <DanhSachBaoCaoContainer
-              chamDiem={true}
-              DanhSachBaoCao={sortedDoAn || DanhSachBaoCao}
-              tieuChiDoanhNghiep={TieuChiDoanhNghiep}
-              tieuChiGiangVien={TieuChiGiangVien}
-            />
-          </Card>
-        </ChamDiemThucTapContext.Provider>
-      </div>
-    )
+          ) : DanhSachBaoCao?.length > 0 ? (
+            <>
+              <div className="text-end mt-2 mr-2">
+                <XuatDanhSachDiemThucTapContainer
+                  DanhSachBaoCao={DanhSachBaoCao}
+                />
+              </div>
+              <FilterBaoCao
+                hocKy={hocKy}
+                namHoc={namHoc}
+                handleFilterBaoCao={handleFilterBaoCao}
+              />
+              <DanhSachBaoCaoContainer
+                chamDiem={true}
+                DanhSachBaoCao={sortedDoAn || DanhSachBaoCao}
+                tieuChiDoanhNghiep={TieuChiDoanhNghiep}
+                tieuChiGiangVien={TieuChiGiangVien}
+              />
+            </>
+          ) : (
+            <div className="p-3">
+              <p>Hiện tại chưa có báo cáo nào</p>
+            </div>
+          )}
+        </Card>
+      </ChamDiemThucTapContext.Provider>
+    </div>
   );
 }
 

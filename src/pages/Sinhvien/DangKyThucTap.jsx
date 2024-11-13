@@ -4,6 +4,7 @@ import Card from "../../ui/Card";
 import useCaiDatInfo from "../../hooks/useCaiDatInfo";
 const StyledDiv = styled.div`
   padding: 1.6rem;
+  min-heigth: 80vh;
 `;
 function DangKyThucTap() {
   const { caiDatInfo, isLoading: caiDatLoading } = useCaiDatInfo();

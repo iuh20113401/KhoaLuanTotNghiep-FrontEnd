@@ -36,7 +36,7 @@ function XemDanhSachDoAn() {
           <div className="p-5">
             <LoadingSpinner />
           </div>
-        ) : (
+        ) : DanhSachDoAn?.length > 0 ? (
           <>
             <FilterDoAn
               handleFilterDoAn={handleFilterDoAn}
@@ -45,6 +45,8 @@ function XemDanhSachDoAn() {
             />
             {sortedDoAn && <DanhSachDoAnContainer DanhSachDoAn={sortedDoAn} />}
           </>
+        ) : (
+          <div className="p-3">Hiện tại chưa có đò án nào trong kỳ này</div>
         )}
       </Card>
     </div>

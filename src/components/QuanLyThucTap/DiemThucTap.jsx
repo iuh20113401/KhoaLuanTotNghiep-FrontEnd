@@ -4,6 +4,7 @@ import { layThongTinSinhVien } from "../../services/SinhVien";
 import SinhVienXemDiem from "./XemDiem/SinhVienXemDiem";
 import GiangVienXemDiem from "./XemDiem/GiangVienXemDiem";
 import { layThongTinSinhVienTheoDoAn } from "../../services/DoAn";
+import LoadingSpinner from "../../ui/Spinner";
 
 function Diem({ doAn, user }) {
   const { data, isLoading } = useQuery({
@@ -17,14 +18,20 @@ function Diem({ doAn, user }) {
   return (
     <div>
       <h5>Điểm</h5>
-      {!isLoading && (
-        <Card className="p-2">
-          {user.vaiTro === 0 && (
-            <SinhVienXemDiem userInfo={user} sinhVienInfo={data.sinhVien} />
-          )}
-          {user.vaiTro !== 0 && <GiangVienXemDiem sinhVien={data.sinhVien} />}
-        </Card>
-      )}
+      <Card className="p-2">
+        {isLoading ? (
+          <div>
+            <LoadingSpinner />
+          </div>
+        ) : (
+          <>
+            {user.vaiTro === 0 && (
+              <SinhVienXemDiem userInfo={user} sinhVienInfo={data.sinhVien} />
+            )}
+            {user.vaiTro !== 0 && <GiangVienXemDiem sinhVien={data.sinhVien} />}
+          </>
+        )}
+      </Card>
     </div>
   );
 }

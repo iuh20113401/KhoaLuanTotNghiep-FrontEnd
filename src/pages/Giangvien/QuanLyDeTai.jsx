@@ -10,22 +10,17 @@ import { sortDoAnList } from "../../utils/SortDoAn";
 import { useDanhSachDeTai } from "../../hooks/useDanhSachDeTai";
 import DanhSachDeTaiContainer from "../../components/GiangVien/QuanLyDeTai/DanhSachDeTaiContainer";
 import LoadingSpinner from "../../ui/Spinner";
+import DanhSachDeTaiAccordionLIst from "../../components/GiangVien/QuanLyDeTai/DanhSachDeTaiAccordionLIst";
 
 function QuanLyDeTai() {
   const [isAdd, setIsAdd] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-
-  const {
-    DanhSachDeTai,
-    filterDeTai,
-    handleFilterDeTai,
-    isLoading,
-    hocKy,
-    namHoc,
-  } = useDanhSachDeTai({
-    key: "DanhSachDeTai",
-    fn: layDanhSachDeTai,
-  });
+  const [isShowTable, setIsShowTable] = useState(true);
+  const { DanhSachDeTai, filterDeTai, handleFilterDeTai, isLoading } =
+    useDanhSachDeTai({
+      key: "DanhSachDeTai",
+      fn: layDanhSachDeTai,
+    });
   const [searchParams] = useSearchParams();
   const sortBy = searchParams.get("sortBy");
   const sortedDoAn = sortDoAnList(filterDeTai, sortBy);
@@ -44,18 +39,34 @@ function QuanLyDeTai() {
           <Card className="mt-3">
             {isLoading ? (
               <LoadingSpinner />
-            ) : (
+            ) : DanhSachDeTai?.length > 0 ? (
               <>
                 <Filter
                   DanhSachDeTai={DanhSachDeTai}
                   handleFilterDeTai={handleFilterDeTai}
+                  setIsShowTable={setIsShowTable}
+                  isShowTable={isShowTable}
                 />
-                <DanhSachDeTaiContainer
-                  danhSachDeTai={DanhSachDeTai}
-                  sortedDoAn={sortedDoAn ?? DanhSachDeTai}
-                  setIsEdit={setIsEdit}
-                />
+                {isShowTable ? (
+                  <DanhSachDeTaiContainer
+                    danhSachDeTai={DanhSachDeTai}
+                    sortedDoAn={sortedDoAn ?? DanhSachDeTai}
+                    setIsEdit={setIsEdit}
+                  />
+                ) : (
+                  <DanhSachDeTaiAccordionLIst
+                    danhSachDeTai={DanhSachDeTai}
+                    sortedDoAn={sortedDoAn ?? DanhSachDeTai}
+                    setIsEdit={setIsEdit}
+                  />
+                )}
               </>
+            ) : (
+              <div className="p-3">
+                <p>
+                  Hiện tại chưa có đề tài nào! Nhấn nút thêm để tạo đề tài mới
+                </p>
+              </div>
             )}
           </Card>
         </>

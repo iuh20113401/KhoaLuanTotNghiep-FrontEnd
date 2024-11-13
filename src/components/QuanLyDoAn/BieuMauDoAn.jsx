@@ -5,6 +5,7 @@ import StyledTable from "../../ui/Table";
 import { useQuery } from "@tanstack/react-query";
 import { layDanhSachBieuMau } from "../../services/BieuMauChung";
 import ChiTietBieuMau from "./BieuMau/ChiTietBieuMau";
+import LoadingSpinner from "../../ui/Spinner";
 
 function BieuMauDoAn({ doAn }) {
   const { data, isLoading } = useQuery({
@@ -13,10 +14,14 @@ function BieuMauDoAn({ doAn }) {
   });
   const DanhSachBieuMau = data?.danhSachBieuMau;
   return (
-    !isLoading && (
-      <div>
-        <h5>Biểu mẫu</h5>
-        <Card className="mt-2 p-2">
+    <div>
+      <h5>Biểu mẫu</h5>
+      <Card className="mt-2 p-2">
+        {isLoading ? (
+          <div>
+            <LoadingSpinner />
+          </div>
+        ) : (
           <StyledTable>
             <thead>
               <tr>
@@ -32,9 +37,9 @@ function BieuMauDoAn({ doAn }) {
               ))}
             </tbody>
           </StyledTable>
-        </Card>
-      </div>
-    )
+        )}
+      </Card>
+    </div>
   );
 }
 

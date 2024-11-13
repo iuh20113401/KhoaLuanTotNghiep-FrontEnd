@@ -13,16 +13,26 @@ function ChiTietDiem({ diem }) {
         </tr>
       </thead>
       <tbody>
-        {diem?.diemAbet?.map((d, index) => (
+        {diem?.map((d, index) => (
           <tr key={d.stt}>
             <td>{d.stt}</td>
             <td>{d.ten}</td>
-            <td className="text-center">{d.diem}</td>
-            <td className="text-center">{diem.diemThang10[index]}</td>
+            <td className="text-center">{d.diemAbet}</td>
+            <td className="text-center">{d.diemThang10}</td>
             <td></td>
           </tr>
         ))}
       </tbody>
+      <tr>
+        <td colSpan={2}>
+          <h6 className="text-center pt-3">Tổng điểm</h6>
+        </td>
+        <td colSpan={3}>
+          <h6 className="text-center pt-3">
+            {diem.reduce((acc, d) => acc + d.diemThang10, 0) / diem.length}
+          </h6>
+        </td>
+      </tr>
     </StyledTable>
   );
 }

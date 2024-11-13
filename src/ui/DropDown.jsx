@@ -4,7 +4,7 @@ import styled from "styled-components";
 const StyledDropdownMenu = styled.div`
   position: absolute;
   bottom: ${(props) => props.bottom || "100%"};
-  z-index: 100;
+  z-index: 1000;
   box-shadow: 0 0.25rem 1.125rem 0 rgba(47, 43, 61, 0.16);
   padding: 0.5rem;
   background-color: var(--bs-white);

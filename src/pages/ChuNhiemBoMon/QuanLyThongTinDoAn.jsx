@@ -3,7 +3,6 @@ import FilterDoAn from "../../components/GiangVien/QuanLyDoAn/FilterDoAn";
 import Card from "../../ui/Card";
 import XuatDanhSachDoAnContainer from "../../components/ChuNhiemBoMon/QuanLySinhVien/XuatDanhSachDoAnContainer";
 import { layDanhSachToanBoDoAn } from "../../services/DoAn";
-import { useQuery } from "@tanstack/react-query";
 import XuatDanhSachDiemContainer from "../../components/ChuNhiemBoMon/QuanLySinhVien/XuatDanhSachDiemContainer";
 import XuatDanhSachTongHopContainer from "../../components/ChuNhiemBoMon/QuanLySinhVien/XuatDanhSachTongHopContainer";
 import XuatDanhSachTrangThaiDoAnGiuaKyContainer from "../../components/ChuNhiemBoMon/QuanLySinhVien/XuatDanhSachTrangThaiDoAnGiuaKyContainer";
@@ -37,7 +36,7 @@ function QuanLyThongTinDoAn() {
             {" "}
             <LoadingSpinner />
           </div>
-        ) : (
+        ) : sortedDoAn.length > 0 ? (
           <>
             <div className="pt-2 pr-2 text-end">
               <div>
@@ -68,6 +67,10 @@ function QuanLyThongTinDoAn() {
               <DanhSachToanBoDoAnContainer DanhSachDoAn={sortedDoAn} />
             )}
           </>
+        ) : (
+          <div className="p-3">
+            <p>Hiện tại chưa có đồ án nào trong kỳ này</p>
+          </div>
         )}
       </Card>
     </div>

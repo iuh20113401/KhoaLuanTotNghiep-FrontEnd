@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { StyledInput, StyledSelect } from "../../../ui/Input";
-import { Col3, Col4, Col9, ColLg, StyledRow } from "../../../ui/Row";
+import { Col1, Col3, Col4, Col9, ColLg, StyledRow } from "../../../ui/Row";
 import Card from "../../../ui/Card";
 import SortBy from "../../../ui/SortBy";
 import { FilterSelect } from "../../../ui/Filter";
 import styled from "styled-components";
+import Button from "../../../ui/Button";
+import { HiTable, HiViewList } from "react-icons/hi";
 const StyleTrangThai = {
   0: {
     ten: "Chờ duyệt",
@@ -17,7 +19,12 @@ const StyleTrangThai = {
     ten: "Chỉnh sửa",
   },
 };
-function Filter({ DanhSachDeTai, handleFilterDeTai }) {
+function Filter({
+  DanhSachDeTai,
+  handleFilterDeTai,
+  isShowTable,
+  setIsShowTable,
+}) {
   const trangThaiSet = new Set(
     DanhSachDeTai.map((dt) => (dt.trangThai === 0 ? (dt?.ghiChu ? 2 : 0) : 1))
   );
@@ -92,10 +99,10 @@ function Filter({ DanhSachDeTai, handleFilterDeTai }) {
         </StyledRow>
       </Card.Header>
       <Card.Header>
-        <StyledRow>
+        <StyledRow gap="1.2rem">
           <ColLg>
             <StyledInput
-              width="70%"
+              width="100%"
               type="text"
               placeholder="Nhập tên đề tài cần tìm"
               onChange={(e) => handleInputChange(e, "tenDeTai")}
@@ -119,6 +126,36 @@ function Filter({ DanhSachDeTai, handleFilterDeTai }) {
               ]}
               values={uniqueTrangThai}
             />
+          </ColLg>
+          <ColLg>
+            <StyledRow gap=".2rem">
+              <Button
+                variation="icon"
+                bgcolor={
+                  isShowTable === true ? "var(--bs-primary)" : "var(--bs-white)"
+                }
+                color={
+                  isShowTable === true ? "var(--bs-white)" : "var(--bs-balck)"
+                }
+                onClick={(e) => setIsShowTable(true)}
+              >
+                <HiTable size={"1.4rem"} />
+              </Button>
+              <Button
+                variation="icon"
+                bgcolor={
+                  isShowTable === false
+                    ? "var(--bs-primary)"
+                    : "var(--bs-white)"
+                }
+                color={
+                  isShowTable === false ? "var(--bs-white)" : "var(--bs-balck)"
+                }
+                onClick={(e) => setIsShowTable(false)}
+              >
+                <HiViewList size={"1.4rem"} />
+              </Button>
+            </StyledRow>
           </ColLg>
         </StyledRow>
       </Card.Header>

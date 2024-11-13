@@ -41,7 +41,7 @@ function ChamDiemPhanBien() {
           <div className="p-5">
             <LoadingSpinner />
           </div>
-        ) : (
+        ) : DanhSachDoAn?.length > 0 ? (
           <>
             <FilterDoAn
               hocKy={hocKy}
@@ -56,6 +56,10 @@ function ChamDiemPhanBien() {
               refetch={refetch}
             />
           </>
+        ) : (
+          <div className="p-3">
+            <p>Chưa có đồ án cần chấm</p>
+          </div>
         )}
       </Card>
     </div>
