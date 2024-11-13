@@ -10,9 +10,10 @@ import DanhSachDoAnContainer from "../../components/ChuNhiemBoMon/PhanCongGiangV
 import toast from "react-hot-toast";
 import { createContext, useEffect, useMemo, useState } from "react";
 import Button from "../../ui/Button";
+import LoadingSpinner from "../../ui/Spinner";
 export const PhanCongHoiDongContext = createContext();
 function PhanCongGiangVienHoiDong() {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading: giangVienLoading } = useQuery({
     queryKey: ["DanhSachGiangVien"],
     queryFn: layDanhSachToanBoGiangVien,
   });
@@ -22,7 +23,7 @@ function PhanCongGiangVienHoiDong() {
     queryFn: layDanhSachDoAnDatPhanBien,
   });
 
-  const DanhSachDoAn = doAnData?.DanhSachDoAn || [];
+  const DanhSachDoAn = useMemo(() => doAnData?.DanhSachDoAn || [], [doAnData]);
   // Initialize updatedDoAn as an empty array
   const [updatedDoAn, setUpdatedDoAn] = useState([]);
   const { mutate, isPending } = useMutation({
@@ -191,9 +192,11 @@ function PhanCongGiangVienHoiDong() {
             )
             .filter((gv) => gv),
         };
+      return null;
     });
     mutate(newData);
   }
+  const isLoading = giangVienLoading || doAnLoading;
   return (
     <PhanCongHoiDongContext.Provider
       value={{
@@ -218,14 +221,20 @@ function PhanCongGiangVienHoiDong() {
         </Card>
         <Card className="p-2 mt-2">
           <h5>Danh sách đồ án</h5>
-          {!doAnLoading && (
-            <DanhSachDoAnContainer DanhSachDoAn={updatedDoAn} />
-          )}{" "}
-          <div className="text-end">
-            <Button onClick={handlePhanCong} disabled={isPending}>
-              Phân công hội đồng
-            </Button>
-          </div>
+          {isLoading ? (
+            <div>
+              <LoadingSpinner />
+            </div>
+          ) : (
+            <>
+              <DanhSachDoAnContainer DanhSachDoAn={updatedDoAn} />)
+              <div className="text-end">
+                <Button onClick={handlePhanCong} disabled={isPending}>
+                  Phân công hội đồng
+                </Button>
+              </div>
+            </>
+          )}
         </Card>
       </div>
     </PhanCongHoiDongContext.Provider>

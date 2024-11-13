@@ -9,6 +9,7 @@ import StyledForm from "../../../ui/Form";
 import { StyledInput, StyledSelect } from "../../../ui/Input";
 import { layDanhMuc, suaDeTai, taoDeTai } from "../../../services/DeTaiApi";
 import decodeHtml from "../../../utils/ChangeHtmlCode";
+import LoadingSpinner from "../../../ui/Spinner";
 
 function FormThemDeTai({ deTai = null }) {
   const { data, isLoading } = useQuery({
@@ -36,7 +37,7 @@ function FormThemDeTai({ deTai = null }) {
       toast.error("Có lỗi xảy ra khi sửa đề tài");
     },
   });
-  const { mutate: taoMutate, isPending } = useMutation({
+  const { mutate: taoMutate, isPending: themLoading } = useMutation({
     mutationFn: taoDeTai,
     onSuccess: () => {
       toast.success("Tạo đề tài thành công");
@@ -58,7 +59,13 @@ function FormThemDeTai({ deTai = null }) {
           danhMuc: danhMuc === "Khác" ? data.danhMuc : danhMuc,
         });
   }
-
+  const isPending = themLoading || suaLoading;
+  if (isPending)
+    return (
+      <div className="h-100">
+        <LoadingSpinner />
+      </div>
+    );
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <div className="mt-3">

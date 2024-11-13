@@ -3,12 +3,10 @@ import StyledTable from "../../../ui/Table";
 import ChiTietDoAn from "./ChiTietDoAn";
 
 function DanhSachDoAnContainer({ DanhSachDoAn }) {
-  // Sort projects by score in descending order
   const sortedProjects = [...DanhSachDoAn].sort(
     (a, b) => b.diemTrungBinhTong - a.diemTrungBinhTong
   );
 
-  // Calculate the top 20% of projects
   const top20PercentIndex = Math.ceil(sortedProjects.length * 0.2);
   const top20Projects = sortedProjects.slice(0, top20PercentIndex);
   const remainingProjects = sortedProjects.slice(top20PercentIndex);

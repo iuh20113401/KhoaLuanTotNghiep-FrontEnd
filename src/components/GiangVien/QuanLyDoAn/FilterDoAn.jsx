@@ -5,6 +5,7 @@ import SortBy from "../../../ui/SortBy";
 
 function FilterDoAn({ handleFilterDoAn, hocKy, namHoc }) {
   const handleInputChange = (e, field) => {
+    console.log(e.target.value);
     handleFilterDoAn(field, e.target.value);
   };
   return (
@@ -35,9 +36,9 @@ function FilterDoAn({ handleFilterDoAn, hocKy, namHoc }) {
               defaultValue={hocKy}
               onChange={(e) => handleInputChange(e, "hocKy")}
             >
-              <option value="">Chọn học kỳ</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
+              <option value="0">Chọn học kỳ</option>
+              <option value={1}>1</option>
+              <option value={2}>2</option>
             </StyledSelect>
           </ColLg>
           <ColLg>

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ChatContent from "../components/Chat/ChatContent";
 import ChatFooter from "../components/Chat/ChatFooter";
+import LoadingSpinner from "../ui/Spinner";
 const ChatContentContainer = styled.div`
   width: 100%;
   height: 400px;
@@ -32,9 +33,9 @@ function Chat() {
     if (DanhSachTroChuyen) setContact(DanhSachTroChuyen[0]);
   }, [DanhSachTroChuyen]);
   return (
-    !isLoading &&
-    contact && (
-      <Card>
+    <Card>
+      {isLoading && <LoadingSpinner />}
+      {!isLoading && (
         <StyledRow>
           <ChatContact
             contact={contact}
@@ -42,17 +43,25 @@ function Chat() {
             DanhSachTroChuyen={DanhSachTroChuyen}
           />
           <ColLg>
-            <ChatHIstory contact={contact} />
-            <ChatContentContainer>
-              <ChatContent contact={contact} />
-            </ChatContentContainer>
-            <ChatFooterContainer>
-              <ChatFooter contact={contact} />
-            </ChatFooterContainer>
+            {contact ? (
+              <>
+                <ChatHIstory contact={contact} />
+                <ChatContentContainer>
+                  <ChatContent contact={contact} />
+                </ChatContentContainer>
+                <ChatFooterContainer>
+                  <ChatFooter contact={contact} />
+                </ChatFooterContainer>
+              </>
+            ) : (
+              <div className="flex h-100 align-center justify-center">
+                <p>Nhấn vào biểu tưởng để bắt đầu cuộc hội thoại</p>
+              </div>
+            )}
           </ColLg>
         </StyledRow>
-      </Card>
-    )
+      )}
+    </Card>
   );
 }
 

@@ -7,6 +7,7 @@ import { useEffect, useState, useMemo, useCallback } from "react";
 import { debounce } from "lodash"; // Add lodash for debouncing
 import { useSearchParams } from "react-router-dom";
 import XuatDanhSachSinhVienExcel from "../../components/GiangVien/QuanLyDoAn/XuatDanhSachSInhVienExcel";
+import LoadingSpinner from "../../ui/Spinner";
 
 function XemDanhSachSinhVien() {
   const [searchParams] = useSearchParams();
@@ -18,18 +19,15 @@ function XemDanhSachSinhVien() {
   const danhSachSinhVien = useMemo(() => data?.danhSachSinhVien || [], [data]);
   const [filterSinhVien, setFilterSinhVien] = useState(danhSachSinhVien);
 
-  const handleFilterSinhVien = useCallback(
-    debounce((value) => {
-      const filtered = danhSachSinhVien.filter((sv) => {
-        return sv.Info.hoTen
-          .toLowerCase()
-          .replace(/ /g, "")
-          .includes(value.toLowerCase().replace(/ /g, "").trim());
-      });
-      setFilterSinhVien(filtered);
-    }, 300),
-    [danhSachSinhVien]
-  );
+  const handleFilterSinhVien = debounce((value) => {
+    const filtered = danhSachSinhVien.filter((sv) => {
+      return sv.Info.hoTen
+        .toLowerCase()
+        .replace(/ /g, "")
+        .includes(value.toLowerCase().replace(/ /g, "").trim());
+    });
+    setFilterSinhVien(filtered);
+  }, 300);
 
   useEffect(() => {
     if (danhSachSinhVien.length > 0) setFilterSinhVien(danhSachSinhVien);
@@ -54,14 +52,21 @@ function XemDanhSachSinhVien() {
     });
   }
 
-  if (isLoading) return <p>Loading...</p>;
   return (
     <div>
       <h5>Xem danh sách sinh viên</h5>
       <Card className="mt-3">
-        <XuatDanhSachSinhVienExcel DanhSachSinhVien={danhSachSinhVien} />
-        <FilterSinhVien handleFilterSinhVien={handleFilterSinhVien} />
-        <DanhSachSinhVien danhSachSinhVien={sortSinhVien} />
+        {isLoading ? (
+          <div className="p-5">
+            <LoadingSpinner />
+          </div>
+        ) : (
+          <>
+            <XuatDanhSachSinhVienExcel DanhSachSinhVien={danhSachSinhVien} />
+            <FilterSinhVien handleFilterSinhVien={handleFilterSinhVien} />
+            <DanhSachSinhVien danhSachSinhVien={sortSinhVien} />
+          </>
+        )}
       </Card>
     </div>
   );

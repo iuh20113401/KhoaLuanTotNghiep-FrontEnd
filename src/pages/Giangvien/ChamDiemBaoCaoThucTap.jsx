@@ -11,22 +11,26 @@ import { layDanhSachThucTapTheoGiangVien } from "../../services/ThucTap";
 
 import XuatDanhSachDiemThucTapContainer from "../../components/GiangVien/QuanLyThucTap/DanhSachBaoCaoThucTap/XuatDanhSachDiemThucTapContainer";
 import useCaiDatInfo from "../../hooks/useCaiDatInfo";
+import { useDanhSachBaoCao } from "../../hooks/useDanhSachBaoCao";
+import { sortBaoCaoList } from "../../utils/SortBaoCao";
+import { useSearchParams } from "react-router-dom";
 
 export const ChamDiemThucTapContext = createContext();
 
 function ChamDiemBaoCaoThucTap() {
-  const { caiDatInfo, isLoading: caiDatLoading } = useCaiDatInfo();
-
   const {
-    data,
-    isLoading: doAnLoading,
+    DanhSachBaoCao,
+    filterBaoCao,
+    handleFilterBaoCao,
+    isLoading: baoCaoLoading,
+    hocKy,
+    namHoc,
     refetch,
-  } = useQuery({
-    queryKey: ["DanhSachBaoCao"],
-    queryFn: () =>
-      layDanhSachThucTapTheoGiangVien(caiDatInfo.hocKy, caiDatInfo.namHoc),
-    enabled: !caiDatLoading,
+  } = useDanhSachBaoCao({
+    key: "DanhSachBaoCao",
+    fn: layDanhSachThucTapTheoGiangVien,
   });
+
   const { data: tieuChiDoanhNghiep, isLoading: doanhNghiepTCLoding } = useQuery(
     {
       queryKey: ["tieuChiDoanhNghiep"],
@@ -37,10 +41,16 @@ function ChamDiemBaoCaoThucTap() {
     queryKey: ["tieuChiGiangVienGiamSat"],
     queryFn: layTieuChiThucTapChoGiangVien,
   });
-  const DanhSachBaoCao = data?.result.sort((a, b) => a.maDoAn - b.maDoAn);
+
+  const [searchParams] = useSearchParams();
+
   const TieuChiDoanhNghiep = tieuChiDoanhNghiep?.result;
   const TieuChiGiangVien = tieuChiGiangVien?.result;
-  const isLoading = doAnLoading || doanhNghiepTCLoding || giangVienTCLoading;
+  const isLoading = baoCaoLoading || doanhNghiepTCLoding || giangVienTCLoading;
+  if (isLoading || !DanhSachBaoCao?.length) return;
+  const sortBy = searchParams.get("sortBy");
+
+  const sortedDoAn = sortBaoCaoList(filterBaoCao, sortBy);
   return (
     !isLoading && (
       <div>
@@ -56,10 +66,14 @@ function ChamDiemBaoCaoThucTap() {
                 DanhSachBaoCao={DanhSachBaoCao}
               />
             </div>
-            <FilterBaoCao />
+            <FilterBaoCao
+              hocKy={hocKy}
+              namHoc={namHoc}
+              handleFilterBaoCao={handleFilterBaoCao}
+            />
             <DanhSachBaoCaoContainer
               chamDiem={true}
-              DanhSachBaoCao={DanhSachBaoCao}
+              DanhSachBaoCao={sortedDoAn || DanhSachBaoCao}
               tieuChiDoanhNghiep={TieuChiDoanhNghiep}
               tieuChiGiangVien={TieuChiGiangVien}
             />

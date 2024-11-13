@@ -22,7 +22,7 @@ function ChatHIstory({ contact }) {
         <StyledRow>
           <Col10>
             <StyledRow>
-              <Avatar src={`${SERVER}${contact.hinhAnh}`} />
+              <Avatar src={`${SERVER}${contact?.hinhAnh}`} />
               <StyledName>
                 <h6>{contact.hoTen}</h6>
                 <p className="light">

@@ -1,13 +1,11 @@
-import Badges from "../../../ui/Badges";
 import { StyledSelect } from "../../../ui/Input";
-import { CiCircleInfo } from "react-icons/ci";
 import { StyledRow } from "../../../ui/Row";
 import { useContext } from "react";
 import { PhanCongHoiDongContext } from "../../../pages/ChuNhiemBoMon/PhanCongGiangVienHoiDong";
 
 function ChiTietDoAn({ doAn, isPoster }) {
   const countSinhVien =
-    doAn.sinhVien[1] && Object.keys(doAn.sinhVien[1]).length > 0 ? 2 : 1;
+    doAn.sinhVien2 && Object.keys(doAn.sinhVien2).length > 0 ? 2 : 1;
   const context = useContext(PhanCongHoiDongContext);
   const { hoiDongs, posterHoiDongs, isConfirmed, handleChangeHoiDongDoAn } =
     context;
@@ -17,8 +15,8 @@ function ChiTietDoAn({ doAn, isPoster }) {
       <tr>
         <td rowSpan={countSinhVien}>{doAn.maDoAn}</td>
         <td rowSpan={countSinhVien}>{doAn.tenDoAn}</td>
-        <td>{doAn.sinhVien[0].maSo}</td>
-        <td>{doAn.sinhVien[0].hoTen}</td>
+        <td>{doAn.sinhVien1.maSo}</td>
+        <td>{doAn.sinhVien1.hoTen}</td>
         <td rowSpan={countSinhVien}>{doAn.giangVienInfo.hoTen}</td>
         <td rowSpan={countSinhVien}>
           <StyledRow className=" align-center justify-center">
@@ -59,10 +57,10 @@ function ChiTietDoAn({ doAn, isPoster }) {
           )}
         </td>
       </tr>
-      {doAn.sinhVien[1] && (
+      {doAn.sinhVien2 && (
         <tr>
-          <td>{doAn.sinhVien[1].maSo}</td>
-          <td>{doAn.sinhVien[1].hoTen}</td>
+          <td>{doAn.sinhVien2.maSo}</td>
+          <td>{doAn.sinhVien2.hoTen}</td>
         </tr>
       )}
     </>

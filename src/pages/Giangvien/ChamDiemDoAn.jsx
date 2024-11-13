@@ -8,11 +8,22 @@ import { layDanhSachDoAnTheoGiangVien } from "../../services/DoAn";
 import { useQuery } from "@tanstack/react-query";
 import { layTieuChiHuongDan } from "../../services/TieuChi";
 import XuatDanhSachDiemDoAn from "../../components/GiangVien/QuanLyDoAn/XuatDanhSachDiemDoAn";
+import LoadingSpinner from "../../ui/Spinner";
 
 function ChamDiemDoAn() {
   const [searchParams] = useSearchParams();
-  const { DanhSachDoAn, refetch, filterDoAn, handleFilterDoAn, isLoading } =
-    useDanhSachDoAn({ key: "DanhSachDoAn", fn: layDanhSachDoAnTheoGiangVien });
+  const {
+    DanhSachDoAn,
+    refetch,
+    filterDoAn,
+    handleFilterDoAn,
+    isLoading,
+    namHoc,
+    hocKy,
+  } = useDanhSachDoAn({
+    key: "DanhSachDoAn",
+    fn: layDanhSachDoAnTheoGiangVien,
+  });
   const sortBy = searchParams.get("sortBy");
   const { data, isLoading: tieuChiLoading } = useQuery({
     queryKey: ["tieuChiHuongDan"],
@@ -21,25 +32,34 @@ function ChamDiemDoAn() {
   const tieuChi = data?.result || [];
   const sortedDoAn = sortDoAnList(filterDoAn, sortBy);
   return (
-    !isLoading &&
-    !tieuChiLoading && (
-      <div>
-        <h5>Danh sách đồ án</h5>
-        <Card className="mt-3">
-          {sortedDoAn && <XuatDanhSachDiemDoAn DanhSachDoAn={sortedDoAn} />}
-          <FilterDoAn handleFilterDoAn={handleFilterDoAn} />
-          {sortedDoAn && (
-            <DanhSachDoAnContainer
-              tieuChi={tieuChi}
-              chamDiem={true}
-              DanhSachDoAn={sortedDoAn}
-              loai="diemHuongDan"
-              refetch={refetch}
+    <div>
+      <h5>Chấm điểm đồ án</h5>
+      <Card className="mt-3">
+        {isLoading || tieuChiLoading ? (
+          <div className="p-5">
+            <LoadingSpinner />
+          </div>
+        ) : (
+          <>
+            {sortedDoAn && <XuatDanhSachDiemDoAn DanhSachDoAn={sortedDoAn} />}
+            <FilterDoAn
+              hocKy={hocKy}
+              namHoc={namHoc}
+              handleFilterDoAn={handleFilterDoAn}
             />
-          )}
-        </Card>
-      </div>
-    )
+            {sortedDoAn && (
+              <DanhSachDoAnContainer
+                tieuChi={tieuChi}
+                chamDiem={true}
+                DanhSachDoAn={sortedDoAn}
+                loai="diemHuongDan"
+                refetch={refetch}
+              />
+            )}
+          </>
+        )}
+      </Card>
+    </div>
   );
 }
 

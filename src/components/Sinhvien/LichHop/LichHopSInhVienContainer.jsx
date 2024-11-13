@@ -7,6 +7,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css"; // Import calendar's
 import { useQuery } from "@tanstack/react-query";
 import UseUser from "../../../context/UseUser";
 import { layDanhSachLichHopSinhVien } from "../../../services/LichHop";
+import LoadingSpinner from "../../../ui/Spinner";
 const localizer = momentLocalizer(moment);
 
 const vietnameseMessages = {
@@ -59,7 +60,7 @@ const LichHopSiinhVienContainer = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["DanhSachLichHop"],
     queryFn: () => layDanhSachLichHopSinhVien(user.user._id),
-    enabled: !!userLoading,
+    enabled: !userLoading,
   });
   const events =
     !isLoading &&
@@ -73,6 +74,7 @@ const LichHopSiinhVienContainer = () => {
         // Optional, for specifying full-day events
       };
     });
+  if (isLoading) return <LoadingSpinner />;
   return (
     <div style={{ height: 500 }}>
       {!isLoading && (

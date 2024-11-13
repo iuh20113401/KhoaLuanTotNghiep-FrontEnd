@@ -10,6 +10,7 @@ import XuatDanhSachTrangThaiDoAnGiuaKyContainer from "../../components/ChuNhiemB
 import { useDanhSachDoAn } from "../../hooks/useDanhSachDoAn";
 import { useSearchParams } from "react-router-dom";
 import { sortDoAnList } from "../../utils/SortDoAn";
+import LoadingSpinner from "../../ui/Spinner";
 
 function QuanLyThongTinDoAn() {
   const [searchParams] = useSearchParams();
@@ -30,38 +31,45 @@ function QuanLyThongTinDoAn() {
   return (
     <div>
       <h5>Quản lý thông tin đồ án</h5>
-      {!isLoading && (
-        <Card className="mt-3">
-          <div className="pt-2 pr-2 text-end">
-            <div>
-              <span className="mr-2">
-                <XuatDanhSachDoAnContainer DanhSachDoAn={DanhSachDoAn} />
-              </span>
-              <span className="mr-2">
-                <XuatDanhSachDiemContainer DanhSachDoAn={DanhSachDoAn} />
-              </span>
+      <Card className="mt-3">
+        {isLoading ? (
+          <div className="p-5">
+            {" "}
+            <LoadingSpinner />
+          </div>
+        ) : (
+          <>
+            <div className="pt-2 pr-2 text-end">
+              <div>
+                <span className="mr-2">
+                  <XuatDanhSachDoAnContainer DanhSachDoAn={DanhSachDoAn} />
+                </span>
+                <span className="mr-2">
+                  <XuatDanhSachDiemContainer DanhSachDoAn={DanhSachDoAn} />
+                </span>
+                <span>
+                  <XuatDanhSachTongHopContainer DanhSachDoAn={DanhSachDoAn} />
+                </span>
+              </div>
+            </div>
+            <div className="pt-2 pr-2 text-end">
               <span>
-                <XuatDanhSachTongHopContainer DanhSachDoAn={DanhSachDoAn} />
+                <XuatDanhSachTrangThaiDoAnGiuaKyContainer
+                  DanhSachDoAn={DanhSachDoAn}
+                />
               </span>
             </div>
-          </div>
-          <div className="pt-2 pr-2 text-end">
-            <span>
-              <XuatDanhSachTrangThaiDoAnGiuaKyContainer
-                DanhSachDoAn={DanhSachDoAn}
-              />
-            </span>
-          </div>
-          <FilterDoAn
-            handleFilterDoAn={handleFilterDoAn}
-            hocKy={hocKy}
-            namHoc={namHoc}
-          />
-          {sortedDoAn && (
-            <DanhSachToanBoDoAnContainer DanhSachDoAn={sortedDoAn} />
-          )}
-        </Card>
-      )}
+            <FilterDoAn
+              handleFilterDoAn={handleFilterDoAn}
+              hocKy={hocKy}
+              namHoc={namHoc}
+            />
+            {sortedDoAn && (
+              <DanhSachToanBoDoAnContainer DanhSachDoAn={sortedDoAn} />
+            )}
+          </>
+        )}
+      </Card>
     </div>
   );
 }

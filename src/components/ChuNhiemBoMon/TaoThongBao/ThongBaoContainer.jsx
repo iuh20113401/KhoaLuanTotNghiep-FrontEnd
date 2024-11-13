@@ -7,6 +7,7 @@ import { layDanhSachToanBoThongBao } from "../../../services/ThongBao";
 import StyledTable from "../../../ui/Table";
 import styled from "styled-components";
 import KeHoachThucHien from "./KeHoachThucHien";
+import formatVieNamDate from "../../../utils/FormatDate";
 const StyledLink = styled(Link)`
   &:hover {
     color: var(--bs-primary);
@@ -75,6 +76,11 @@ function ChiTietThongBao({ thongBao }) {
       <td>
         <StyledLink to={`/giangvien/thongBao/${thongBao._id}`}>
           {thongBao.tieuDe}
+        </StyledLink>
+      </td>
+      <td>
+        <StyledLink to={`/giangvien/thongBao/${thongBao._id}`}>
+          {formatVieNamDate(thongBao.ngayTao)}
         </StyledLink>
       </td>
     </tr>

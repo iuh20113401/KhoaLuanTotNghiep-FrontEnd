@@ -2,7 +2,7 @@ import Card from "../../../ui/Card";
 import StyledTable from "../../../ui/Table";
 import ChiTietDeTai from "./ChiTietDeTai";
 
-function DanhSachDeTai({ danhSachDeTai, setIsEdit }) {
+function DanhSachDeTaiContainer({ danhSachDeTai, sortedDoAn, setIsEdit }) {
   return (
     <div>
       <Card>
@@ -18,7 +18,7 @@ function DanhSachDeTai({ danhSachDeTai, setIsEdit }) {
             </tr>
           </thead>
           <tbody>
-            {danhSachDeTai.map((deTai) => (
+            {sortedDoAn.map((deTai) => (
               <ChiTietDeTai
                 deTai={deTai}
                 key={deTai._id}
@@ -32,4 +32,4 @@ function DanhSachDeTai({ danhSachDeTai, setIsEdit }) {
   );
 }
 
-export default DanhSachDeTai;
+export default DanhSachDeTaiContainer;

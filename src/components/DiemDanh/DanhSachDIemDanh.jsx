@@ -10,7 +10,7 @@ function DanhSachDIemDanh() {
     -1
   );
   return (
-    <StyledTable border={"true"}>
+    <StyledTable>
       <thead>
         <tr>
           <th>STT</th>

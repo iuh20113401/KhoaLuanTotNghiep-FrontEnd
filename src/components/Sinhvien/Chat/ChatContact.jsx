@@ -74,7 +74,7 @@ function ChatContact({ contact, setContact, DanhSachTroChuyen }) {
             onClick={() => setContact(user)}
           >
             <StyledRow gap=".8rem">
-              <Avatar src={`${SERVER}${contact.hinhAnh}`} />
+              <Avatar src={`${SERVER}${user.hinhAnh}`} />
               <StyledName>
                 <h6>{user.hoTen}</h6>
                 <p className="light">

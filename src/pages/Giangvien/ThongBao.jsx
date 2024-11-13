@@ -11,14 +11,5 @@ function ThongBao() {
     </div>
   );
 }
-function ChiTietThongBao(href, tb) {
-  return (
-    <Link to={href}>
-      <StyledRow>
-        <Col9>{tb.ten}</Col9>
-        <Col3>{tb.ngayTao}</Col3>
-      </StyledRow>
-    </Link>
-  );
-}
+
 export default ThongBao;

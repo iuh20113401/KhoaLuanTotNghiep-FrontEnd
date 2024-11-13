@@ -10,6 +10,7 @@ import { capNhatDoAn } from "../../../services/DoAn";
 import { capNhatSinhVien } from "../../../services/SinhVien";
 import chamDiemHoiDong from "./chamDiemHoiDong";
 import { layTieuChiPhanBien } from "../../../services/TieuChi";
+import LoadingSpinner from "../../../ui/Spinner";
 
 // Helper functions to update SinhVien and DoAn
 const updateSinhVien = (data) => capNhatSinhVien(data);
@@ -43,7 +44,7 @@ function ModalChamDiemHoiDong({
     let sinhVienUpdate2 = true,
       doAnUpdate = true;
 
-    if (doAn.sinhVien[1]) {
+    if (doAn.sinhVien2) {
       sinhVienUpdate2 = await updateSinhVien(newData2);
       const isBothPassed = +newData.ketQua === 2 && +newData2.ketQua === 2;
       if (isBothPassed) doAnUpdate = await updateDoAn(doAn._id, 7);
@@ -70,22 +71,21 @@ function ModalChamDiemHoiDong({
     let newData, newData2;
 
     newData = chamDiemHoiDong(data, doAn, tieuChi, true);
-    if (doAn.sinhVien[1])
-      newData2 = chamDiemHoiDong(data, doAn, tieuChi, false);
+    if (doAn.sinhVien2) newData2 = chamDiemHoiDong(data, doAn, tieuChi, false);
     chamDiemMutate({ newData, newData2 });
   };
   const diemSV1Abet =
-    doAn.sinhVien[0].diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemAbet;
+    doAn.sinhVien1.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemAbet;
   const diemSV1Tong =
-    doAn.sinhVien[0].diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemTong;
+    doAn.sinhVien1.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemTong;
   const diemSV1KetQua =
-    doAn.sinhVien[0].diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.ketQua;
+    doAn.sinhVien1.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.ketQua;
   const diemSV2Abet =
-    doAn.sinhVien[1]?.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemAbet;
+    doAn.sinhVien2?.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemAbet;
   const diemSV2Tong =
-    doAn.sinhVien[1]?.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemTong;
+    doAn.sinhVien2?.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemTong;
   const diemSV2KetQua =
-    doAn.sinhVien[1]?.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.ketQua;
+    doAn.sinhVien2?.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.ketQua;
   return (
     <Modal size="xl">
       <Modal.Header>
@@ -98,7 +98,11 @@ function ModalChamDiemHoiDong({
           X
         </Button>
       </Modal.Header>
-      {!tieuChiLoading && (
+      {tieuChiLoading ? (
+        <div>
+          <LoadingSpinner />
+        </div>
+      ) : (
         <Modal.Body className="p-0 m-0">
           {doAn.sinhVien.map((sv, index) =>
             sv && Object.keys(sv).length > 0 ? (
@@ -128,8 +132,8 @@ function ModalChamDiemHoiDong({
                 </tr>
                 {countSinhVien > 1 && (
                   <tr>
-                    <th className="text-center">{doAn.sinhVien[0].hoTen}</th>
-                    <th className="text-center">{doAn.sinhVien[1]?.hoTen}</th>
+                    <th className="text-center">{doAn.sinhVien1.hoTen}</th>
+                    <th className="text-center">{doAn.sinhVien2?.hoTen}</th>
                   </tr>
                 )}
               </thead>
@@ -162,8 +166,8 @@ function ModalChamDiemHoiDong({
                         </p>
                       )}
                     </td>
-                    {doAn.sinhVien[1] &&
-                      Object.values(doAn.sinhVien[1]).length > 0 && (
+                    {doAn.sinhVien2 &&
+                      Object.values(doAn.sinhVien2).length > 0 && (
                         <td className="text-center">
                           <StyledInput
                             type="number"
@@ -221,8 +225,8 @@ function ModalChamDiemHoiDong({
                       <p className="error-text">{errors[`sv1_d10`].message}</p>
                     )}
                   </td>
-                  {doAn.sinhVien[1] &&
-                    Object.values(doAn.sinhVien[1]).length > 0 && (
+                  {doAn.sinhVien2 &&
+                    Object.values(doAn.sinhVien2).length > 0 && (
                       <td>
                         <StyledInput
                           type="number"
@@ -274,8 +278,8 @@ function ModalChamDiemHoiDong({
                       disabled={!chamDiem}
                     />
                   </td>
-                  {doAn.sinhVien[1] &&
-                    Object.values(doAn.sinhVien[1]).length > 0 && (
+                  {doAn.sinhVien2 &&
+                    Object.values(doAn.sinhVien2).length > 0 && (
                       <td>
                         <RadioContainer
                           label="Đạt"

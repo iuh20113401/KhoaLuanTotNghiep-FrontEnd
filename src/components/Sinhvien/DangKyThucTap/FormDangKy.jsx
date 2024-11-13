@@ -113,7 +113,7 @@ function FormDangKy({ caiDatInfo }) {
             {...register("emailCongTy", {
               required: "Email công ty là bắt buộc",
               pattern: {
-                value: /^\S+@\S+$/i,
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                 message: "Email không hợp lệ",
               },
             })}

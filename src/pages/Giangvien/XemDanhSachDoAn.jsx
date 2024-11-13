@@ -6,6 +6,7 @@ import BieuMauChung from "../../components/GiangVien/QuanLyDoAn/BieuMauChung";
 import { sortDoAnList } from "../../utils/SortDoAn"; // Sorting logic
 import { useDanhSachDoAn } from "../../hooks/useDanhSachDoAn";
 import { layDanhSachDoAnTheoGiangVien } from "../../services/DoAn";
+import LoadingSpinner from "../../ui/Spinner";
 
 function XemDanhSachDoAn() {
   const [searchParams] = useSearchParams();
@@ -25,22 +26,28 @@ function XemDanhSachDoAn() {
   const sortedDoAn = sortDoAnList(filterDoAn, sortBy);
 
   return (
-    !isLoading && (
-      <div>
-        <h5>Danh sách đồ án</h5>
-        <Card className="mt-3 p-3">
-          <BieuMauChung />
-        </Card>
-        <Card className="mt-3">
-          <FilterDoAn
-            handleFilterDoAn={handleFilterDoAn}
-            hocKy={hocKy}
-            namHoc={namHoc}
-          />
-          {sortedDoAn && <DanhSachDoAnContainer DanhSachDoAn={sortedDoAn} />}
-        </Card>
-      </div>
-    )
+    <div>
+      <h5>Danh sách đồ án</h5>
+      <Card className="mt-3 p-3">
+        <BieuMauChung />
+      </Card>
+      <Card className="mt-3">
+        {isLoading ? (
+          <div className="p-5">
+            <LoadingSpinner />
+          </div>
+        ) : (
+          <>
+            <FilterDoAn
+              handleFilterDoAn={handleFilterDoAn}
+              hocKy={hocKy}
+              namHoc={namHoc}
+            />
+            {sortedDoAn && <DanhSachDoAnContainer DanhSachDoAn={sortedDoAn} />}
+          </>
+        )}
+      </Card>
+    </div>
   );
 }
 

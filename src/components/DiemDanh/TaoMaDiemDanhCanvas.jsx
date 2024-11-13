@@ -16,6 +16,7 @@ import toast from "react-hot-toast";
 import { taoMaDiemDanh } from "../../services/DiemDanh";
 import ShowQrCode from "./CanvasRightContent/ShowQrCode";
 import { DiemDanhContext } from "../../pages/Giangvien/DiemDanhDoAn";
+import LoadingSpinner from "../../ui/Spinner";
 
 function TaoMaDiemDanhCanvas({ setIsDiemDanh }) {
   const { loai: loaiDiemDanh } = useContext(DiemDanhContext);
@@ -33,7 +34,7 @@ function TaoMaDiemDanhCanvas({ setIsDiemDanh }) {
     mutationFn: taoMaDiemDanh,
     onSuccess: (data) => {
       toast.success("Tạo mã điểm danh thành công");
-      setQrCode(data.qrCode); // Save the QR code data
+      setQrCode(data.qrCode);
     },
     onError: () => {
       toast.error("Tạo mã điểm danh không thành công");
@@ -79,6 +80,7 @@ function TaoMaDiemDanhCanvas({ setIsDiemDanh }) {
 
   useEffect(() => {
     setSelectedSinhVien([]);
+    if (isPending) setContent(<LoadingSpinner />);
     if (qrCode !== null) {
       setContent(<ShowQrCode qrCode={qrCode} />);
       return;
@@ -115,7 +117,7 @@ function TaoMaDiemDanhCanvas({ setIsDiemDanh }) {
         setContent("");
         break;
     }
-  }, [DanhSachSinhVien, qrCode, loai, register]);
+  }, [DanhSachSinhVien, qrCode, loai, register, isPending]);
 
   function onSubmit(data) {
     if (data.loai === "all") {
@@ -169,7 +171,12 @@ function TaoMaDiemDanhCanvas({ setIsDiemDanh }) {
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label htmlFor="loai">Chọn loại điểm danh</label>
-            <StyledSelect {...register("loai")} id="loai" defaultValue={""}>
+            <StyledSelect
+              {...register("loai")}
+              id="loai"
+              defaultValue={""}
+              disabled={qrCode}
+            >
               <option value={"all"}>Toàn bộ</option>
               <option value={"deTai"}>Theo đề tài</option>
               <option value={"doAn"}>Toàn đồ án</option>
@@ -178,7 +185,11 @@ function TaoMaDiemDanhCanvas({ setIsDiemDanh }) {
           </div>
           <div>
             <label>Thời gian hiệu lực</label>
-            <StyledSelect {...register("hieuLuc")} defaultValue={"1day"}>
+            <StyledSelect
+              {...register("hieuLuc")}
+              defaultValue={"1day"}
+              disabled={qrCode}
+            >
               <option value={"1day"}>1 ngày</option>
               <option value={"5m"}>5 phút</option>
               <option value={"10m"}>10 phút</option>
@@ -188,7 +199,11 @@ function TaoMaDiemDanhCanvas({ setIsDiemDanh }) {
           </div>
           <div>
             <label>Điều kiện</label>
-            <StyledSelect {...register("dieuKien")} defaultValue={"none"}>
+            <StyledSelect
+              {...register("dieuKien")}
+              defaultValue={"none"}
+              disabled={qrCode}
+            >
               <option value={"none"}>Không</option>
               <option value={"khoangCach"}>Khoảng cách 300m</option>
             </StyledSelect>
@@ -199,10 +214,16 @@ function TaoMaDiemDanhCanvas({ setIsDiemDanh }) {
               type="text"
               placeholder="Nhập tên phòng"
               {...register("phong")}
+              disabled={qrCode}
             />
           </div>
           <div className="text-end">
-            <Button disabled={isPending}>Tạo mã điểm danh</Button>
+            <Button
+              disabled={isPending || qrCode}
+              state={qrCode !== null ? "disabled" : ""}
+            >
+              Tạo mã điểm danh
+            </Button>
           </div>
         </StyledForm>
       </CanvaContainer>

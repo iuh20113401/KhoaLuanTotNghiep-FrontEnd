@@ -5,6 +5,7 @@ import UseUser from "../context/UseUser";
 import { useState, useEffect } from "react";
 import { BiChevronRight } from "react-icons/bi";
 import { useMobile } from "../context/MobileContext";
+import LoadingSpinner from "./Spinner";
 
 const GiangvienLayoutSection = styled.div`
   display: flex;
@@ -74,7 +75,10 @@ const Overlay = styled.div`
   backdrop-filter: blur(5px);
   z-index: 15;
 `;
-
+const LoadingScreen = styled.div`
+  width: 100vw;
+  height: 100vh;
+`;
 function GiangVIenLayout() {
   const { data, isLoading } = UseUser();
   const [isAsideHidden, setIsAsideHidden] = useState(false);
@@ -82,7 +86,11 @@ function GiangVIenLayout() {
   const user = data?.user;
 
   if (isLoading) {
-    return null; // Return null or loader while checking authentication
+    return (
+      <LoadingScreen>
+        <LoadingSpinner />
+      </LoadingScreen>
+    ); // Return null or loader while checking authentication
   }
 
   const toggleAside = () => {

@@ -2,7 +2,7 @@ import Card from "../../../ui/Card";
 import StyledTable from "../../../ui/Table";
 import ChiTietDeTai from "./ChiTietDeTai";
 
-function DanhSachDeTai({ danhSachDeTai, refetch }) {
+function DanhSachDeTaiChoDuyetContainer({ danhSachDeTai, refetch }) {
   return (
     <div>
       <Card>
@@ -28,4 +28,4 @@ function DanhSachDeTai({ danhSachDeTai, refetch }) {
   );
 }
 
-export default DanhSachDeTai;
+export default DanhSachDeTaiChoDuyetContainer;

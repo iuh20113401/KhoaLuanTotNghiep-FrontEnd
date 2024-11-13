@@ -63,6 +63,7 @@ export const useDanhSachBaoCao = ({ key, fn }) => {
     isLoading,
     namHoc,
     hocKy,
+    refetch,
     handleFilterBaoCao,
   };
 };

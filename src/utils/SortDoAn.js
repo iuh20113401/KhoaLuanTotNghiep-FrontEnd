@@ -1,7 +1,7 @@
 export const sortDoAnList = (list, sortBy) => {
+  console.log(list, sortBy);
   if (!list || !sortBy) return list;
-
-  const field = sortBy.split("-")[0]; // e.g., "hoTen" or "maSo"
+  const field = sortBy.split("-")[0];
   const direction = sortBy.split("-")[1] === "asc" ? 1 : -1;
   return list.sort((a, b) => {
     if (field === "hoTen") {
@@ -15,6 +15,6 @@ export const sortDoAnList = (list, sortBy) => {
     } else if (field === "tenDeTai") {
       return a.tenDeTai.localeCompare(b.tenDeTai) * direction;
     }
-    return 0;
+    return;
   });
 };

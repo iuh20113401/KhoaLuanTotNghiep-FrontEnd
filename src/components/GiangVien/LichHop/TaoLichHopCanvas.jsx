@@ -6,6 +6,7 @@ import Button from "../../../ui/Button";
 import { useMutation } from "@tanstack/react-query";
 import { taoLichHop } from "../../../services/LichHop";
 import toast from "react-hot-toast";
+import UseUser from "../../../context/UseUser";
 
 function TaoLichHopCanvas({ setShowCanvas, refetch }) {
   const {
@@ -26,10 +27,10 @@ function TaoLichHopCanvas({ setShowCanvas, refetch }) {
       refetch();
     },
   });
-  // Watch the start time to compare it with end time
   const batDau = watch("batDau");
-
+  const { data: user } = UseUser();
   function onSubmit(data) {
+    data.giangVien = user.user._id;
     mutate(data);
   }
 

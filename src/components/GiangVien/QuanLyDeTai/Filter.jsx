@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { StyledInput, StyledSelect } from "../../../ui/Input";
-import { Col3, Col4, ColLg, StyledRow } from "../../../ui/Row";
+import { Col3, Col4, Col9, ColLg, StyledRow } from "../../../ui/Row";
 import Card from "../../../ui/Card";
 import SortBy from "../../../ui/SortBy";
 import { FilterSelect } from "../../../ui/Filter";
@@ -17,7 +17,7 @@ const StyleTrangThai = {
     ten: "Chỉnh sửa",
   },
 };
-function Filter({ DanhSachDeTai }) {
+function Filter({ DanhSachDeTai, handleFilterDeTai }) {
   const trangThaiSet = new Set(
     DanhSachDeTai.map((dt) => (dt.trangThai === 0 ? (dt?.ghiChu ? 2 : 0) : 1))
   );
@@ -29,13 +29,15 @@ function Filter({ DanhSachDeTai }) {
   }));
   const uniqueDanhMuc = Array.from(danhMucSet);
   const uniqueSoLuongDoAn = Array.from(soLuongDoAnSet);
-
+  const handleInputChange = (e, field) => {
+    handleFilterDeTai(field, e.target.value);
+  };
   return (
     <>
       <Card.Header>
         <h5 className="card-title">Bộ lọc</h5>
-        <StyledRow gap="3.2rem">
-          <Col3>
+        <StyledRow gap="1.2rem">
+          <ColLg>
             <FilterSelect
               label="Trạng thái"
               filterField="trangThai"
@@ -43,19 +45,40 @@ function Filter({ DanhSachDeTai }) {
                 value: tt.value,
                 label: tt.label,
               }))}
+              onChange={(e) => handleInputChange(e, "trangThai")}
             />
-          </Col3>
-          <Col3>
+          </ColLg>
+          <ColLg>
             <FilterSelect
-              label="Danh mục đề tài"
+              label="Danh mục"
               filterField="danhMuc"
-              options={uniqueDanhMuc.map((dm) => ({
-                value: dm,
-                label: dm,
+              options={uniqueDanhMuc.map((tt) => ({
+                value: tt,
+                label: tt,
               }))}
+              onChange={(e) => handleInputChange(e, "danhMuc")}
             />
-          </Col3>
-          <Col4>
+          </ColLg>
+          <ColLg>
+            <FilterSelect
+              label="Học kỳ"
+              options={[
+                { value: "hk1", label: "Học kỳ 1" },
+                { value: "hk2", label: "Học kỳ 2" },
+              ]}
+              filterField="trangThai"
+              onChange={(e) => handleInputChange(e, "hocKy")}
+            />
+          </ColLg>
+          <ColLg>
+            <StyledInput
+              width="100%"
+              type="text"
+              placeholder="Năm học (2023-2024)"
+              onChange={(e) => handleInputChange(e, "namHoc")}
+            />
+          </ColLg>
+          <ColLg>
             <FilterSelect
               label="Số lượng sinh viên"
               filterField="soLuongDoAn"
@@ -63,8 +86,9 @@ function Filter({ DanhSachDeTai }) {
                 value: sl,
                 label: sl,
               }))}
+              onChange={(e) => handleInputChange(e, "soLuong")}
             />
-          </Col4>
+          </ColLg>
         </StyledRow>
       </Card.Header>
       <Card.Header>
@@ -74,6 +98,7 @@ function Filter({ DanhSachDeTai }) {
               width="70%"
               type="text"
               placeholder="Nhập tên đề tài cần tìm"
+              onChange={(e) => handleInputChange(e, "tenDeTai")}
             />
           </ColLg>
           <ColLg style={{ display: "inline-flex", justifyContent: "end" }}>

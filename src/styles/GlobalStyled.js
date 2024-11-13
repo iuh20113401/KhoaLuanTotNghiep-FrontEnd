@@ -382,6 +382,9 @@ img {
 .flex{
   display: flex;
 }
+.h-100{
+  height: 100%;
+}
 .align-center{
   align-items: center;
 }

@@ -14,6 +14,7 @@ import { useDanhSachBaoCao } from "../../hooks/useDanhSachBaoCao";
 import { useSearchParams } from "react-router-dom";
 import { sortDoAnList } from "../../utils/SortDoAn";
 import { sortBaoCaoList } from "../../utils/SortBaoCao";
+import LoadingSpinner from "../../ui/Spinner";
 
 function XemDanhSachBaoCao() {
   const [searchParams] = useSearchParams();
@@ -70,49 +71,62 @@ function XemDanhSachBaoCao() {
     uploadMutate(formData);
   }, [selectedFile, uploadMutate]);
   return (
-    !isLoading && (
-      <div>
-        <h5>Danh sách đồ án</h5>
+    <div>
+      <h5>Danh sách đồ án</h5>
 
-        <Card className="mt-3 p-3">
-          <div className="flex space-between align-center">
-            <h6>Biểu mẫu chung</h6>
-            <Button
-              type="normal"
-              variation="outline"
-              bgcolor="var(--bs-blue)"
-              color="var(--bs-blue)"
-              onClick={handleAddFile}
-              disabled={isPending}
-            >
-              <span>
-                <HiUpload />
-              </span>
-              Tải tài liệu lên
-            </Button>
-            <input
-              style={{ display: "none" }}
-              type="file"
-              ref={inputref}
-              onChange={handleFileChange}
-            />
+      <Card className="mt-3 p-3">
+        <div className="flex space-between align-center">
+          {BieuMauLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <>
+              <h6>Biểu mẫu chung</h6>
+
+              <Button
+                type="normal"
+                variation="outline"
+                bgcolor="var(--bs-blue)"
+                color="var(--bs-blue)"
+                onClick={handleAddFile}
+                disabled={isPending}
+              >
+                <span>
+                  <HiUpload />
+                </span>
+                Tải tài liệu lên
+              </Button>
+              <input
+                style={{ display: "none" }}
+                type="file"
+                ref={inputref}
+                onChange={handleFileChange}
+              />
+            </>
+          )}
+        </div>
+        {!BieuMauLoading && (
+          <DanhSachBieuMau DanhSachBieuMau={BieuMauData?.danhSachBieuMau} />
+        )}
+      </Card>
+      <Card className="mt-3">
+        {isLoading ? (
+          <div className="p-5">
+            <LoadingSpinner />
           </div>
-          {!BieuMauLoading && (
-            <DanhSachBieuMau DanhSachBieuMau={BieuMauData?.danhSachBieuMau} />
-          )}
-        </Card>
-        <Card className="mt-3">
-          <FilterBaoCao
-            handleFilterBaoCao={handleFilterBaoCao}
-            hocKy={hocKy}
-            namHoc={namHoc}
-          />
-          {sortedDoAn && (
-            <DanhSachBaoCaoContainer DanhSachBaoCao={sortedDoAn} />
-          )}
-        </Card>
-      </div>
-    )
+        ) : (
+          <>
+            <FilterBaoCao
+              handleFilterBaoCao={handleFilterBaoCao}
+              hocKy={hocKy}
+              namHoc={namHoc}
+            />
+            <DanhSachBaoCaoContainer
+              DanhSachBaoCao={sortedDoAn || DanhSachBaoCao}
+            />
+          </>
+        )}
+      </Card>
+    </div>
   );
 }
 

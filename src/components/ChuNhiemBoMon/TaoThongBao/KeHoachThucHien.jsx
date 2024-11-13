@@ -103,7 +103,7 @@ function KeHoachThucHien({ vaiTro }) {
             <>
               <img
                 crossorigin="anonymous | use-credentials"
-                src={`${SERVER}${keHoach.noiDung}`}
+                src={`${SERVER}${keHoach?.noiDung.replace("/", "")}`}
                 alt="hinhAnh"
                 width="100%"
                 height="1000px"
