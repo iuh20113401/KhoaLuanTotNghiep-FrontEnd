@@ -39,7 +39,7 @@ function DanhSachChoPhanCong() {
           da.giangVienPhanBien1 || "",
           da.giangVienPhanBien2 || "",
         ],
-      }))
+      })) || []
     );
   }, [DanhSachDoAn]);
   const { mutate, isPending } = useMutation({
