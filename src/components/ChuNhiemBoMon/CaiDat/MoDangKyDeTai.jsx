@@ -5,13 +5,14 @@ import { useMutation } from "@tanstack/react-query";
 import { moDangKyDeTai } from "../../../services/CaiDat";
 import toast from "react-hot-toast";
 
-function MoDangKyDeTai() {
+function MoDangKyDeTai({ refetch }) {
   const [showModal, setShowModal] = useState(false);
   const { mutate, isPending } = useMutation({
     mutationFn: moDangKyDeTai,
     onSuccess: () => {
       toast.success("Mở đăng ký thành công");
       setShowModal(false);
+      refetch();
     },
     onError: () => {
       toast.error("Có lỗi xảy ra");
@@ -27,7 +28,7 @@ function MoDangKyDeTai() {
           <p>Mở đăng ký đề tài</p>
           <p className="error">(*) Sinh viên có thể thực hiện đăng ký đề tài</p>
         </div>
-        <Button onClick={() => setShowModal(true)}>Reset</Button>
+        <Button onClick={() => setShowModal(true)}>Mở đăng ký</Button>
       </div>
       {showModal && (
         <Modal className="" size="lg">

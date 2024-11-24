@@ -3,8 +3,8 @@ import StyledTable from "../../../ui/Table";
 const calculateGiangVienAssignment = (DanhSachGiangVien, updatedDoAn) => {
   if (!DanhSachGiangVien && !updatedDoAn) return;
   const giangVienAssignments = DanhSachGiangVien.map((gv) => {
-    const soLuongDoAnPhanBien = updatedDoAn.filter(
-      (da) => da.giangVienPhanBien.includes(gv._id) // Checks if the giangVien is assigned
+    const soLuongDoAnPhanBien = updatedDoAn.filter((da) =>
+      da?.giangVienPhanBien?.includes(gv._id)
     ).length;
 
     return {

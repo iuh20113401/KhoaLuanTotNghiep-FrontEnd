@@ -87,14 +87,14 @@ function LoginPage() {
   const [error, setError] = useState({ maSo: "", password: "" });
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { data } = UseUser();
 
+  const { data } = UseUser();
   useEffect(() => {
     if (data?.user) {
       if (+data.user.vaiTro === 0) navigate("/sinhVien");
       else navigate("/giangVien");
     }
-  }, [data, navigate]);
+  }, [data?.user, navigate]);
 
   const { mutate, isPending: isLoading } = useMutation({
     mutationFn: dangNhap,
@@ -134,7 +134,6 @@ function LoginPage() {
     e.preventDefault();
     mutate({ maSo, password });
   }
-  console.log(error.maSo === true && error.password === true);
   return (
     <StyledLoginPage>
       <StyledCoverImage>

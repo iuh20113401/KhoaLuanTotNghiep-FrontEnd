@@ -42,6 +42,9 @@ import PhanCongGiangVienHoiDong from "./pages/ChuNhiemBoMon/PhanCongGiangVienHoi
 import QuanLyTieuChi from "./pages/ChuNhiemBoMon/QuanLyTieuChi";
 import CaiDat from "./pages/ChuNhiemBoMon/CaiDat";
 import { MobileProvider } from "./context/MobileContext";
+import QuanLyTaiKhoanSInhVien from "./pages/admin/QuanLyTaiKhoanSInhVien";
+import QuanLyTaiKhoanGiangVien from "./pages/admin/QuanLyTaiKhoanGiangVien";
+import AdminCaiDat from "./pages/admin/AdminCaiDat";
 
 const queryClient = new QueryClient({
   defaultOption: {
@@ -73,7 +76,6 @@ function App() {
               <Route path="LichHop" element={<LichHopSinhVien />} />{" "}
               <Route path="thongBao/:id" element={<NoiDungThongBao />} />
             </Route>
-            {/* note dành cho giảng viên */}
             <Route path="giangvien" element={<GiangVIenLayout />}>
               <Route path="" element={<Navigate to="trangChu" />} />{" "}
               <Route path="trangChu" element={<DashBoard />} />
@@ -150,6 +152,16 @@ function App() {
                 element={<PhanCongGiangVienGiamSat />}
               />
               <Route path="CaiDat" element={<CaiDat />} />
+              {/* admin function */}
+              <Route
+                path="quanLyTaiKhoanSinhVien"
+                element={<QuanLyTaiKhoanSInhVien />}
+              />
+              <Route
+                path="quanLyTaiKhoanGiangVien"
+                element={<QuanLyTaiKhoanGiangVien />}
+              />
+              <Route path="adminCaiDat" element={<AdminCaiDat />} />
             </Route>
           </Routes>
         </BrowserRouter>

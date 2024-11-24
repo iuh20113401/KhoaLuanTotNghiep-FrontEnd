@@ -73,7 +73,9 @@ function ChiTietDiem({ doAn, loai }) {
 
   const diem = getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet;
   const diem2 =
-    doAn.sinhVien2 !== null && Object.values(doAn.sinhVien2).length > 0
+    doAn.sinhVien2 &&
+    doAn.sinhVien2 !== null &&
+    Object.values(doAn.sinhVien2).length > 0
       ? getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
       : [];
   const sinhVien1DiemTong = getNestedValue(
@@ -81,7 +83,9 @@ function ChiTietDiem({ doAn, loai }) {
     newLoai
   )?.diemTong;
   const sinhVien2DiemTong =
-    doAn.sinhVien2 !== null && Object.values(doAn.sinhVien2).length > 0
+    doAn.sinhVien2 &&
+    doAn.sinhVien2 !== null &&
+    Object.values(doAn.sinhVien2).length > 0
       ? getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemTong
       : "";
   return (

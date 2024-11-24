@@ -1,9 +1,8 @@
-import Button from "../../../ui/Button";
 import StyledTable from "../../../ui/Table";
 import ChiTietDoAn from "./ChiTietDoAn";
 
 function DanhSachDoAnContainer({ DanhSachDoAn }) {
-  const sortedProjects = [...DanhSachDoAn].sort(
+  const sortedProjects = DanhSachDoAn.sort(
     (a, b) => b.diemTrungBinhTong - a.diemTrungBinhTong
   );
 
@@ -11,7 +10,7 @@ function DanhSachDoAnContainer({ DanhSachDoAn }) {
   const top20Projects = sortedProjects.slice(0, top20PercentIndex);
   const remainingProjects = sortedProjects.slice(top20PercentIndex);
 
-  return (
+  return DanhSachDoAn?.length > 0 ? (
     <StyledTable>
       <thead>
         <tr>
@@ -25,14 +24,19 @@ function DanhSachDoAnContainer({ DanhSachDoAn }) {
         </tr>
       </thead>
       <tbody>
-        {top20Projects.map((da, index) => (
-          <ChiTietDoAn key={da.maDoAn} doAn={da} isPoster={false} />
-        ))}
-        {remainingProjects.map((da, index) => (
-          <ChiTietDoAn key={da.maDoAn} doAn={da} isPoster={true} />
-        ))}
+        <>
+          {top20Projects.map((da, index) => (
+            <ChiTietDoAn key={da.maDoAn} doAn={da} isPoster={false} />
+          ))}
+          {remainingProjects.map((da, index) => (
+            <ChiTietDoAn key={da.maDoAn} doAn={da} isPoster={true} />
+          ))}
+        </>
+        )
       </tbody>
     </StyledTable>
+  ) : (
+    "Hiện chưa có đồ án nào để phân công"
   );
 }
 export default DanhSachDoAnContainer;

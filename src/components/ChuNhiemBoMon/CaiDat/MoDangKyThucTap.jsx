@@ -5,13 +5,14 @@ import { useMutation } from "@tanstack/react-query";
 import { moDangKyThucTap } from "../../../services/CaiDat";
 import toast from "react-hot-toast";
 
-function MoDangKyThucTap() {
+function MoDangKyThucTap({ refetch }) {
   const [showModal, setShowModal] = useState(false);
   const { mutate, isPending } = useMutation({
     mutationFn: moDangKyThucTap,
     onSuccess: () => {
       toast.success("Mở đăng ký thành công");
       setShowModal(false);
+      refetch();
     },
     onError: () => {
       toast.error("Có lỗi xảy ra");
@@ -30,7 +31,7 @@ function MoDangKyThucTap() {
             mở
           </p>
         </div>
-        <Button onClick={() => setShowModal(true)}>Reset</Button>
+        <Button onClick={() => setShowModal(true)}>Mở đăng ký</Button>
       </div>
       {showModal && (
         <Modal className="" size="lg">

@@ -1,24 +1,37 @@
-import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import Button from "../../../ui/Button";
-import StyledTable from "../../../ui/Table";
-import ChiTietDoAnPhanBien from "./ChiTietDoAnPhanBien";
-import { layDanhSachToanBoGiangVien } from "../../../services/User";
-import { themNhieuGiangVienPhanBien } from "../../../services/DoAn";
+import {
+  layDanhSachDoAnDat,
+  themNhieuGiangVienPhanBien,
+} from "../../../../services/DoAn";
+import { useEffect, useState } from "react";
+import { layDanhSachToanBoGiangVien } from "../../../../services/User";
+import StyledTable from "../../../../ui/Table";
+import ChiTietDoAnPhanBien from "../ChiTietDoAnPhanBien";
 import toast from "react-hot-toast";
-import DanhSachGiangVienPhanBienTable from "./TableSoLuongDoAn";
+import Button from "../../../../ui/Button";
+import DanhSachGiangVienPhanBienTable from "../TableSoLuongDoAn";
+import LoadingSpinner from "../../../../ui/Spinner";
 
-function DanhSachDoAnPhanBien({ DanhSachDoAn, refetch }) {
-  const { data, isLoading } = useQuery({
+function DanhSachChoPhanCong() {
+  const {
+    data: doAnData,
+    isLoading: doAnLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["DanhSachDoAnDat"],
+    queryFn: layDanhSachDoAnDat,
+  });
+  const { data: giangVienData, isLoading: giangVienLoading } = useQuery({
     queryKey: ["DanhSachGiangVien"],
     queryFn: layDanhSachToanBoGiangVien,
   });
-
-  const DanhSachGiangVien = data?.danhSachGiangVien || [];
-  const [updatedDoAn, setUpdatedDoAn] = useState("");
+  const DanhSachDoAn = doAnData?.danhSachDoAn;
+  const DanhSachGiangVien = giangVienData?.danhSachGiangVien || [];
+  const isLoading = doAnLoading && giangVienLoading;
+  const [updatedDoAn, setUpdatedDoAn] = useState([]);
   useEffect(() => {
     setUpdatedDoAn(
-      DanhSachDoAn.filter(
+      DanhSachDoAn?.filter(
         (da) => !da.giangVienPhanBien1 && !da.giangVienPhanBien2
       ).map((da) => ({
         ...da,
@@ -117,7 +130,12 @@ function DanhSachDoAnPhanBien({ DanhSachDoAn, refetch }) {
       da.giangVienPhanBien2 || "",
     ],
   }));
-
+  if (isLoading)
+    return (
+      <div className="p-5">
+        <LoadingSpinner />
+      </div>
+    );
   return (
     <div>
       <div className="p-2 text-end">
@@ -125,52 +143,52 @@ function DanhSachDoAnPhanBien({ DanhSachDoAn, refetch }) {
           Phân công ngẫu nhiên
         </Button>
       </div>
-      {!isLoading && (
-        <div className="pl-3 pr-3">
-          <div className=" ">
-            <DanhSachGiangVienPhanBienTable
-              DanhSachGiangVien={DanhSachGiangVien}
-              updatedDoAn={[...updatedDoAn, ...doAnWithGiangVienPhanBien]}
-            />
+
+      <div className="pl-3 pr-3">
+        <div className=" ">
+          <DanhSachGiangVienPhanBienTable
+            DanhSachGiangVien={DanhSachGiangVien}
+            updatedDoAn={[...updatedDoAn, ...doAnWithGiangVienPhanBien]}
+          />
+        </div>
+
+        <h5 className="mt-3">Đồ án chưa có giảng viên phản biện:</h5>
+        {updatedDoAn?.length > 0 ? (
+          <StyledTable>
+            <thead>
+              <tr>
+                <th>STT</th>
+                <th width="12%">Mã đồ án</th>
+                <th width="19%">Tên đồ án</th>
+                <th width="13%">Mã sinh viên</th>
+                <th>Tên sinh viên</th>
+                <th>Giảng viên</th>
+                <th width="25%">Giảng viên phản biện</th>
+              </tr>
+            </thead>
+            <tbody>
+              {updatedDoAn &&
+                updatedDoAn.map((da, index) => (
+                  <ChiTietDoAnPhanBien
+                    key={da._id}
+                    DanhSachGiangVien={DanhSachGiangVien}
+                    doAn={da}
+                    index={index}
+                    handleChangePhanBien={handleChangePhanBien}
+                    isAssign={true}
+                  />
+                ))}
+            </tbody>
+          </StyledTable>
+        ) : (
+          <div className="p-3">
+            <p>Hiện chưa có đồ án cần phân công</p>
           </div>
-
-          <h5 className="mt-3">Đồ án chưa có giảng viên phản biện:</h5>
-          {updatedDoAn ? (
-            <div className="p-3">
-              <p>Hiện chưa có đồ án cần phân công</p>
-            </div>
-          ) : (
-            <StyledTable>
-              <thead>
-                <tr>
-                  <th>STT</th>
-                  <th width="12%">Mã đồ án</th>
-                  <th width="19%">Tên đồ án</th>
-                  <th width="13%">Mã sinh viên</th>
-                  <th>Tên sinh viên</th>
-                  <th>Giảng viên</th>
-                  <th width="25%">Giảng viên phản biện</th>
-                </tr>
-              </thead>
-              <tbody>
-                {updatedDoAn &&
-                  updatedDoAn.map((da, index) => (
-                    <ChiTietDoAnPhanBien
-                      key={da._id}
-                      DanhSachGiangVien={DanhSachGiangVien}
-                      doAn={da}
-                      index={index}
-                      handleChangePhanBien={handleChangePhanBien}
-                      isAssign={true}
-                    />
-                  ))}
-              </tbody>
-            </StyledTable>
-          )}
-
-          {doAnWithGiangVienPhanBien && (
-            <>
-              <h5>Đồ án đã có giảng viên phản biện:</h5>
+        )}
+        {doAnWithGiangVienPhanBien && (
+          <>
+            <h5>Đồ án đã có giảng viên phản biện:</h5>
+            {doAnWithGiangVienPhanBien.length ? (
               <StyledTable>
                 <thead>
                   <tr>
@@ -196,14 +214,18 @@ function DanhSachDoAnPhanBien({ DanhSachDoAn, refetch }) {
                   ))}
                 </tbody>
               </StyledTable>
-            </>
-          )}
-        </div>
-      )}
+            ) : (
+              <div className="p-3">
+                <p>Hiện chưa có đồ án đã được phân công</p>
+              </div>
+            )}
+          </>
+        )}
+      </div>
       <div className="text-end mr-2 mb-2">
         <Button
           onClick={handleXacNhan}
-          disabled={isPending || updatedDoAn.length <= 0}
+          disabled={isPending || updatedDoAn?.length <= 0}
           state={isPending || updatedDoAn.length <= 0 ? "disabled" : ""}
         >
           Xác nhận
@@ -213,4 +235,4 @@ function DanhSachDoAnPhanBien({ DanhSachDoAn, refetch }) {
   );
 }
 
-export default DanhSachDoAnPhanBien;
+export default DanhSachChoPhanCong;

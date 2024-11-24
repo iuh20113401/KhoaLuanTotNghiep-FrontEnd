@@ -117,7 +117,6 @@ function DeTaiUi({ hidden, left, rigth, buttonContent }) {
   return (
     <Container
       onClick={(e) => {
-        console.log(e.target.localName);
         if (e.target.localName === "button" || e.target.localName === "svg")
           return;
         setActive((a) => !a);

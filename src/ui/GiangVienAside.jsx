@@ -5,6 +5,9 @@ import { useState } from "react";
 import Logo from "../../public/hinhanh/iuh_logo_2.png";
 import { Link, NavLink } from "react-router-dom";
 import { FiCircle } from "react-icons/fi";
+import { HiOutlineBellAlert } from "react-icons/hi2";
+import { AiOutlineCalendar } from "react-icons/ai";
+
 const SERVER = import.meta.env.PROD
   ? import.meta.env.VITE_SERVER_URL
   : import.meta.env.VITE_SERVER_URL_LOCAL;
@@ -242,7 +245,7 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
           href={"./trangchu"}
         />
         <MenuItem
-          icon={<HiOutlineHome />}
+          icon={<HiOutlineBellAlert />}
           title="Thông báo"
           href={"./thongBao"}
         />
@@ -288,7 +291,7 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
               isSmall={true}
             />
             <MenuItem
-              icon={<FiCircle />}
+              icon={<HiOutlineBellAlert />}
               title="Danh sách báo cáo"
               href={"./thucTap/DanhSachBaoCao"}
               isSmall={true}
@@ -313,7 +316,7 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
           href={"./huongdan"}
         />
         <MenuItem
-          icon={<HiOutlineHome />}
+          icon={<AiOutlineCalendar />}
           title="Lịch họp"
           href={"./lichhop"}
         />
@@ -410,6 +413,26 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
             />
           </div>
         )}
+        {user.vaiTro === 4 && (
+          <div>
+            <h5 className="text-primary p-3 ">Quản trị viên</h5>{" "}
+            <MenuItem
+              icon={<HiOutlineHome />}
+              title="Quản lý tài khoản sinh viên"
+              href={"./quanLyTaiKhoanSinhVien"}
+            />
+            <MenuItem
+              icon={<HiOutlineHome />}
+              title="Quản lý tài khoản giảng viên"
+              href={"./quanLyTaiKhoanGiangVien"}
+            />
+            <MenuItem
+              icon={<HiOutlineHome />}
+              title="Cài đặt "
+              href={"./AdminCaiDat"}
+            />
+          </div>
+        )}
       </StyledMenuList>
       <StyledRow>
         <FooterLink href="#">
@@ -420,7 +443,11 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
             }
           >
             <FooterLogo>
-              <img src={`${SERVER}${user.hinhAnh}`} alt="logo iuh" />
+              <img
+                src={`${SERVER}${user.hinhAnh}`}
+                crossorigin="anonymous | use-credentials"
+                alt="logo iuh"
+              />
             </FooterLogo>
             <span>{user.hoTen}</span>
           </StyledRow>

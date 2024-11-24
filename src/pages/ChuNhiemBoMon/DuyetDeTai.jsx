@@ -16,6 +16,7 @@ function DuyetDeTai() {
   const [searchParams] = useSearchParams();
   const sortBy = searchParams.get("sortBy");
   const sortedDoAn = sortDoAnList(filterDeTai, sortBy);
+  console.log(DanhSachDeTai);
   return (
     <div>
       <h5>Duyệt đề tài</h5>

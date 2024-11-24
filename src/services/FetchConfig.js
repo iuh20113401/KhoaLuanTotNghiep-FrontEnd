@@ -1,29 +1,35 @@
-const URL = import.meta.env.PROD
+const API_URL = import.meta.env.PROD
   ? import.meta.env.VITE_SERVER_API_URL
   : import.meta.env.VITE_SERVER_API_URL_LOCAL;
 export default async function fetchApi(url, options) {
   try {
-    options.headers = {
-      ...options.headers,
-    };
-    options = {
+    const response = await fetch(API_URL + url, {
       ...options,
       credentials: "include",
-    };
-    const response = await fetch(URL + url, options);
+      headers: {
+        ...options.headers,
+      },
+    });
     const data = await response.json();
-    if (response.status.toString().startsWith("4")) {
-      throw new Error(data.data?.message || data.status || "Có lỗi xuất hiện");
-    }
+
     if (!response.ok) {
-      throw new Error(
-        `Server responded with ${response.status}: ${
-          data.message || "An error occurred"
-        }`
-      );
+      const errorMessage =
+        data.data?.message || data.message || "Có lỗi xuất hiện";
+      // Ném lỗi là một instance của Error
+      const error = new Error(errorMessage);
+      error.status = response.status; // Gắn thêm thuộc tính status vào instance
+      throw error;
     }
+
     return { ...data.data };
   } catch (error) {
-    throw new Error(`${error.message}`);
+    if (error instanceof Error) {
+      throw error; // Giữ nguyên nếu đã là instance của Error
+    } else {
+      // Tạo mới instance nếu không phải là Error
+      const err = new Error(error.message || "Unknown error");
+      err.status = error.status || 500;
+      throw err;
+    }
   }
 }

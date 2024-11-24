@@ -1,7 +1,7 @@
-import Card from "../../../ui/Card";
-import { StyledInput, StyledSelect } from "../../../ui/Input";
-import { ColLg, StyledRow } from "../../../ui/Row";
-import SortBy from "../../../ui/SortBy";
+import Card from "../../../../ui/Card";
+import { StyledInput } from "../../../../ui/Input";
+import { ColLg, StyledRow } from "../../../../ui/Row";
+import SortBy from "../../../../ui/SortBy";
 
 function FilterSinhVien({ handleFilterSinhVien }) {
   const handleInputChange = (e) => {

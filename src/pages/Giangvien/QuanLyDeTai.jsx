@@ -24,6 +24,7 @@ function QuanLyDeTai() {
   const [searchParams] = useSearchParams();
   const sortBy = searchParams.get("sortBy");
   const sortedDoAn = sortDoAnList(filterDeTai, sortBy);
+
   return (
     <div>
       {!isAdd && !isEdit && (

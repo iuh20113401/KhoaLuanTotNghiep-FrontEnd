@@ -39,7 +39,8 @@ const Variations = {
 
 const TableWrapper = styled.div`
   width: 100%;
-  overflow-x: auto;
+  overflow: visible;
+  // overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 
   @media (max-width: 768px) {
@@ -60,7 +61,12 @@ const StyledTableContainer = styled.table`
   border-collapse: collapse;
   background-color: var(--bs-table-bg);
   box-sizing: border-box;
-
+  &.hover tr {
+    &:hover {
+      cursor: pointer;
+      background-color: var(--bs-light);
+    }
+  }
   & thead > tr > th {
     border-bottom: 1px solid var(--bs-table-border-color);
     text-transform: uppercase;
@@ -110,10 +116,15 @@ const StyledTableContainer = styled.table`
   }
 `;
 
-function StyledTable({ children, variation = "default", ...props }) {
+function StyledTable({
+  children,
+  variation = "default",
+  hovered = false,
+  ...props
+}) {
   return (
     <TableWrapper>
-      <StyledTableContainer variation={variation} {...props}>
+      <StyledTableContainer hovered={hovered} variation={variation} {...props}>
         {children}
       </StyledTableContainer>
     </TableWrapper>

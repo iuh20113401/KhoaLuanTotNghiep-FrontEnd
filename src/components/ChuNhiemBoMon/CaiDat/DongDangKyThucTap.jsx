@@ -5,13 +5,14 @@ import { useMutation } from "@tanstack/react-query";
 import { dongDangKyThucTap } from "../../../services/CaiDat";
 import toast from "react-hot-toast";
 
-function DongDangKyThucTap() {
+function DongDangKyThucTap({ refetch }) {
   const [showModal, setShowModal] = useState(false);
   const { mutate, isPending } = useMutation({
     mutationFn: dongDangKyThucTap,
     onSuccess: () => {
       toast.success("Đóng đăng ký thành công");
       setShowModal(false);
+      refetch();
     },
     onError: () => {
       toast.error("Có lỗi xảy ra");
@@ -30,7 +31,7 @@ function DongDangKyThucTap() {
             (*) Sinh viên không thể đăng ký công ty thực tập
           </p>
         </div>
-        <Button onClick={() => setShowModal(true)}>Reset</Button>
+        <Button onClick={() => setShowModal(true)}>Đóng đăng ký</Button>
       </div>
       {showModal && (
         <Modal className="" size="lg">

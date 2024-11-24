@@ -2,7 +2,6 @@ import { useState } from "react";
 import Button from "../../../ui/Button";
 import Modal from "../../../ui/Modal";
 import { ColLg, StyledRow } from "../../../ui/Row";
-import { HiPrinter } from "react-icons/hi";
 import ChiTietDiem from "../../QuanLyDoAn/BieuMau/ChiTietDiem";
 import { BsFileWord } from "react-icons/bs";
 
@@ -14,7 +13,7 @@ const TRANG_THAI_STYLE = {
   2: { bgcolor: "var(--bs-danger)" },
 };
 function ChiTietSInhVien({ sinhvien, index }) {
-  const trangThai = sinhvien.diem.ketQua;
+  const trangThai = sinhvien?.diem?.ketQua;
   const [showModal, setShowModal] = useState(false);
   return (
     <>

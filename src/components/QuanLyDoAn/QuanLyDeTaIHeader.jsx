@@ -73,22 +73,22 @@ const StyledTrangThai = {
     color: "var(--bs-white)",
   },
   5: {
-    content: "Chờ chám điểm poster",
-    bgcolor: "var(--bs-success)",
-    color: "var(--bs-white)",
-  },
-  6: {
     content: "Cấm thi",
     bgcolor: "var(--bs-danger)",
     color: "var(--bs-white)",
   },
-  7: {
+  6: {
     content: "Không đạt phản biện",
     bgcolor: "var(--bs-danger)",
     color: "var(--bs-white)",
   },
-  8: {
+  7: {
     content: "Không đạt hội đồng",
+    bgcolor: "var(--bs-danger)",
+    color: "var(--bs-white)",
+  },
+  8: {
+    content: "Đạt",
     bgcolor: "var(--bs-danger)",
     color: "var(--bs-white)",
   },

@@ -1,5 +1,5 @@
-import StyledTable from "../../../ui/Table";
-import ChiTietSInhVien from "./ChiTietSInhVien";
+import StyledTable from "../../../../ui/Table";
+import ChiTietSInhVien from "../ChiTietSInhVien";
 
 function DanhSachSinhVienContainer({ danhSachSinhVien }) {
   return (

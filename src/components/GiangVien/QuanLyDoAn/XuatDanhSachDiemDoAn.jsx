@@ -27,7 +27,7 @@ const mapDataForExport = (data) => {
     const diemPB = {
       diemTong: diemPhanBien?.diemPhanBien1?.diemTong || "N/A",
       ...diemPhanBien?.diemPhanBien1?.diemAbet.reduce((acc, diem, idx) => {
-        acc[`dpb_${idx + 1}`] = diem.diem || "N/A"; // dpb_1, dpb_2,... for each điểm abet
+        acc[`dpb_${idx + 1}`] = diem.diem || "N/A";
         return acc;
       }, {}),
     };

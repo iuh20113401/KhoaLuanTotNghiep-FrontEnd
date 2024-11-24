@@ -11,6 +11,7 @@ function QuanLyThongTinSInhVien() {
     queryFn: layDanhSachToanBoSinhVien,
   });
   const DanhSachSinhVien = data?.danhSachSinhVien;
+  console.log(DanhSachSinhVien);;
   return (
     <div>
       <h5>Quản lý thông tin sinh viên</h5>

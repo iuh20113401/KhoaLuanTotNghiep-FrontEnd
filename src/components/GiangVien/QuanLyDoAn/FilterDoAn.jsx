@@ -5,7 +5,6 @@ import SortBy from "../../../ui/SortBy";
 
 function FilterDoAn({ handleFilterDoAn, hocKy, namHoc }) {
   const handleInputChange = (e, field) => {
-    console.log(e.target.value);
     handleFilterDoAn(field, e.target.value);
   };
   return (

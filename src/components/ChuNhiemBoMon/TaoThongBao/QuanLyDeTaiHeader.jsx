@@ -1,11 +1,11 @@
 import { StyledTabHeader } from "../../../ui/Tab";
 
-function TaoThongBaoHeader({ content, active, setActive }) {
+function QuanLyDeTaiHeader({ content, active, setActive }) {
   return (
     <div>
       <StyledTabHeader>
         {content.map((ct, index) => (
-          <li class="nav-item" role="presentation" key={index}>
+          <li className="nav-item" role="presentation" key={index}>
             <button
               type="button"
               className={active === index ? "active" : ""}
@@ -20,4 +20,4 @@ function TaoThongBaoHeader({ content, active, setActive }) {
   );
 }
 
-export default TaoThongBaoHeader;
+export default QuanLyDeTaiHeader;

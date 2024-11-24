@@ -20,7 +20,7 @@ function CardThanhVien({ doAn }) {
           <ColLg>
             <h5>Thành viên</h5>
           </ColLg>
-          {user.vaiTro === 0 && (
+          {user.vaiTro === 0 && !doAn.sinhVien2 && (
             <ColLg>
               <Button
                 size="xs"

@@ -38,7 +38,11 @@ const StyledAvatar = styled.div`
 function Avatar({ src, ...props }) {
   return (
     <StyledAvatar {...props}>
-      <img src={src || "./public/hinhanh/iuh_logo_1.png"} alt="avatar" />
+      <img
+        src={src || "./public/hinhanh/iuh_logo_1.png"}
+        alt="avatar"
+        crossorigin="anonymous | use-credentials"
+      />
     </StyledAvatar>
   );
 }

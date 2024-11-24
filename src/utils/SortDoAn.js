@@ -1,5 +1,4 @@
 export const sortDoAnList = (list, sortBy) => {
-  console.log(list, sortBy);
   if (!list || !sortBy) return list;
   const field = sortBy.split("-")[0];
   const direction = sortBy.split("-")[1] === "asc" ? 1 : -1;

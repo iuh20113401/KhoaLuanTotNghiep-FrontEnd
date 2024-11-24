@@ -11,7 +11,6 @@ function BieuMauThucTap({ thucTap }) {
     queryFn: () => layDanhSachBieuMau(thucTap.giangVien._id),
   });
   const DanhSachBieuMau = data?.danhSachBieuMau;
-  console.log(data);
   return isLoading ? (
     <div>
       <LoadingSpinner />

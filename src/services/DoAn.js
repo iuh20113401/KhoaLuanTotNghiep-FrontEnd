@@ -57,12 +57,12 @@ const layThongTinSinhVienTheoDoAn = (id) =>
   });
 
 const layDanhSachDoAnDat = () =>
-  fetchApi(`${BASE_URL}/DoAnDat`, {
+  fetchApi(`${BASE_URL}/DanhSachDoAn/DatCuoiKy`, {
     method: "GET",
   });
 
 const themNhieuGiangVienPhanBien = (data) =>
-  fetchApi(`${BASE_URL}/doAnDat`, {
+  fetchApi(`${BASE_URL}/DanhSachDoAn/DatCuoiKy`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -78,11 +78,11 @@ const layDanhSachToanBoDoAn = (hocKy, namHoc) =>
     method: "GET",
   });
 const layDanhSachDoAnDatPhanBien = () =>
-  fetchApi(`${BASE_URL}/DanhSachDoAnDatPhanBien`, {
+  fetchApi(`${BASE_URL}/DanhSachDoAn/DatPhanBien`, {
     method: "GET",
   });
 const themNhiemGiangVienHoiDong = (data) =>
-  fetchApi(`${BASE_URL}/DanhSachDoAnDatPhanBien`, {
+  fetchApi(`${BASE_URL}/DanhSachDoAn/DatPhanBien`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

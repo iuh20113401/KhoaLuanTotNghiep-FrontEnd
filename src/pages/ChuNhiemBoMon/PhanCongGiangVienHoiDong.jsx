@@ -1,6 +1,4 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import LapHoiDongContainer from "../../components/ChuNhiemBoMon/PhanCongGiangVienHoiDong/LapHoiDongContainer";
-import { layDanhSachToanBoGiangVien } from "../../services/User";
 import Card from "../../ui/Card";
 import {
   layDanhSachDoAnDatPhanBien,
@@ -11,21 +9,17 @@ import toast from "react-hot-toast";
 import { createContext, useEffect, useMemo, useState } from "react";
 import Button from "../../ui/Button";
 import LoadingSpinner from "../../ui/Spinner";
+import HoiDongContainer from "../../components/ChuNhiemBoMon/PhanCongGiangVienHoiDong/TaoHoiDong/HoiDongContainer";
 export const PhanCongHoiDongContext = createContext();
 function PhanCongGiangVienHoiDong() {
-  const { data, isLoading: giangVienLoading } = useQuery({
-    queryKey: ["DanhSachGiangVien"],
-    queryFn: layDanhSachToanBoGiangVien,
-  });
-  const DanhSachGiangVien = data?.danhSachGiangVien || [];
   const { data: doAnData, isLoading: doAnLoading } = useQuery({
     queryKey: ["DanhSachDoAnDatPhanBien"],
     queryFn: layDanhSachDoAnDatPhanBien,
   });
 
   const DanhSachDoAn = useMemo(() => doAnData?.DanhSachDoAn || [], [doAnData]);
-  // Initialize updatedDoAn as an empty array
   const [updatedDoAn, setUpdatedDoAn] = useState([]);
+
   const { mutate, isPending } = useMutation({
     mutationFn: themNhiemGiangVienHoiDong,
     onSuccess: () => {
@@ -39,7 +33,7 @@ function PhanCongGiangVienHoiDong() {
     if (DanhSachDoAn.length) {
       setUpdatedDoAn(DanhSachDoAn.filter((da) => !da.giangVienHoiDong));
     }
-  }, [DanhSachDoAn]); // This will run whenever DanhSachDoAn changes
+  }, [DanhSachDoAn]);
   const [hoiDongs, setHoiDongs] = useState([
     { id: 1, chuTich: "", thuKy: "", uyVien: "" },
   ]);
@@ -48,95 +42,6 @@ function PhanCongGiangVienHoiDong() {
   ]);
   const [isConfirmed, setIsConfirmed] = useState(false);
 
-  // Helper function to get all selected giangVien
-  const getAllSelectedGiangVien = () => {
-    const selectedFromHoiDongs = hoiDongs.flatMap((hd) => [
-      hd.chuTich,
-      hd.thuKy,
-      hd.uyVien,
-    ]);
-    const selectedFromPosterHoiDongs = posterHoiDongs.flatMap((phd) => [
-      phd.gv1,
-      phd.gv2,
-    ]);
-    return [...selectedFromHoiDongs, ...selectedFromPosterHoiDongs].filter(
-      (id) => id // Remove empty selections
-    );
-  };
-
-  // Memoized list of selected giangVien to avoid recalculating on every render
-  const selectedGiangVien = useMemo(getAllSelectedGiangVien, [
-    hoiDongs,
-    posterHoiDongs,
-  ]);
-
-  // Function to get available giangVien for each dropdown
-  const getAvailableGiangVien = (currentSelection) => {
-    return DanhSachGiangVien.filter(
-      (gv) => !selectedGiangVien.includes(gv._id) || gv._id === currentSelection
-    );
-  };
-
-  const themHoiDong = () => {
-    setHoiDongs([
-      ...hoiDongs,
-      { id: hoiDongs.length + 1, chuTich: "", thuKy: "", uyVien: "" },
-    ]);
-  };
-
-  const themPosterHoiDong = () => {
-    setPosterHoiDongs([
-      ...posterHoiDongs,
-      { id: posterHoiDongs.length + 1, gv1: "", gv2: "" },
-    ]);
-  };
-  // Function to remove a council by ID
-  const xoaHoiDong = (id) => {
-    setHoiDongs(hoiDongs.filter((hoiDong) => hoiDong.id !== id));
-  };
-
-  // Function to remove a poster council by ID
-  const xoaPosterHoiDong = (id) => {
-    setPosterHoiDongs(
-      posterHoiDongs.filter((posterHoiDong) => posterHoiDong.id !== id)
-    );
-  };
-  const handleChangeHoiDong = (id, field, value) => {
-    setHoiDongs(
-      hoiDongs.map((hoiDong) =>
-        hoiDong.id === id ? { ...hoiDong, [field]: value } : hoiDong
-      )
-    );
-  };
-
-  const handleChangePosterHoiDong = (id, field, value) => {
-    setPosterHoiDongs(
-      posterHoiDongs.map((posterHoiDong) =>
-        posterHoiDong.id === id
-          ? { ...posterHoiDong, [field]: value }
-          : posterHoiDong
-      )
-    );
-  };
-
-  const handleConfirm = () => {
-    if (
-      !(
-        hoiDongs.filter(
-          (hd) => hd && Object.values(hd).every((vl) => vl !== "")
-        ).length === hoiDongs.length
-      ) ||
-      !(
-        posterHoiDongs.filter(
-          (hd) => hd && Object.values(hd).every((vl) => vl !== "")
-        ).length === posterHoiDongs.length
-      )
-    ) {
-      toast.error("Vui lòng chọn hội đồng");
-      return;
-    }
-    setIsConfirmed(true);
-  };
   const handleChangeHoiDongDoAn = (doAnId, type, id, value) => {
     setUpdatedDoAn((prevDoAnList) =>
       prevDoAnList.map((doAn) => {
@@ -196,28 +101,23 @@ function PhanCongGiangVienHoiDong() {
     });
     mutate(newData);
   }
-  const isLoading = giangVienLoading || doAnLoading;
+  const isLoading = doAnLoading;
   return (
     <PhanCongHoiDongContext.Provider
       value={{
         hoiDongs,
         posterHoiDongs,
         isConfirmed,
-        handleChangeHoiDong,
-        handleChangePosterHoiDong,
-        handleConfirm,
-        getAvailableGiangVien,
-        themHoiDong,
-        themPosterHoiDong,
-        xoaHoiDong,
-        xoaPosterHoiDong,
         handleChangeHoiDongDoAn,
+        setHoiDongs,
+        setPosterHoiDongs,
+        setIsConfirmed,
       }}
     >
       <div>
         <h5>Phân công giảng viên hội đồng</h5>
         <Card className="p-2 mt-3">
-          <LapHoiDongContainer DanhSachGiangVien={DanhSachGiangVien} />
+          <HoiDongContainer />
         </Card>
         <Card className="p-2 mt-2">
           <h5>Danh sách đồ án</h5>
@@ -227,7 +127,7 @@ function PhanCongGiangVienHoiDong() {
             </div>
           ) : (
             <>
-              <DanhSachDoAnContainer DanhSachDoAn={updatedDoAn} />)
+              <DanhSachDoAnContainer DanhSachDoAn={updatedDoAn} />
               <div className="text-end">
                 <Button onClick={handlePhanCong} disabled={isPending}>
                   Phân công hội đồng

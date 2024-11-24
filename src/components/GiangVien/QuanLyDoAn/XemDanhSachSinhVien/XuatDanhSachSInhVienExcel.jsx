@@ -1,6 +1,6 @@
 import { BsFileExcel } from "react-icons/bs";
-import Button from "../../../ui/Button";
-import exportToExcel from "../../../utils/ExportsToExcel";
+import Button from "../../../../ui/Button";
+import exportToExcel from "../../../../utils/ExportsToExcel";
 
 function XuatDanhSachSinhVienExcel({ DanhSachSinhVien }) {
   const data = DanhSachSinhVien?.map((item, index) => ({
