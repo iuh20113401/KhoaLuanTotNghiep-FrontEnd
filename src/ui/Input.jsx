@@ -11,7 +11,9 @@ const inputStyles = css`
   background: transparent;
   border: 1px solid #d1d0d4;
   border-radius: 0.375rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 
   &:focus {
     border-color: #7367f0;
@@ -32,8 +34,8 @@ const inputStyles = css`
   }
 
   &:disabled {
-    color: #6c757d;
-    opacity: 0.9;
+    color: black;
+    opacity: 0.8;
   }
 
   @media (max-width: 768px) {

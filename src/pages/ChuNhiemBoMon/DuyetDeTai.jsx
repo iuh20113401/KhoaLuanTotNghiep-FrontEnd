@@ -16,12 +16,10 @@ function DuyetDeTai() {
   const [searchParams] = useSearchParams();
   const sortBy = searchParams.get("sortBy");
   const sortedDoAn = sortDoAnList(filterDeTai, sortBy);
-  console.log(DanhSachDeTai);
   return (
     <div>
       <h5>Duyệt đề tài</h5>
       <Card className="mt-3">
-        <filterDeTai />
         {isLoading ? (
           <div className="p-5">
             <LoadingSpinner />

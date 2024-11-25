@@ -45,6 +45,7 @@ import { MobileProvider } from "./context/MobileContext";
 import QuanLyTaiKhoanSInhVien from "./pages/admin/QuanLyTaiKhoanSInhVien";
 import QuanLyTaiKhoanGiangVien from "./pages/admin/QuanLyTaiKhoanGiangVien";
 import AdminCaiDat from "./pages/admin/AdminCaiDat";
+import ThongTInTaiKhoan from "./pages/ThongTInTaiKhoan";
 
 const queryClient = new QueryClient({
   defaultOption: {
@@ -75,9 +76,11 @@ function App() {
               <Route path="quanLyThucTap" element={<QuanLyThucTap />} />
               <Route path="LichHop" element={<LichHopSinhVien />} />{" "}
               <Route path="thongBao/:id" element={<NoiDungThongBao />} />
+              <Route path="thongTinTaiKhoan" element={<ThongTInTaiKhoan />} />
             </Route>
             <Route path="giangvien" element={<GiangVIenLayout />}>
               <Route path="" element={<Navigate to="trangChu" />} />{" "}
+              <Route path="thongTinTaiKhoan" element={<ThongTInTaiKhoan />} />
               <Route path="trangChu" element={<DashBoard />} />
               <Route path="thongBao" element={<ThongBao />} />
               <Route path="quanlydetai" element={<QuanLyDeTai />} />

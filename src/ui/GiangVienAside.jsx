@@ -454,7 +454,9 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
           {toggleDropdown && (
             <ul>
               <li className="mt-2 p-1 hover-secondary">
-                <Link>Thông tin tài khoản</Link>
+                <Link to={"/giangVien/thongTinTaiKhoan"}>
+                  Thông tin tài khoản
+                </Link>
               </li>
               <li className="mt-2 p-1  hover-secondary">
                 <Link to={"/logout"}>Đăng xuất</Link>

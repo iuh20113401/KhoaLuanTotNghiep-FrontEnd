@@ -1,6 +1,22 @@
 import fetchApi from "./FetchConfig";
 const BASE_URL = "/user";
-
+const layThongTinTaiKhoan = (id) =>
+  fetchApi(`${BASE_URL}/${id}`, {
+    method: "GET",
+  });
+const capNhatAnhDaiDien = (data) =>
+  fetchApi(`${BASE_URL}/me/hinhAnh`, {
+    method: "PATCH",
+    body: data,
+  });
+const capNhatThongTinTaiKhoan = (data) =>
+  fetchApi(`${BASE_URL}/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
 const themNhieuSinhVien = (data) =>
   fetchApi(`${BASE_URL}/nhieuUser`, {
     method: "POST",
@@ -55,6 +71,9 @@ const layDanhSachToanBoGiangVien = () =>
     method: "GET",
   });
 export {
+  layThongTinTaiKhoan,
+  capNhatThongTinTaiKhoan,
+  capNhatAnhDaiDien,
   themNhieuSinhVien,
   layDanhSachTroChuyen,
   layDanhSachTaiKhoanGiangVien,

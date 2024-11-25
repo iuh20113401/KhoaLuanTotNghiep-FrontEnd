@@ -121,15 +121,16 @@ function DanhSachChoPhanCong() {
     mutate(data);
   }
 
-  const doAnWithGiangVienPhanBien = DanhSachDoAn?.filter(
-    (da) => da.giangVienPhanBien1 && da.giangVienPhanBien2
-  ).map((da) => ({
-    ...da,
-    giangVienPhanBien: [
-      da.giangVienPhanBien1 || "",
-      da.giangVienPhanBien2 || "",
-    ],
-  }));
+  const doAnWithGiangVienPhanBien =
+    DanhSachDoAn?.filter(
+      (da) => da.giangVienPhanBien1 && da.giangVienPhanBien2
+    ).map((da) => ({
+      ...da,
+      giangVienPhanBien: [
+        da.giangVienPhanBien1 || "",
+        da.giangVienPhanBien2 || "",
+      ],
+    })) || [];
   if (isLoading)
     return (
       <div className="p-5">

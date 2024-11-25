@@ -50,7 +50,7 @@ function PhanCongGiangVienHoiDong() {
               ...doAn,
               loai: type,
               giangVienHoiDong:
-                +type === 1 ? hoiDongs[+id - 1] : posterHoiDongs[+id - 1],
+                +type === 1 ? hoiDongs[+id] : posterHoiDongs[+id],
             }
           : doAn;
       })
@@ -63,7 +63,10 @@ function PhanCongGiangVienHoiDong() {
         Object.values(da.giangVienHoiDong).every((vl) => vl !== "")
       );
     });
-    if (!isUpdated) toast.error("Vui phân công hết đò án");
+    if (!isUpdated) {
+      toast.error("Vui phân công hết đò án");
+      return;
+    }
     const newData = updatedDoAn.map((da) => {
       const { giangVienHoiDong, loai } = da;
       if (loai === 1)
