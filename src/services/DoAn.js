@@ -43,7 +43,28 @@ const themTaiLieu = (_id, formData) =>
     method: "POST",
     body: formData,
   });
-
+const themTaiLieuPhanBien = (_id, formData) =>
+  fetchApi(`${BASE_URL}/${_id}/taiLieuPhanBien`, {
+    method: "POST",
+    body: formData,
+  });
+const xoaTaiLieuPhanBien = ({ id, taiLieuId }) => {
+  console.log(id, taiLieuId);
+  return fetchApi(`${BASE_URL}/${id}/taiLieuPhanBien/${taiLieuId}`, {
+    method: "DELETE",
+  });
+};
+const themTaiLieuHoiDong = (_id, formData) =>
+  fetchApi(`${BASE_URL}/${_id}/taiLieuHoiDong`, {
+    method: "POST",
+    body: formData,
+  });
+const xoaTaiLieuHoiDong = ({ id, taiLieuId }) => {
+  console.log(id, taiLieuId);
+  return fetchApi(`${BASE_URL}/${id}/taiLieuHoiDong/${taiLieuId}`, {
+    method: "DELETE",
+  });
+};
 const layDanhSachDoAnTheoGiangVien = (hocKy, namHoc) =>
   fetchApi(
     `${BASE_URL}/DanhSachDoAn/GiangVien?hocKy=${hocKy}&namHoc=${namHoc}`,
@@ -98,6 +119,10 @@ export {
   getThongTinDoAn,
   themComment,
   themTaiLieu,
+  themTaiLieuPhanBien,
+  xoaTaiLieuPhanBien,
+  themTaiLieuHoiDong,
+  xoaTaiLieuHoiDong,
   layDanhSachDoAnTheoGiangVien,
   layThongTinSinhVienTheoDoAn,
   capNhatDoAn,

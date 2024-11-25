@@ -2,15 +2,17 @@ import { Link } from "react-router-dom";
 import Button from "../../../ui/Button";
 import ModalChamDiem from "./ModalChamDiem";
 import { useState } from "react";
-import { HiOutlineEye } from "react-icons/hi";
+import { HiDocument, HiOutlineEye } from "react-icons/hi";
 import { HiPencilSquare } from "react-icons/hi2";
 import ModalXemDiemHuongDan from "./ModalXemDiemHuongDan";
+import ModalXemTaiLieu from "./ModalXemTaiLieu";
 
 function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
   const countSinhVien = doAn.sinhVien2 ? 2 : 1;
 
   const [showModal, setShowModal] = useState(false);
   const [showDiem, setShowDiem] = useState(false);
+  const [showTaiLieu, setShowTaiLieu] = useState(false);
   const isOdd = (index + 1) % 2 === 0;
   let newLoai = loai;
   if (loai === "diemPhanBien")
@@ -42,6 +44,12 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
         ) : (
           <td rowSpan={countSinhVien} width="25%">
             <div>
+              <Button onClick={() => setShowTaiLieu(true)}>
+                <HiDocument />
+                Xem danh sách tài liệu
+              </Button>
+            </div>
+            <div className="mt-2">
               <Button
                 bgcolor="var(--bs-blue)"
                 state={
@@ -72,11 +80,11 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
                   doAn.trangThai < 2
                     ? "disabled"
                     : !(
-                        getNestedValue(doAn.sinhVien1Info.diem, newLoai)
-                          ?.diemAbet?.length > 0
-                      ) || doAn.trangThai < 2
-                    ? ""
-                    : "disabled"
+                          getNestedValue(doAn.sinhVien1Info.diem, newLoai)
+                            ?.diemAbet?.length > 0
+                        ) || doAn.trangThai < 2
+                      ? ""
+                      : "disabled"
                 }
                 onClick={() => setShowModal(true)}
                 disabled={
@@ -119,6 +127,13 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
           doAn={doAn}
           setShowModal={setShowDiem}
           loai={loai}
+        />
+      )}
+      {showTaiLieu && (
+        <ModalXemTaiLieu
+          doAn={doAn}
+          setShowModal={setShowTaiLieu}
+          loai={"taiLieuPhanBien"}
         />
       )}
     </>

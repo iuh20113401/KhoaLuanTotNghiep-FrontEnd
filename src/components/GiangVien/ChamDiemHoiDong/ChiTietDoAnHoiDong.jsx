@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../../ui/Button";
-import { HiOutlineEye } from "react-icons/hi";
+import { HiDocument, HiOutlineEye } from "react-icons/hi";
 import { HiPencilSquare } from "react-icons/hi2";
 import ModalChamDiemHoiDong from "./ModalChamDiemHoiDong";
+import ModalXemTaiLieu from "../QuanLyDoAn/ModalXemTaiLieu";
 
 function ChiTietDoAnHoiDong({ doAn, index, chamDiem, refetch }) {
-  const countSinhVien = doAn.sinhVien.filter(
-    (sv) => sv != null && Object.keys(sv).length > 0
-  ).length;
+  const countSinhVien = doAn.sinhVien2 ? 2 : 1;
   const [showModal, setShowModal] = useState(false);
   const [showDiem, setShowDiem] = useState(false);
+  const [showTaiLieu, setShowTaiLieu] = useState(false);
+
   const isOdd = (index + 1) % 2 === 0;
   let newLoai = `diemHoiDong.diemHoiDong${doAn.stt}`;
 
@@ -25,8 +26,8 @@ function ChiTietDoAnHoiDong({ doAn, index, chamDiem, refetch }) {
         <td width="20%" rowSpan={countSinhVien}>
           {doAn.tenDoAn}
         </td>
-        <td>{doAn?.sinhVien[0].maSo}</td>
-        <td>{doAn?.sinhVien[0].hoTen}</td>
+        <td>{doAn?.sinhVien1.maSo}</td>
+        <td>{doAn?.sinhVien1.hoTen}</td>
 
         {!chamDiem ? (
           <td rowSpan={countSinhVien}>
@@ -37,17 +38,23 @@ function ChiTietDoAnHoiDong({ doAn, index, chamDiem, refetch }) {
         ) : (
           <td rowSpan={countSinhVien}>
             <div>
+              <Button onClick={() => setShowTaiLieu(true)}>
+                <HiDocument />
+                Xem danh sách tài liệu
+              </Button>
+            </div>
+            <div className="mt-2">
               <Button
                 bgcolor="var(--bs-blue)"
                 state={
-                  !getNestedValue(doAn.sinhVien[0].diem, newLoai)?.diemAbet
+                  !getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
                     ?.length > 0
                     ? "disabled"
                     : ""
                 }
                 disabled={
                   !(
-                    getNestedValue(doAn.sinhVien[0].diem, newLoai)?.diemAbet
+                    getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
                       ?.length > 0
                   )
                 }
@@ -64,14 +71,14 @@ function ChiTietDoAnHoiDong({ doAn, index, chamDiem, refetch }) {
                 size="sm"
                 bgcolor="var(--bs-danger)"
                 state={
-                  getNestedValue(doAn.sinhVien[0].diem, newLoai)?.diemAbet
+                  getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
                     .length > 0
                     ? "disabled"
                     : ""
                 }
                 onClick={() => setShowModal(true)}
                 disabled={
-                  getNestedValue(doAn.sinhVien[0].diem, newLoai)?.diemAbet
+                  getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
                     .length > 0
                 }
               >
@@ -84,11 +91,12 @@ function ChiTietDoAnHoiDong({ doAn, index, chamDiem, refetch }) {
           </td>
         )}
       </tr>
-      {doAn.sinhVien[1] != null &&
-        Object.values(doAn.sinhVien[1]).length > 0 && (
+      {doAn.sinhVien2 &&
+        doAn.sinhVien2 != null &&
+        Object.values(doAn.sinhVien2).length > 0 && (
           <tr className={isOdd ? "strip" : ""}>
-            <td>{doAn?.sinhVien[1].maSo}</td>
-            <td>{doAn?.sinhVien[1].hoTen}</td>
+            <td>{doAn?.sinhVien2.maSo}</td>
+            <td>{doAn?.sinhVien2.hoTen}</td>
           </tr>
         )}
       {showModal && (
@@ -104,6 +112,13 @@ function ChiTietDoAnHoiDong({ doAn, index, chamDiem, refetch }) {
           setShowModal={setShowDiem}
           refetch={refetch}
           chamDiem={false}
+        />
+      )}
+      {showTaiLieu && (
+        <ModalXemTaiLieu
+          doAn={doAn}
+          setShowModal={setShowTaiLieu}
+          loai={"taiLieuHoiDong"}
         />
       )}
     </>

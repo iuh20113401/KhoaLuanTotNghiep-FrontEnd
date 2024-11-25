@@ -12,6 +12,7 @@ import { getThongTinDoAn } from "../services/DoAn";
 import { useParams } from "react-router-dom";
 import DiemDanhContainer from "../components/QuanLyDoAn/DiemDanhContainer";
 import LoadingSpinner from "../ui/Spinner";
+import TaiLieuPhanBienDoAn from "../components/QuanLyDoAn/TaiLieuPhanBien";
 
 const StyledContainer = styled.section`
   display: flex;
@@ -71,6 +72,16 @@ function QuanLyDeTai() {
       content: <DiemDanhContainer />, // Add component or functionality as needed
     },
   ];
+  if (doAn?.trangThai >= 2)
+    TabArr.splice(4, 0, {
+      header: "Tài liệu phản biện",
+      content: <TaiLieuPhanBienDoAn doAn={doAn} refetch={refetch} />,
+    });
+  if (doAn?.trangThai >= 3)
+    TabArr.splice(5, 0, {
+      header: "Tài liệu hội đồng",
+      content: <TaiLieuPhanBienDoAn doAn={doAn} refetch={refetch} />,
+    });
   if (isLoading) return <LoadingSpinner />;
   return (
     doAn && (
