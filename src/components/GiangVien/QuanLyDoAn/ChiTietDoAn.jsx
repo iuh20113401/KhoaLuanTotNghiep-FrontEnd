@@ -43,12 +43,14 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
           </td>
         ) : (
           <td rowSpan={countSinhVien} width="25%">
-            <div>
-              <Button onClick={() => setShowTaiLieu(true)}>
-                <HiDocument />
-                Xem danh sách tài liệu
-              </Button>
-            </div>
+            {loai === "diemPhanBien" && (
+              <div>
+                <Button onClick={() => setShowTaiLieu(true)}>
+                  <HiDocument />
+                  Xem danh sách tài liệu
+                </Button>
+              </div>
+            )}
             <div className="mt-2">
               <Button
                 bgcolor="var(--bs-blue)"

@@ -34,9 +34,7 @@ function ModalChamDiemHoiDong({
     formState: { errors },
   } = useForm();
 
-  const countSinhVien = doAn.sinhVien.filter(
-    (sv) => sv && Object.keys(sv).length > 0
-  ).length;
+  const countSinhVien = doAn.sinhVien2 ? 2 : 1;
 
   // Handle update logic for SinhVien and DoAn
   const handleMutations = async ({ newData, newData2 }) => {
@@ -75,17 +73,17 @@ function ModalChamDiemHoiDong({
     chamDiemMutate({ newData, newData2 });
   };
   const diemSV1Abet =
-    doAn.sinhVien1.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemAbet;
+    doAn.sinhVien1Info.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemAbet;
   const diemSV1Tong =
-    doAn.sinhVien1.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemTong;
+    doAn.sinhVien1Info.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemTong;
   const diemSV1KetQua =
-    doAn.sinhVien1.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.ketQua;
+    doAn.sinhVien1Info.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.ketQua;
   const diemSV2Abet =
-    doAn.sinhVien2?.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemAbet;
+    doAn.sinhVien2Info?.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemAbet;
   const diemSV2Tong =
-    doAn.sinhVien2?.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemTong;
+    doAn.sinhVien2Info?.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemTong;
   const diemSV2KetQua =
-    doAn.sinhVien2?.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.ketQua;
+    doAn.sinhVien2Info?.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.ketQua;
   return (
     <Modal size="xl">
       <Modal.Header>
@@ -104,12 +102,14 @@ function ModalChamDiemHoiDong({
         </div>
       ) : (
         <Modal.Body className="p-0 m-0">
-          {doAn.sinhVien.map((sv, index) =>
-            sv && Object.keys(sv).length > 0 ? (
-              <p key={index}>
-                <strong>Sinh viên {index + 1}:</strong> {sv.hoTen}
-              </p>
-            ) : null
+          <p>
+            <strong>Sinh viên {doAn.sinhVien2 ? "1" : ""}:</strong>{" "}
+            {doAn.sinhVien1.hoTen}
+          </p>
+          {doAn.sinhVien2 && (
+            <p>
+              <strong>Sinh viên 2:</strong> {doAn.sinhVien2.hoTen}
+            </p>
           )}
           <StyledForm className="mt-2" onSubmit={handleSubmit(onSubmit)}>
             <StyledTable headvariation="dark">
@@ -138,7 +138,7 @@ function ModalChamDiemHoiDong({
                 )}
               </thead>
               <tbody>
-                {tieuChi.Lo.map((item, index) => (
+                {tieuChi.map((item, index) => (
                   <tr key={item.stt}>
                     <td>{item.stt}</td>
                     <td>{item.ten}</td>
@@ -157,8 +157,9 @@ function ModalChamDiemHoiDong({
                         min={0}
                         max={10}
                         step={1}
+                        placeholder="Nhập điểm abet"
                         disabled={!chamDiem}
-                        value={diemSV1Abet[index].diem}
+                        value={diemSV1Abet[index]?.diem}
                       />
                       {errors[`sv1_Lo${index}`] && (
                         <p className="error-text">
@@ -171,6 +172,7 @@ function ModalChamDiemHoiDong({
                         <td className="text-center">
                           <StyledInput
                             type="number"
+                            placeholder="Nhập điểm abet"
                             {...register(`sv2_Lo${index}`, {
                               required: "Vui lòng nhập điểm",
                               validate: (value) =>
@@ -184,7 +186,7 @@ function ModalChamDiemHoiDong({
                             max={10}
                             step={1}
                             disabled={!chamDiem}
-                            value={diemSV2Abet[index].diem}
+                            defaultValue={diemSV2Abet[index]?.diem}
                           />
                           {errors[`sv2_Lo${index}`] && (
                             <p className="error-text">
@@ -251,54 +253,6 @@ function ModalChamDiemHoiDong({
                             {errors[`sv2_d10`].message}
                           </p>
                         )}
-                      </td>
-                    )}
-                </tr>
-                <tr>
-                  <td colSpan={2} className="text-center">
-                    <strong>Kết quả</strong>
-                  </td>
-                  <td>
-                    <RadioContainer
-                      label="Đạt"
-                      value="1"
-                      register={register("sv1_ketQua", {
-                        required: "Kết quả cần thiết",
-                      })}
-                      checked={+diemSV1KetQua === 1}
-                      disabled={!chamDiem}
-                    />
-                    <RadioContainer
-                      label="Không đạt"
-                      value="2"
-                      register={register("sv1_ketQua", {
-                        required: "Kết quả cần thiết",
-                      })}
-                      checked={+diemSV1KetQua === 2}
-                      disabled={!chamDiem}
-                    />
-                  </td>
-                  {doAn.sinhVien2 &&
-                    Object.values(doAn.sinhVien2).length > 0 && (
-                      <td>
-                        <RadioContainer
-                          label="Đạt"
-                          value="1"
-                          register={register("sv2_ketQua", {
-                            required: "Kết quả cần thiết",
-                          })}
-                          checked={+diemSV2KetQua === 1}
-                          disabled={!chamDiem}
-                        />
-                        <RadioContainer
-                          label="Không đạt"
-                          value="2"
-                          register={register("sv2_ketQua", {
-                            required: "Kết quả cần thiết",
-                          })}
-                          checked={+diemSV2KetQua === 2}
-                          disabled={!chamDiem}
-                        />
                       </td>
                     )}
                 </tr>
