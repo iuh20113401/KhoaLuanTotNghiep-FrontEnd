@@ -3,12 +3,24 @@ import Button from "../../../ui/Button";
 import StyledTable from "../../../ui/Table";
 import Card from "../../../ui/Card";
 import { useMobile } from "../../../context/MobileContext";
-
+import { useQuery } from "@tanstack/react-query";
+import { layDanhSachBieuMauChung } from "../../../services/BieuMauChung";
+import formatVieNamDate from "../../../utils/FormatDate";
+import { Link } from "react-router-dom";
+const SERVER = import.meta.env.PROD
+  ? import.meta.env.VITE_SERVER_URL
+  : import.meta.env.VITE_SERVER_URL_LOCAL;
 function BieuMau() {
   const isMobile = useMobile();
+  const { data, isLoading } = useQuery({
+    queryKey: ["DanhSachBieuMauChung"],
+    queryFn: layDanhSachBieuMauChung,
+  });
+  if (isLoading) return;
+  const DanhSachBieuMau = data?.danhSachBieuMau;
   return (
     <div className="mt-3">
-      <h4>Biểu mẫu</h4>
+      <h5>Biểu mẫu chung</h5>
       <Card className="mt-1">
         <StyledTable>
           <thead>
@@ -20,18 +32,22 @@ function BieuMau() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td width={isMobile && "40%"}>
-                BaoCao_NguyenTuanKiet_NguyenNgocKhanh
-              </td>
-              <td width={isMobile && "40%"}>23/09/2024</td>
-              <td>20MB</td>
-              <td>
-                <Button variation="icon">
-                  <HiDownload />
-                </Button>
-              </td>
-            </tr>
+            {DanhSachBieuMau.map((bm) => (
+              <tr key={bm._id}>
+                <td width={isMobile && "40%"}>{bm.ten}</td>
+                <td width={isMobile && "40%"}>
+                  {formatVieNamDate(bm.ngayTao)}
+                </td>
+                <td>{bm.dungLuong}</td>
+                <td>
+                  <Link to={`${SERVER}${bm.duongDan}`}>
+                    <Button variation="icon">
+                      <HiDownload />
+                    </Button>
+                  </Link>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </StyledTable>
       </Card>

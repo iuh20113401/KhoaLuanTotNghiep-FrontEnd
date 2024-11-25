@@ -4,9 +4,22 @@ import { HiOutlineHome, HiViewList } from "react-icons/hi";
 import { useState } from "react";
 import Logo from "../../public/hinhanh/iuh_logo_2.png";
 import { Link, NavLink } from "react-router-dom";
-import { FiCircle } from "react-icons/fi";
+import { FiCircle, FiEdit } from "react-icons/fi";
 import { HiOutlineBellAlert } from "react-icons/hi2";
-import { AiOutlineCalendar } from "react-icons/ai";
+import { AiOutlineCalendar, AiOutlineProfile } from "react-icons/ai";
+import { IoSettingsOutline } from "react-icons/io5";
+import { MdFormatListNumbered, MdOutlineNotificationAdd } from "react-icons/md";
+import { GoChecklist } from "react-icons/go";
+import {
+  BsBuilding,
+  BsChatLeftDots,
+  BsClipboard,
+  BsFileText,
+  BsListCheck,
+  BsPerson,
+  BsPersonPlus,
+} from "react-icons/bs";
+import { LiaChartBarSolid } from "react-icons/lia";
 
 const SERVER = import.meta.env.PROD
   ? import.meta.env.VITE_SERVER_URL
@@ -220,7 +233,6 @@ const StyledItemLink = styled(NavLink)`
 `;
 function GiangVienAside({ user, toggleAside, isAsideHidden }) {
   const [toggleDropdown, setToggleDropdown] = useState(false);
-  const [toggleHide, setToggleHide] = useState(false);
   return (
     <StyledAside isAsideHidden={isAsideHidden}>
       <StyledRow>
@@ -240,7 +252,7 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
       </StyledRow>
       <StyledMenuList>
         <MenuItem
-          icon={<HiOutlineHome />}
+          icon={<LiaChartBarSolid />}
           title="Dashboard"
           href={"./trangchu"}
         />
@@ -250,11 +262,11 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
           href={"./thongBao"}
         />
         <MenuItem
-          icon={<HiOutlineHome />}
+          icon={<AiOutlineProfile />}
           title="Quản lý đề tài"
           href={"./quanlydetai"}
         />
-        <ToggleItem title={"Quản lý đồ án"} icon={<HiOutlineHome />}>
+        <ToggleItem title={"Quản lý đồ án"} icon={<BsClipboard />}>
           <StyledMenuList>
             <MenuItem
               icon={<FiCircle />}
@@ -282,7 +294,7 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
             />
           </StyledMenuList>
         </ToggleItem>
-        <ToggleItem title={"Quản lý thực tập"} icon={<HiOutlineHome />}>
+        <ToggleItem title={"Quản lý thực tập"} icon={<BsBuilding />}>
           <StyledMenuList>
             <MenuItem
               icon={<FiCircle />}
@@ -310,28 +322,24 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
             />
           </StyledMenuList>
         </ToggleItem>
-        <MenuItem
-          icon={<HiOutlineHome />}
-          title="Hướng dẫn"
-          href={"./huongdan"}
-        />
+        <MenuItem icon={<BsFileText />} title="Hướng dẫn" href={"./huongdan"} />
         <MenuItem
           icon={<AiOutlineCalendar />}
           title="Lịch họp"
           href={"./lichhop"}
         />
         <MenuItem
-          icon={<HiOutlineHome />}
+          icon={<BsChatLeftDots />}
           title="Trò chuyện"
           href={"./trochuyen"}
         />
         <MenuItem
-          icon={<HiOutlineHome />}
+          icon={<FiEdit />}
           title="Chấm điểm phản biện"
           href={"./chamdiemphanbien"}
         />
         <MenuItem
-          icon={<HiOutlineHome />}
+          icon={<FiEdit />}
           title="Chấm điểm hội đồng"
           href={"./chamdiemhoidong"}
         />
@@ -340,12 +348,12 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
           <div>
             <h5 className="text-primary p-3 ">Chủ nhiệm bộ môn</h5>{" "}
             <MenuItem
-              icon={<HiOutlineHome />}
+              icon={<GoChecklist />}
               title="Thông tin đồ án"
               href={"./quanlythongtindoan"}
             />
             <MenuItem
-              icon={<HiOutlineHome />}
+              icon={<MdFormatListNumbered />}
               title="Tiêu chí đánh giá"
               href={"./quanLyTieuChi"}
             />
@@ -356,11 +364,11 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
           <div>
             <h5 className="text-primary p-3 ">Chủ nhiệm bộ môn</h5>{" "}
             <MenuItem
-              icon={<HiOutlineHome />}
+              icon={<MdOutlineNotificationAdd />}
               title="Tạo thông báo"
               href={"./TaoThongBao"}
             />
-            <ToggleItem title={"Quản lý sinh viên"} icon={<HiOutlineHome />}>
+            <ToggleItem title={"Quản lý sinh viên"} icon={<BsPerson />}>
               <StyledMenuList>
                 <MenuItem
                   icon={<FiCircle />}
@@ -383,31 +391,34 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
               </StyledMenuList>
             </ToggleItem>
             <MenuItem
-              icon={<HiOutlineHome />}
+              icon={<BsListCheck />}
               title="Duyệt đề tài"
               href={"./duyetdetai"}
             />
-            <ToggleItem title={"Phân công"} icon={<HiOutlineHome />}>
+            <ToggleItem title={"Phân công"} icon={<BsPersonPlus />}>
               <StyledMenuList>
                 <MenuItem
-                  icon={<HiOutlineHome />}
+                  icon={<FiCircle />}
                   title="Giảng viên phản biện"
                   href={"./phanconggiangvienphanbien"}
+                  isSmall={true}
                 />
                 <MenuItem
-                  icon={<HiOutlineHome />}
+                  icon={<FiCircle />}
                   title="Giảng viên hội đồng"
                   href={"./phanconggiangvienhoidong"}
+                  isSmall={true}
                 />
                 <MenuItem
-                  icon={<HiOutlineHome />}
+                  icon={<FiCircle />}
                   title="Giảng viên thực tấp"
                   href={"./phanconggiangviengiamsat"}
+                  isSmall={true}
                 />
               </StyledMenuList>
             </ToggleItem>
             <MenuItem
-              icon={<HiOutlineHome />}
+              icon={<IoSettingsOutline />}
               title="Cài đặt "
               href={"./CaiDat"}
             />

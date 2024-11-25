@@ -12,6 +12,7 @@ const StyledLink = styled(Link)`
   }
 `;
 function ThongBaoContainer({ DanhSachThongBao, vaiTro }) {
+  if (!DanhSachThongBao?.length) return;
   return (
     <div className="mt-3">
       <h4>Thông báo</h4>
@@ -55,8 +56,8 @@ function ChiTietThongBao({ thongBao }) {
           {thongBao.loai === 0
             ? "Toàn bộ"
             : thongBao.loai === 1
-            ? "Giảng viên"
-            : "Sinh viên"}
+              ? "Giảng viên"
+              : "Sinh viên"}
         </Link>
       </td>
       <td>

@@ -2,6 +2,7 @@ const SERVER = import.meta.env.PROD
   ? import.meta.env.VITE_SERVER_URL
   : import.meta.env.VITE_SERVER_URL_LOCAL;
 function KeHoachThucHien({ keHoach }) {
+  if (!keHoach) return;
   return (
     <div className="mt-3">
       <h4>Kế hoạch thực hiện</h4>
