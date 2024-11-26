@@ -53,7 +53,11 @@ function FormThemDeTai({ deTai = null }) {
       return null;
     }
     deTai !== null
-      ? suaMutate({ ...deTai, ...data })
+      ? suaMutate({
+          ...deTai,
+          ...data,
+          danhMuc: danhMuc === "Khác" ? data.danhMuc : danhMuc,
+        })
       : taoMutate({
           ...data,
           danhMuc: danhMuc === "Khác" ? data.danhMuc : danhMuc,
