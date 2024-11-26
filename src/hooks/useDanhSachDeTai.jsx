@@ -88,12 +88,17 @@ export const useDanhSachDeTai = ({ key, fn }) => {
     }
 
     if (filterValues.danhMuc) {
-      filtered = filtered.filter((dt) =>
-        dt.danhMuc
-          .toLowerCase()
-          .replace(/ /g, "")
-          .includes(filterValues.danhMuc.toLowerCase().replace(/ /g, "").trim())
-      );
+      filtered =
+        filterValues.danhMuc === ""
+          ? filtered
+          : (filtered = filtered.filter((dt) =>
+              dt.danhMuc
+                .toLowerCase()
+                .replace(/ /g, "")
+                .includes(
+                  filterValues.danhMuc.toLowerCase().replace(/ /g, "").trim()
+                )
+            ));
     }
 
     setFilterDeTai(filtered);

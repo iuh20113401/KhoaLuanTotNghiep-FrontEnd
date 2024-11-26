@@ -11,7 +11,6 @@ const StyleTrangThai = {
   0: {
     ten: "Chờ duyệt",
   },
-
   1: {
     ten: "Đã duyệt",
   },
