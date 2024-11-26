@@ -33,7 +33,7 @@ function FormThemDeTai({ deTai = null }) {
       toast.success("Sửa đề tài thành công");
       reset();
     },
-    onError: () => {
+    onError: (error) => {
       toast.error("Có lỗi xảy ra khi sửa đề tài");
     },
   });
