@@ -3,7 +3,7 @@ import Button from "../../../ui/Button";
 import DeTaiUi from "../../../ui/DeTaiUi";
 import { useState } from "react";
 import { StyledDropdownMenu, StyledLink } from "../../../ui/DropDown";
-import hinhAnh from "../public/hinhanh/iuh_logo_2.png";
+import hinhAnh from "../../../../public/hinhanh/iuh_logo_2.png";
 function ChiTietDeTaiAccordion({ deTai, setIsEdit }) {
   const [edit, setEdit] = useState(false);
 
