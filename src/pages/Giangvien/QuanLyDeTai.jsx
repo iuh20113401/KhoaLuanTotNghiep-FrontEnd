@@ -73,7 +73,7 @@ function QuanLyDeTai() {
         </>
       )}
       {isAdd && <ThemDetai setShow={setIsAdd} />}
-      {isEdit && <SuaDeTai setShow={setIsAdd} deTai={isEdit} />}
+      {isEdit && <SuaDeTai setShow={setIsEdit} deTai={isEdit} />}
     </div>
   );
 }
