@@ -18,13 +18,14 @@ const updateDoAn = (id, status) => capNhatDoAn({ _id: id, trangThai: status });
 
 function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
   const isMobile = useMobile();
+  const isSinhVien2 = doAn.sinhVien2 && Object.value(doAn.sinhVien2).length;
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const countSinhVien = doAn.sinhVien2 ? 2 : 1;
+  const countSinhVien = isSinhVien2 ? 2 : 1;
 
   // Handle update logic for SinhVien and DoAn
   const handleMutations = ({ newData, newData2 }) => {
@@ -32,7 +33,7 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
     let sinhVienUpdate2 = true,
       doAnUpdate = true;
 
-    if (doAn.sinhVien2) {
+    if (isSinhVien2) {
       sinhVienUpdate2 = updateSinhVien(newData2);
       const isBothPassed = +newData.ketQua === 2 && +newData2.ketQua === 2;
       if (isBothPassed)
@@ -59,12 +60,10 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
 
     if (loai === "diemHuongDan") {
       newData = chamDiemHuongDan(data, doAn, tieuChi, true);
-      if (doAn.sinhVien2)
-        newData2 = chamDiemHuongDan(data, doAn, tieuChi, false);
+      if (isSinhVien2) newData2 = chamDiemHuongDan(data, doAn, tieuChi, false);
     } else if (loai === "diemPhanBien") {
       newData = chamDiemPhanBien(data, doAn, tieuChi, true);
-      if (doAn.sinhVien2)
-        newData2 = chamDiemPhanBien(data, doAn, tieuChi, false);
+      if (isSinhVien2) newData2 = chamDiemPhanBien(data, doAn, tieuChi, false);
     } else {
       console.error("Invalid loai type");
     }
@@ -88,7 +87,7 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
         <p>
           <strong>Sinh viên 1:</strong> {doAn.sinhVien1.hoTen}
         </p>
-        {doAn?.sinhVien2 && Object.values(doAn?.sinhVien2).length ? (
+        {isSinhVien2 ? (
           <p>
             <strong>Sinh viên 2:</strong> {doAn.sinhVien2.hoTen}
           </p>
@@ -145,32 +144,31 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
                       </p>
                     )}
                   </td>
-                  {doAn.sinhVien2 &&
-                    Object.values(doAn.sinhVien2).length > 0 && (
-                      <td className="text-center">
-                        <StyledInput
-                          type="number"
-                          {...register(`sv2_Lo${index}`, {
-                            required: "Vui lòng nhập điểm",
-                            validate: (value) =>
-                              (value > 0 && value <= 4) ||
-                              "Điểm phải lớn hơn 0 và nhỏ hơn 4",
-                          })}
-                          className={errors[`sv2_Lo${index}`] ? "error" : ""}
-                          placeholder={`Nhập điểm abet  ${
-                            isMobile ? "cho " + doAn.sinhVien2.hoTen : ""
-                          }`}
-                          min={0}
-                          max={4}
-                          step={1}
-                        />
-                        {errors[`sv2_Lo${index}`] && (
-                          <p className="error-text">
-                            {errors[`sv2_Lo${index}`].message}
-                          </p>
-                        )}
-                      </td>
-                    )}
+                  {isSinhVien2 && (
+                    <td className="text-center">
+                      <StyledInput
+                        type="number"
+                        {...register(`sv2_Lo${index}`, {
+                          required: "Vui lòng nhập điểm",
+                          validate: (value) =>
+                            (value > 0 && value <= 4) ||
+                            "Điểm phải lớn hơn 0 và nhỏ hơn 4",
+                        })}
+                        className={errors[`sv2_Lo${index}`] ? "error" : ""}
+                        placeholder={`Nhập điểm abet  ${
+                          isMobile ? "cho " + doAn.sinhVien2.hoTen : ""
+                        }`}
+                        min={0}
+                        max={4}
+                        step={1}
+                      />
+                      {errors[`sv2_Lo${index}`] && (
+                        <p className="error-text">
+                          {errors[`sv2_Lo${index}`].message}
+                        </p>
+                      )}
+                    </td>
+                  )}
                   <td>
                     <StyledInput type="text" placeholder="Nhập ghi chú" />
                   </td>
@@ -199,7 +197,7 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
                     <p className="error-text">{errors[`sv1_d10`].message}</p>
                   )}
                 </td>
-                {doAn.sinhVien2 && Object.values(doAn.sinhVien2).length > 0 && (
+                {isSinhVien2 && (
                   <td>
                     <StyledInput
                       type="number"
@@ -252,7 +250,7 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
                     />
                     <RadioContainer
                       label="Không đạt"
-                      value="2"
+                      value="5"
                       register={register("sv2_ketQua", {
                         required: "Kết quả cần thiết",
                       })}
