@@ -31,7 +31,12 @@ function PhanCongGiangVienHoiDong() {
   });
   useEffect(() => {
     if (DanhSachDoAn.length) {
-      setUpdatedDoAn(DanhSachDoAn.filter((da) => !da.giangVienHoiDong));
+      setUpdatedDoAn(
+        DanhSachDoAn.filter((da) => {
+          console.log(da.giangVienHoiDong, !da.giangVienHoiDong);
+          return !da.giangVienHoiDong;
+        })
+      );
     }
   }, [DanhSachDoAn]);
   const [hoiDongs, setHoiDongs] = useState([

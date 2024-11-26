@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import Button from "../../../ui/Button";
-import { StyledInput, StyledTextarea } from "../../../ui/Input";
+import { StyledTextarea } from "../../../ui/Input";
 import Modal from "../../../ui/Modal";
 import decodeHtml from "../../../utils/ChangeHtmlCode";
 import { useState } from "react";

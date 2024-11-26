@@ -1,7 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
 import StyledTable from "../../../ui/Table";
 import ChiTietDoAn from "./ChiTietDoAn";
-import { layDanhSachToanBoDoAn } from "../../../services/DoAn";
 
 function DanhSachToanBoDoAnContainer({
   DanhSachDoAn,

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col3, Col4, Col8, ColLg, StyledRow } from "../../../ui/Row";
+import { Col4, Col8, StyledRow } from "../../../ui/Row";
 import Card from "../../../ui/Card";
 import PieChart from "./BieuDoTron";
 import BarChart from "./BieuDoCot";

@@ -32,7 +32,6 @@ function ChiTietDoAn({ doAn, isPoster }) {
               disabled={!isConfirmed}
             >
               <option value={""}>Chọn hội đồng poster</option>
-              {/* Map over available giangVien for poster review */}
               {posterHoiDongs.map((hd) => (
                 <option key={hd.stt} value={hd.stt}>
                   Hội đồng poster {hd.stt}
@@ -47,7 +46,6 @@ function ChiTietDoAn({ doAn, isPoster }) {
               disabled={!isConfirmed}
             >
               <option value={""}>Chọn hội đồng chính</option>
-              {/* Map over available giangVien for main review */}
               {hoiDongs.map((hd) => (
                 <option key={hd.stt} value={hd.stt}>
                   Hội đồng {+hd.stt + 1}

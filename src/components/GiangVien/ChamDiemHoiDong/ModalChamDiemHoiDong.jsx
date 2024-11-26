@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import Button from "../../../ui/Button";
 import StyledForm from "../../../ui/Form";
-import { RadioContainer, StyledInput } from "../../../ui/Input";
+import { StyledInput } from "../../../ui/Input";
 import Modal from "../../../ui/Modal";
 import StyledTable from "../../../ui/Table";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -76,14 +76,10 @@ function ModalChamDiemHoiDong({
     doAn.sinhVien1Info.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemAbet;
   const diemSV1Tong =
     doAn.sinhVien1Info.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemTong;
-  const diemSV1KetQua =
-    doAn.sinhVien1Info.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.ketQua;
   const diemSV2Abet =
     doAn.sinhVien2Info?.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemAbet;
   const diemSV2Tong =
     doAn.sinhVien2Info?.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemTong;
-  const diemSV2KetQua =
-    doAn.sinhVien2Info?.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.ketQua;
   return (
     <Modal size="xl">
       <Modal.Header>

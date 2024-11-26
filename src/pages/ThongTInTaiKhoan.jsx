@@ -16,7 +16,7 @@ import { StyledInput, StyledSelect } from "../ui/Input";
 import formatVieNamDate from "../utils/FormatDate";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
-import { BiPencil, BiSolidPencil } from "react-icons/bi";
+import { BiSolidPencil } from "react-icons/bi";
 const SERVER = import.meta.env.PROD
   ? import.meta.env.VITE_SERVER_URL
   : import.meta.env.VITE_SERVER_URL_LOCAL;
@@ -148,6 +148,7 @@ function ThongTInTaiKhoan() {
                 onChange={(e) => {
                   handleCapNhatAnh(e);
                 }}
+                disabled={editLoading}
                 style={{ display: "none" }}
               />
             </form>
@@ -249,7 +250,7 @@ function ThongTInTaiKhoan() {
                 )}
               </Col9>
             </ColLg>
-          </StyledRow>{" "}
+          </StyledRow>
           <StyledRow className="mt-2">
             <ColLg className="flex align-center">
               <Col2>
@@ -312,7 +313,7 @@ function ThongTInTaiKhoan() {
           </StyledRow>
           {isEdit && (
             <div className="mt-2 text-end">
-              <Button>Lưu thay đổi</Button>
+              <Button disabled={capNhatAnhLoading}>Lưu thay đổi</Button>
             </div>
           )}
         </form>

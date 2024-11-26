@@ -11,7 +11,7 @@ function ChatFooter({ contact }) {
   const [inputMessage, setInputMessage] = useState("");
   const { data, isLoading } = UseUser();
   const User = data?.user;
-
+  if (isLoading) return;
   const sendMessage = () => {
     if (inputMessage.trim() && User?._id && contact?._id) {
       const socket = io(`${SERVER}`);

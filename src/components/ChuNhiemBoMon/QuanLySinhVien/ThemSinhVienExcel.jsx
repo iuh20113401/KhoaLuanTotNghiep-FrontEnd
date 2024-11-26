@@ -45,6 +45,7 @@ function ThemSinhVienExcel({ refetch }) {
         className="mt-3"
         bgcolor="var(--bs-success)"
         onClick={handleChooseFile}
+        disabled={isPending}
       >
         <StyledInput
           hidden="true"

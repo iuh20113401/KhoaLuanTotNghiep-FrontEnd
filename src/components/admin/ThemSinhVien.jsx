@@ -10,11 +10,7 @@ import toast from "react-hot-toast";
 import LoadingSpinner from "../../ui/Spinner";
 
 function ThemSinhVien({ setShowModal, refetch }) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const { mutate, isPending } = useMutation({
     mutationFn: themSinhVien,
     onSuccess: () => {

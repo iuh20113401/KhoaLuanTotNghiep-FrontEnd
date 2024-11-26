@@ -1,18 +1,26 @@
 import React, { useState } from "react";
-import { Col3, Col4, Col8, ColLg, StyledRow } from "../../../ui/Row";
+import { Col4, Col8, StyledRow } from "../../../ui/Row";
 import Card from "../../../ui/Card";
 import PieChart from "./BieuDoTron";
 import BarChart from "./BieuDoCot";
 import { StyledSelect } from "../../../ui/Input";
 
 function DashboardDeTai({ thongTinDashboad }) {
-  if (!thongTinDashboad) return;
-  const tiLeDauRot = thongTinDashboad.tiLeDauRot.doAn;
-  const diemAbetData = thongTinDashboad.diemAbet;
-  const diemHuongDan = thongTinDashboad.diemHuongDan;
+  const tiLeDauRot = thongTinDashboad?.tiLeDauRot.doAn;
+  const diemAbetData = thongTinDashboad?.diemAbet;
+  const diemHuongDan = thongTinDashboad?.diemHuongDan;
 
-  if (!tiLeDauRot.length || !diemAbetData.length || !diemHuongDan.length)
-    return;
+  if (
+    !thongTinDashboad ||
+    !tiLeDauRot.length ||
+    !diemAbetData.length ||
+    !diemHuongDan.length
+  )
+    return (
+      <Card className="mt-2 p-3">
+        <p>Hiện chưa có dữ liệu để hiển thị</p>
+      </Card>
+    );
   const tiLeDauRotLabel = tiLeDauRot.map((dr) =>
     dr.trangThai === 1 ? "Đậu" : dr.trangThai === 2 ? "Rớt" : "Chưa phân loại"
   );

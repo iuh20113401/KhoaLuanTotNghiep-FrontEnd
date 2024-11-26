@@ -29,7 +29,7 @@ function Logout() {
 
       navigate("/login");
     }
-  }, [isSuccess, data?.message]); // Only runs when query is successful and message is available
+  }, [isSuccess, data?.message, data?.status, queryClient, navigate]); // Only runs when query is successful and message is available
 
   return (
     <StyledDiv>

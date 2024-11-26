@@ -1,13 +1,13 @@
 import styled, { css } from "styled-components";
-import { Col10, Col2, Col8, Col9, StyledRow } from "./Row";
+import { Col2, Col8, StyledRow } from "./Row";
 import Avatar from "./Avatar";
 import src from "../../public/hinhanh/iuh_logo_2.png";
-import avatarSrc from "../../public/hinhanh/avatar_1.png";
 import { Link, NavLink } from "react-router-dom";
-import UseUser from "../context/UseUser";
 import { useState } from "react";
 import { useMobile } from "../context/MobileContext";
-
+const SERVER = import.meta.env.PROD
+  ? import.meta.env.VITE_SERVER_URL
+  : import.meta.env.VITE_SERVER_URL_LOCAL;
 const NavVar = css`
   --bs-navbar-padding-x: 0;
   --bs-navbar-padding-y: 0.5rem;
@@ -196,7 +196,7 @@ function Navbar({ user }) {
         </Col8>
         <Col2 style={{ position: "relative" }}>
           <StyledAvatarBox onClick={() => setToggleDropdown((prev) => !prev)}>
-            <Avatar src={avatarSrc} />
+            <Avatar src={`${SERVER}${user.hinhAnh}`} alt="Ảnh đại diện" />
           </StyledAvatarBox>
           {toggleDropdown && (
             <SyledMenuDropDowm>
