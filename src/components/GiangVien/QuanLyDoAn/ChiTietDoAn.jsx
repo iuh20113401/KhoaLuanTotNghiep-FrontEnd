@@ -9,8 +9,7 @@ import ModalXemTaiLieu from "./ModalXemTaiLieu";
 
 function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
   const countSinhVien =
-    doAn.sinhVien2 && Object.values(doAn.sinhVien2).length === 0 ? 2 : 1;
-
+    doAn.sinhVien2 && Object.values(doAn.sinhVien2).length !== 0 ? 2 : 1;
   const [showModal, setShowModal] = useState(false);
   const [showDiem, setShowDiem] = useState(false);
   const [showTaiLieu, setShowTaiLieu] = useState(false);
