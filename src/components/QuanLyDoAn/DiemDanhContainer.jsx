@@ -4,8 +4,8 @@ import formatVieNamDate, { formatVieNamHour } from "../../utils/FormatDate";
 import DiemDanhButton from "./DiemDanh/DiemDanhButton";
 
 function DiemDanhContainer({ doAn }) {
-  const diemDanh1 = doAn.sinhVien1.diemDanh || null;
-  const diemDanh2 = doAn.sinhVien2.diemDanh || null;
+  const diemDanh1 = doAn?.sinhVien1?.diemDanh || null;
+  const diemDanh2 = doAn?.sinhVien2?.diemDanh || null;
   return (
     <div>
       <h5>Điểm danh</h5>
