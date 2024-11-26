@@ -69,7 +69,7 @@ function QuanLyDeTai() {
     },
     {
       header: "Điểm danh",
-      content: <DiemDanhContainer />, // Add component or functionality as needed
+      content: <DiemDanhContainer doAn={doAn} />, // Add component or functionality as needed
     },
   ];
   if (doAn?.trangThai >= 2)
