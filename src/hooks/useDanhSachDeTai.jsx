@@ -76,15 +76,17 @@ export const useDanhSachDeTai = ({ key, fn }) => {
     }
 
     if (filterValues.trangThai !== null) {
-      filtered = filtered.filter(
-        (dt) => dt.trangThai === +filterValues.trangThai
-      );
+      filtered =
+        filtered.trangThai === ""
+          ? filtered
+          : filtered.filter((dt) => dt.trangThai === +filterValues.trangThai);
     }
 
     if (filterValues.soLuong !== null) {
-      filtered = filtered.filter(
-        (dt) => dt.soLuongDoAn === +filterValues.soLuong
-      );
+      filtered =
+        filtered.soLuong === ""
+          ? filtered
+          : filtered.filter((dt) => dt.soLuongDoAn === +filterValues.soLuong);
     }
 
     if (filterValues.danhMuc) {
