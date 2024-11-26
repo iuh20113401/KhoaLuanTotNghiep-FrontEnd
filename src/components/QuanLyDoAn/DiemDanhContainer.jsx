@@ -35,7 +35,7 @@ function DiemDanhContainer({ doAn }) {
                 </tr>
               ))}{" "}
             {diemDanh2 &&
-              diemDanh12?.map((dd) => (
+              diemDanh2?.map((dd) => (
                 <tr>
                   <td colSpan={2}>{doAn.sinhVien1.maSo}</td>
                   <td colSpan={2}>{doAn.sinhVien1.hoten}</td>
