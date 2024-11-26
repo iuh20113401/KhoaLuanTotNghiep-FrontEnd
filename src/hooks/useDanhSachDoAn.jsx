@@ -49,14 +49,15 @@ export const useDanhSachDoAn = ({ key, fn }) => {
           .includes(value.toLowerCase().replace(/ /g, "").trim())
       );
     } else if (field === "sinhVien") {
+      console.log(field, value);
       filtered = DanhSachDoAn.filter(
         (da) =>
           da.sinhVien1?.hoTen
             .toLowerCase()
             .replace(/ /g, "")
             .includes(value.toLowerCase().replace(/ /g, "").trim()) ||
-          da.sinhVien2?.hoTen
-            .toLowerCase()
+          da?.sinhVien2?.hoTen
+            ?.toLowerCase()
             .replace(/ /g, "")
             .includes(value.toLowerCase().replace(/ /g, "").trim())
       );
