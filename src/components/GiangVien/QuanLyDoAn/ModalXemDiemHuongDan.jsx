@@ -60,7 +60,11 @@ function ModalXemDiemHuongDan({ doAn, setShowModal, loai }) {
 }
 
 function ChiTietDiem({ doAn, loai }) {
-  const countSoLuong = doAn.sinhVien2 ? 2 : 1;
+  const isSinhVien2 =
+    doAn.sinhVien2 &&
+    doAn.sinhVien2 !== null &&
+    Object.values(doAn.sinhVien2).length > 0;
+  const countSoLuong = isSinhVien2 ? 2 : 1;
   let newLoai = loai;
   if (loai === "diemPhanBien")
     newLoai =
@@ -72,29 +76,23 @@ function ChiTietDiem({ doAn, loai }) {
   };
 
   const diem = getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet;
-  const diem2 =
-    doAn.sinhVien2 &&
-    doAn.sinhVien2 !== null &&
-    Object.values(doAn.sinhVien2).length > 0
-      ? getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
-      : [];
+  const diem2 = isSinhVien2
+    ? getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
+    : [];
   const sinhVien1DiemTong = getNestedValue(
     doAn.sinhVien1Info.diem,
     newLoai
   )?.diemTong;
-  const sinhVien2DiemTong =
-    doAn.sinhVien2 &&
-    doAn.sinhVien2 !== null &&
-    Object.values(doAn.sinhVien2).length > 0
-      ? getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemTong
-      : "";
+  const sinhVien2DiemTong = isSinhVien2
+    ? getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemTong
+    : "";
   return (
     <>
       <p>
         <strong>Sinh viên 1: </strong>
         {doAn.sinhVien1.hoTen}
       </p>
-      {doAn.sinhVien2 && (
+      {isSinhVien2 && (
         <p>
           <strong>Sinh viên 2: </strong>
           {doAn.sinhVien2.hoTen}
@@ -114,17 +112,16 @@ function ChiTietDiem({ doAn, loai }) {
               Ghi chú
             </th>
           </tr>
-          {doAn.sinhVien2 != null &&
-            Object.values(doAn.sinhVien2).length > 0 && (
-              <tr>
-                <th width="%" className="text-center">
-                  {doAn.sinhVien1.hoTen}
-                </th>
-                <th width="%" className="text-center">
-                  {doAn.sinhVien2.hoTen}
-                </th>
-              </tr>
-            )}
+          {isSinhVien2 && (
+            <tr>
+              <th width="%" className="text-center">
+                {doAn.sinhVien1.hoTen}
+              </th>
+              <th width="%" className="text-center">
+                {doAn.sinhVien2.hoTen}
+              </th>
+            </tr>
+          )}
         </thead>
         <tbody>
           {diem.map((d, index) => {
@@ -143,7 +140,7 @@ function ChiTietDiem({ doAn, loai }) {
                     readOnly
                   />
                 </td>
-                {doAn.sinhVien2 && Object.values(doAn.sinhVien2).length > 0 && (
+                {isSinhVien2 && (
                   <td>
                     <StyledInput
                       type="number"
@@ -185,8 +182,7 @@ function ChiTietDiem({ doAn, loai }) {
                 readOnly
               />
             </td>
-            {doAn.sinhVien2 != null &&
-            Object.values(doAn.sinhVien2).length > 0 ? (
+            {isSinhVien2 ? (
               <td>
                 <StyledInput
                   type="number"
@@ -223,8 +219,7 @@ function ChiTietDiem({ doAn, loai }) {
                 checked={doAn.sinhVien1Info.diem.ketQua === 2}
               />
             </td>
-            {doAn.sinhVien2 != null &&
-            Object.values(doAn.sinhVien2).length > 0 ? (
+            {isSinhVien2 ? (
               <td>
                 <RadioContainer
                   label={"Đạt"}
