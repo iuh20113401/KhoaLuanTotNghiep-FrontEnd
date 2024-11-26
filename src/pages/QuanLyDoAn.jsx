@@ -91,6 +91,7 @@ function QuanLyDeTai() {
           active={active}
           setActive={setActive}
           doAn={doAn}
+          refetch={refetch}
         />
         <div>{TabArr[active].content}</div>
       </StyledContainer>
