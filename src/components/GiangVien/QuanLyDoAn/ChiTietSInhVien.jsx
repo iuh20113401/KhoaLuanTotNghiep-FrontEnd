@@ -64,8 +64,10 @@ function ChiTietSInhVien({ sinhvien, index }) {
             <ChiTietDiem diem={sinhvien.diem.diemHuongDan} />
             {sinhvien.diem.diemPhanBien && (
               <>
-                <h6 className="text-primary">Điểm phản biện</h6>
-                <ChiTietDiem diem={sinhvien.diem.diemPhanBien} />
+                <h6 className="text-primary">Điểm phản biện 1</h6>
+                <ChiTietDiem diem={sinhvien.diem.diemPhanBien.diemPhanBien1} />
+                <h6 className="text-primary">Điểm phản biện 2</h6>
+                <ChiTietDiem diem={sinhvien.diem.diemPhanBien.diemPhanBien2} />
               </>
             )}
           </Modal.Body>
