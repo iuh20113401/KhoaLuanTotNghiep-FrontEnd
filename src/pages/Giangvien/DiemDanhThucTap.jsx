@@ -14,7 +14,7 @@ function DiemDanhThucTap() {
     queryKey: ["DanhSachSinhVienThucTap"],
     queryFn: layDanhSachSinhVienThucTapTheoGiangVien,
   });
-  const danhSachSinhVien = !isLoading && data?.danhSachSinhVien;
+  const danhSachSinhVien = !isLoading && data?.results;
   const loai = 1;
   return (
     !isLoading && (

@@ -5,10 +5,11 @@ import { DiemDanhContext } from "../../pages/Giangvien/DiemDanhDoAn";
 
 function DanhSachDIemDanh() {
   const { danhSachSinhVien } = useContext(DiemDanhContext);
-  const maxDiemDanh = danhSachSinhVien.reduce(
+  const maxDiemDanh = danhSachSinhVien?.reduce(
     (acc, sv) => (acc = sv.diemDanh?.length > acc ? sv.diemDanh?.length : acc),
     -1
   );
+
   return (
     <StyledTable>
       <thead>
@@ -21,7 +22,7 @@ function DanhSachDIemDanh() {
         </tr>
       </thead>
       <tbody>
-        {danhSachSinhVien.map((sv, index) => (
+        {danhSachSinhVien?.map((sv, index) => (
           <ChiTietDiemDanh
             sinhVien={sv}
             index={index + 1}
