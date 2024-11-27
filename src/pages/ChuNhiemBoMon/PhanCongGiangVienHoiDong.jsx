@@ -34,7 +34,7 @@ function PhanCongGiangVienHoiDong() {
         DanhSachDoAn.filter((da) => {
           return (
             typeof da.giangVienHoiDong === "object" &&
-            !Object.value(da.giangVienHoiDong).length > 0
+            !Object.values(da.giangVienHoiDong).length > 0
           );
         })
       );
