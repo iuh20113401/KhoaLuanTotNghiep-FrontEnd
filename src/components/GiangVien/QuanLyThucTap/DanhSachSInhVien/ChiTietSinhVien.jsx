@@ -118,13 +118,7 @@ function ChiTietDiemThucTap({ diem }) {
             <td>{d.ten}</td>
             <td className="text-center">{d.diemAbet}</td>
             <td></td>
-            {index === 0 ? (
-              <td rowSpan={diem.length} className="text-center">
-                {diem.diemThang10}
-              </td>
-            ) : (
-              <td></td>
-            )}
+            <td className="text-center">{d.diemThang10}</td>
           </tr>
         ))}
       </tbody>
