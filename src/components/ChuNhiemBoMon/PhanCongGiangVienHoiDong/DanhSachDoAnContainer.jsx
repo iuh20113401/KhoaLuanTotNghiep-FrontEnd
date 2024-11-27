@@ -32,7 +32,6 @@ function DanhSachDoAnContainer({ DanhSachDoAn }) {
             <ChiTietDoAn key={da.maDoAn} doAn={da} isPoster={true} />
           ))}
         </>
-        )
       </tbody>
     </StyledTable>
   ) : (
