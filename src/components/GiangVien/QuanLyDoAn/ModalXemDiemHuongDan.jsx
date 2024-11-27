@@ -140,7 +140,7 @@ function ChiTietDiem({ doAn, loai }) {
                     readOnly
                   />
                 </td>
-                {isSinhVien2 && (
+                {isSinhVien2 === true && (
                   <td>
                     <StyledInput
                       type="number"

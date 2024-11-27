@@ -44,7 +44,6 @@ function ChamDiemHoiDong() {
           </div>
         ) : DanhSachDoAn?.length > 0 ? (
           <>
-            \
             <DanhSachDoAnHoiDongContainer
               chamDiem={true}
               DanhSachDoAn={sortedDoAn || DanhSachDoAn}

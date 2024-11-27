@@ -18,7 +18,8 @@ const updateDoAn = (id, status) => capNhatDoAn({ _id: id, trangThai: status });
 
 function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
   const isMobile = useMobile();
-  const isSinhVien2 = doAn.sinhVien2 && Object.value(doAn.sinhVien2).length;
+  const isSinhVien2 =
+    doAn.sinhVien2 && Object.values(doAn.sinhVien2).length > 0;
   const {
     register,
     handleSubmit,
@@ -144,7 +145,7 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
                       </p>
                     )}
                   </td>
-                  {isSinhVien2 && (
+                  {isSinhVien2 === true && (
                     <td className="text-center">
                       <StyledInput
                         type="number"
@@ -197,7 +198,7 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
                     <p className="error-text">{errors[`sv1_d10`].message}</p>
                   )}
                 </td>
-                {isSinhVien2 && (
+                {isSinhVien2 === true && (
                   <td>
                     <StyledInput
                       type="number"
@@ -239,7 +240,7 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
                     })}
                   />
                 </td>
-                {doAn.sinhVien2 && Object.values(doAn.sinhVien2).length > 0 && (
+                {isSinhVien2 === true && (
                   <td>
                     <RadioContainer
                       label="Đạt"
