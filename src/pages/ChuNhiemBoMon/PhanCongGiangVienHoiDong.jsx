@@ -33,8 +33,8 @@ function PhanCongGiangVienHoiDong() {
     if (DanhSachDoAn.length) {
       setUpdatedDoAn(
         DanhSachDoAn.filter((da) => {
-          console.log(da.giangVienHoiDong, !da.giangVienHoiDong);
-          return !da.giangVienHoiDong;
+          console.log(da.giangVienHoiDong, !da.giangVienHoiDong.length);
+          return !da.giangVienHoiDong.length;
         })
       );
     }
