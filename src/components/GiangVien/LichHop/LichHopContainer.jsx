@@ -71,9 +71,8 @@ const LichHopContainer = () => {
         id: lh._id,
         title: lh.tieuDe,
         diaDiem: lh.phong,
-        start: new Date(lh.batDau), // Year, month (0-indexed), day, hour, minutes
-        end: new Date(lh.ketThuc),
-        // Optional, for specifying full-day events
+        start: moment(lh.batDau).toDate(),
+        end: moment(lh.ketThuc).toDate(),
       };
     });
   return (
