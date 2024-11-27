@@ -10,14 +10,13 @@ import { createContext, useEffect, useMemo, useState } from "react";
 import Button from "../../ui/Button";
 import LoadingSpinner from "../../ui/Spinner";
 import HoiDongContainer from "../../components/ChuNhiemBoMon/PhanCongGiangVienHoiDong/TaoHoiDong/HoiDongContainer";
+import { useDanhSachDoAn } from "../../hooks/useDanhSachDoAn";
 export const PhanCongHoiDongContext = createContext();
 function PhanCongGiangVienHoiDong() {
-  const { data: doAnData, isLoading: doAnLoading } = useQuery({
-    queryKey: ["DanhSachDoAnDatPhanBien"],
-    queryFn: layDanhSachDoAnDatPhanBien,
+  const { DanhSachDoAn, isLoading, namHoc, hocKy } = useDanhSachDoAn({
+    key: "DanhSachDoAnDatPhanBien",
+    fn: layDanhSachDoAnDatPhanBien,
   });
-
-  const DanhSachDoAn = useMemo(() => doAnData?.DanhSachDoAn || [], [doAnData]);
   const [updatedDoAn, setUpdatedDoAn] = useState([]);
 
   const { mutate, isPending } = useMutation({
@@ -109,7 +108,6 @@ function PhanCongGiangVienHoiDong() {
     });
     mutate(newData);
   }
-  const isLoading = doAnLoading;
   return (
     <PhanCongHoiDongContext.Provider
       value={{
