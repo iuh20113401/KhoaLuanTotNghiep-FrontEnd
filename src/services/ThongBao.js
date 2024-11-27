@@ -27,6 +27,10 @@ const taoThongBaoMoi = (data) =>
     },
     body: JSON.stringify(data),
   });
+const xoaThongBao = (id) =>
+  fetchApi(`${BASE_URL}/${id}`, {
+    method: "DELETE",
+  });
 const layThongBao = (id) =>
   fetchApi(`${BASE_URL}/${id}`, {
     method: "GET",
@@ -53,6 +57,7 @@ export {
   layDanhSachChoSinhVien,
   layDanhSachChoGiangVien,
   taoThongBaoMoi,
+  xoaThongBao,
   layThongBao,
   layKeHoachThucHien,
   themHinhAnhKeHoachThucHien,

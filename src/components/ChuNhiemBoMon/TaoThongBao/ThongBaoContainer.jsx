@@ -1,22 +1,36 @@
-import { HiOutlineInformationCircle } from "react-icons/hi";
+import { HiOutlineInformationCircle, HiTrash } from "react-icons/hi";
 import Button from "../../../ui/Button";
 import Card from "../../../ui/Card";
 import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { layDanhSachToanBoThongBao } from "../../../services/ThongBao";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  layDanhSachToanBoThongBao,
+  xoaThongBao,
+} from "../../../services/ThongBao";
 import StyledTable from "../../../ui/Table";
 import styled from "styled-components";
 import KeHoachThucHien from "./KeHoachThucHien";
 import formatVieNamDate from "../../../utils/FormatDate";
+import toast from "react-hot-toast";
 const StyledLink = styled(Link)`
   &:hover {
     color: var(--bs-primary);
   }
 `;
 function ThongBaoContainer({ vaiTro }) {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["DanhSachThongBao"],
     queryFn: layDanhSachToanBoThongBao,
+  });
+  const { mutate: xoaMutate, isPending } = useMutation({
+    mutationFn: xoaThongBao,
+    onSuccess: () => {
+      toast.success("Xóa thông báo thành công");
+      refetch();
+    },
+    onError: () => {
+      toast.error("Xóa thông báo không thành công");
+    },
   });
   const DanhSachThongBao = data?.data;
   return (
@@ -51,7 +65,12 @@ function ThongBaoContainer({ vaiTro }) {
             <StyledTable>
               <tbody>
                 {DanhSachThongBao?.map((tb) => (
-                  <ChiTietThongBao thongBao={tb} key={tb._id} />
+                  <ChiTietThongBao
+                    xoaMutate={xoaMutate}
+                    vaiTro={vaiTro}
+                    thongBao={tb}
+                    key={tb._id}
+                  />
                 ))}
               </tbody>
             </StyledTable>
@@ -61,16 +80,19 @@ function ThongBaoContainer({ vaiTro }) {
     )
   );
 }
-function ChiTietThongBao({ thongBao }) {
+function ChiTietThongBao({ vaiTro, thongBao, xoaMutate }) {
+  function handleXoa() {
+    xoaMutate(thongBao._id);
+  }
   return (
-    <tr>
+    <tr as="link">
       <td width={"10%"}>
         <Link to={""}>
           {thongBao.loai === 0
             ? "Toàn bộ"
             : thongBao.loai === 1
-            ? "Giảng viên"
-            : "Sinh viên"}
+              ? "Giảng viên"
+              : "Sinh viên"}
         </Link>
       </td>
       <td>
@@ -82,7 +104,14 @@ function ChiTietThongBao({ thongBao }) {
         <StyledLink to={`/giangvien/thongBao/${thongBao._id}`}>
           {formatVieNamDate(thongBao.ngayTao)}
         </StyledLink>
-      </td>
+      </td>{" "}
+      {vaiTro === "2" && (
+        <td>
+          <Button variation="icon" onClick={handleXoa}>
+            <HiTrash />
+          </Button>
+        </td>
+      )}
     </tr>
   );
 }
