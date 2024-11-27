@@ -9,4 +9,5 @@ const laySinhVien = (danhSachSinhVien) => {
     };
   });
 };
+
 export default laySinhVien;

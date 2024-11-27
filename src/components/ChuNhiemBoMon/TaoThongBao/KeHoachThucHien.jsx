@@ -105,6 +105,7 @@ function KeHoachThucHien({ vaiTro }) {
       )}
       <Editor />
       <div className="mt-3">
+        {!keHoach && <p>Hiện không có nào</p>}
         {+keHoach?.hinhThuc === 1 ? (
           <>
             <img

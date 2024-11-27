@@ -67,7 +67,7 @@ function ThongBaoContainer({ vaiTro }) {
               <div>
                 <LoadingSpinner />
               </div>
-            ) : (
+            ) : DanhSachThongBao?.length > 0 ? (
               <StyledTable>
                 <tbody>
                   {DanhSachThongBao?.map((tb) => (
@@ -80,6 +80,8 @@ function ThongBaoContainer({ vaiTro }) {
                   ))}
                 </tbody>
               </StyledTable>
+            ) : (
+              <p>Hiện không có thông báo nào</p>
             )}
           </div>
         </Card>

@@ -14,13 +14,11 @@ function XemDanhSachSinhVienThucTap() {
     isLoading,
     hocKy,
     namHoc,
-    refetch,
   } = useDanhSachBaoCao({
     key: "DanhSachSinhVienThucTap",
     fn: layDanhSachSinhVienThucTapTheoGiangVien,
   });
 
-  const danhSachSinhVien = !isLoading && DanhSachBaoCao;
   return (
     <div>
       <h5>Xem danh sách sinh viên</h5>
