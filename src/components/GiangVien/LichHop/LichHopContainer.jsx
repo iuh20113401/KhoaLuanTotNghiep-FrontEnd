@@ -67,15 +67,22 @@ const LichHopContainer = () => {
   const events =
     !isLoading &&
     data?.danhSachLichHop.map((lh) => {
+      const serverTimeZone = "UTC"; // Replace with Netlify's actual time zone if different
+
       return {
         id: lh._id,
         title: lh.tieuDe,
         diaDiem: lh.phong,
-        start: moment.tz(lh.batDau, "Asia/Ho_Chi_Minh").toDate(),
-        end: moment.tz(lh.ketThuc, "Asia/Ho_Chi_Minh").toDate(),
+        start: moment
+          .tz(lh.batDau, serverTimeZone)
+          .tz("Asia/Ho_Chi_Minh")
+          .toDate(),
+        end: moment
+          .tz(lh.ketThuc, serverTimeZone)
+          .tz("Asia/Ho_Chi_Minh")
+          .toDate(),
       };
     });
-  console.log(events);
   return (
     <div style={{ height: "auto" }}>
       <Button
