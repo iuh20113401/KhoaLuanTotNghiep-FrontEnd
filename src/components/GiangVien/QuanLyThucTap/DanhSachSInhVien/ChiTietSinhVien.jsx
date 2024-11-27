@@ -32,10 +32,8 @@ function ChiTietSinhVien({ sinhvien, index }) {
             onClick={() => setShowModal((showModal) => !showModal)}
             disabled={
               !(
-                sinhvien.diem.diemThucTap.diemGiangVien?.diemAbet?.length !==
-                  0 ||
-                sinhvien.diem.diemThucTap.diemDoanhNghiep?.diemAbet?.length !==
-                  0
+                sinhvien.diem.diemThucTap.diemGiangVien?.diemAbet?.length ||
+                sinhvien.diem.diemThucTap.diemDoanhNghiep?.diemAbet?.length
               )
             }
             state={
