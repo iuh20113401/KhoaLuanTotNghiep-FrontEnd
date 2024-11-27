@@ -65,25 +65,7 @@ function Filter({
               onChange={(e) => handleInputChange(e, "danhMuc")}
             />
           </ColLg>
-          <ColLg>
-            <FilterSelect
-              label="Học kỳ"
-              options={[
-                { value: "hk1", label: "Học kỳ 1" },
-                { value: "hk2", label: "Học kỳ 2" },
-              ]}
-              filterField="trangThai"
-              onChange={(e) => handleInputChange(e, "hocKy")}
-            />
-          </ColLg>
-          <ColLg>
-            <StyledInput
-              width="100%"
-              type="text"
-              placeholder="Năm học (2023-2024)"
-              onChange={(e) => handleInputChange(e, "namHoc")}
-            />
-          </ColLg>
+
           <ColLg>
             <FilterSelect
               label="Số lượng sinh viên"
