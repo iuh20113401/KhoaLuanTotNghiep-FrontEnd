@@ -40,7 +40,7 @@ function ThongBaoContainer({ vaiTro }) {
         <Card className="p-3 mt-3">
           <h6>Kế hoạch thực hiện</h6>
           <div className="mt-2">
-            <KeHoachThucHien />
+            <KeHoachThucHien vaiTro={vaiTro} />
           </div>
         </Card>
         <Card className="p-3 mt-3">
