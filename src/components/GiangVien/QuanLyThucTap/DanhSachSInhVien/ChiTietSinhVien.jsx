@@ -15,6 +15,7 @@ const TRANG_THAI_STYLE = {
 function ChiTietSinhVien({ sinhvien, index }) {
   const trangThai = sinhvien.diem.ketQua;
   const [showModal, setShowModal] = useState(false);
+
   return (
     <>
       <tr>
@@ -32,14 +33,14 @@ function ChiTietSinhVien({ sinhvien, index }) {
             onClick={() => setShowModal((showModal) => !showModal)}
             disabled={
               !(
-                sinhvien.diem.diemThucTap.diemGiangVien?.diemAbet?.length ||
-                sinhvien.diem.diemThucTap.diemDoanhNghiep?.diemAbet?.length
+                sinhvien.diem.diemThucTap.diemGiangVien != null ||
+                sinhvien.diem.diemThucTap.diemDoanhNghiep != null
               )
             }
             state={
               !(
-                sinhvien.diem.diemThucTap.diemGiangVien?.diemAbet?.length ||
-                sinhvien.diem.diemThucTap.diemDoanhNghiep?.diemAbet?.length
+                sinhvien.diem.diemThucTap.diemGiangVien != null ||
+                sinhvien.diem.diemThucTap.diemDoanhNghiep != null
               )
                 ? "disabled"
                 : "normal"
