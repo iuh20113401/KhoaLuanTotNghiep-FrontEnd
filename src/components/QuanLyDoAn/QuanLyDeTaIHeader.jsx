@@ -140,7 +140,7 @@ function QuanLyDeTaiHeader({ content, active, setActive, doAn, refetch }) {
                 >
                   <StyledRow gap="0.4rem">
                     <ColLg>
-                      {isEdit ? (
+                      {doAn.trangThai === 0 && isEdit ? (
                         <StyledInput
                           type="text"
                           placeholder="Nhập tên đề tài"

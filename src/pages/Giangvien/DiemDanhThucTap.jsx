@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import Button from "../../ui/Button";
 import Card from "../../ui/Card";
-import TaoMaDiemDanhCanvas from "../../components/DiemDanh/TaoMaDiemDanhCanvas";
 import { useState } from "react";
 import { layDanhSachSinhVienThucTapTheoGiangVien } from "../../services/SinhVien";
 import DanhSachDIemDanh from "../../components/DiemDanh/DanhSachDIemDanh";
 import { DiemDanhContext } from "./DiemDanhDoAn";
+import TaoMaDiemDanhThucTapCanvas from "../../components/DiemDanh/TaoMaDiemDanhThucTap";
 
 function DiemDanhThucTap() {
   const [isDiemDanh, setIsDiemDanh] = useState(false);
@@ -26,7 +26,7 @@ function DiemDanhThucTap() {
               Tạo mã điểm danh
             </Button>
             {isDiemDanh && (
-              <TaoMaDiemDanhCanvas setIsDiemDanh={setIsDiemDanh} />
+              <TaoMaDiemDanhThucTapCanvas setIsDiemDanh={setIsDiemDanh} />
             )}
           </div>
           <Card className="mt-3 p-3">
