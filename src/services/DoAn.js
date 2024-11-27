@@ -77,10 +77,13 @@ const layThongTinSinhVienTheoDoAn = (id) =>
     method: "GET",
   });
 
-const layDanhSachDoAnDat = () =>
-  fetchApi(`${BASE_URL}/DanhSachDoAn/DatCuoiKy`, {
-    method: "GET",
-  });
+const layDanhSachDoAnDat = (namHoc, hocKy) =>
+  fetchApi(
+    `${BASE_URL}/DanhSachDoAn/DatCuoiKy?hocKy=${hocKy}&namHoc=${namHoc}`,
+    {
+      method: "GET",
+    }
+  );
 
 const themNhieuGiangVienPhanBien = (data) =>
   fetchApi(`${BASE_URL}/DanhSachDoAn/DatCuoiKy`, {
@@ -90,18 +93,24 @@ const themNhieuGiangVienPhanBien = (data) =>
     },
     body: JSON.stringify(data),
   });
-const layDanhSachDoAnPhanBien = () =>
-  fetchApi(`${BASE_URL}/DanhSachDoAn/PhanBien`, {
-    method: "GET",
-  });
+const layDanhSachDoAnPhanBien = (hocKy, namHoc) =>
+  fetchApi(
+    `${BASE_URL}/DanhSachDoAn/PhanBien?hocKy=${hocKy}&namHoc=${namHoc}`,
+    {
+      method: "GET",
+    }
+  );
 const layDanhSachToanBoDoAn = (hocKy, namHoc) =>
   fetchApi(`${BASE_URL}?hocKy=${hocKy}&namHoc=${namHoc}`, {
     method: "GET",
   });
-const layDanhSachDoAnDatPhanBien = () =>
-  fetchApi(`${BASE_URL}/DanhSachDoAn/DatPhanBien`, {
-    method: "GET",
-  });
+const layDanhSachDoAnDatPhanBien = (hocKy, namHoc) =>
+  fetchApi(
+    `${BASE_URL}/DanhSachDoAn/DatPhanBien?hocKy=${hocKy}&namHoc=${namHoc}`,
+    {
+      method: "GET",
+    }
+  );
 const themNhiemGiangVienHoiDong = (data) =>
   fetchApi(`${BASE_URL}/DanhSachDoAn/DatPhanBien`, {
     method: "POST",
@@ -110,8 +119,8 @@ const themNhiemGiangVienHoiDong = (data) =>
     },
     body: JSON.stringify(data),
   });
-const layDanhSachDoAnHoiDong = () =>
-  fetchApi(`${BASE_URL}/DanhSachDoAn/HoiDong`, {
+const layDanhSachDoAnHoiDong = (hocKy, namHoc) =>
+  fetchApi(`${BASE_URL}/DanhSachDoAn/HoiDong?hocKy=${hocKy}&namHoc=${namHoc}`, {
     method: "GET",
   });
 export {
