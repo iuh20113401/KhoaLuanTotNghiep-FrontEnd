@@ -37,17 +37,17 @@ function ChamDiemPhanBien() {
     <div>
       <h5>Chấm điểm phản biện</h5>
       <Card className="mt-3">
+        <FilterDoAn
+          hocKy={hocKy}
+          namHoc={namHoc}
+          handleFilterDoAn={handleFilterDoAn}
+        />
         {isLoading ? (
           <div className="p-5">
             <LoadingSpinner />
           </div>
         ) : DanhSachDoAn?.length > 0 ? (
           <>
-            <FilterDoAn
-              hocKy={hocKy}
-              namHoc={namHoc}
-              handleFilterDoAn={handleFilterDoAn}
-            />
             <DanhSachDoAnContainer
               chamDiem={true}
               DanhSachDoAn={sortedDoAn || DanhSachDoAn}

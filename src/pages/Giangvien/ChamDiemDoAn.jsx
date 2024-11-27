@@ -35,18 +35,21 @@ function ChamDiemDoAn() {
     <div>
       <h5>Chấm điểm đồ án</h5>
       <Card className="mt-3">
+        {DanhSachDoAn?.length > 0 && sortedDoAn && (
+          <XuatDanhSachDiemDoAn DanhSachDoAn={sortedDoAn} />
+        )}
+
+        <FilterDoAn
+          hocKy={hocKy}
+          namHoc={namHoc}
+          handleFilterDoAn={handleFilterDoAn}
+        />
         {isLoading || tieuChiLoading ? (
           <div className="p-5">
             <LoadingSpinner />
           </div>
         ) : DanhSachDoAn?.length > 0 ? (
           <>
-            {sortedDoAn && <XuatDanhSachDiemDoAn DanhSachDoAn={sortedDoAn} />}
-            <FilterDoAn
-              hocKy={hocKy}
-              namHoc={namHoc}
-              handleFilterDoAn={handleFilterDoAn}
-            />
             {sortedDoAn && (
               <DanhSachDoAnContainer
                 tieuChi={tieuChi}

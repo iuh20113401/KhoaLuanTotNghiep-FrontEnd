@@ -32,17 +32,19 @@ function ChamDiemHoiDong() {
       <h5>Chấm điểm hội đồng</h5>
 
       <Card className="mt-3">
+        {" "}
+        <FilterDoAn
+          hocKy={hocKy}
+          namHoc={namHoc}
+          handleFilterDoAn={handleFilterDoAn}
+        />
         {doAnLoading ? (
           <div className="p-5">
             <LoadingSpinner />
           </div>
         ) : DanhSachDoAn?.length > 0 ? (
           <>
-            <FilterDoAn
-              hocKy={hocKy}
-              namHoc={namHoc}
-              handleFilterDoAn={handleFilterDoAn}
-            />
+            \
             <DanhSachDoAnHoiDongContainer
               chamDiem={true}
               DanhSachDoAn={sortedDoAn || DanhSachDoAn}
