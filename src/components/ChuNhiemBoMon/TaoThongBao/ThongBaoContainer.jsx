@@ -12,6 +12,7 @@ import styled from "styled-components";
 import KeHoachThucHien from "./KeHoachThucHien";
 import formatVieNamDate from "../../../utils/FormatDate";
 import toast from "react-hot-toast";
+import LoadingSpinner from "../../../ui/Spinner";
 const StyledLink = styled(Link)`
   &:hover {
     color: var(--bs-primary);
@@ -62,18 +63,24 @@ function ThongBaoContainer({ vaiTro }) {
             </div>
           )}
           <div className="mt-2">
-            <StyledTable>
-              <tbody>
-                {DanhSachThongBao?.map((tb) => (
-                  <ChiTietThongBao
-                    xoaMutate={xoaMutate}
-                    vaiTro={vaiTro}
-                    thongBao={tb}
-                    key={tb._id}
-                  />
-                ))}
-              </tbody>
-            </StyledTable>
+            {isLoading || isPending ? (
+              <div>
+                <LoadingSpinner />
+              </div>
+            ) : (
+              <StyledTable>
+                <tbody>
+                  {DanhSachThongBao?.map((tb) => (
+                    <ChiTietThongBao
+                      xoaMutate={xoaMutate}
+                      vaiTro={vaiTro}
+                      thongBao={tb}
+                      key={tb._id}
+                    />
+                  ))}
+                </tbody>
+              </StyledTable>
+            )}
           </div>
         </Card>
       </div>
