@@ -40,12 +40,10 @@ function ChiTietSinhVien({ sinhvien, index }) {
             }
             state={
               !(
-                sinhvien.diem.diemThucTap.diemGiangVien?.diemAbet?.length !==
-                  0 ||
-                sinhvien.diem.diemThucTap.diemDoanhNghiep?.diemAbet?.length !==
-                  0
+                sinhvien.diem.diemThucTap.diemGiangVien?.diemAbet?.length ||
+                sinhvien.diem.diemThucTap.diemDoanhNghiep?.diemAbet?.length
               )
-                ? "diabled"
+                ? "disabled"
                 : "normal"
             }
           >
@@ -56,7 +54,7 @@ function ChiTietSinhVien({ sinhvien, index }) {
       {showModal && (
         <Modal size="xl">
           <Modal.Header>
-            <h5>{sinhvien.userInfo.ten}</h5>
+            <h5>{sinhvien.Info.ten}</h5>
             <button
               type="button"
               className="btn-close"
@@ -69,7 +67,7 @@ function ChiTietSinhVien({ sinhvien, index }) {
           </Modal.Header>
           <Modal.Body>
             <StyledRow className="align-center">
-              <h6 className="text-primary">Điểm hướng dãn</h6>
+              <h6 className="text-primary">Điểm doanh nghiệp</h6>
               <ColLg className="text-end">
                 <Button>
                   <span>
