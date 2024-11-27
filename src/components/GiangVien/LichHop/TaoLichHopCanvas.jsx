@@ -31,6 +31,7 @@ function TaoLichHopCanvas({ setShowCanvas, refetch }) {
   const { data: user } = UseUser();
   function onSubmit(data) {
     data.giangVien = user.user._id;
+    console.log(data);
     mutate(data);
   }
 
