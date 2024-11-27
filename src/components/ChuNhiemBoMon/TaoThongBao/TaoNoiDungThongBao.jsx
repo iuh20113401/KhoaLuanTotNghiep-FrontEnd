@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Card from "../../../ui/Card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import StyledForm from "../../../ui/Form";
 import { StyledInput, StyledSelect } from "../../../ui/Input";
 import Button from "../../../ui/Button";
@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { taoThongBaoMoi, uploadHinhAnh } from "../../../services/ThongBao";
 import toast from "react-hot-toast";
+import { HiChevronLeft } from "react-icons/hi";
 
 const formats = [
   "font",
@@ -35,7 +36,7 @@ const formats = [
 function TaoNoiDungThongBao() {
   const [value, setValue] = useState("");
   const quillRef = useRef(null); // Create a reference to store Quill instance
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -49,6 +50,7 @@ function TaoNoiDungThongBao() {
       toast.success("Tạo thông báo thành công");
       reset();
       setValue("");
+      navigate("/giangVien/TaoThongBao");
     },
     onError: () => {
       toast.error("Tạo thông báo không thành công");
@@ -113,6 +115,17 @@ function TaoNoiDungThongBao() {
         </h5>
       </div>
       <Card className="p-3">
+        <div className="mb-2">
+          <Button
+            bgcolor="transparent"
+            onClick={() => navigate("/giangVien/TaoThongBao")}
+            color="black"
+            size="sm"
+          >
+            <HiChevronLeft />
+            Quay lại
+          </Button>
+        </div>
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label>Tiêu đề thông báo</label>
