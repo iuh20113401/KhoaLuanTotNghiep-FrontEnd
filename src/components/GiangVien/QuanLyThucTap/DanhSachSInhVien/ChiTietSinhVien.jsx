@@ -4,6 +4,7 @@ import Button from "../../../../ui/Button";
 import Modal from "../../../../ui/Modal";
 import { ColLg, StyledRow } from "../../../../ui/Row";
 import ChiTietDiem from "../../../QuanLyDoAn/BieuMau/ChiTietDiem";
+import StyledTable from "../../../../ui/Table";
 
 const TRANG_THAI_STYLE = {
   0: {
@@ -79,13 +80,17 @@ function ChiTietSinhVien({ sinhvien, index }) {
             {sinhvien.diem.diemThucTap.diemDoanhNghiep && (
               <>
                 <h6 className="text-primary">Điểm doanh nghiệp</h6>
-                <ChiTietDiem diem={sinhvien.diem.diemThucTap.diemDoanhNghiep} />
+                <ChiTietDiemThucTap
+                  diem={sinhvien.diem.diemThucTap.diemDoanhNghiep}
+                />
               </>
             )}
             {sinhvien.diem.diemThucTap.diemGiangVien && (
               <>
                 <h6 className="text-primary">Điểm giảng viên</h6>
-                <ChiTietDiem diem={sinhvien.diem.diemThucTap.diemGiangVien} />
+                <ChiTietDiemThucTap
+                  diem={sinhvien.diem.diemThucTap.diemGiangVien}
+                />
               </>
             )}
           </Modal.Body>
@@ -94,5 +99,36 @@ function ChiTietSinhVien({ sinhvien, index }) {
     </>
   );
 }
-
+function ChiTietDiemThucTap({ diem }) {
+  return (
+    <StyledTable>
+      <thead>
+        <tr>
+          <th>LO</th>
+          <th width="50%">Nội dung</th>
+          <th width="10%">Điểm abet</th>
+          <th width="20%">Ghi chú</th>
+          <th>Thang điểm 10</th>
+        </tr>
+      </thead>
+      <tbody>
+        {diem?.map((d, index) => (
+          <tr key={d.stt}>
+            <td>{d.stt}</td>
+            <td>{d.ten}</td>
+            <td className="text-center">{d.diemAbet}</td>
+            <td></td>
+            {index === 0 ? (
+              <td rowSpan={diem.length} className="text-center">
+                {diem.diemThang10}
+              </td>
+            ) : (
+              <td></td>
+            )}
+          </tr>
+        ))}
+      </tbody>
+    </StyledTable>
+  );
+}
 export default ChiTietSinhVien;
