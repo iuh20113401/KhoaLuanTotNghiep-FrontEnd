@@ -35,7 +35,7 @@ function XemDanhSachSinhVienThucTap() {
           <div className="p-5">
             <LoadingSpinner />
           </div>
-        ) : danhSachSinhVien?.length > 0 ? (
+        ) : DanhSachBaoCao?.length > 0 ? (
           <>
             <DanhSachSinhVienContainer danhSachSinhVien={filterBaoCao} />
           </>

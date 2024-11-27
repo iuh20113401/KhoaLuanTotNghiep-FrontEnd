@@ -19,7 +19,7 @@ function DanhSachSinhVienContainer({ danhSachSinhVien }) {
           </tr>
         </thead>
         <tbody>
-          {danhSachSinhVien.map((sv, index) => (
+          {danhSachSinhVien?.map((sv, index) => (
             <ChiTietSinhVien sinhvien={sv} index={index} />
           ))}
         </tbody>
