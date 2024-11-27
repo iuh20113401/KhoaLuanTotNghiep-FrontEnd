@@ -20,7 +20,7 @@ function DanhSachSinhVienContainer({ danhSachSinhVien }) {
         </thead>
         <tbody>
           {danhSachSinhVien?.map((sv, index) => (
-            <ChiTietSinhVien sinhvien={sv} index={index} />
+            <ChiTietDiemThucTap sinhvien={sv} index={index} />
           ))}
         </tbody>
       </StyledTable>

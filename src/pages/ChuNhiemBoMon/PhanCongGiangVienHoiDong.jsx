@@ -32,7 +32,10 @@ function PhanCongGiangVienHoiDong() {
     if (DanhSachDoAn.length) {
       setUpdatedDoAn(
         DanhSachDoAn.filter((da) => {
-          return !da.giangVienHoiDong.length;
+          return (
+            typeof da.giangVienHoiDong === "object" &&
+            !Object.value(da.giangVienHoiDong).length > 0
+          );
         })
       );
     }

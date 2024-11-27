@@ -28,7 +28,11 @@ function HoiDongContainer() {
     queryFn: layDanhSachToanBoGiangVien,
   });
   const DanhSachGiangVien = data?.danhSachGiangVien || [];
-  const { data: hoiDongData, isLoading: hoiDongLoading } = useQuery({
+  const {
+    data: hoiDongData,
+    isLoading: hoiDongLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["DanhSacHoiDong"],
     queryFn: layHoiDong,
   });
@@ -40,6 +44,7 @@ function HoiDongContainer() {
       onSuccess: () => {
         toast.success("Tạo hội đồng thành công");
         setIsConfirmed(true);
+        refetch();
       },
       onError: (error) => {
         toast.error("Lôi", error.message);
@@ -72,11 +77,13 @@ function HoiDongContainer() {
       if (existingPosterHoiDongs.length > 0) {
         let formattedPosterHoiDongs = [];
         const soLuongPosterHoiDongs = getDistinctValues(
-          existingHoiDongs,
+          existingPosterHoiDongs,
           "stt"
         );
         for (let index = 0; index < soLuongPosterHoiDongs; index++) {
-          const hoiDong = existingHoiDongs.filter((hd) => hd.stt === index);
+          const hoiDong = existingPosterHoiDongs.filter(
+            (hd) => hd.stt === index
+          );
           formattedPosterHoiDongs.push({
             stt: index,
             gv1: hoiDong.filter((hd) => hd.vaiTro === 1)[0].giangVien._id,
