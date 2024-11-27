@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
-import moment from "moment-timezone";
+import momentTimezone from "moment-timezone";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import "react-big-calendar/lib/css/react-big-calendar.css"; // Import calendar's styles
@@ -10,7 +10,7 @@ import TaoLichHopCanvas from "./TaoLichHopCanvas";
 import { useQuery } from "@tanstack/react-query";
 import UseUser from "../../../context/UseUser";
 import { layDanhSachLichHop } from "../../../services/LichHop";
-const localizer = momentLocalizer(moment);
+const localizer = momentLocalizer(momentTimezone);
 
 const vietnameseMessages = {
   date: "Ngày",
@@ -73,11 +73,11 @@ const LichHopContainer = () => {
         id: lh._id,
         title: lh.tieuDe,
         diaDiem: lh.phong,
-        start: moment
+        start: momentTimezone
           .tz(lh.batDau, serverTimeZone)
           .tz("Asia/Ho_Chi_Minh")
           .toDate(),
-        end: moment
+        end: momentTimezone
           .tz(lh.ketThuc, serverTimeZone)
           .tz("Asia/Ho_Chi_Minh")
           .toDate(),
