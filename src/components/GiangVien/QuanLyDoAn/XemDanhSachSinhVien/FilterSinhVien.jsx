@@ -4,20 +4,19 @@ import { ColLg, StyledRow } from "../../../../ui/Row";
 import SortBy from "../../../../ui/SortBy";
 
 function FilterSinhVien({ handleFilterSinhVien }) {
-  const handleInputChange = (e) => {
-    handleFilterSinhVien(e.target.value);
+  const handleInputChange = (e, field) => {
+    handleFilterSinhVien(field, e.target.value);
   };
-
   return (
     <>
       <Card.Header>
         <StyledRow>
           <ColLg>
             <StyledInput
-              width="70%"
+              width="90%"
               type="text"
-              placeholder="Nhập tên sinh viên cần tìm"
-              onChange={handleInputChange}
+              placeholder="Tên sinh viên"
+              onChange={(e) => handleInputChange(e, "sinhVien")}
             />
           </ColLg>
           <ColLg style={{ display: "inline-flex", justifyContent: "end" }}>
@@ -34,6 +33,14 @@ function FilterSinhVien({ handleFilterSinhVien }) {
                 {
                   value: "maSo-desc",
                   label: "Mã số sinh viên giảm dần",
+                },
+                {
+                  value: "maDoAn-asc",
+                  label: "Mã đồ án tăng dần",
+                },
+                {
+                  value: "maDoAn-desc",
+                  label: "Mã đồ án giảm dần",
                 },
               ]}
             />

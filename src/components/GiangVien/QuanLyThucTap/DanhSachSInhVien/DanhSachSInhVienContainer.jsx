@@ -27,5 +27,36 @@ function DanhSachSinhVienContainer({ danhSachSinhVien }) {
     </div>
   );
 }
-
+function ChiTietDiemThucTap({ diem }) {
+  return (
+    <StyledTable>
+      <thead>
+        <tr>
+          <th>LO</th>
+          <th width="50%">Nội dung</th>
+          <th width="10%">Điểm abet</th>
+          <th width="20%">Ghi chú</th>
+          <th>Thang điểm 10</th>
+        </tr>
+      </thead>
+      <tbody>
+        {diem?.map((d, index) => (
+          <tr key={d.stt}>
+            <td>{d.stt}</td>
+            <td>{d.ten}</td>
+            <td className="text-center">{d.diemAbet}</td>
+            <td></td>
+            {index === 0 ? (
+              <td rowSpan={diem.length} className="text-center">
+                {diem.diemThang10}
+              </td>
+            ) : (
+              <td></td>
+            )}
+          </tr>
+        ))}
+      </tbody>
+    </StyledTable>
+  );
+}
 export default DanhSachSinhVienContainer;

@@ -33,14 +33,14 @@ function ChiTietSinhVien({ sinhvien, index }) {
             onClick={() => setShowModal((showModal) => !showModal)}
             disabled={
               !(
-                sinhvien.diem.diemThucTap.diemGiangVien != null ||
-                sinhvien.diem.diemThucTap.diemDoanhNghiep != null
+                sinhvien.diem.diemThucTap.diemGiangVien !== null ||
+                sinhvien.diem.diemThucTap.diemDoanhNghiep !== null
               )
             }
             state={
               !(
-                sinhvien.diem.diemThucTap.diemGiangVien != null ||
-                sinhvien.diem.diemThucTap.diemDoanhNghiep != null
+                sinhvien.diem.diemThucTap.diemGiangVien !== null ||
+                sinhvien.diem.diemThucTap.diemDoanhNghiep !== null
               )
                 ? "disabled"
                 : "normal"
@@ -66,7 +66,7 @@ function ChiTietSinhVien({ sinhvien, index }) {
           </Modal.Header>
           <Modal.Body>
             <StyledRow className="align-center">
-              <h6 className="text-primary">Điểm doanh nghiệp</h6>
+              <h6 className="text-primary">Điểm thực tập</h6>
               <ColLg className="text-end">
                 <Button>
                   <span>

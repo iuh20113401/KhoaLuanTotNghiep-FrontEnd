@@ -28,7 +28,7 @@ function XemDanhSachSinhVienThucTap() {
         <FilterSinhVien
           hocKy={hocKy}
           namHoc={namHoc}
-          handleFilterBaoCao={handleFilterBaoCao}
+          handleFilterSinhVien={handleFilterBaoCao}
         />
 
         {isLoading && DanhSachBaoCao?.length > 0 ? (
