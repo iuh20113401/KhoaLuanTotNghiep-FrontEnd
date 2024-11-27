@@ -3,6 +3,7 @@ import { BsFileWord } from "react-icons/bs";
 import Button from "../../../../ui/Button";
 import Modal from "../../../../ui/Modal";
 import { ColLg, StyledRow } from "../../../../ui/Row";
+import ChiTietDiem from "../../../QuanLyDoAn/BieuMau/ChiTietDiem";
 
 const TRANG_THAI_STYLE = {
   0: {
@@ -29,13 +30,19 @@ function ChiTietSinhVien({ sinhvien, index }) {
           <Button
             // bgcolor={TRANG_THAI_STYLE[trangThai].bgcolor}
             onClick={() => setShowModal((showModal) => !showModal)}
-            disabled={sinhvien.diem.ketQua <= 0}
+            disabled={
+              !(
+                sinhvien.diem.diemThucTap.diemGiangVien.diemAbet?.length !==
+                  0 ||
+                sinhvien.diem.diemThucTap.diemDoanhNghiep.diemAbet?.length !== 0
+              )
+            }
           >
             Xem
           </Button>
         </td>
       </tr>
-      {/* {showModal && (
+      {showModal && (
         <Modal size="xl">
           <Modal.Header>
             <h5>{sinhvien.userInfo.ten}</h5>
@@ -61,16 +68,18 @@ function ChiTietSinhVien({ sinhvien, index }) {
                 </Button>
               </ColLg>
             </StyledRow>
-            <ChiTietDiem diem={sinhvien.diem.diemHuongDan} />
+            <h6 className="text-primary">Điểm doanh nghiệp</h6>
+
+            <ChiTietDiem diem={sinhvien.diem.diemThucTap.diemDoanhNghiep} />
             {sinhvien.diem.diemPhanBien && (
               <>
-                <h6 className="text-primary">Điểm phản biện</h6>
-                <ChiTietDiem diem={sinhvien.diem.diemPhanBien} />
+                <h6 className="text-primary">Điểm giảng viên</h6>
+                <ChiTietDiem diem={sinhvien.diem.diemThucTap.diemGiangVien} />
               </>
             )}
           </Modal.Body>
         </Modal>
-      )} */}
+      )}{" "}
     </>
   );
 }
