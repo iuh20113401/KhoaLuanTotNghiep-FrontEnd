@@ -32,10 +32,21 @@ function ChiTietSinhVien({ sinhvien, index }) {
             onClick={() => setShowModal((showModal) => !showModal)}
             disabled={
               !(
-                sinhvien.diem.diemThucTap.diemGiangVien.diemAbet?.length !==
+                sinhvien.diem.diemThucTap.diemGiangVien?.diemAbet?.length !==
                   0 ||
-                sinhvien.diem.diemThucTap.diemDoanhNghiep.diemAbet?.length !== 0
+                sinhvien.diem.diemThucTap.diemDoanhNghiep?.diemAbet?.length !==
+                  0
               )
+            }
+            state={
+              !(
+                sinhvien.diem.diemThucTap.diemGiangVien?.diemAbet?.length !==
+                  0 ||
+                sinhvien.diem.diemThucTap.diemDoanhNghiep?.diemAbet?.length !==
+                  0
+              )
+                ? "diabled"
+                : "normal"
             }
           >
             Xem
@@ -68,10 +79,13 @@ function ChiTietSinhVien({ sinhvien, index }) {
                 </Button>
               </ColLg>
             </StyledRow>
-            <h6 className="text-primary">Điểm doanh nghiệp</h6>
-
-            <ChiTietDiem diem={sinhvien.diem.diemThucTap.diemDoanhNghiep} />
-            {sinhvien.diem.diemPhanBien && (
+            {sinhvien.diem.diemThucTap.diemDoanhNghiep && (
+              <>
+                <h6 className="text-primary">Điểm doanh nghiệp</h6>
+                <ChiTietDiem diem={sinhvien.diem.diemThucTap.diemDoanhNghiep} />
+              </>
+            )}
+            {sinhvien.diem.diemThucTap.diemGiangVien && (
               <>
                 <h6 className="text-primary">Điểm giảng viên</h6>
                 <ChiTietDiem diem={sinhvien.diem.diemThucTap.diemGiangVien} />
