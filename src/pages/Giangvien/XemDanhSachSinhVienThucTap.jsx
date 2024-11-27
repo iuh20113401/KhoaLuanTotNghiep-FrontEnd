@@ -31,7 +31,7 @@ function XemDanhSachSinhVienThucTap() {
           handleFilterBaoCao={handleFilterBaoCao}
         />
 
-        {isLoading ? (
+        {isLoading && DanhSachBaoCao?.length > 0 ? (
           <div className="p-5">
             <LoadingSpinner />
           </div>
