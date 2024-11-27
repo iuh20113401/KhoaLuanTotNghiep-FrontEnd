@@ -71,8 +71,8 @@ const LichHopContainer = () => {
         id: lh._id,
         title: lh.tieuDe,
         diaDiem: lh.phong,
-        start: moment(lh.batDau).toDate(),
-        end: moment(lh.ketThuc).toDate(),
+        start: moment.tz(lh.batDau, "Asia/Ho_Chi_Minh").toDate(),
+        end: moment.tz(lh.ketThuc, "Asia/Ho_Chi_Minh").toDate(),
       };
     });
   return (
