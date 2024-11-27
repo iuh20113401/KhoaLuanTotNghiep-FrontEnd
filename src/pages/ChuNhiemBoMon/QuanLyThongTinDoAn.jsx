@@ -30,36 +30,38 @@ function QuanLyThongTinDoAn() {
   return (
     <div>
       <h5>Quản lý thông tin đồ án</h5>
-      {!isLoading && sortedDoAn.length > 0 && (
-        <>
-          <div className="pt-2 pr-2 text-end">
-            <div>
-              <span className="mr-2">
-                <XuatDanhSachDoAnContainer DanhSachDoAn={DanhSachDoAn} />
-              </span>
-              <span className="mr-2">
-                <XuatDanhSachDiemContainer DanhSachDoAn={DanhSachDoAn} />
-              </span>
+
+      <Card className="mt-3">
+        {" "}
+        {!isLoading && sortedDoAn.length > 0 && (
+          <>
+            <div className="pt-2 pr-2 text-end">
+              <div>
+                <span className="mr-2">
+                  <XuatDanhSachDoAnContainer DanhSachDoAn={DanhSachDoAn} />
+                </span>
+                <span className="mr-2">
+                  <XuatDanhSachDiemContainer DanhSachDoAn={DanhSachDoAn} />
+                </span>
+                <span>
+                  <XuatDanhSachTongHopContainer DanhSachDoAn={DanhSachDoAn} />
+                </span>
+              </div>
+            </div>
+            <div className="pt-2 pr-2 text-end">
               <span>
-                <XuatDanhSachTongHopContainer DanhSachDoAn={DanhSachDoAn} />
+                <XuatDanhSachTrangThaiDoAnGiuaKyContainer
+                  DanhSachDoAn={DanhSachDoAn}
+                />
               </span>
             </div>
-          </div>
-          <div className="pt-2 pr-2 text-end">
-            <span>
-              <XuatDanhSachTrangThaiDoAnGiuaKyContainer
-                DanhSachDoAn={DanhSachDoAn}
-              />
-            </span>
-          </div>
-        </>
-      )}
-      <FilterDoAn
-        handleFilterDoAn={handleFilterDoAn}
-        hocKy={hocKy}
-        namHoc={namHoc}
-      />
-      <Card className="mt-3">
+          </>
+        )}
+        <FilterDoAn
+          handleFilterDoAn={handleFilterDoAn}
+          hocKy={hocKy}
+          namHoc={namHoc}
+        />
         {isLoading ? (
           <div className="p-5">
             {" "}
