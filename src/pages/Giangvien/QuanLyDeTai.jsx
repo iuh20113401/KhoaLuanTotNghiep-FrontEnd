@@ -16,7 +16,7 @@ function QuanLyDeTai() {
   const [isAdd, setIsAdd] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [isShowTable, setIsShowTable] = useState(true);
-  const { DanhSachDeTai, filterDeTai, handleFilterDeTai, isLoading } =
+  const { DanhSachDeTai, filterDeTai, refetch, handleFilterDeTai, isLoading } =
     useDanhSachDeTai({
       key: "DanhSachDeTai",
       fn: layDanhSachDeTai,
@@ -53,6 +53,7 @@ function QuanLyDeTai() {
                     danhSachDeTai={DanhSachDeTai}
                     sortedDoAn={sortedDoAn ?? DanhSachDeTai}
                     setIsEdit={setIsEdit}
+                    refetch={refetch}
                   />
                 ) : (
                   <DanhSachDeTaiAccordionLIst
@@ -72,8 +73,10 @@ function QuanLyDeTai() {
           </Card>
         </>
       )}
-      {isAdd && <ThemDetai setShow={setIsAdd} />}
-      {isEdit && <SuaDeTai setShow={setIsEdit} deTai={isEdit} />}
+      {isAdd && <ThemDetai setShow={setIsAdd} refetch={refetch} />}
+      {isEdit && (
+        <SuaDeTai setShow={setIsEdit} deTai={isEdit} refetch={refetch} />
+      )}
     </div>
   );
 }

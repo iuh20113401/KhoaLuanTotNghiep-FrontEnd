@@ -100,7 +100,13 @@ function ChiTietDeTai({ deTai, refetch, setIsEdit }) {
               </StyledLink>
               {deTai.trangThai !== 1 && (
                 <StyledLink>
-                  <Button onClick={handleXoa}>Xóa</Button>
+                  <Button
+                    onClick={handleXoa}
+                    bgColor="transparent"
+                    color="black"
+                  >
+                    Xóa
+                  </Button>
                 </StyledLink>
               )}
             </StyledDropdownMenu>

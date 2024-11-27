@@ -2,7 +2,12 @@ import Card from "../../../ui/Card";
 import StyledTable from "../../../ui/Table";
 import ChiTietDeTai from "./ChiTietDeTai";
 
-function DanhSachDeTaiContainer({ danhSachDeTai, sortedDoAn, setIsEdit }) {
+function DanhSachDeTaiContainer({
+  danhSachDeTai,
+  refetch,
+  sortedDoAn,
+  setIsEdit,
+}) {
   return (
     <div>
       <Card>
@@ -23,6 +28,7 @@ function DanhSachDeTaiContainer({ danhSachDeTai, sortedDoAn, setIsEdit }) {
                 deTai={deTai}
                 key={deTai._id}
                 setIsEdit={setIsEdit}
+                refetch={refetch}
               />
             ))}
           </tbody>

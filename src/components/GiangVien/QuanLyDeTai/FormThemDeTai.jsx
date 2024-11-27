@@ -11,7 +11,7 @@ import { layDanhMuc, suaDeTai, taoDeTai } from "../../../services/DeTaiApi";
 import decodeHtml from "../../../utils/ChangeHtmlCode";
 import LoadingSpinner from "../../../ui/Spinner";
 
-function FormThemDeTai({ deTai = null }) {
+function FormThemDeTai({ deTai = null, refetch }) {
   const { data, isLoading } = useQuery({
     queryKey: ["danhSachDanhMuc"],
     queryFn: layDanhMuc,
@@ -32,6 +32,7 @@ function FormThemDeTai({ deTai = null }) {
     onSuccess: () => {
       toast.success("Sửa đề tài thành công");
       reset();
+      refetch();
     },
     onError: (error) => {
       toast.error("Có lỗi xảy ra khi sửa đề tài");
@@ -42,6 +43,7 @@ function FormThemDeTai({ deTai = null }) {
     onSuccess: () => {
       toast.success("Tạo đề tài thành công");
       reset();
+      refetch();
     },
     onError: () => {
       toast.error("Có lỗi xảy ra khi tạo đề tài");
