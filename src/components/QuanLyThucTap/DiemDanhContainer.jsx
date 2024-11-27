@@ -5,7 +5,6 @@ import DiemDanhButton from "./DiemDanh/DiemDanhButton";
 
 function DiemDanhContainer({ baoCao }) {
   const diemDanh1 = baoCao?.sinhVien?.diemDanh;
-  console.log(baoCao, baoCao?.sinhVien, diemDanh1);
   return (
     <div>
       <h5>Điểm danh</h5>
