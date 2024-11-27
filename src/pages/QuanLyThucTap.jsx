@@ -74,7 +74,7 @@ function QuanLyThucTap() {
     },
     {
       header: "Điểm danh",
-      content: <DiemDanhContainer />, // Add component or functionality as needed
+      content: <DiemDanhContainer baoCao={thucTap} />, // Add component or functionality as needed
     },
   ];
   if (isLoading)
