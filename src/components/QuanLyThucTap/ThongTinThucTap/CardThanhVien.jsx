@@ -5,7 +5,7 @@ const SERVER = import.meta.env.PROD
   ? import.meta.env.VITE_SERVER_URL
   : import.meta.env.VITE_SERVER_URL_LOCAL;
 function CardThanhVien({ thucTap }) {
-  const user = thucTap?.userId;
+  const user = thucTap?.sinhVien;
   const giangVien = thucTap.giangVien;
   return (
     <>
