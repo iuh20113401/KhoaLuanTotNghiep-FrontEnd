@@ -52,7 +52,7 @@ function ChiTietSinhVien({ sinhvien, index }) {
       {showModal && (
         <Modal size="xl">
           <Modal.Header>
-            <h5>{sinhvien.Info.ten}</h5>
+            <h5>{sinhvien?.Info?.hoTen}</h5>
             <button
               type="button"
               className="btn-close"
