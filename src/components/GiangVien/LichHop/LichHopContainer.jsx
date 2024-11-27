@@ -75,6 +75,7 @@ const LichHopContainer = () => {
         end: moment.tz(lh.ketThuc, "Asia/Ho_Chi_Minh").toDate(),
       };
     });
+  console.log(events);
   return (
     <div style={{ height: "auto" }}>
       <Button
