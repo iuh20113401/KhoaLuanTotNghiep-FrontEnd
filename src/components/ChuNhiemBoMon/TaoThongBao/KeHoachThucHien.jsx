@@ -10,6 +10,7 @@ import {
 import toast from "react-hot-toast";
 import { useEffect, useRef, useState } from "react";
 import Editor from "./KeHoachThucHienTable";
+import LoadingSpinner from "../../../ui/Spinner";
 const SERVER = import.meta.env.PROD
   ? import.meta.env.VITE_SERVER_URL
   : import.meta.env.VITE_SERVER_URL_LOCAL;
@@ -17,6 +18,7 @@ function KeHoachThucHien({ vaiTro }) {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["KeHoachThucHien"],
     queryFn: layKeHoachThucHien,
+    retry: 2,
   });
   const keHoach = data?.thongBao;
   const inputref = useRef();
@@ -60,61 +62,64 @@ function KeHoachThucHien({ vaiTro }) {
     formData.append("hinhThuc", 1);
     themHinhAnhMutate(formData);
   }, [selectedFile, themHinhAnhMutate]);
-  return (
-    !isLoading && (
-      <>
-        {+vaiTro === 2 && (
-          <div>
-            <Button
-              type="normal"
-              variation="outline"
-              bgcolor="var(--bs-blue)"
-              color="var(--bs-blue)"
-              onClick={handleAddFile}
-            >
-              <span>
-                <HiOutlineUpload />
-              </span>
-              Upload hình ảnh
-            </Button>
-            <input
-              type="file"
-              style={{ display: "none" }}
-              ref={inputref}
-              onChange={handleFileChange}
-            />
-            <Button
-              type="normal"
-              variation="outline"
-              bgcolor="var(--bs-blue)"
-              color="var(--bs-blue)"
-              className="ml-3"
-            >
-              <span>
-                <TiMessageTyping />
-              </span>
-              Nhập văn bản
-            </Button>
-          </div>
-        )}
-        <Editor />
-        <div className="mt-3">
-          {+keHoach?.hinhThuc === 1 ? (
-            <>
-              <img
-                crossorigin="anonymous | use-credentials"
-                src={`${SERVER}${keHoach?.noiDung.replace("/", "")}`}
-                alt="hinhAnh"
-                width="100%"
-                height="1000px"
-              />
-            </>
-          ) : (
-            <></>
-          )}
+  console.log(+vaiTro === 2);
+  return isLoading ? (
+    <div>
+      <LoadingSpinner />
+    </div>
+  ) : (
+    <>
+      {+vaiTro === 2 && (
+        <div>
+          <Button
+            type="normal"
+            variation="outline"
+            bgcolor="var(--bs-blue)"
+            color="var(--bs-blue)"
+            onClick={handleAddFile}
+          >
+            <span>
+              <HiOutlineUpload />
+            </span>
+            Upload hình ảnh
+          </Button>
+          <input
+            type="file"
+            style={{ display: "none" }}
+            ref={inputref}
+            onChange={handleFileChange}
+          />
+          <Button
+            type="normal"
+            variation="outline"
+            bgcolor="var(--bs-blue)"
+            color="var(--bs-blue)"
+            className="ml-3"
+          >
+            <span>
+              <TiMessageTyping />
+            </span>
+            Nhập văn bản
+          </Button>
         </div>
-      </>
-    )
+      )}
+      <Editor />
+      <div className="mt-3">
+        {+keHoach?.hinhThuc === 1 ? (
+          <>
+            <img
+              crossorigin="anonymous | use-credentials"
+              src={`${SERVER}${keHoach?.noiDung.replace("/", "")}`}
+              alt="hinhAnh"
+              width="100%"
+              height="1000px"
+            />
+          </>
+        ) : (
+          <></>
+        )}
+      </div>
+    </>
   );
 }
 
