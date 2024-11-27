@@ -27,11 +27,11 @@ function ThanhVienThucTap({ thucTap }) {
               </tr>
             )}
             <tr>
-              <td>{thucTap.userId.maSo}</td>
-              <td>{thucTap.userId.hoTen} </td>
+              <td>{thucTap.sinhVien.maSo}</td>
+              <td>{thucTap.sinhVien.hoTen} </td>
               <td>Sinh viên </td>
-              <td>{thucTap.userId.email}</td>
-              <td>{thucTap.userId.soDienThoai}</td>
+              <td>{thucTap.sinhVien.email}</td>
+              <td>{thucTap.sinhVien.soDienThoai}</td>
             </tr>
           </tbody>
         </StyledTable>

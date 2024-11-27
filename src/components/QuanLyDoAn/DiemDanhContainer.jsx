@@ -3,7 +3,6 @@ import Card from "../../ui/Card";
 import StyledTable from "../../ui/Table";
 import formatVieNamDate, { formatVieNamHour } from "../../utils/FormatDate";
 import DiemDanhButton from "./DiemDanh/DiemDanhButton";
-import { layThongTinSinhVien } from "../../services/SinhVien";
 
 function DiemDanhContainer({ doAn }) {
   const diemDanh1 = doAn?.sinhVien1?.diemDanh || null;
@@ -26,27 +25,33 @@ function DiemDanhContainer({ doAn }) {
           </thead>
           <tbody>
             {diemDanh1 &&
-              diemDanh1?.map((dd) => (
-                <tr>
-                  <td>{doAn.sinhVien1.maSo}</td>
-                  <td>{doAn.sinhVien1.hoTen}</td>
-                  <td>{formatVieNamDate(dd.ngay)}</td>
-                  <td>{formatVieNamHour(dd.ngay)}</td>
-                  <td>{dd.phong}</td>
-                  <td>{dd.ghiChu}</td>
-                </tr>
-              ))}{" "}
+              diemDanh1?.map((dd) => {
+                if (+dd.loai !== 0) return;
+                return (
+                  <tr>
+                    <td>{doAn.sinhVien1.maSo}</td>
+                    <td>{doAn.sinhVien1.hoTen}</td>
+                    <td>{formatVieNamDate(dd.ngay)}</td>
+                    <td>{formatVieNamHour(dd.ngay)}</td>
+                    <td>{dd.phong}</td>
+                    <td>{dd.ghiChu}</td>
+                  </tr>
+                );
+              })}
             {diemDanh2 &&
-              diemDanh2?.map((dd) => (
-                <tr>
-                  <td colSpan={2}>{doAn.sinhVien1.maSo}</td>
-                  <td colSpan={2}>{doAn.sinhVien1.hoten}</td>
-                  <td colSpan={2}>{formatVieNamDate(dd.ngay)}</td>
-                  <td>{formatVieNamHour(dd.ngay)}</td>
-                  <td>{dd.phong}</td>
-                  <td>{dd.ghiChu}</td>
-                </tr>
-              ))}
+              diemDanh2?.map((dd) => {
+                if (+dd.loai !== 0) return;
+                return (
+                  <tr>
+                    <td colSpan={2}>{doAn.sinhVien1.maSo}</td>
+                    <td colSpan={2}>{doAn.sinhVien1.hoten}</td>
+                    <td colSpan={2}>{formatVieNamDate(dd.ngay)}</td>
+                    <td>{formatVieNamHour(dd.ngay)}</td>
+                    <td>{dd.phong}</td>
+                    <td>{dd.ghiChu}</td>
+                  </tr>
+                );
+              })}
           </tbody>
         </StyledTable>
       </Card>

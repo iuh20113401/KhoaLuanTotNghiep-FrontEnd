@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import { layDanhSachSinhVienThucTapTheoGiangVien } from "../../services/SinhVien";
 import FilterSinhVien from "../../components/GiangVien/QuanLyDoAn/XemDanhSachSinhVien/FilterSinhVien";
 import Card from "../../ui/Card";
