@@ -39,6 +39,13 @@ export const useDanhSachBaoCao = ({ key, fn }) => {
             .replace(/ /g, "")
             .includes(value.toLowerCase().replace(/ /g, "").trim());
         });
+      } else if (field === "sinhVien") {
+        filtered = DanhSachBaoCao.filter((baoCao) =>
+          baoCao.Info?.hoTen
+            .toLowerCase()
+            .replace(/ /g, "")
+            .includes(value.toLowerCase().replace(/ /g, "").trim())
+        );
       } else if (field === "hocKy") {
         setHocKy(+value);
       } else if (field === "namHoc") {

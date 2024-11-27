@@ -71,7 +71,7 @@ function XemDanhSachBaoCao() {
   }, [selectedFile, uploadMutate]);
   return (
     <div>
-      <h5>Danh sách đồ án</h5>
+      <h5>Danh sách báo cáo</h5>
 
       <Card className="mt-3 p-3">
         <div className="flex space-between align-center">
