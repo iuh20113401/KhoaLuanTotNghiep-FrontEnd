@@ -18,6 +18,10 @@ const taoDeTai = (data) =>
     },
     body: JSON.stringify(data),
   });
+const xoaDeTai = (id) =>
+  fetchApi(`${BASE_URL}/${id}`, {
+    method: "DELETE",
+  });
 const suaDeTai = (data) =>
   fetchApi(`${BASE_URL}/${data._id}`, {
     method: "PATCH",
@@ -48,5 +52,6 @@ export {
   suaDeTai,
   layDanhSachDeTaiChoDuyet,
   duyetDeTai,
+  xoaDeTai,
   layDanhSachDeTaiDangKy,
 };

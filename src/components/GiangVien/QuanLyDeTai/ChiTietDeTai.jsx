@@ -5,6 +5,9 @@ import "react-quill/dist/quill.bubble.css";
 import { StyledDropdownMenu, StyledLink } from "../../../ui/DropDown";
 import { useState } from "react";
 import decodeHtml from "../../../utils/ChangeHtmlCode";
+import { useMutation } from "@tanstack/react-query";
+import { xoaDeTai } from "../../../services/DeTaiApi";
+import toast from "react-hot-toast";
 
 function DisplayQuillContent({ content }) {
   const decodedContent = decodeHtml(content);
@@ -26,10 +29,24 @@ const StyleTrangThai = {
     bgColor: "var(--bs-warning)",
   },
 };
-function ChiTietDeTai({ deTai, setIsEdit }) {
+function ChiTietDeTai({ deTai, refetch, setIsEdit }) {
   const [ghiChu, setGhiChu] = useState(false);
   const trangThai = deTai.trangThai === 0 ? (deTai?.ghiChu ? 2 : 0) : 1;
   const [edit, setEdit] = useState(false);
+  const { mutate: xoaMutate, isPending } = useMutation({
+    mutationFn: xoaDeTai,
+    onSuccess: () => {
+      toast.success("Xóa đề tài thành công");
+      refetch();
+    },
+    onError: () => {
+      toast.error("Xóa đề tài không thành công");
+    },
+  });
+  function handleXoa() {
+    xoaMutate(deTai._id);
+  }
+  if (isPending) return;
   return (
     <tr>
       <td>
@@ -81,7 +98,11 @@ function ChiTietDeTai({ deTai, setIsEdit }) {
               <StyledLink onClick={() => setIsEdit(deTai)}>
                 Chỉnh sửa
               </StyledLink>
-              <StyledLink>Xóa</StyledLink>
+              {deTai.trangThai !== 1 && (
+                <StyledLink>
+                  <Button onClick={handleXoa}>Xóa</Button>
+                </StyledLink>
+              )}
             </StyledDropdownMenu>
           )}
         </div>
