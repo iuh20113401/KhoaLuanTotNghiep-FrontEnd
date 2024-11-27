@@ -4,25 +4,40 @@ import FilterSinhVien from "../../components/GiangVien/QuanLyDoAn/XemDanhSachSin
 import Card from "../../ui/Card";
 import DanhSachSinhVienContainer from "../../components/GiangVien/QuanLyThucTap/DanhSachSInhVien/DanhSachSInhVienContainer";
 import LoadingSpinner from "../../ui/Spinner";
+import { useDanhSachBaoCao } from "../../hooks/useDanhSachBaoCao";
 
 function XemDanhSachSinhVienThucTap() {
-  const { data, isLoading } = useQuery({
-    queryKey: ["DanhSachSinhVienThucTap"],
-    queryFn: layDanhSachSinhVienThucTapTheoGiangVien,
+  const {
+    DanhSachBaoCao,
+    filterBaoCao,
+    handleFilterBaoCao,
+    isLoading,
+    hocKy,
+    namHoc,
+    refetch,
+  } = useDanhSachBaoCao({
+    key: "DanhSachSinhVienThucTap",
+    fn: layDanhSachSinhVienThucTapTheoGiangVien,
   });
-  const danhSachSinhVien = !isLoading && data?.danhSachSinhVien;
+
+  const danhSachSinhVien = !isLoading && DanhSachBaoCao;
   return (
     <div>
       <h5>Xem danh sách sinh viên</h5>
       <Card className="mt-3">
+        <FilterSinhVien
+          hocKy={hocKy}
+          namHoc={namHoc}
+          handleFilterBaoCao={handleFilterBaoCao}
+        />
+
         {isLoading ? (
           <div className="p-5">
             <LoadingSpinner />
           </div>
         ) : danhSachSinhVien?.length > 0 ? (
           <>
-            <FilterSinhVien />
-            <DanhSachSinhVienContainer danhSachSinhVien={danhSachSinhVien} />
+            <DanhSachSinhVienContainer danhSachSinhVien={filterBaoCao} />
           </>
         ) : (
           <div className="p-3">

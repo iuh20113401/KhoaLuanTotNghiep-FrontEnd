@@ -19,7 +19,7 @@ export const useDanhSachBaoCao = ({ key, fn }) => {
     queryFn: () => fn(hocKy, namHoc),
     enabled: !!caiDatLoading,
   });
-  const DanhSachBaoCao = data?.result.sort((a, b) => a.maDoAn - b.maDoAn);
+  const DanhSachBaoCao = data?.results.sort((a, b) => a.maDoAn - b.maDoAn);
   const [filterBaoCao, setFilterBaoCao] = useState(DanhSachBaoCao);
   useEffect(() => {
     const isNamHocValid = /^\d{4}-\d{4}$/.test(namHoc);
