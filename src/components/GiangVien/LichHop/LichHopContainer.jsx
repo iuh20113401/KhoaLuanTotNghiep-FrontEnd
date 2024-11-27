@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
-import moment from "moment";
+import moment from "moment-timezone";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import "react-big-calendar/lib/css/react-big-calendar.css"; // Import calendar's styles
@@ -71,8 +71,8 @@ const LichHopContainer = () => {
         id: lh._id,
         title: lh.tieuDe,
         diaDiem: lh.phong,
-        start: moment(lh.batDau).toDate(),
-        end: moment(lh.ketThuc).toDate(),
+        start: moment.tz(lh.batDau, "Asia/Ho_Chi_Minh").toDate(),
+        end: moment.tz(lh.ketThuc, "Asia/Ho_Chi_Minh").toDate(),
       };
     });
   return (
