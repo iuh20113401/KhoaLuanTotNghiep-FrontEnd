@@ -29,7 +29,10 @@ function Diem({ doAn, user }) {
             )}
             {user.vaiTro !== 0 && (
               <GiangVienXemDiem
-                sinhVien1={{ ...data.sinhVien1, ...data.sinhVien1Info }}
+                sinhVien1={{
+                  ...data.result.sinhVien1,
+                  ...data.result.sinhVien1Info,
+                }}
                 sinhVien2={
                   data.sinhVien2Info && typeof data.sinhVien2Info === "object"
                     ? { ...data.result.sinhVien2, ...data.result.sinhVien2Info }
