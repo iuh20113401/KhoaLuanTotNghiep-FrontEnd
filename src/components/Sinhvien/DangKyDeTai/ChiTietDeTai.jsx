@@ -267,7 +267,13 @@ function ChiTietDeTai2({ deTai, caiDatInfo }) {
             </HiddentElement>
           </DoAnRight>
           <ButtonDangKy>
-            <Button onClick={() => setDangKy(true)}>Đăng ký </Button>
+            <Button
+              onClick={() => setDangKy(true)}
+              disabled={!caiDatInfo.isDangKyDeTai}
+              state={caiDatInfo.isDangKyDeTai ? "" : "disabled"}
+            >
+              Đăng ký
+            </Button>
           </ButtonDangKy>
         </FrontContainer>
         <BackContainer type={dangky ? "active" : "hidden"}>
@@ -280,7 +286,12 @@ function ChiTietDeTai2({ deTai, caiDatInfo }) {
             >
               Hủy
             </Button>
-            <Button color="var(--bs-white)" onClick={() => dangKyHandler()}>
+            <Button
+              color="var(--bs-white)"
+              onClick={() => dangKyHandler()}
+              disabled={!caiDatInfo.isDangKyDeTai}
+              state={caiDatInfo.isDangKyDeTai ? "" : "disabled"}
+            >
               Đăng ký
             </Button>
           </StyledRow>
