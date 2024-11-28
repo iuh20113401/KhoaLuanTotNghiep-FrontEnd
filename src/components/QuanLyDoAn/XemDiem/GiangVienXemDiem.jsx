@@ -1,6 +1,7 @@
 import ChiTietDiem from "../BieuMau/ChiTietDiem";
 
 function GiangVienXemDiem({ sinhVien1, sinhVien2 }) {
+  console.log(sinhVien1, sinhVien2);
   return (
     <>
       <ChiTietDiemSinhVien sinhVien={sinhVien1} />
