@@ -25,7 +25,7 @@ const themSinhVien2 = (data) =>
     body: JSON.stringify(data),
   });
 const getThongTinDoAn = (maDoAn) =>
-  fetchApi(`${BASE_URL}\\${maDoAn}`, {
+  fetchApi(`${BASE_URL}/${maDoAn}`, {
     method: "GET",
   });
 
