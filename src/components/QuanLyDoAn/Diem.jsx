@@ -14,7 +14,6 @@ function Diem({ doAn, user }) {
       return layThongTinSinhVienTheoDoAn(doAn._id);
     },
   });
-
   return (
     <div>
       <h5>Điểm</h5>
@@ -33,7 +32,7 @@ function Diem({ doAn, user }) {
                 sinhVien1={{ ...data.sinhVien1, ...data.sinhVien1Info }}
                 sinhVien2={
                   data.sinhVien2Info && typeof data.sinhVien2Info === "object"
-                    ? { ...data.sinhVien2, ...data.sinhVien2Info }
+                    ? { ...data.result.sinhVien2, ...data.result.sinhVien2Info }
                     : null
                 }
               />
