@@ -11,21 +11,26 @@ import toast from "react-hot-toast";
 import Button from "../../../../ui/Button";
 import DanhSachGiangVienPhanBienTable from "../TableSoLuongDoAn";
 import LoadingSpinner from "../../../../ui/Spinner";
+import { useDanhSachDoAn } from "../../../../hooks/useDanhSachDoAn";
 
 function DanhSachChoPhanCong() {
   const {
-    data: doAnData,
+    DanhSachDoAn,
+    filterDoAn,
+    handleFilterDoAn,
     isLoading: doAnLoading,
+    hocKy,
+    namHoc,
     refetch,
-  } = useQuery({
-    queryKey: ["DanhSachDoAnDat"],
-    queryFn: layDanhSachDoAnDat,
+  } = useDanhSachDoAn({
+    key: "DanhSachDoAnDat",
+    fn: layDanhSachDoAnDat,
   });
+
   const { data: giangVienData, isLoading: giangVienLoading } = useQuery({
     queryKey: ["DanhSachGiangVien"],
     queryFn: layDanhSachToanBoGiangVien,
   });
-  const DanhSachDoAn = doAnData?.danhSachDoAn;
   const DanhSachGiangVien = giangVienData?.danhSachGiangVien || [];
   const isLoading = doAnLoading && giangVienLoading;
   const [updatedDoAn, setUpdatedDoAn] = useState([]);
