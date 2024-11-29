@@ -77,7 +77,7 @@ const layThongTinSinhVienTheoDoAn = (id) =>
     method: "GET",
   });
 
-const layDanhSachDoAnDat = (namHoc, hocKy) =>
+const layDanhSachDoAnDat = (hocKy, namHoc) =>
   fetchApi(
     `${BASE_URL}/DanhSachDoAn/DatCuoiKy?hocKy=${hocKy}&namHoc=${namHoc}`,
     {
@@ -93,7 +93,7 @@ const themNhieuGiangVienPhanBien = (data) =>
     },
     body: JSON.stringify(data),
   });
-const layDanhSachDoAnPhanBien = (namHoc, hocKy) =>
+const layDanhSachDoAnPhanBien = (hocKy, namHoc) =>
   fetchApi(
     `${BASE_URL}/DanhSachDoAn/PhanBien?hocKy=${hocKy}&namHoc=${namHoc}`,
     {
