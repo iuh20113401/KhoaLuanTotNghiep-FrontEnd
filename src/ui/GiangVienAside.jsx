@@ -322,7 +322,7 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
             />
           </StyledMenuList>
         </ToggleItem>
-        <MenuItem icon={<BsFileText />} title="Hướng dẫn" href={"./huongdan"} />
+        {/* <MenuItem icon={<BsFileText />} title="Hướng dẫn" href={"./huongdan"} /> */}
         <MenuItem
           icon={<AiOutlineCalendar />}
           title="Lịch họp"

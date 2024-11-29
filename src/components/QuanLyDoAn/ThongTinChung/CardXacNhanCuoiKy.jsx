@@ -28,7 +28,7 @@ function CardXacNhanCuoiKy({ trangThai, id, refetch }) {
           <CheckboxContainer
             label={"Đạt"}
             value="2"
-            checked={+trangThai === 2}
+            checked={(+trangThai >= 2 && +trangThai !== 5) || +trangThai === 8}
             disabled={+trangThai === 6}
             onClick={(e) => {
               setShowModal(true);
@@ -40,7 +40,7 @@ function CardXacNhanCuoiKy({ trangThai, id, refetch }) {
           <CheckboxContainer
             label={"Không đạt"}
             value="6"
-            checked={+trangThai === 6}
+            checked={+trangThai === 5}
             disabled={+trangThai === 2}
             onClick={(e) => {
               setShowModal(true);

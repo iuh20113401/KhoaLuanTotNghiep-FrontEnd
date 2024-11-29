@@ -51,10 +51,10 @@ function QuanLyDeTai() {
       header: "Thành viên",
       content: <ThanhVien doAn={doAn} />,
     },
-    {
-      header: "Hướng dẫn",
-      content: "", // Add component or functionality as needed
-    },
+    // {
+    //   header: "Hướng dẫn",
+    //   content: "", // Add component or functionality as needed
+    // },
     {
       header: "Tài liệu",
       content: <TaiLieuDoAn doAn={doAn} refetch={refetch} />,

@@ -23,11 +23,7 @@ export const useDanhSachDoAn = ({ key, fn }) => {
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: [key, hocKy, namHoc],
-    queryFn: () => {
-      console.log(hocKy, namHoc);
-
-      return fn(hocKy, namHoc);
-    },
+    queryFn: () => fn(hocKy, namHoc),
     enabled:
       !caiDatLoading && /^\d{4}-\d{4}$/.test(namHoc) && [1, 2].includes(+hocKy),
   });
