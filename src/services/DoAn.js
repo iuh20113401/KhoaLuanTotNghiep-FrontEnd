@@ -93,7 +93,7 @@ const themNhieuGiangVienPhanBien = (data) =>
     },
     body: JSON.stringify(data),
   });
-const layDanhSachDoAnPhanBien = (hocKy, namHoc) =>
+const layDanhSachDoAnPhanBien = (namHoc, hocKy) =>
   fetchApi(
     `${BASE_URL}/DanhSachDoAn/PhanBien?hocKy=${hocKy}&namHoc=${namHoc}`,
     {
