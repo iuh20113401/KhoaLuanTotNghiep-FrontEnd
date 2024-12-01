@@ -28,14 +28,7 @@ function FileDiemHuongDan({ setShowModal, doAn, loai }) {
     countSoLuong > 1
       ? getNestedValue(doAn.sinhVien2Info.diem, newLoai)?.diemAbet
       : [];
-  const sinhVien1DiemTong = getNestedValue(
-    doAn.sinhVien1Info.diem,
-    newLoai
-  )?.diemTong;
-  const sinhVien2DiemTong =
-    countSoLuong > 1
-      ? getNestedValue(doAn.sinhVien2Info.diem, newLoai)?.diemTong
-      : "";
+
   function Export2Doc(filename = "") {
     var preHtml =
       "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title><style>@page WordSection1 { mso-page-orientation: portrait; margin:1.27cm; } div.WordSection1 {page: WordSection1;}</style></head><body><div class='WordSection1'>";

@@ -32,7 +32,6 @@ function ChamDiemHoiDong() {
       <h5>Chấm điểm hội đồng</h5>
 
       <Card className="mt-3">
-        {" "}
         <FilterDoAn
           hocKy={hocKy}
           namHoc={namHoc}

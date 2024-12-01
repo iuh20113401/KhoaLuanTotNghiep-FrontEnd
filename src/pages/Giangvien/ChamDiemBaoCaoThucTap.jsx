@@ -59,11 +59,7 @@ function ChamDiemBaoCaoThucTap() {
         }}
       >
         <Card className="mt-3">
-          {isLoading ? (
-            <div className="p-3">
-              <LoadingSpinner />
-            </div>
-          ) : DanhSachBaoCao?.length > 0 ? (
+          {!isLoading && (
             <>
               <div className="text-end mt-2 mr-2">
                 <XuatDanhSachDiemThucTapContainer
@@ -75,6 +71,14 @@ function ChamDiemBaoCaoThucTap() {
                 namHoc={namHoc}
                 handleFilterBaoCao={handleFilterBaoCao}
               />
+            </>
+          )}
+          {isLoading ? (
+            <div className="p-3">
+              <LoadingSpinner />
+            </div>
+          ) : DanhSachBaoCao?.length > 0 ? (
+            <>
               <DanhSachBaoCaoContainer
                 chamDiem={true}
                 DanhSachBaoCao={sortedDoAn || DanhSachBaoCao}

@@ -108,17 +108,19 @@ function XemDanhSachBaoCao() {
         )}
       </Card>
       <Card className="mt-3">
+        {!isLoading && (
+          <FilterBaoCao
+            handleFilterBaoCao={handleFilterBaoCao}
+            hocKy={hocKy}
+            namHoc={namHoc}
+          />
+        )}
         {isLoading ? (
           <div className="p-5">
             <LoadingSpinner />
           </div>
         ) : DanhSachBaoCao?.length > 0 ? (
           <>
-            <FilterBaoCao
-              handleFilterBaoCao={handleFilterBaoCao}
-              hocKy={hocKy}
-              namHoc={namHoc}
-            />
             <DanhSachBaoCaoContainer
               DanhSachBaoCao={sortedDoAn || DanhSachBaoCao}
             />

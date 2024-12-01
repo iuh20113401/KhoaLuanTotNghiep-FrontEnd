@@ -56,14 +56,18 @@ function QuanLyDanhSachSinhVienContainer() {
   return (
     <div>
       <Card className="mt-2">
+        {!isLoading && (
+          <>
+            <XuatDanhSachSinhVienExcel DanhSachSinhVien={danhSachSinhVien} />
+            <FilterSinhVien handleFilterSinhVien={handleFilterSinhVien} />
+          </>
+        )}
         {isLoading ? (
           <div className="p-5">
             <LoadingSpinner />
           </div>
         ) : danhSachSinhVien?.length > 0 ? (
           <>
-            <XuatDanhSachSinhVienExcel DanhSachSinhVien={danhSachSinhVien} />
-            <FilterSinhVien handleFilterSinhVien={handleFilterSinhVien} />
             <DanhSachSinhVienContainer danhSachSinhVien={sortSinhVien} />
           </>
         ) : (

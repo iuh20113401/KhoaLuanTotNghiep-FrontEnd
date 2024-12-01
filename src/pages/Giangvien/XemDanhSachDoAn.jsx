@@ -32,17 +32,19 @@ function XemDanhSachDoAn() {
         <BieuMauChung />
       </Card>
       <Card className="mt-3">
+        {!isLoading && (
+          <FilterDoAn
+            handleFilterDoAn={handleFilterDoAn}
+            hocKy={hocKy}
+            namHoc={namHoc}
+          />
+        )}
         {isLoading ? (
           <div className="p-5">
             <LoadingSpinner />
           </div>
         ) : DanhSachDoAn?.length > 0 ? (
           <>
-            <FilterDoAn
-              handleFilterDoAn={handleFilterDoAn}
-              hocKy={hocKy}
-              namHoc={namHoc}
-            />
             {sortedDoAn && <DanhSachDoAnContainer DanhSachDoAn={sortedDoAn} />}
           </>
         ) : (
