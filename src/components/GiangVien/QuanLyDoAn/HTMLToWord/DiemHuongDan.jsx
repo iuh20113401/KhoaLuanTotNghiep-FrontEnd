@@ -11,6 +11,8 @@ const ContentLoai = {
 
 function FileDiemHuongDan({ setShowModal, doAn, loai }) {
   let newLoai = loai;
+  const isSinhVien2 =
+    doAn.sinhVien2 && Object.values(doAn.sinhVien2).length > 0;
   if (loai === "diemPhanBien")
     newLoai =
       +doAn?.giangVienPhanBien === 1
@@ -21,7 +23,7 @@ function FileDiemHuongDan({ setShowModal, doAn, loai }) {
   };
 
   const contentRef = useRef();
-  const countSoLuong = doAn.sinhVien2 ? 2 : 1;
+  const countSoLuong = isSinhVien2 ? 2 : 1;
   const contentLoai = ContentLoai[loai];
   const diem = getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet;
   const diem2 =
@@ -934,7 +936,7 @@ function FileDiemHuongDan({ setShowModal, doAn, loai }) {
                               fontSize: "12pt",
                             }}
                           >
-                            {diem2[index].diem}
+                            {diem2 && diem2[index].diem}
                           </span>
                         </p>
                       </td>
