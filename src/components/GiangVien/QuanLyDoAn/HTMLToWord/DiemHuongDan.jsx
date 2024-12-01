@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import Button from "../../../../ui/Button";
 import { BsFileWordFill } from "react-icons/bs";
+import UseUser from "../../../../context/UseUser";
 
 const ContentLoai = {
   diemHuongDan: {
@@ -10,6 +11,8 @@ const ContentLoai = {
 };
 
 function FileDiemHuongDan({ setShowModal, doAn, loai }) {
+  const { data } = UseUser();
+  const user = data.user;
   let newLoai = loai;
   const isSinhVien2 =
     doAn.sinhVien2 && Object.values(doAn.sinhVien2).length > 0;
@@ -309,7 +312,7 @@ function FileDiemHuongDan({ setShowModal, doAn, loai }) {
                   fontSize: "12pt",
                 }}
               >
-                Ths Trần Thị Kim Chi
+                {user.hoTen}
               </span>
             </p>
             <p
