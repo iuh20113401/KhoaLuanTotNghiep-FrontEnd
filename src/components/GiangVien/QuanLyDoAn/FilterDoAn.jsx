@@ -16,7 +16,7 @@ function FilterDoAn({ handleFilterDoAn, hocKy, namHoc }) {
             <StyledInput
               width="90%"
               type="text"
-              placeholder="Tên đồ án"
+              placeholder="Tên khóa luận"
               onChange={(e) => handleInputChange(e, "doAn")}
             />
           </ColLg>
@@ -68,11 +68,11 @@ function FilterDoAn({ handleFilterDoAn, hocKy, namHoc }) {
                 },
                 {
                   value: "maDoAn-asc",
-                  label: "Mã đồ án tăng dần",
+                  label: "Mã khóa luận tăng dần",
                 },
                 {
                   value: "maDoAn-desc",
-                  label: "Mã đồ án giảm dần",
+                  label: "Mã khóa luận giảm dần",
                 },
               ]}
             />

@@ -30,7 +30,7 @@ function FormThemTieuChi() {
   });
   function onSubmit(data) {
     const newData = {
-      ten: "Tiêu chí đồ án",
+      ten: "Tiêu chí khóa luận",
       LO: Array.from({ length: LOIndex }).map((x, i) => {
         return {
           stt: i + 1,
@@ -74,7 +74,7 @@ function FormThemTieuChi() {
     <div>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <h5>Thêm thông tin tiêu chí</h5>
-        <h6>Tiêu chỉ đồ án</h6>
+        <h6>Tiêu chỉ khóa luận</h6>
         <div>
           <StyledRow className="mt-3 mb-0">
             <Col2>

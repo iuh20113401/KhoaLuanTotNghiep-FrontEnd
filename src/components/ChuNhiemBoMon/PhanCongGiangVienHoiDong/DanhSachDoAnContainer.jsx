@@ -14,8 +14,8 @@ function DanhSachDoAnContainer({ DanhSachDoAn }) {
     <StyledTable>
       <thead>
         <tr>
-          <th width="11%">Mã đồ án</th>
-          <th width="15%">Tên đồ án</th>
+          <th width="11%">Mã khóa luận</th>
+          <th width="15%">Tên khóa luận</th>
           <th width="14%">Mã sinh viên</th>
           <th width="14%">Tên sinh viên</th>
           <th width="15%">Giảng viên</th>
@@ -35,7 +35,7 @@ function DanhSachDoAnContainer({ DanhSachDoAn }) {
       </tbody>
     </StyledTable>
   ) : (
-    "Hiện chưa có đồ án nào để phân công"
+    "Hiện chưa có khóa luận nào để phân công"
   );
 }
 export default DanhSachDoAnContainer;

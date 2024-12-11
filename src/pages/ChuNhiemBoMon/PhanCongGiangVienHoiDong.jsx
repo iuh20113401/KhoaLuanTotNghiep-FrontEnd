@@ -128,7 +128,7 @@ function PhanCongGiangVienHoiDong() {
           <HoiDongContainer />
         </Card>
         <Card className="p-2 mt-2">
-          <h5>Danh sách đồ án</h5>
+          <h5>Danh sách khóa luận</h5>
           {isLoading ? (
             <div>
               <LoadingSpinner />

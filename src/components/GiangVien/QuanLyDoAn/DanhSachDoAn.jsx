@@ -13,8 +13,8 @@ function DanhSachDoAnContainer({
       <thead>
         <tr>
           <th>STT</th>
-          <th>Mã đồ án</th>
-          <th width="25%">Tên đồ án</th>
+          <th>Mã khóa luận</th>
+          <th width="25%">Tên khóa luận</th>
           <th>Mã sinh viên</th>
           <th width="20%">Tên sinh viên</th>
           <th></th>

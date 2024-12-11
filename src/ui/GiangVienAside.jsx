@@ -266,7 +266,7 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
           title="Quản lý đề tài"
           href={"./quanlydetai"}
         />
-        <ToggleItem title={"Quản lý đồ án"} icon={<BsClipboard />}>
+        <ToggleItem title={"Quản lý khóa luận"} icon={<BsClipboard />}>
           <StyledMenuList>
             <MenuItem
               icon={<FiCircle />}
@@ -276,13 +276,13 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
             />
             <MenuItem
               icon={<FiCircle />}
-              title="Danh sách đồ án"
+              title="Danh sách khóa luận"
               href={"./doAn/danhsachdoan"}
               isSmall={true}
             />
             <MenuItem
               icon={<FiCircle />}
-              title="Chấm điểm đồ án"
+              title="Chấm điểm khóa luận"
               href={"./doAn/chamdiemdoan"}
               isSmall={true}
             />
@@ -349,7 +349,7 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
             <h5 className="text-primary p-3 ">Chủ nhiệm bộ môn</h5>{" "}
             <MenuItem
               icon={<GoChecklist />}
-              title="Thông tin đồ án"
+              title="Thông tin khóa luận"
               href={"./quanlythongtindoan"}
             />
             <MenuItem
@@ -384,7 +384,7 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
                 />
                 <MenuItem
                   icon={<FiCircle />}
-                  title="Thông tin đồ án"
+                  title="Thông tin khóa luận"
                   href={"./quanlythongtindoan"}
                   isSmall={true}
                 />

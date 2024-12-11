@@ -12,7 +12,7 @@ function XuatDanhSachTrangThaiDoAnGiuaKyContainer({ DanhSachDoAn }) {
         <span>
           <BsFileExcel />
         </span>
-        Xuất danh sách trạng thái đồ án giữa kỳ
+        Xuất danh sách trạng thái khóa luận giữa kỳ
       </Button>
       {showModal && (
         <Modal size="xl">

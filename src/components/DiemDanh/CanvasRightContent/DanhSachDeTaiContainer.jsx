@@ -24,7 +24,7 @@ function DanhSachDeTaiContainer({
           <tr>
             <td></td>
             <td width={"50%"}>Tên đề tài</td>
-            <td>Số lượng đồ án</td>
+            <td>Số lượng khóa luận</td>
             <td>Số lượng sinh viên</td>
           </tr>
         </thead>

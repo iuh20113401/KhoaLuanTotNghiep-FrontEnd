@@ -24,13 +24,13 @@ function DanhSachGiangVienPhanBienTable({ DanhSachGiangVien, updatedDoAn }) {
 
   return (
     <div>
-      <h5 className="mb-4">Số lượng đồ án phản biện của từng giảng viên</h5>
+      <h5 className="mb-4">Số lượng khóa luận phản biện của từng giảng viên</h5>
       <StyledTable>
         <thead>
           <tr>
             <th>Họ Tên</th>
             <th>Mã Số</th>
-            <th>Số Lượng Đồ Án Phản Biện</th>
+            <th>Số Lượng khóa luận Phản Biện</th>
           </tr>
         </thead>
         <tbody>

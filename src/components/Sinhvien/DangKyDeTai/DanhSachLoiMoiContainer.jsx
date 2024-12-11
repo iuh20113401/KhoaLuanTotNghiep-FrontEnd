@@ -11,7 +11,7 @@ function DanhSachLoiMoiContainer({ loiMoi }) {
           <tr>
             <th>Mã số</th>
             <th>Họ tên</th>
-            <th width="40%">Đồ án</th>
+            <th width="40%">khóa luận</th>
             <th>Giảng viên</th>
             <th></th>
           </tr>

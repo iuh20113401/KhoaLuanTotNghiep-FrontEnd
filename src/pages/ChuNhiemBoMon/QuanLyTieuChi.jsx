@@ -19,7 +19,7 @@ function QuanLyTieuChi() {
         <div>
           {!isLoading && (
             <Card className="mt-3 p-2">
-              <h5>Tiêu chí chấm điểm đồ án</h5>
+              <h5>Tiêu chí chấm điểm khóa luận</h5>
               <div className="mt-2">
                 <QuanLyTieuChiDoAnContainer
                   TieuChi={TieuChiDoAn}

@@ -37,8 +37,8 @@ const mapDataForExport = (data) => {
       STT: index + 1,
       "Mã Số": sinhVien.maSo,
       "Họ Tên": sinhVien.hoTen,
-      "Mã Đồ Án": item.maDoAn,
-      "Tên Đồ Án": item.tenDoAn,
+      "Mã khóa luận": item.maDoAn,
+      "Tên khóa luận": item.tenDoAn,
       "Diem Tong Huong Dan": diemHD?.diemTong || "N/A",
       ...diemHD.diemAbet, // Include dhd_1, dhd_2,... from diemAbet
       "Diem Tong Phan Bien": diemPB?.diemTong || "N/A",

@@ -158,14 +158,14 @@ function DanhSachChoPhanCong() {
           />
         </div>
 
-        <h5 className="mt-3">Đồ án chưa có giảng viên phản biện:</h5>
+        <h5 className="mt-3">khóa luận chưa có giảng viên phản biện:</h5>
         {updatedDoAn?.length > 0 ? (
           <StyledTable>
             <thead>
               <tr>
                 <th>STT</th>
-                <th width="12%">Mã đồ án</th>
-                <th width="19%">Tên đồ án</th>
+                <th width="12%">Mã khóa luận</th>
+                <th width="19%">Tên khóa luận</th>
                 <th width="13%">Mã sinh viên</th>
                 <th>Tên sinh viên</th>
                 <th>Giảng viên</th>
@@ -188,19 +188,19 @@ function DanhSachChoPhanCong() {
           </StyledTable>
         ) : (
           <div className="p-3">
-            <p>Hiện chưa có đồ án cần phân công</p>
+            <p>Hiện chưa có khóa luận cần phân công</p>
           </div>
         )}
         {doAnWithGiangVienPhanBien && (
           <>
-            <h5>Đồ án đã có giảng viên phản biện:</h5>
+            <h5>khóa luận đã có giảng viên phản biện:</h5>
             {doAnWithGiangVienPhanBien.length ? (
               <StyledTable>
                 <thead>
                   <tr>
                     <th>STT</th>
-                    <th width="12%">Mã đồ án</th>
-                    <th width="19%">Tên đồ án</th>
+                    <th width="12%">Mã khóa luận</th>
+                    <th width="19%">Tên khóa luận</th>
                     <th width="13%">Mã sinh viên</th>
                     <th>Tên sinh viên</th>
                     <th>Giảng viên</th>
@@ -222,7 +222,7 @@ function DanhSachChoPhanCong() {
               </StyledTable>
             ) : (
               <div className="p-3">
-                <p>Hiện chưa có đồ án đã được phân công</p>
+                <p>Hiện chưa có khóa luận đã được phân công</p>
               </div>
             )}
           </>

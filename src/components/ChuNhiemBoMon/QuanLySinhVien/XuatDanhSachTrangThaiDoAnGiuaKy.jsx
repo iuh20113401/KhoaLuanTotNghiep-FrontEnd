@@ -10,8 +10,8 @@ function XuatDanhSachTrangThaiDoAnGiuaKy({ danhSachDoAn }) {
       const rows = [
         {
           STT: index + 1,
-          "Mã đồ án": doAn.maDoAn,
-          "Tên đồ án": doAn.tenDoAn,
+          "Mã khóa luận": doAn.maDoAn,
+          "Tên khóa luận": doAn.tenDoAn,
           "Mã sinh viên": doAn.sinhVien1.maSo,
           "Tên sinh viên": doAn.sinhVien1.hoTen,
           Pass: doAn.trangThai === 1 ? "✓" : "",
@@ -24,8 +24,8 @@ function XuatDanhSachTrangThaiDoAnGiuaKy({ danhSachDoAn }) {
       if (doAn.sinhVien2) {
         rows.push({
           STT: "", // Empty for second student row
-          "Mã đồ án": "", // Empty for second student row
-          "Tên đồ án": "", // Empty for second student row
+          "Mã khóa luận": "", // Empty for second student row
+          "Tên khóa luận": "", // Empty for second student row
           "Mã sinh viên": doAn.sinhVien2.maSo,
           "Tên sinh viên": doAn.sinhVien2.hoTen,
           Pass: "", // Status columns only in the first row
@@ -46,8 +46,8 @@ function XuatDanhSachTrangThaiDoAnGiuaKy({ danhSachDoAn }) {
       if (doAn.sinhVien2) {
         merges.push(
           { s: { r: rowIndex, c: 0 }, e: { r: rowIndex + 1, c: 0 } }, // STT
-          { s: { r: rowIndex, c: 1 }, e: { r: rowIndex + 1, c: 1 } }, // Mã đồ án
-          { s: { r: rowIndex, c: 2 }, e: { r: rowIndex + 1, c: 2 } }, // Tên đồ án
+          { s: { r: rowIndex, c: 1 }, e: { r: rowIndex + 1, c: 1 } }, // Mã khóa luận
+          { s: { r: rowIndex, c: 2 }, e: { r: rowIndex + 1, c: 2 } }, // Tên khóa luận
           { s: { r: rowIndex, c: 5 }, e: { r: rowIndex + 1, c: 5 } }, // Pass
           { s: { r: rowIndex, c: 6 }, e: { r: rowIndex + 1, c: 6 } }, // Fail
           { s: { r: rowIndex, c: 7 }, e: { r: rowIndex + 1, c: 7 } } // N/A
@@ -85,9 +85,9 @@ function XuatDanhSachTrangThaiDoAnGiuaKy({ danhSachDoAn }) {
       <StyledTable className="text-left pl-3">
         <tr>
           <th>STT</th>
-          <th width="15%">Mã đồ án</th>
+          <th width="15%">Mã khóa luận</th>
           <th className="text-left pl-3" width="20%">
-            Tên đồ án
+            Tên khóa luận
           </th>
           <th className="text-left pl-3" width="13%">
             Mã sinh viên

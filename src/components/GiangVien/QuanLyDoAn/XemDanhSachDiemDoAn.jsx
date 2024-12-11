@@ -51,7 +51,7 @@ function XemDanhSachDiemDoAn() {
             <th>STT</th>
             <th>MSSV</th>
             <th>Họ tên</th>
-            <th>Mã đồ án</th>
+            <th>Mã khóa luận</th>
             <th>Điểm hướng dẫn</th>
             <th>Điểm phản biên 1</th>
             <th>Điểm phản biên 2</th>

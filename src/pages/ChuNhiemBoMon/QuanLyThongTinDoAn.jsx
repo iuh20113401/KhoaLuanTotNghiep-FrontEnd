@@ -29,7 +29,7 @@ function QuanLyThongTinDoAn() {
   const sortedDoAn = sortDoAnList(filterDoAn, sortBy);
   return (
     <div>
-      <h5>Quản lý thông tin đồ án</h5>
+      <h5>Quản lý thông tin khóa luận</h5>
 
       <Card className="mt-3">
         {" "}
@@ -75,7 +75,7 @@ function QuanLyThongTinDoAn() {
           </>
         ) : (
           <div className="p-3">
-            <p>Hiện tại chưa có đồ án nào trong kỳ này</p>
+            <p>Hiện tại chưa có khóa luận nào trong kỳ này</p>
           </div>
         )}
       </Card>

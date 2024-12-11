@@ -174,7 +174,7 @@ function Navbar({ user }) {
             </li>
             <li>
               {user?.doAn ? (
-                <NavLink to="quanLyDoAn">Quản lý đồ án</NavLink>
+                <NavLink to="quanLyDoAn">Quản lý khóa luận</NavLink>
               ) : (
                 <NavLink to="dangKyDeTai">Đăng ký đề tài</NavLink>
               )}

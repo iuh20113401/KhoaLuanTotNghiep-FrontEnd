@@ -72,7 +72,7 @@ function DashboardDeTai({ thongTinDashboad }) {
         <StyledRow>
           <Col4>
             <Card style={{ height: "25rem" }} className="p-2 pb-5">
-              <h6>Tỉ lệ đậu/rớt đồ án</h6>
+              <h6>Tỉ lệ đậu/rớt khóa luận</h6>
               <div style={{ height: "80%", width: "100%" }}>
                 <PieChart
                   labels={tiLeDauRotLabel}

@@ -43,7 +43,7 @@ function ThongTinChung({ thongTinDashboad }) {
       </Col3>
       <Col3 className="pr-2 pl-2">
         <Card className="p-2">
-          <h6>Số lượng đồ án</h6>{" "}
+          <h6>Số lượng khóa luận</h6>{" "}
           <h4>{thongTinDashboad?.soLuongSinhVienThucTap || 0}</h4>
         </Card>
       </Col3>

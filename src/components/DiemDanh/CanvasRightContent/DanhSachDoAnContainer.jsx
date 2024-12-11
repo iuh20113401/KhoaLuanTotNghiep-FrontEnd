@@ -22,8 +22,8 @@ function DanhSachDoAnContainer({
       <thead>
         <tr>
           <td></td>
-          <td>Mã đồ án</td>
-          <td width={"40%"}>Tên đồ án</td>
+          <td>Mã khóa luận</td>
+          <td width={"40%"}>Tên khóa luận</td>
           <td>Sinh viên 1</td>
           <td>Sinh viên 2</td>
         </tr>

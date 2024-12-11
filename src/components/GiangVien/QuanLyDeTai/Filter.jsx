@@ -98,11 +98,11 @@ function Filter({
                 { value: "tenDeTai-desc", label: "Tên giảm dần" },
                 {
                   value: "slda-asc",
-                  label: "Số lượng đồ án giảm dần",
+                  label: "Số lượng khóa luận giảm dần",
                 },
                 {
                   value: "slda-desc",
-                  label: "Số lượng đồ án tăng dần",
+                  label: "Số lượng khóa luận tăng dần",
                 },
               ]}
               values={uniqueTrangThai}

@@ -27,7 +27,7 @@ function XemDanhSachDoAn() {
 
   return (
     <div>
-      <h5>Danh sách đồ án</h5>
+      <h5>Danh sách khóa luận</h5>
       <Card className="mt-3 p-3">
         <BieuMauChung />
       </Card>

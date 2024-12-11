@@ -51,7 +51,7 @@ function ChamDiemHoiDong() {
           </>
         ) : (
           <div className="p-3">
-            <p>Chưa có đồ án cần chấm</p>
+            <p>Chưa có khóa luận cần chấm</p>
           </div>
         )}
       </Card>

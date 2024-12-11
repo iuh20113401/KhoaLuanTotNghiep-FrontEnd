@@ -36,11 +36,11 @@ function FilterSinhVien({ handleFilterSinhVien }) {
                 },
                 {
                   value: "maDoAn-asc",
-                  label: "Mã đồ án tăng dần",
+                  label: "Mã khóa luận tăng dần",
                 },
                 {
                   value: "maDoAn-desc",
-                  label: "Mã đồ án giảm dần",
+                  label: "Mã khóa luận giảm dần",
                 },
               ]}
             />

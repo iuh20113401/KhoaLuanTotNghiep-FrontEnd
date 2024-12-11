@@ -63,7 +63,7 @@ function CardXacNhan({ trangThai, id, refetch }) {
             </Modal.Header>
             <Modal.Body>
               <h5 className="text-center">
-                Bạn xác nhận muốn cho đồ án này{" "}
+                Bạn xác nhận muốn cho khóa luận này{" "}
                 <b>{+value === 1 ? "đạt" : "không đạt"}</b>
               </h5>
               <div className="mt-3 text-center">

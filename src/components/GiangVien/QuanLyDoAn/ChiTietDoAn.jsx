@@ -101,7 +101,7 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
               </Button>
 
               {doAn.trangThai <= 1 ? (
-                <p className="error">Đồ án chưa cập nhật trạng thái</p>
+                <p className="error">khóa luận chưa cập nhật trạng thái</p>
               ) : (
                 <p className="error"></p>
               )}

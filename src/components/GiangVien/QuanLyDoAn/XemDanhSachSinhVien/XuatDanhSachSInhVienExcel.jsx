@@ -9,8 +9,8 @@ function XuatDanhSachSinhVienExcel({ DanhSachSinhVien }) {
     "Họ tên sinh viên": item.Info.hoTen,
     email: item.Info.email || "N/A", // Handling null values
     "Số điện thoại": item.Info.soDienThoai,
-    "Mã đồ án": item.doAnInfo.maDoAn,
-    "Tên đồ án": item.doAnInfo.tenDoAn,
+    "Mã khóa luận": item.doAnInfo.maDoAn,
+    "Tên khóa luận": item.doAnInfo.tenDoAn,
   }));
   return (
     <div className="mt-2 mr-3 text-end">

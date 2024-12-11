@@ -11,7 +11,7 @@ function DanhSachToanBoSinhVien({ DanhSachSinhVien }) {
           <th width="15%">Tên sinh viên</th>
           <th>Email</th>
           <th>Số điện thoại</th>
-          <th width="">Đồ án</th>
+          <th width="">khóa luận</th>
           <th width="">Thực tập</th>
           <th width="">Pretest</th>
         </tr>

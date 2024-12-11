@@ -33,7 +33,7 @@ function ChamDiemDoAn() {
   const sortedDoAn = sortDoAnList(filterDoAn, sortBy);
   return (
     <div>
-      <h5>Chấm điểm đồ án</h5>
+      <h5>Chấm điểm khóa luận</h5>
       <Card className="mt-3">
         {DanhSachDoAn?.length > 0 && sortedDoAn && (
           <XuatDanhSachDiemDoAn DanhSachDoAn={sortedDoAn} />
@@ -62,7 +62,7 @@ function ChamDiemDoAn() {
           </>
         ) : (
           <div className="p-3">
-            <p>Chưa có đồ án cần chấm</p>
+            <p>Chưa có khóa luận cần chấm</p>
           </div>
         )}
       </Card>

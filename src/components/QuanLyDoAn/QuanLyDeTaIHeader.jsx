@@ -165,7 +165,7 @@ function QuanLyDeTaiHeader({ content, active, setActive, doAn, refetch }) {
                 </form>
                 <StyledRowResponsive>
                   <div>
-                    <p>Mã đồ án: {doAn?.maDoAn}</p>
+                    <p>Mã khóa luận: {doAn?.maDoAn}</p>
                   </div>
                   <div>
                     <p>

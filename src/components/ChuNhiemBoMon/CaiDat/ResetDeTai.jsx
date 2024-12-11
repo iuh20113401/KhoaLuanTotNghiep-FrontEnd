@@ -26,7 +26,7 @@ function ResetDeTai() {
             </Button>
           </Modal.Header>
           <p className="error pl-4">
-            (*) Bạn sẽ không thể tiếp tục thực hiện các tác vụ với các đồ án
+            (*) Bạn sẽ không thể tiếp tục thực hiện các tác vụ với các khóa luận
             hiện tại
           </p>
           <Modal.Body className="p-0 m-0"></Modal.Body>

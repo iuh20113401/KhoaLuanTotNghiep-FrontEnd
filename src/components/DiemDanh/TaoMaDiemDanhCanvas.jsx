@@ -179,7 +179,7 @@ function TaoMaDiemDanhCanvas({ setIsDiemDanh }) {
             >
               <option value={"all"}>Toàn bộ</option>
               <option value={"deTai"}>Theo đề tài</option>
-              <option value={"doAn"}>Toàn đồ án</option>
+              <option value={"doAn"}>Toàn khóa luận</option>
               <option value={"sinhVien"}>Toàn sinh viên</option>
             </StyledSelect>
           </div>

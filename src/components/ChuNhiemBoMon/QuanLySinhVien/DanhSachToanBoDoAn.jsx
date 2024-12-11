@@ -11,8 +11,8 @@ function DanhSachToanBoDoAnContainer({
       <thead>
         <tr>
           <th>STT</th>
-          <th width="15%">Mã đồ án</th>
-          <th width="20%">Tên đồ án</th>
+          <th width="15%">Mã khóa luận</th>
+          <th width="20%">Tên khóa luận</th>
           <th width="13%">Mã sinh viên</th>
           <th>Tên sinh viên</th>
           <th width="15%">Trạng thái</th>
