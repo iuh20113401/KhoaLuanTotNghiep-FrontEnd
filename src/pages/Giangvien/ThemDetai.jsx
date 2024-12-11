@@ -4,7 +4,7 @@ import Button from "../../ui/Button";
 import Card from "../../ui/Card";
 import { StyledRow } from "../../ui/Row";
 
-function ThemDetai({ setShow }) {
+function ThemDetai({ setShow, refetch }) {
   return (
     <div>
       <h5>Quản lý đề tài {">"} Thêm đề tài</h5>
@@ -19,7 +19,7 @@ function ThemDetai({ setShow }) {
           </Button>
           <h5>Thông tin đề tài</h5>
         </StyledRow>
-        <FormThemDeTai />
+        <FormThemDeTai refetch={refetch} />
       </Card>
     </div>
   );

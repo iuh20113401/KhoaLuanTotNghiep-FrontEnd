@@ -11,7 +11,7 @@ function DanhSachDeTaiContainer({
   return (
     <div>
       <Card>
-        <StyledTable>
+        <StyledTable className="overflow">
           <thead>
             <tr>
               <th style={{ width: "15%" }}>Tên đề tài</th>

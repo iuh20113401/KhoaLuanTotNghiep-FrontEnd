@@ -114,6 +114,8 @@ const StyledTableContainer = styled.table`
       }
     }
   }
+  @media (max-width: 768px) {
+  }
 `;
 
 function StyledTable({
