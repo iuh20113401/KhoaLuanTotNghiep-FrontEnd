@@ -64,7 +64,7 @@ function CardXacNhanCuoiKy({ trangThai, id, refetch }) {
             <Modal.Body>
               <h5 className="text-center">
                 Bạn xác nhận muốn cho khóa luận này{" "}
-                <b>{+value === 1 ? "đạt" : "không đạt"}</b>
+                <b>{+value === 2 ? "đạt" : "không đạt"}</b>
               </h5>
               <div className="mt-3 text-center">
                 <Button
