@@ -10,14 +10,22 @@ import { StyledInput, StyledSelect } from "../../../ui/Input";
 import { layDanhMuc, suaDeTai, taoDeTai } from "../../../services/DeTaiApi";
 import decodeHtml from "../../../utils/ChangeHtmlCode";
 import LoadingSpinner from "../../../ui/Spinner";
+import UseUser from "../../../context/UseUser";
 
-function FormThemDeTai({ deTai = null, refetch }) {
+function FormThemDeTai({
+  deTai = null,
+  danhSachGiangVien,
+  isSinhVien = false,
+  refetch,
+}) {
   const { data, isLoading } = useQuery({
     queryKey: ["danhSachDanhMuc"],
     queryFn: layDanhMuc,
   });
   const danhSachDanhMuc = data?.danhMuc;
   const [danhMuc, setDanhMuc] = useState(deTai?.danhMuc || "");
+  const [giangVienId, setGiangVienId] = useState(null);
+
   const {
     handleSubmit,
     control,
@@ -27,12 +35,14 @@ function FormThemDeTai({ deTai = null, refetch }) {
   } = useForm({
     mode: "onSubmit",
   });
+  const { data: user, isLoading: useLoading } = UseUser();
+  const userId = user.user._id;
   const { mutate: suaMutate, isPending: suaLoading } = useMutation({
     mutationFn: suaDeTai,
     onSuccess: () => {
       toast.success("Sửa đề tài thành công");
       reset();
-      refetch();
+      if (refetch) refetch();
     },
     onError: (error) => {
       toast.error("Có lỗi xảy ra khi sửa đề tài");
@@ -43,7 +53,7 @@ function FormThemDeTai({ deTai = null, refetch }) {
     onSuccess: () => {
       toast.success("Tạo đề tài thành công");
       reset();
-      refetch();
+      if (refetch) refetch();
     },
     onError: () => {
       toast.error("Có lỗi xảy ra khi tạo đề tài");
@@ -63,6 +73,9 @@ function FormThemDeTai({ deTai = null, refetch }) {
       : taoMutate({
           ...data,
           danhMuc: danhMuc === "Khác" ? data.danhMuc : danhMuc,
+          giangVien: isSinhVien ? giangVienId : userId,
+          sinhVien: isSinhVien ? userId : null,
+          trangThai: isSinhVien ? 4 : 0,
         });
   }
   const isPending = themLoading || suaLoading;
@@ -89,7 +102,26 @@ function FormThemDeTai({ deTai = null, refetch }) {
           <p className="text-danger error">{errors.tenDeTai.message}</p>
         )}
       </div>
+      {isSinhVien && (
+        <div>
+          <label htmlFor="danhMuc">
+            <h6>Giảng viên</h6>
+          </label>{" "}
+          <StyledSelect
+            value={giangVienId}
+            onChange={(e) => setGiangVienId(e.target.value)}
+          >
+            <option value="">Chọn giảng viên</option>
 
+            {!isLoading &&
+              danhSachGiangVien?.map((gv) => (
+                <option key={gv._id} value={gv._id}>
+                  {gv.hoTen}
+                </option>
+              ))}
+          </StyledSelect>
+        </div>
+      )}
       <div className="mt-3">
         <label htmlFor="danhMuc">
           <h6>Danh mục</h6>

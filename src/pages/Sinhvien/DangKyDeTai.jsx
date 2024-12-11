@@ -9,6 +9,10 @@ import { useDanhSachDeTai } from "../../hooks/useDanhSachDeTai";
 import { useSearchParams } from "react-router-dom";
 import { sortDoAnList } from "../../utils/SortDoAn";
 import LoadingSpinner from "../../ui/Spinner";
+import Button from "../../ui/Button";
+import { ColLg, StyledRow } from "../../ui/Row";
+import { useState } from "react";
+import ModalTaoDeTai from "./ModalTaoDeTai";
 
 function DangKyDeTai() {
   const { DanhSachDeTai, filterDeTai, handleFilterDeTai, isLoading } =
@@ -23,6 +27,8 @@ function DangKyDeTai() {
   const loiMoi = user.user?.loiMoi;
   const sortBy = searchParams.get("sortBy");
   const sortedDoAn = sortDoAnList(filterDeTai, sortBy);
+  const [isShowModal, setIsShowModal] = useState(null);
+  if (caiDatLoading || loiMoiLoading) return <LoadingSpinner />;
   return (
     <>
       {!loiMoiLoading && loiMoi?.length > 0 && (
@@ -31,9 +37,17 @@ function DangKyDeTai() {
           <DanhSachLoiMoiContainer loiMoi={loiMoi} />
         </>
       )}
-      <h5 className="mt-3 mb-2">Đăng ký đề tài</h5>
+      <StyledRow className="align-center">
+        <ColLg>
+          <h5 className="mt-3 mb-2">Đăng ký đề tài</h5>
+        </ColLg>
+        {!caiDatInfo.isDangKyDeTai && (
+          <Button onClick={() => setIsShowModal(true)}>
+            Yêu cầu đề tài đặc biệt
+          </Button>
+        )}
+      </StyledRow>
       <Card>
-        {" "}
         <Filter
           DanhSachDeTai={DanhSachDeTai}
           handleFilterDeTai={handleFilterDeTai}
@@ -47,6 +61,7 @@ function DangKyDeTai() {
           />
         )}
       </Card>
+      {isShowModal && <ModalTaoDeTai setShowModal={setIsShowModal} />}
     </>
   );
 }

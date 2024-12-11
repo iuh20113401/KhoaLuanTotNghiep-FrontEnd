@@ -1,76 +1,81 @@
 import { useState } from "react";
-import Filter from "../../components/GiangVien/QuanLyDeTai/Filter";
 import Button from "../../ui/Button";
-import Card from "../../ui/Card";
 import ThemDetai from "./ThemDetai";
 import { layDanhSachDeTai } from "../../services/DeTaiApi";
 import SuaDeTai from "./SuaDeTai";
-import { useSearchParams } from "react-router-dom";
-import { sortDoAnList } from "../../utils/SortDoAn";
 import { useDanhSachDeTai } from "../../hooks/useDanhSachDeTai";
-import DanhSachDeTaiContainer from "../../components/GiangVien/QuanLyDeTai/DanhSachDeTaiContainer";
+
+import { Col3, ColLg, StyledRow } from "../../ui/Row";
+import DanhSachDeTaiGiangVien from "../../components/GiangVien/QuanLyDeTai/DanhSachDeTaiGiangVien";
+import QuanLyDeTaiHeader from "../../components/ChuNhiemBoMon/TaoThongBao/QuanLyDeTaiHeader";
+import DanhSachDeTaiSinhVien from "../../components/GiangVien/QuanLyDeTai/DanhSachDeTaiSinhVien";
 import LoadingSpinner from "../../ui/Spinner";
-import DanhSachDeTaiAccordionLIst from "../../components/GiangVien/QuanLyDeTai/DanhSachDeTaiAccordionLIst";
 
 function QuanLyDeTai() {
   const [isAdd, setIsAdd] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [isShowTable, setIsShowTable] = useState(true);
+  const [active, setActive] = useState(0);
+
   const { DanhSachDeTai, filterDeTai, refetch, handleFilterDeTai, isLoading } =
     useDanhSachDeTai({
       key: "DanhSachDeTai",
       fn: layDanhSachDeTai,
     });
-  const [searchParams] = useSearchParams();
-  const sortBy = searchParams.get("sortBy");
-  const sortedDoAn = sortDoAnList(filterDeTai, sortBy);
-
+  const TabArr = [
+    {
+      header: "Danh sách đề tài ",
+      content: (
+        <DanhSachDeTaiGiangVien
+          DanhSachDeTai={DanhSachDeTai}
+          filterDeTai={filterDeTai}
+          handleFilterDeTai={handleFilterDeTai}
+          isLoading={isLoading}
+          refetch={refetch}
+          isShowTable={isShowTable}
+          setIsShowTable={setIsShowTable}
+          setIsEdit={setIsEdit}
+        />
+      ),
+    },
+    {
+      header: "Danh sách đề tài sinh viên yêu cầu",
+      content: (
+        <DanhSachDeTaiSinhVien
+          DanhSachDeTai={DanhSachDeTai.filter((dt) => +dt.trangThai === 4)}
+          isLoading={isLoading}
+          refetch={refetch}
+          isShowTable={isShowTable}
+          setIsShowTable={setIsShowTable}
+          setIsEdit={setIsEdit}
+        />
+      ),
+    },
+  ];
+  if (isLoading) return <LoadingSpinner />;
   return (
     <div>
       {!isAdd && !isEdit && (
         <>
-          <h5>Quản lý đề tài</h5>
-          <Button
-            size="block"
-            className="mt-3"
-            onClick={() => setIsAdd((isAdd) => !isAdd)}
-          >
-            Thêm đề tài
-          </Button>
-          <Card className="mt-3">
-            {isLoading ? (
-              <LoadingSpinner />
-            ) : DanhSachDeTai?.length > 0 ? (
-              <>
-                <Filter
-                  DanhSachDeTai={DanhSachDeTai}
-                  handleFilterDeTai={handleFilterDeTai}
-                  setIsShowTable={setIsShowTable}
-                  isShowTable={isShowTable}
-                />
-                {isShowTable ? (
-                  <DanhSachDeTaiContainer
-                    danhSachDeTai={DanhSachDeTai}
-                    sortedDoAn={sortedDoAn ?? DanhSachDeTai}
-                    setIsEdit={setIsEdit}
-                    refetch={refetch}
-                  />
-                ) : (
-                  <DanhSachDeTaiAccordionLIst
-                    danhSachDeTai={DanhSachDeTai}
-                    sortedDoAn={sortedDoAn ?? DanhSachDeTai}
-                    setIsEdit={setIsEdit}
-                  />
-                )}
-              </>
-            ) : (
-              <div className="p-3">
-                <p>
-                  Hiện tại chưa có đề tài nào! Nhấn nút thêm để tạo đề tài mới
-                </p>
-              </div>
-            )}
-          </Card>
+          <StyledRow className="align-center">
+            <ColLg>
+              <h5>Quản lý đề tài</h5>
+            </ColLg>
+
+            <Col3>
+              <Button size="block" onClick={() => setIsAdd((isAdd) => !isAdd)}>
+                Thêm đề tài
+              </Button>
+            </Col3>
+          </StyledRow>
+          <div className="mt-3">
+            <QuanLyDeTaiHeader
+              content={TabArr}
+              active={active}
+              setActive={setActive}
+            />
+          </div>
+          <div className="mt-1">{TabArr[active].content}</div>
         </>
       )}
       {isAdd && <ThemDetai setShow={setIsAdd} refetch={refetch} />}

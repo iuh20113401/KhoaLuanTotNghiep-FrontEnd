@@ -6,7 +6,7 @@ import { StyledDropdownMenu, StyledLink } from "../../../ui/DropDown";
 import { useState } from "react";
 import decodeHtml from "../../../utils/ChangeHtmlCode";
 import { useMutation } from "@tanstack/react-query";
-import { xoaDeTai } from "../../../services/DeTaiApi";
+import { suaDeTai, xoaDeTai } from "../../../services/DeTaiApi";
 import toast from "react-hot-toast";
 
 function DisplayQuillContent({ content }) {
@@ -29,10 +29,22 @@ const StyleTrangThai = {
     bgColor: "var(--bs-warning)",
   },
 };
-function ChiTietDeTai({ deTai, refetch, setIsEdit }) {
+function ChiTietDeTai({ deTai, refetch, setIsEdit, isSinhVien }) {
   const [ghiChu, setGhiChu] = useState(false);
   const trangThai = deTai.trangThai === 0 ? (deTai?.ghiChu ? 2 : 0) : 1;
   const [edit, setEdit] = useState(false);
+  const { mutate: capNhatDeTaiMutate, isPending: capNhatDeTaiPending } =
+    useMutation({
+      mutationFn: suaDeTai,
+      onSuccess: () => {
+        toast.success("Xóa đề tài thành công");
+        refetch();
+      },
+      onError: () => {
+        toast.error("Xóa đề tài không thành công");
+      },
+    });
+
   const { mutate: xoaMutate, isPending } = useMutation({
     mutationFn: xoaDeTai,
     onSuccess: () => {
@@ -45,6 +57,12 @@ function ChiTietDeTai({ deTai, refetch, setIsEdit }) {
   });
   function handleXoa() {
     xoaMutate(deTai._id);
+  }
+  function handleDuyet() {
+    capNhatDeTaiMutate({ ...deTai, trangThai: 0 });
+  }
+  function handleKhongDuyet() {
+    capNhatDeTaiMutate({ ...deTai, trangThai: 5 });
   }
   if (isPending) return;
   return (
@@ -67,21 +85,28 @@ function ChiTietDeTai({ deTai, refetch, setIsEdit }) {
           <DisplayQuillContent content={deTai.ketQuaCanDat} />
         </p>
       </td>
-      <td>
-        <div style={{ position: "relative" }}>
-          <Badges
-            content={StyleTrangThai[trangThai].ten}
-            bgcolor={StyleTrangThai[trangThai].bgColor}
-            onMouseEnter={() => setGhiChu(true)}
-            onMouseLeave={() => setGhiChu(false)}
-          />
-          {ghiChu && (
-            <StyledDropdownMenu className="mt-2" bottom="120%">
-              <p>{deTai?.ghiChu}</p>
-            </StyledDropdownMenu>
-          )}
-        </div>
-      </td>
+      {isSinhVien ? (
+        <>
+          <td>{deTai.sinhVien.maSo}</td>
+          <td>{deTai.sinhVien.hoTen}</td>
+        </>
+      ) : (
+        <td>
+          <div style={{ position: "relative" }}>
+            <Badges
+              content={StyleTrangThai[trangThai].ten}
+              bgcolor={StyleTrangThai[trangThai].bgColor}
+              onMouseEnter={() => setGhiChu(true)}
+              onMouseLeave={() => setGhiChu(false)}
+            />
+            {ghiChu && (
+              <StyledDropdownMenu className="mt-2" bottom="120%">
+                <p>{deTai?.ghiChu}</p>
+              </StyledDropdownMenu>
+            )}
+          </div>
+        </td>
+      )}
       <td>
         <div style={{ position: "relative" }}>
           <Button
@@ -93,24 +118,51 @@ function ChiTietDeTai({ deTai, refetch, setIsEdit }) {
           >
             <HiOutlineDotsVertical />
           </Button>
-          {edit && (
-            <StyledDropdownMenu>
-              <StyledLink onClick={() => setIsEdit(deTai)}>
-                Chỉnh sửa
-              </StyledLink>
-              {deTai.trangThai !== 1 && (
+          {edit &&
+            (isSinhVien ? (
+              <StyledDropdownMenu>
                 <StyledLink>
                   <Button
-                    onClick={handleXoa}
-                    bgColor="transparent"
+                    bgcolor="transparent"
                     color="black"
+                    size="xs"
+                    style={{ margin: 0, padding: 0 }}
+                    onClick={handleDuyet}
                   >
-                    Xóa
+                    <p>Duyệt</p>
                   </Button>
                 </StyledLink>
-              )}
-            </StyledDropdownMenu>
-          )}
+                <StyledLink>
+                  <Button
+                    onClick={handleKhongDuyet}
+                    bgcolor="transparent"
+                    color="black"
+                    varitaion="icon"
+                    size="xs"
+                    style={{ margin: 0, padding: 0, textAlign: "start" }}
+                  >
+                    <p>Không duyệt</p>
+                  </Button>
+                </StyledLink>
+              </StyledDropdownMenu>
+            ) : (
+              <StyledDropdownMenu>
+                <StyledLink onClick={() => setIsEdit(deTai)}>
+                  Chỉnh sửa
+                </StyledLink>
+                {deTai.trangThai !== 1 && (
+                  <StyledLink>
+                    <Button
+                      onClick={handleXoa}
+                      bgColor="transparent"
+                      color="black"
+                    >
+                      Xóa
+                    </Button>
+                  </StyledLink>
+                )}
+              </StyledDropdownMenu>
+            ))}
         </div>
       </td>
     </tr>
