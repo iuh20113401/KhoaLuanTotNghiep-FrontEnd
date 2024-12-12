@@ -1,16 +1,16 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import Card from "../../ui/Card";
 import {
   layDanhSachDoAnDatPhanBien,
   themNhiemGiangVienHoiDong,
 } from "../../services/DoAn";
-import DanhSachDoAnContainer from "../../components/ChuNhiemBoMon/PhanCongGiangVienHoiDong/DanhSachDoAnContainer";
 import toast from "react-hot-toast";
-import { createContext, useEffect, useMemo, useState } from "react";
-import Button from "../../ui/Button";
-import LoadingSpinner from "../../ui/Spinner";
+import { createContext, useEffect, useState } from "react";
 import HoiDongContainer from "../../components/ChuNhiemBoMon/PhanCongGiangVienHoiDong/TaoHoiDong/HoiDongContainer";
 import { useDanhSachDoAn } from "../../hooks/useDanhSachDoAn";
+import DanhSachKhoaLuanChuaPhanHoiDong from "../../components/ChuNhiemBoMon/PhanCongGiangVienHoiDong/DanhSachKhoaLuanChuaPhanHoiDong";
+import DanhSachKhoaLuanDaPhanHoiDong from "../../components/ChuNhiemBoMon/PhanCongGiangVienHoiDong/DanhSachKhoaLuanDaPhanHoiDong";
+import QuanLyDeTaiHeader from "../../components/ChuNhiemBoMon/TaoThongBao/QuanLyDeTaiHeader";
 export const PhanCongHoiDongContext = createContext();
 function PhanCongGiangVienHoiDong() {
   const { DanhSachDoAn, isLoading, namHoc, hocKy } = useDanhSachDoAn({
@@ -56,7 +56,9 @@ function PhanCongGiangVienHoiDong() {
               ...doAn,
               loai: type,
               giangVienHoiDong:
-                +type === 1 ? hoiDongs[+id] : posterHoiDongs[+id],
+                +type === 1
+                  ? { stt: id, ...hoiDongs[+id] }
+                  : { stt: id, ...hoiDongs[+id] },
             }
           : doAn;
       })
@@ -79,6 +81,7 @@ function PhanCongGiangVienHoiDong() {
         return {
           loai,
           _id: da._id,
+          stt: giangVienHoiDong.stt,
           giangVien: Object.keys(giangVienHoiDong)
             .map(
               (gv, index) =>
@@ -110,6 +113,36 @@ function PhanCongGiangVienHoiDong() {
     });
     mutate(newData);
   }
+  const [active, setActive] = useState(0);
+
+  const TabArr = [
+    {
+      header: "Danh sách đề tài giảng viên",
+      content: (
+        <DanhSachKhoaLuanChuaPhanHoiDong
+          updatedDoAn={updatedDoAn}
+          handlePhanCong={handlePhanCong}
+          isLoading={isLoading}
+          isPending={isPending}
+        />
+      ),
+    },
+    {
+      header: "Danh sách đề tài sinh viên yêu cầu",
+      content: (
+        <DanhSachKhoaLuanDaPhanHoiDong
+          danhSachDoAn={DanhSachDoAn.filter((da) => {
+            return !(
+              typeof da.giangVienHoiDong === "object" &&
+              !Object.values(da.giangVienHoiDong).length > 0
+            );
+          })}
+          isLoading={isLoading}
+          isPending={isPending}
+        />
+      ),
+    },
+  ];
   return (
     <PhanCongHoiDongContext.Provider
       value={{
@@ -127,23 +160,14 @@ function PhanCongGiangVienHoiDong() {
         <Card className="p-2 mt-3">
           <HoiDongContainer />
         </Card>
-        <Card className="p-2 mt-2">
-          <h5>Danh sách khóa luận</h5>
-          {isLoading ? (
-            <div>
-              <LoadingSpinner />
-            </div>
-          ) : (
-            <>
-              <DanhSachDoAnContainer DanhSachDoAn={updatedDoAn} />
-              <div className="text-end">
-                <Button onClick={handlePhanCong} disabled={isPending}>
-                  Phân công hội đồng
-                </Button>
-              </div>
-            </>
-          )}
-        </Card>
+        <div className="mt-3">
+          <QuanLyDeTaiHeader
+            content={TabArr}
+            active={active}
+            setActive={setActive}
+          />
+        </div>
+        <div className="mt-1">{TabArr[active].content}</div>
       </div>
     </PhanCongHoiDongContext.Provider>
   );

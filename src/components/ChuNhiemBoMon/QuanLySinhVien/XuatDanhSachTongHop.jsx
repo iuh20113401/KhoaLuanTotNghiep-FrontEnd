@@ -1,5 +1,6 @@
 /* eslint-disable array-callback-return */
 import { useRef } from "react";
+import Button from "../../../ui/Button";
 
 const getDanhSachSinhVien = (DanhSachDoAn) => {
   // Initialize an empty array to store all sinhVien
@@ -258,7 +259,9 @@ export default function XuatDanhSachTongHop({ DanhSachDoAn }) {
   }
   return (
     <div style={{ textAlign: "left " }}>
-      <button onClick={() => Export2Doc("document")}>Print</button>
+      <div className="p-2 text-end">
+        <Button onClick={() => Export2Doc("document")}>Print</Button>
+      </div>
       <div class="docx-wrapper" ref={contentRef}>
         <section
           class="docx"

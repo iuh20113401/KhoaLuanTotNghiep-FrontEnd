@@ -3,13 +3,17 @@ import { StyledRow } from "../../../ui/Row";
 import { useContext } from "react";
 import { PhanCongHoiDongContext } from "../../../pages/ChuNhiemBoMon/PhanCongGiangVienHoiDong";
 
-function ChiTietDoAn({ doAn, isPoster }) {
+function ChiTietDoAn({ doAn, isHD = false }) {
   const countSinhVien =
     doAn.sinhVien2 && Object.keys(doAn.sinhVien2).length > 0 ? 2 : 1;
   const context = useContext(PhanCongHoiDongContext);
   const { hoiDongs, posterHoiDongs, isConfirmed, handleChangeHoiDongDoAn } =
     context;
-
+  const changeHoiDong = (e) => {
+    const [loai, value] = e.target.value.split(" ");
+    handleChangeHoiDongDoAn(doAn._id, +loai, +value);
+  };
+  console.log(`${doAn.giangVienHoiDong.loai} ${doAn.giangVienHoiDong.stt}`);
   return (
     <>
       <tr>
@@ -24,35 +28,29 @@ function ChiTietDoAn({ doAn, isPoster }) {
           </StyledRow>
         </td>
         <td rowSpan={countSinhVien}>
-          {isPoster ? (
-            <StyledSelect
-              onChange={(e) => {
-                handleChangeHoiDongDoAn(doAn._id, 2, e.target.value);
-              }}
-              disabled={!isConfirmed}
-            >
-              <option value={""}>Chọn hội đồng poster</option>
-              {posterHoiDongs.map((hd) => (
-                <option key={hd.stt} value={hd.stt}>
-                  Hội đồng poster {hd.stt}
-                </option>
-              ))}
-            </StyledSelect>
-          ) : (
-            <StyledSelect
-              onChange={(e) => {
-                handleChangeHoiDongDoAn(doAn._id, 1, e.target.value);
-              }}
-              disabled={!isConfirmed}
-            >
-              <option value={""}>Chọn hội đồng chính</option>
-              {hoiDongs.map((hd) => (
-                <option key={hd.stt} value={hd.stt}>
-                  Hội đồng {+hd.stt + 1}
-                </option>
-              ))}
-            </StyledSelect>
-          )}
+          <StyledSelect
+            onChange={(e) => {
+              changeHoiDong(e);
+            }}
+            disabled={!isConfirmed || isHD}
+            value={
+              !isHD
+                ? ""
+                : `${doAn.giangVienHoiDong.loai} ${doAn.giangVienHoiDong.stt}`
+            }
+          >
+            <option value={""}>Chọn hội đồng</option>
+            {hoiDongs.map((hd) => (
+              <option key={hd.stt} value={`1 ${hd.stt}`}>
+                Hội đồng {hd.stt + 1}
+              </option>
+            ))}
+            {posterHoiDongs.map((hd) => (
+              <option key={hd.stt} value={`2 ${hd.stt}`}>
+                Hội đồng poster {hd.stt}
+              </option>
+            ))}
+          </StyledSelect>
         </td>
       </tr>
       {doAn.sinhVien2 && (

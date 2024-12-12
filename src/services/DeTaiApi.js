@@ -30,9 +30,20 @@ const suaDeTai = (data) =>
     },
     body: JSON.stringify(data),
   });
-
+const yeuCauChinhSuaDeTai = ({ id, data }) =>
+  fetchApi(`${BASE_URL}/yeuCauChinhSua/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
 const layDanhSachDeTaiChoDuyet = () =>
   fetchApi(`${BASE_URL}/DanhSachDeTai/ChoDuyet`, {
+    method: "GET",
+  });
+const layDanhSachDeTaiSinhVienDangKy = () =>
+  fetchApi(`${BASE_URL}/DanhSachDeTai/SinhVien`, {
     method: "GET",
   });
 const duyetDeTai = (id) =>
@@ -51,7 +62,9 @@ export {
   layDanhSachDeTai,
   suaDeTai,
   layDanhSachDeTaiChoDuyet,
+  layDanhSachDeTaiSinhVienDangKy,
   duyetDeTai,
+  yeuCauChinhSuaDeTai,
   xoaDeTai,
   layDanhSachDeTaiDangKy,
 };

@@ -4,8 +4,9 @@ import { StyledTextarea } from "../../../ui/Input";
 import Modal from "../../../ui/Modal";
 import decodeHtml from "../../../utils/ChangeHtmlCode";
 import { useState } from "react";
-import { suaDeTai } from "../../../services/DeTaiApi";
+import { suaDeTai, yeuCauChinhSuaDeTai } from "../../../services/DeTaiApi";
 import toast from "react-hot-toast";
+import formatVieNamDate from "../../../utils/FormatDate";
 function DisplayQuillContent({ content }) {
   const decodedContent = decodeHtml(content);
 
@@ -13,7 +14,7 @@ function DisplayQuillContent({ content }) {
 }
 function ChinhSuaModal({ deTai, setShowModal }) {
   const { mutate: chinhSuaMutate, isPending: suaLoading } = useMutation({
-    mutationFn: suaDeTai,
+    mutationFn: yeuCauChinhSuaDeTai,
     onSuccess: () => {
       toast.success("Đã cập nhật yêu cầu chỉnh sửa");
       setShowModal(false);
@@ -22,7 +23,7 @@ function ChinhSuaModal({ deTai, setShowModal }) {
   const [noiDungChinhSua, setNoiDungChinhSua] = useState(deTai?.ghiChu || "");
 
   function chinhSuaDeTaiHandle() {
-    chinhSuaMutate({ _id: deTai._id, ghiChu: noiDungChinhSua });
+    chinhSuaMutate({ id: deTai._id, data: { noiDung: noiDungChinhSua } });
   }
   return (
     <Modal size="xl">
@@ -60,9 +61,17 @@ function ChinhSuaModal({ deTai, setShowModal }) {
             <DisplayQuillContent content={deTai.kyNangCanCo} />
           </p>
         </div>
+        <div className="mt-2">
+          <p>Yêu câu chỉnh sửa trước đây: </p>
+          {deTai.ghiChu.map((gc) => (
+            <div className="flex">
+              <p>{formatVieNamDate(gc.ngayTao)}: </p>
+              <p> {gc.noiDung}</p>
+            </div>
+          ))}
+        </div>
         <StyledTextarea
           className="mt-2"
-          value={noiDungChinhSua}
           onChange={(e) => setNoiDungChinhSua(e.target.value)}
           placeholder="Nhập yêu cầu chỉnh sửa"
         />

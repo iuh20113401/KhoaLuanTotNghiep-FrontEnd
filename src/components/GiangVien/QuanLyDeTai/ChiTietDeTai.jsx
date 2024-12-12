@@ -8,6 +8,7 @@ import decodeHtml from "../../../utils/ChangeHtmlCode";
 import { useMutation } from "@tanstack/react-query";
 import { suaDeTai, xoaDeTai } from "../../../services/DeTaiApi";
 import toast from "react-hot-toast";
+import formatVieNamDate from "../../../utils/FormatDate";
 
 function DisplayQuillContent({ content }) {
   const decodedContent = decodeHtml(content);
@@ -101,7 +102,12 @@ function ChiTietDeTai({ deTai, refetch, setIsEdit, isSinhVien }) {
             />
             {ghiChu && (
               <StyledDropdownMenu className="mt-2" bottom="120%">
-                <p>{deTai?.ghiChu}</p>
+                {deTai?.ghiChu.map((gc) => (
+                  <p>
+                    <strong>{formatVieNamDate(gc.ngayTao)}</strong>
+                    {gc.noiDung}
+                  </p>
+                ))}
               </StyledDropdownMenu>
             )}
           </div>
