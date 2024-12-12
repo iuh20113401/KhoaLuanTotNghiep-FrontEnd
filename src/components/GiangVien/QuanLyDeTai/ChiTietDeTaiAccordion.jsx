@@ -7,7 +7,7 @@ import hinhAnh from "../../../../public/hinhanh/iuh_logo_2.png";
 function ChiTietDeTaiAccordion({ deTai, setIsEdit }) {
   const [edit, setEdit] = useState(false);
 
-  const left = <img src={deTai.HinhAnh || hinhAnh} alt="Hình ảnh đề tài" />;
+  const left = <img src={deTai.hinhAnh || hinhAnh} alt="Hình ảnh đề tài" />;
   const rigth = (
     <>
       <h6>{deTai.tenDeTai}</h6>

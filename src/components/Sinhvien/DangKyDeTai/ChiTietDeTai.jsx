@@ -8,6 +8,7 @@ import UseUser from "../../../context/UseUser";
 import { useNavigate } from "react-router-dom";
 import styled, { css, keyframes } from "styled-components";
 import { StyledRow } from "../../../ui/Row";
+import hinhAnh from "../../../../public/hinhanh/iuh_logo_2.png";
 
 function DisplayQuillContent({ content }) {
   const decodedContent = decodeHtml(content);
@@ -240,10 +241,7 @@ function ChiTietDeTai2({ deTai, caiDatInfo }) {
       >
         <FrontContainer type={!dangky ? "active" : "hidden"}>
           <DoAnLeft>
-            <img
-              src={deTai.HinhAnh || "../public/hinhanh/iuh_logo_2.png"}
-              alt="Hình ảnh đề tài"
-            />
+            <img src={deTai.HinhAnh || hinhAnh} alt="Hình ảnh đề tài" />
           </DoAnLeft>
           <DoAnRight>
             <h6>{deTai.tenDeTai}</h6>
