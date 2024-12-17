@@ -13,9 +13,11 @@ function chamDiemPhanBien(data, doAn, tieuChi, sv1 = true) {
             stt: tc.stt,
             ten: tc.ten,
             diem: data[`${sv1 ? "sv1" : "sv2"}_Lo${index}`],
+            ghiChu: data[`ghiChu${index}`], // Score for each criterion
           })),
           diemTong: data[`${sv1 ? "sv1" : "sv2"}_d10`], // Total score
-          ketQua: data[`${sv1 ? "sv1" : "sv2"}_ketQua`], // Update ketQua under "diem"
+          ketQua: data[`${sv1 ? "sv1" : "sv2"}_ketQua`],
+          nhanXet: data[`nhanXet`],
         },
       },
     };
@@ -30,9 +32,11 @@ function chamDiemPhanBien(data, doAn, tieuChi, sv1 = true) {
             stt: tc.stt,
             ten: tc.ten,
             diem: data[`${sv1 ? "sv1" : "sv2"}_Lo${index}`],
+            ghiChu: data[`ghiChu${index}`],
           })),
           diemTong: data[`${sv1 ? "sv1" : "sv2"}_d10`], // Total score
-          ketQua: data[`${sv1 ? "sv1" : "sv2"}_ketQua`], // Update ketQua under "diem"
+          ketQua: data[`${sv1 ? "sv1" : "sv2"}_ketQua`], // Update ketQua under "diem",
+          nhanXet: data[`nhanXet`],
         },
       },
     };

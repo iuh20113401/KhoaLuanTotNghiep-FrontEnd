@@ -27,11 +27,6 @@ function ThongTinChung({ thongTinDashboad }) {
               <h6>Tổng sinh viên</h6>
               <h4>{thongTinDashboad?.soLuongDeTai || 0}</h4>
             </ColLg>
-            <ColLg className="text-center  align-center flex justify-end">
-              <StyledIcon bgcolor="var(--bs-cyan)" color="var(--bs-white)">
-                <BsPerson />
-              </StyledIcon>
-            </ColLg>
           </StyledRow>
         </Card>
       </Col3>
@@ -44,7 +39,7 @@ function ThongTinChung({ thongTinDashboad }) {
       <Col3 className="pr-2 pl-2">
         <Card className="p-2">
           <h6>Số lượng khóa luận</h6>{" "}
-          <h4>{thongTinDashboad?.soLuongSinhVienThucTap || 0}</h4>
+          <h4>{thongTinDashboad?.soLuongDoAn || 0}</h4>
         </Card>
       </Col3>
       <Col3 className="pr-2 pl-2">

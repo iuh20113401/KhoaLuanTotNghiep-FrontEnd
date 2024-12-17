@@ -6,9 +6,11 @@ function chamDiemHuongDan(data, doAn, tieuChi, sv1 = true) {
       diemAbet: tieuChi.map((tc, index) => ({
         stt: tc.stt, // Criteria number
         ten: tc.ten, // Criteria name
-        diem: data[`${sv1 ? "sv1" : "sv2"}_Lo${index}`], // Score for each criterion
+        diem: data[`${sv1 ? "sv1" : "sv2"}_Lo${index}`],
+        ghiChu: data[`ghiChu${index}`], // Score for each criterion
       })),
       diemTong: data[`${sv1 ? "sv1" : "sv2"}_d10`], // Total score
+      nhanXet: data[`nhanXet`],
     },
   };
   return newData;

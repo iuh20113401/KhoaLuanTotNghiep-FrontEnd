@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import Button from "../../../ui/Button";
 import StyledForm from "../../../ui/Form";
-import { RadioContainer, StyledInput } from "../../../ui/Input";
+import { RadioContainer, StyledInput, StyledTextarea } from "../../../ui/Input";
 import Modal from "../../../ui/Modal";
 import StyledTable from "../../../ui/Table";
 import { useMutation } from "@tanstack/react-query";
@@ -171,7 +171,11 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
                     </td>
                   )}
                   <td>
-                    <StyledInput type="text" placeholder="Nhập ghi chú" />
+                    <StyledInput
+                      {...register(`ghiChu${index}`)}
+                      type="text"
+                      placeholder="Nhập ghi chú"
+                    />
                   </td>
                 </tr>
               ))}
@@ -258,6 +262,20 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
                     />
                   </td>
                 )}
+              </tr>
+              <tr>
+                <td colSpan={5}>
+                  <strong>Kết quả</strong>
+                </td>
+              </tr>
+              <tr>
+                <td colSpan={5}>
+                  <StyledTextarea
+                    {...register(`nhanXet`)}
+                    placeholder="Nhận nhận xét...."
+                    rows={5}
+                  />
+                </td>
               </tr>
             </tbody>
           </StyledTable>

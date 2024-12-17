@@ -157,7 +157,7 @@ function ChiTietDiem({ doAn, loai }) {
                   <StyledInput
                     type="text"
                     placeholder="Nhập ghi chú"
-                    value={diem.ghiChu || ""}
+                    value={diem[index].ghiChu || ""}
                     readOnly
                   />
                 </td>
@@ -239,7 +239,10 @@ function ChiTietDiem({ doAn, loai }) {
         </tbody>
       </StyledTable>
       <h6>Nhận xét: </h6>
-      <StyledTextarea placeholder="Nhận nhận xét...." />
+      <StyledTextarea
+        value={doAn.sinhVien1Info?.diem.diemHuongDan.nhanXet}
+        placeholder="Nhận nhận xét...."
+      />
     </>
   );
 }

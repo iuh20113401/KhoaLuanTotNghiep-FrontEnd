@@ -411,7 +411,7 @@ function GiangVienAside({ user, toggleAside, isAsideHidden }) {
                 />
                 <MenuItem
                   icon={<FiCircle />}
-                  title="Giảng viên thực tấp"
+                  title="Giảng viên thực tập"
                   href={"./phanconggiangviengiamsat"}
                   isSmall={true}
                 />
