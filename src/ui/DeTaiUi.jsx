@@ -1,144 +1,93 @@
 import { useRef, useState } from "react";
-import styled from "styled-components";
 import decodeHtml from "../utils/ChangeHtmlCode";
+
 function DisplayQuillContent({ content }) {
   const decodedContent = decodeHtml(content);
   return <div dangerouslySetInnerHTML={{ __html: decodedContent }} />;
 }
-const Container = styled.article`
-  width: 98%;
-  margin: auto;
-  height: auto;
-  padding: 1.6rem;
-  background-color: #fff;
-  box-shadow: 0 0rem 0.1rem 0.05rem rgba(0, 0, 0, 0.2);
-  border-radius: 0.6rem;
-  transition: all 0.5s ease;
-  overflow: hidden;
-  &:hover {
-    cursor: pointer;
-  }
-  position: relative;
-  margin-bottom: 0.8rem;
-  overflow: visible;
-  @media (max-width: 768px) {
-    max-width: 100%;
-    padding: 0.8rem 0.4rem;
-  }
-`;
-// const rotateAndeTairanslate = keyframes`
-//   0% {
-//     transform: rotateY(0) translateX(0);
-//     opacity: 1;
-//   }
-//   50% {
-//     opacity: 0.3;
-//   }
-//   100% {
-//     transform: rotateY(180deg) ;
-//     opacity: 0;
-//   }
-// `;
 
-// const translateAndRotateBack = keyframes`
-//   0% {
-//     transform: rotateY(180deg);
-//     opacity:0;
-//   }
-//   50% {
-//     opacity:0.5;
-//   }
-//   100% {
-//     transform: rotateY(0);
-//       opacity:1;
-//        }
-// `;
-const FrontContainer = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  backface-visibility: hidden;
-  transition: all 0.3s ease;
-`;
-
-const BackContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  backface-visibility: hidden;
-  gap: 0.8rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-`;
-
-const LeftContent = styled.aside`
-  width: 9.6rem;
-  height: 6.4rem;
-  border-radius: 50%;
-  & > img {
-    width: 100%;
-    height: 100%;
-  }
-  @media (max-width: 768px) {
-    width: 3.2rem;
-    height: 1.8rem;
-  }
-`;
-
-const RigthContent = styled.aside`
-  width: 75%;
-  padding: 0 1.6rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  @media (max-width: 768px) {
-    max-width: 100%;
-    padding: 0 0.4rem;
-  }
-`;
-const HiddentElement = styled.div`
-  overflow: hidden;
-  transition: max-height 0.5s ease-in-out;
-  max-height: ${({ maxheight }) => maxheight};
-`;
-const ButtonContainer = styled.div`
-  width: 10%;
-  margin: auto;
-`;
-function DeTaiUi({ hidden, left, rigth, buttonContent }) {
+function DeTaiUi({ hidden, left, right, buttonContent }) {
   const [active, setActive] = useState(false);
   const detailsRef = useRef(null);
-  const maxHeight = active ? `${detailsRef.current.scrollHeight}px` : "0";
+  const maxHeight = active ? `${detailsRef.current?.scrollHeight}px` : "0";
+
   return (
-    <Container
+    <article
+      className="w-[98%] mx-auto h-auto p-4 bg-white 
+                 shadow-[0_0rem_0.1rem_0.05rem_rgba(0,0,0,0.2)] 
+                 rounded-md transition-all duration-500 overflow-hidden 
+                 hover:cursor-pointer relative mb-2 overflow-visible"
       onClick={(e) => {
         if (e.target.localName === "button" || e.target.localName === "svg")
           return;
         setActive((a) => !a);
       }}
     >
-      <DeTaiUi.FrontContainer>
-        <LeftContent>{left}</LeftContent>
-        <RigthContent>
-          {rigth}
-          <HiddentElement ref={detailsRef} maxheight={maxHeight}>
+      <div className="w-full h-auto flex">
+        <aside className="w-24 h-5 rounded-full md:w-24 md:h-5">{left}</aside>
+        <aside className="w-3/4 px-4 flex flex-col gap-1 md:px-1">
+          {right}
+          <div
+            ref={detailsRef}
+            className="overflow-hidden transition-[max-height] duration-500 ease-in-out"
+            style={{ maxHeight }}
+          >
             {hidden}
-          </HiddentElement>
-        </RigthContent>
-        <ButtonContainer>{buttonContent}</ButtonContainer>
-      </DeTaiUi.FrontContainer>
-    </Container>
+          </div>
+        </aside>
+        <div className="w-1/10 mx-auto">{buttonContent}</div>
+      </div>
+    </article>
   );
 }
-DeTaiUi.BackContainer = BackContainer;
-DeTaiUi.FrontContainer = FrontContainer;
-DeTaiUi.HiddentElement = HiddentElement;
-DeTaiUi.RigthContent = RigthContent;
-DeTaiUi.LeftContent = LeftContent;
+
+DeTaiUi.BackContainer = function BackContainer({ children, ...props }) {
+  return (
+    <div
+      className="absolute top-0 left-0 w-full h-full 
+                 flex flex-col items-center justify-center gap-2"
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
+
+DeTaiUi.FrontContainer = function FrontContainer({ children, ...props }) {
+  return (
+    <div className="w-full h-auto flex" {...props}>
+      {children}
+    </div>
+  );
+};
+
+DeTaiUi.HiddentElement = function HiddentElement({ children, ...props }) {
+  return (
+    <div
+      className="overflow-hidden transition-[max-height] duration-500 ease-in-out"
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
+
+DeTaiUi.RightContent = function RightContent({ children, ...props }) {
+  return (
+    <aside className="w-3/4 px-4 flex flex-col gap-1 md:px-1" {...props}>
+      {children}
+    </aside>
+  );
+};
+
+DeTaiUi.LeftContent = function LeftContent({ children, ...props }) {
+  return (
+    <aside className="w-24 h-16 rounded-full md:w-8 md:h-5" {...props}>
+      {children}
+    </aside>
+  );
+};
+
 DeTaiUi.DisplayQuillContent = DisplayQuillContent;
+
 export default DeTaiUi;

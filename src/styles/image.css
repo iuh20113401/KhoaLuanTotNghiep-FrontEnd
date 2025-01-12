@@ -1,0 +1,18 @@
+.figure {
+  @apply w-24 h-24 rounded-full border border-4 box-content;
+  border-color: theme(
+    "colors.secondary.500"
+  ); /* Assuming you have a 'secondary' color palette in your Tailwind config */
+}
+
+.figure > button {
+  @apply absolute top-[60%] left-[55%];
+}
+
+.img-box {
+  @apply w-full h-full rounded-full overflow-hidden;
+}
+
+.img-box > img {
+  @apply w-full h-full rounded-full;
+}

@@ -13,11 +13,21 @@ function ChiTietDangKyThucTap({
   return (
     <>
       <tr>
-        <td>{index + 1}</td>
-        <td>{thucTap.tenCongTy}</td>
-        <td>{thucTap.diaChiCongTy}</td>
-        <td>{thucTap.userInfo.maSo}</td>
-        <td>{thucTap.userInfo.hoTen}</td>
+        <td>
+          <p>{index + 1}</p>
+        </td>
+        <td>
+          <p>{thucTap.tenCongTy}</p>
+        </td>
+        <td>
+          <p>{thucTap.diaChiCongTy}</p>
+        </td>
+        <td>
+          <p>{thucTap.userInfo.maSo}</p>
+        </td>
+        <td>
+          <p>{thucTap.userInfo.hoTen}</p>
+        </td>
         <td>
           {thucTap.trangThaiThucTap === 0 ? "Chờ phỏng vấn" : "Đang làm việc"}
         </td>

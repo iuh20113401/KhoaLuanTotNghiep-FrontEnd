@@ -18,27 +18,31 @@ function DisplayQuillContent({ content }) {
 const StyleTrangThai = {
   0: {
     ten: "Chờ duyệt",
-    bgColor: "var(--bs-danger)",
+    bgColor: "bg-red-500",
   },
-
   1: {
     ten: "Đã duyệt",
-    bgColor: "var(--bs-success)",
+    bgColor: "bg-green-600",
   },
   2: {
     ten: "Chỉnh sửa",
-    bgColor: "var(--bs-warning)",
+    bgColor: "bg-amber-400",
   },
 };
 function ChiTietDeTai({ deTai, refetch, setIsEdit, isSinhVien }) {
   const [ghiChu, setGhiChu] = useState(false);
-  const trangThai = deTai.trangThai === 0 ? (deTai?.ghiChu ? 2 : 0) : 1;
+  const trangThai =
+    deTai.trangThai === 0
+      ? deTai?.ghiChu && deTai.ghiChu.length > 0
+        ? 2
+        : 0
+      : 1;
   const [edit, setEdit] = useState(false);
   const { mutate: capNhatDeTaiMutate, isPending: capNhatDeTaiPending } =
     useMutation({
       mutationFn: suaDeTai,
       onSuccess: () => {
-        toast.success("Xóa đề tài thành công");
+        toast.success("Duyệt đề tài thành công");
         refetch();
       },
       onError: () => {
@@ -119,7 +123,7 @@ function ChiTietDeTai({ deTai, refetch, setIsEdit, isSinhVien }) {
             varitaion="icon"
             size="xl"
             bgcolor="transparent"
-            color="var(--bs-black)"
+            color="text-black"
             onClick={() => setEdit((edit) => !edit)}
           >
             <HiOutlineDotsVertical />

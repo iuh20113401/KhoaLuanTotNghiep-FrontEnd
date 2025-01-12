@@ -59,7 +59,7 @@ function MoDangKyThucTap({ refetch }) {
               <Button
                 className="ml-2"
                 variation="outline"
-                color="var(--bs-primary)"
+                bgcolor="primary-600"
                 disabled={isPending}
                 onClick={() => setShowModal(false)}
               >

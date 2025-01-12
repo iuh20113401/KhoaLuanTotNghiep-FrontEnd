@@ -52,7 +52,8 @@ function ChiTietDeTai({ deTai, refetch }) {
         <td>
           <Button
             variation="icon"
-            bgcolor="var(--bs-success)"
+            bgcolor="bg-green-600"
+            color="text-white"
             onClick={duyetDeTaiHandle}
             disabled={isLoading}
           >
@@ -60,7 +61,7 @@ function ChiTietDeTai({ deTai, refetch }) {
           </Button>
           <div className="mt-1">
             <Button
-              bgcolor={deTai?.ghiChu ? "var(--bs-red)" : "var(--bs-blue)"}
+              bgcolor={deTai?.ghiChu ? "bg-red-600" : "bg-primary-600"}
               variation="icon"
               disabled={isLoading}
               onClick={() => setShowModal(true)}

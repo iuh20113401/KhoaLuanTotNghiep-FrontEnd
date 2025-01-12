@@ -23,16 +23,7 @@ const GioiTinh = {
   0: "Nam",
   1: "Nữ",
 };
-const Overlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
-  z-index: 100;
-`;
+
 function QuanLyTaiKhoanGiangVien() {
   const [showModal, setShowModal] = useState(false);
   const [page, setPage] = useState(1);
@@ -59,16 +50,16 @@ function QuanLyTaiKhoanGiangVien() {
   return (
     <div>
       {isPending ? (
-        <Overlay>
+        <div className="overlay">
           <LoadingSpinner />
-        </Overlay>
+        </div>
       ) : (
         <>
           <h5>Quản lý tài khoản sinh viên</h5>
           <div className="d-flex justify-content-between align-items-center">
             <Button
               className="mt-3"
-              bgcolor="var(--bs-success)"
+              bgcolor="bg-green-600"
               onClick={() => setShowModal(true)}
             >
               <StyledInput
@@ -102,7 +93,7 @@ function QuanLyTaiKhoanGiangVien() {
                       <StyledInput
                         type="number"
                         placeholder="Tìm kiếm theo mã số giảng viên"
-                        {...register("maSo")}
+                        register={{ ...register("maSo") }}
                       />
                     </ColLg>
                     <Col1>

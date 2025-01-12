@@ -8,7 +8,7 @@ function XuatDanhSachTrangThaiDoAnGiuaKyContainer({ DanhSachDoAn }) {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
-      <Button bgcolor="var(--bs-success)" onClick={() => setShowModal(true)}>
+      <Button bgcolor="bg-green-600" onClick={() => setShowModal(true)}>
         <span>
           <BsFileExcel />
         </span>
@@ -16,15 +16,8 @@ function XuatDanhSachTrangThaiDoAnGiuaKyContainer({ DanhSachDoAn }) {
       </Button>
       {showModal && (
         <Modal size="xl">
-          <Modal.Header>
+          <Modal.Header onClick={() => setShowModal(false)}>
             <h5>Xem danh sách đò án</h5>
-            <Button
-              onClick={() => setShowModal(false)}
-              className="btn-close"
-              variation="icon"
-            >
-              X
-            </Button>
           </Modal.Header>
           <Modal.Body className="p-0 m-0">
             <XuatDanhSachTrangThaiDoAnGiuaKy danhSachDoAn={DanhSachDoAn} />

@@ -13,19 +13,10 @@ function ModalXemDiemHuongDan({ doAn, setShowModal, loai }) {
     <Modal size="xl">
       (
       <>
-        <Modal.Header>
+        <Modal.Header onClick={() => setShowModal((showModal) => !showModal)}>
           {!showFile && (
             <>
               <h5>{doAn.tenDoAn}</h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-                onClick={() => setShowModal((showModal) => !showModal)}
-              >
-                X
-              </button>
             </>
           )}
         </Modal.Header>

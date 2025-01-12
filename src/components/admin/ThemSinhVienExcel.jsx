@@ -48,7 +48,7 @@ function ThemSinhVienExcel({ refetch, setIsPending }) {
     <div>
       <Button
         className="mt-3"
-        bgcolor="var(--bs-success)"
+        bgcolor="bg-green-600"
         onClick={handleChooseFile}
       >
         <StyledInput

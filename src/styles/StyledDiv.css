@@ -1,0 +1,98 @@
+.overlay {
+  @apply absolute top-0 left-0 w-full h-full bg-black/50 backdrop-blur-md z-10;
+}
+/* thong-bao.css */
+.thong-bao-div {
+  @apply flex flex-col gap-2;
+}
+
+.thong-bao-div > a {
+  @apply text-gray-700; /* Replace with your --bs-text color */
+}
+
+.thong-bao-div:hover > * {
+  @apply text-blue-500 cursor-pointer; /* Replace with your --bs-primary color */
+}
+
+/*để tài ui */
+
+/* container.css */
+/* Keyframes */
+@keyframes rotate-and-translate {
+  0% {
+    transform: rotateY(0) translateX(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes translate-and-rotate-back {
+  0% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: rotateY(0);
+    opacity: 1;
+  }
+}
+.de-tai-container {
+  @apply w-[98%] mx-auto h-auto p-4 bg-white shadow-md rounded-lg transition-all duration-500 ease-in-out overflow-hidden relative mb-2 cursor-pointer;
+}
+
+.front-container {
+  @apply w-full h-auto flex  transition-all duration-300 ease-in-out;
+  backface-visibility: hidden;
+}
+
+.front-container.active {
+  animation: translate-and-rotate-back 0.6s ease forwards;
+}
+
+.front-container.hidden {
+  /* You'll need to add this class when not active */
+  animation: rotate-and-translate 0.6s ease forwards;
+}
+
+.back-container {
+  @apply w-full h-full flex flex-col items-center justify-center  transition-all duration-300 ease-in-out gap-2 absolute top-0 left-0;
+  backface-visibility: hidden;
+}
+
+.back-container.active {
+  animation: translate-and-rotate-back 0.6s ease forwards;
+}
+
+.back-container.hidden {
+  /* You'll need to add this class when not active */
+  animation: rotate-and-translate 0.6s ease forwards;
+}
+
+.doan-left {
+  @apply w-24 h-16 rounded-full;
+}
+
+.doan-left > img {
+  @apply w-full h-full;
+}
+
+.hidden-element {
+  @apply overflow-hidden transition-[height] duration-500 ease-in-out;
+}
+
+.doan-right {
+  @apply w-[75%] px-4 flex flex-col gap-1;
+}
+
+.button-dang-ky {
+  @apply w-[10%] mx-auto;
+}

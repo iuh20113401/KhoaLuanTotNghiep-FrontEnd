@@ -209,7 +209,7 @@ ol {
     list-style-position: inside;
     padding-left: 0;
   }
-p,li {
+p,li,td,tr {
   overflow-wrap: break-word;
   hyphens: auto;
   margin-top: 0;

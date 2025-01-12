@@ -84,8 +84,8 @@ function XemDanhSachBaoCao() {
               <Button
                 type="normal"
                 variation="outline"
-                bgcolor="var(--bs-blue)"
-                color="var(--bs-blue)"
+                bgcolor="primary-600"
+                color="primary-600"
                 onClick={handleAddFile}
                 disabled={isPending}
               >

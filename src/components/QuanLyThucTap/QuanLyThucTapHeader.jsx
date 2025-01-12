@@ -24,14 +24,14 @@ const StyledInfo = styled.div`
 const StyledTrangThai = {
   0: {
     content: "Đang tiến hành",
-    bgcolor: "var(--bs-warning)",
-    color: "var(--bs-white)",
+    bgcolor: "bg-yellow-500",
+    color: "text-white",
   },
-  1: { content: "Đạt", bgcolor: "var(--bs-success)", color: "var(--bs-white)" },
+  1: { content: "Đạt", bgcolor: "bg-green-600", color: "var(--bs-white)" },
   2: {
     content: "Không đạt",
     bgcolor: "var(--bs-danger)",
-    color: "var(--bs-white)",
+    color: "text-white",
   },
 };
 function QuanLyThucTapHeader({ content, active, setActive, thucTap }) {

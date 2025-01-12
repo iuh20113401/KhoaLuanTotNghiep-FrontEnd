@@ -1,14 +1,8 @@
-import styled from "styled-components";
 import StyledTable from "../../../ui/Table";
 const SERVER = import.meta.env.PROD
   ? import.meta.env.VITE_SERVER_URL
   : import.meta.env.VITE_SERVER_URL_LOCAL;
-const Link = styled.a`
-  color: var(--bs-black);
-  &:hover {
-    color: var(--bs-primary);
-  }
-`;
+
 function DanhSachBieuMauBaoCao({ DanhSachBieuMau }) {
   return (
     <div>
@@ -28,9 +22,9 @@ function ChiTietBieuMau({ href, ten }) {
   return (
     <tr>
       <td>
-        <Link href={href} target="blank">
+        <a className="link" href={href} target="blank">
           {ten}
-        </Link>
+        </a>
       </td>
     </tr>
   );

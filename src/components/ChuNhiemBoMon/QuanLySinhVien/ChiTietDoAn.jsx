@@ -6,48 +6,48 @@ import Badges from "../../../ui/Badges";
 const StyledTrangThai = {
   0: {
     content: "Đang tiến hành",
-    bgcolor: "var(--bs-warning)",
-    color: "var(--bs-white)",
+    bgcolor: "bg-yellow-500",
+    color: "text-white",
   },
   1: {
     content: "Đạt giữa kỳ",
-    bgcolor: "var(--bs-warning)",
-    color: "var(--bs-white)",
+    bgcolor: "bg-yellow-500",
+    color: "text-white",
   },
   2: {
     content: "Chờ phản biện",
-    bgcolor: "var(--bs-warning)",
-    color: "var(--bs-white)",
+    bgcolor: "bg-yellow-500",
+    color: "text-white",
   },
   3: {
     content: "Chờ chấm điểm hội động",
-    bgcolor: "var(--bs-warning)",
-    color: "var(--bs-white)",
+    bgcolor: "bg-yellow-500",
+    color: "text-white",
   },
   4: {
     content: "Chờ chám diểm poster",
-    bgcolor: "var(--bs-warning)",
-    color: "var(--bs-white)",
+    bgcolor: "bg-yellow-500",
+    color: "text-white",
   },
   5: {
     content: "Chờ chám diểm poster",
-    bgcolor: "var(--bs-success)",
-    color: "var(--bs-white)",
+    bgcolor: "bg-green-600",
+    color: "text-white",
   },
   6: {
     content: "Cấm thi",
-    bgcolor: "var(--bs-danger)",
-    color: "var(--bs-white)",
+    bgcolor: "bg-red-500",
+    color: "text-white",
   },
   7: {
     content: "Không đạt phản biện ",
-    bgcolor: "var(--bs-danger)",
-    color: "var(--bs-white)",
+    bgcolor: "bg-red-500",
+    color: "text-white",
   },
   8: {
     content: "Không đạt hội đồng",
-    bgcolor: "var(--bs-danger)",
-    color: "var(--bs-white)",
+    bgcolor: "bg-red-500",
+    color: "text-white",
   },
 };
 function ChiTietDoAn({ doAn, index, chamDiem, tieuChi }) {
@@ -68,19 +68,18 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi }) {
             color={StyledTrangThai[doAn.trangThai].color}
           />
         </td>
-        <td rowSpan={countSinhVien}>
+        <td className="flex flex-col gap-1" rowSpan={countSinhVien}>
           <Link
             to={`chitietdoan/${doAn._id}`}
             onClick={() => setShowModal(true)}
           >
-            <Button size="xs" bgcolor="var(--bs-blue)">
+            <Button size="xs" bgcolor="bg-primary-600">
               Chi tiết
             </Button>
           </Link>
           <Button
-            className="mt-1"
             size="xs"
-            bgcolor="var(--bs-danger)"
+            bgcolor="bg-red-500"
             onClick={() => setShowModal(true)}
           >
             Xem điểm

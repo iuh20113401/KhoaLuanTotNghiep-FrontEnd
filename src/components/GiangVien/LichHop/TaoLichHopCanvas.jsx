@@ -47,7 +47,9 @@ function TaoLichHopCanvas({ setShowCanvas, refetch }) {
             <StyledInput
               type="text"
               placeholder="Nhập tiêu đề buổi họp"
-              {...register("tieuDe", { required: "Tiêu đề là bắt buộc" })}
+              register={{
+                ...register("tieuDe", { required: "Tiêu đề là bắt buộc" }),
+              }}
             />
             {errors.tieuDe && <p className="error">{errors.tieuDe.message}</p>}
           </div>
@@ -57,7 +59,9 @@ function TaoLichHopCanvas({ setShowCanvas, refetch }) {
             <StyledInput
               type="text"
               placeholder="Nhập địa điểm buổi họp"
-              {...register("phong", { required: "Địa điểm là bắt buộc" })}
+              register={{
+                ...register("phong", { required: "Địa điểm là bắt buộc" }),
+              }}
             />
             {errors.diaDiem && (
               <p className="error">{errors.diaDiem.message}</p>
@@ -68,9 +72,11 @@ function TaoLichHopCanvas({ setShowCanvas, refetch }) {
             <label>Thời gian bắt đầu</label>
             <StyledInput
               type="datetime-local"
-              {...register("batDau", {
-                required: "Thời gian bắt đầu là bắt buộc",
-              })}
+              register={{
+                ...register("batDau", {
+                  required: "Thời gian bắt đầu là bắt buộc",
+                }),
+              }}
             />
             {errors.batDau && <p className="error">{errors.batDau.message}</p>}
           </div>
@@ -79,12 +85,14 @@ function TaoLichHopCanvas({ setShowCanvas, refetch }) {
             <label>Thời gian kết thúc</label>
             <StyledInput
               type="datetime-local"
-              {...register("ketThuc", {
-                required: "Thời gian kết thúc là bắt buộc",
-                validate: (value) =>
-                  new Date(value) > new Date(batDau) ||
-                  "Thời gian kết thúc phải lớn hơn thời gian bắt đầu",
-              })}
+              register={{
+                ...register("ketThuc", {
+                  required: "Thời gian kết thúc là bắt buộc",
+                  validate: (value) =>
+                    new Date(value) > new Date(batDau) ||
+                    "Thời gian kết thúc phải lớn hơn thời gian bắt đầu",
+                }),
+              }}
             />
             {errors.ketThuc && (
               <p className="error">{errors.ketThuc.message}</p>

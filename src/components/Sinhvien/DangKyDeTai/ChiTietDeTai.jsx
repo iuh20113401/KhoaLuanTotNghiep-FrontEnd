@@ -1,14 +1,14 @@
 import { useRef, useState } from "react";
 import Button from "../../../ui/Button";
 import decodeHtml from "../../../utils/ChangeHtmlCode";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { dangKyDoAn } from "../../../services/DoAn";
 import toast from "react-hot-toast";
 import UseUser from "../../../context/UseUser";
 import { useNavigate } from "react-router-dom";
-import styled, { css, keyframes } from "styled-components";
 import { StyledRow } from "../../../ui/Row";
 import hinhAnh from "../../../../public/hinhanh/iuh_logo_2.png";
+import LoadingSpinner from "../../../ui/Spinner";
 
 function DisplayQuillContent({ content }) {
   const decodedContent = decodeHtml(content);
@@ -99,117 +99,10 @@ function DisplayQuillContent({ content }) {
 //   );
 // }
 
-const Container = styled.article`
-  width: 98%;
-  margin: auto;
-  height: auto;
-  padding: 1.6rem;
-  background-color: #fff;
-  box-shadow: 0 0rem 0.1rem 0.05rem rgba(0, 0, 0, 0.2);
-  border-radius: 0.6rem;
-  transition: all 0.5s ease;
-  overflow: hidden;
-  &:hover {
-    cursor: pointer;
-  }
-  position: relative;
-  margin-bottom: 0.8rem;
-`;
-const rotateAndeTairanslate = keyframes`
-  0% { 
-    transform: rotateY(0) translateX(0); 
-    opacity: 1;
-  }
-  50% { 
-    opacity: 0.3;  
-  }
-  100% { 
-    transform: rotateY(180deg) ; 
-    opacity: 0;
-  }
-`;
-
-const translateAndRotateBack = keyframes`
-  0% { 
-    transform: rotateY(180deg);
-    opacity:0;
-  }
-  50% { 
-    opacity:0.5;
-  }
-  100% { 
-    transform: rotateY(0);
-      opacity:1;
-       }
-`;
-const FrontContainer = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  backface-visibility: hidden;
-  transition: all 0.3s ease;
-  animation: ${({ type }) =>
-    type === "active"
-      ? css`
-          ${translateAndRotateBack} 0.6s ease forwards
-        `
-      : css`
-          ${rotateAndeTairanslate} 0.6s ease forwards
-        `};
-`;
-
-const BackContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  backface-visibility: hidden;
-  gap: 0.8rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-  animation: ${({ type }) =>
-    type === "active"
-      ? css`
-          ${translateAndRotateBack} 0.6s ease forwards
-        `
-      : css`
-          ${rotateAndeTairanslate} 0.6s ease forwards
-        `};
-`;
-const DoAnLeft = styled.aside`
-  width: 9.6rem;
-  height: 6.4rem;
-  border-radius: 50%;
-  & > img {
-    width: 100%;
-    height: 100%;
-  }
-`;
-const HiddentElement = styled.div`
-  overflow: hidden;
-  transition: max-height 0.5s ease-in-out;
-  max-height: ${({ maxheight }) => maxheight};
-`;
-const DoAnRight = styled.aside`
-  width: 75%;
-  padding: 0 1.6rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-`;
-const ButtonDangKy = styled.div`
-  width: 10%;
-  margin: auto;
-`;
 function ChiTietDeTai2({ deTai, caiDatInfo }) {
   const [active, setActive] = useState(false);
   const [dangky, setDangKy] = useState(false);
   const detailsRef = useRef(null);
-  const maxHeight = active ? `${detailsRef.current.scrollHeight}px` : "0";
   const navigate = useNavigate();
   const { refetch } = UseUser();
 
@@ -231,29 +124,45 @@ function ChiTietDeTai2({ deTai, caiDatInfo }) {
       hocKy: caiDatInfo.hocKy,
     });
   }
-  return (
-    <tr>
-      <Container
+  if (isLoading)
+    return (
+      <div
+        className="de-tai-container"
         onClick={(e) => {
           if (e.target.localName === "button") return;
           !dangky && setActive((a) => !a);
         }}
       >
-        <FrontContainer type={!dangky ? "active" : "hidden"}>
-          <DoAnLeft>
+        <LoadingSpinner />
+      </div>
+    );
+  return (
+    <tr>
+      <div
+        className="de-tai-container"
+        onClick={(e) => {
+          if (e.target.localName === "button") return;
+          !dangky && setActive((a) => !a);
+        }}
+      >
+        <div className={`front-container ${!dangky ? "active" : "hidden"}`}>
+          <div className="doan-left">
             <img src={deTai.HinhAnh || hinhAnh} alt="Hình ảnh đề tài" />
-          </DoAnLeft>
-          <DoAnRight>
+          </div>
+          <div className="doan-right">
             <h6>{deTai.tenDeTai}</h6>
 
             <p>
-              Giảng viên hướng dẫn: <strong>{deTai.giangVien.hoTen}</strong>
+              Giảng viên hướng dẫn: <strong>{deTai.giangVien?.hoTen}</strong>
             </p>
             <p>
               <strong>Mô tả:</strong>
             </p>
             <DisplayQuillContent content={deTai.moTa} />
-            <HiddentElement ref={detailsRef} maxheight={maxHeight}>
+            <div
+              className={`hidden-element  ${active ? `h-auto` : "h-0"} `}
+              ref={detailsRef}
+            >
               <p>
                 <strong>Kỹ năng cần có:</strong>
               </p>
@@ -262,9 +171,9 @@ function ChiTietDeTai2({ deTai, caiDatInfo }) {
                 <strong>Kết quả cần đạt:</strong>
               </p>
               <DisplayQuillContent content={deTai.ketQuaCanDat} />
-            </HiddentElement>
-          </DoAnRight>
-          <ButtonDangKy>
+            </div>
+          </div>
+          <button className="button-dang-ky">
             <Button
               onClick={() => setDangKy(true)}
               disabled={!caiDatInfo.isDangKyDeTai}
@@ -272,20 +181,20 @@ function ChiTietDeTai2({ deTai, caiDatInfo }) {
             >
               Đăng ký
             </Button>
-          </ButtonDangKy>
-        </FrontContainer>
-        <BackContainer type={dangky ? "active" : "hidden"}>
+          </button>
+        </div>
+        <div className={`back-container ${dangky ? "active" : "hidden"}`}>
           <p>Bạn có chắc muốn đăng ký đề tài này</p>
           <StyledRow gap="1.2rem">
             <Button
               variation="outline"
-              color="var(--color--main_7)"
+              color=""
               onClick={() => setDangKy(false)}
             >
               Hủy
             </Button>
             <Button
-              color="var(--bs-white)"
+              color="text-white"
               onClick={() => dangKyHandler()}
               disabled={!caiDatInfo.isDangKyDeTai}
               state={caiDatInfo.isDangKyDeTai ? "" : "disabled"}
@@ -293,8 +202,8 @@ function ChiTietDeTai2({ deTai, caiDatInfo }) {
               Đăng ký
             </Button>
           </StyledRow>
-        </BackContainer>
-      </Container>
+        </div>
+      </div>
     </tr>
   );
 }

@@ -15,12 +15,12 @@ import LoadingSpinner from "../../../ui/Spinner";
 const StyleTrangThai = {
   0: {
     ten: "Chờ duyệt khóa luận",
-    bgColor: "var(--bs-success)",
+    bgColor: "bg-green-600",
   },
 
   4: {
     ten: "Chưa duyệt",
-    bgColor: "var(--bs-warning)",
+    bgColor: "bg-yellow-500",
   },
 };
 function ChiTietDeTaiAccordion({ deTai, refetch }) {
@@ -38,7 +38,7 @@ function ChiTietDeTaiAccordion({ deTai, refetch }) {
     },
   });
   const left = <img src={deTai.hinhAnh || hinhAnh} alt="Hình ảnh đề tài" />;
-  const rigth = (
+  const right = (
     <>
       <h6>{deTai.tenDeTai}</h6>
       <p>
@@ -93,7 +93,7 @@ function ChiTietDeTaiAccordion({ deTai, refetch }) {
           varitaion="icon"
           size="xl"
           bgcolor="transparent"
-          color="var(--bs-black)"
+          color="black"
           onClick={() => setEdit((edit) => !edit)}
         >
           <HiOutlineDotsVertical />
@@ -119,7 +119,7 @@ function ChiTietDeTaiAccordion({ deTai, refetch }) {
         key={deTai._id}
         hidden={hiddenElement(deTai)}
         left={left}
-        rigth={rigth}
+        right={right}
         buttonContent={+deTai.trangThai === 4 ? null : buttonContent(deTai)}
       />
       {showModal && <ChinhSuaModal setShowModal={setShowModal} deTai={deTai} />}

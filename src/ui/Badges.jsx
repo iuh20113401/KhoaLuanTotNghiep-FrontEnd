@@ -1,57 +1,47 @@
-import styled, { css } from "styled-components";
-const Variations = {
-  default: css`
-    font-size: var(--bs-badge-font-size);
-    line-height: 1;
-    padding: var(--bs-badge-padding-y) var(--bs-badge-padding-x);
-  `,
-  icon: css`
-    line-height: 1.375;
-    height: 1.5rem;
-    width: 1.5rem;
-    font-size: 0.812rem;
-    & > span {
-      & > svg {
-        font-size: ${(props) => props.fontSize || "1rem"};
-        font-family: "tabler-icons" !important;
-        font-style: normal;
-        font-weight: normal;
-        font-variant: normal;
-        text-transform: none;
-        line-height: 1;
-        -webkit-font-smoothing: antialiased;
-        vertical-align: middle;
-        display: inline-block;
-      }
-    }
-  `,
-};
-const BadgesVar = css`
-  --bs-badge-padding-x: 0.77em;
-  --bs-badge-padding-y: 0.4235em;
-  --bs-badge-font-size: 0.8667em;
-  --bs-badge-font-weight: 500;
-  --bs-badge-color: #fff;
-  --bs-badge-border-radius: 0.25rem;
-  --bs-bg-opacity: 1;
-`;
-const StyledBage = styled.span`
-  ${BadgesVar}
-  display: inline-block;
-  font-weight: var(--bs-badge-font-weight);
-  color: ${(props) => (props.color ? props.color : "var(--bs-badge-color)")};
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  border-radius: ${(props) =>
-    props.pill ? "50rem !important" : "var(--bs-badge-border-radius)"};
-  background-color: ${(props) => props.bgcolor || "var(--bs-primary)"};
-  ${(props) => Variations[props.variation]}
-`;
-function Badges({ content, children, ...props }) {
-  return <StyledBage {...props}>{content || children}</StyledBage>;
+function Badges({
+  content,
+  children,
+  variation,
+  pill,
+  bgcolor,
+  color,
+  fontSize,
+  ...props
+}) {
+  const badgeClasses = `
+    inline-block font-medium 
+    text-white // Default text color
+    whitespace-nowrap text-center align-baseline
+    rounded-md // Default border-radius
+    px-3 py-1 // Default padding
+  `;
+
+  const variationClasses = {
+    default: "text-xs",
+    icon: `h-4 w-4 text-sm flex items-center justify-center 
+           ${fontSize ? `text-${fontSize}` : ""}`,
+  };
+
+  return (
+    <span
+      className={`${badgeClasses} 
+                 ${variationClasses[variation]} 
+                 ${pill ? "rounded-full" : ""}
+                 ${bgcolor ? `${bgcolor}` : "bg-primary-600"}
+                 ${color ? color : ""}`}
+      {...props}
+    >
+      {variation === "icon" && children ? (
+        <span className="inline-block font-tablerIcons">{children}</span>
+      ) : (
+        content || children
+      )}
+    </span>
+  );
 }
+
 Badges.defaultProps = {
   variation: "default",
 };
+
 export default Badges;

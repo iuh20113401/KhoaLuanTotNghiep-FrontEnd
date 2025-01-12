@@ -8,7 +8,7 @@ function QuanLyTieuChiDoAnContainer({ TieuChi, setIsThem }) {
       <div className="">
         <Button
           variation="outline"
-          color="var(--bs-primary)"
+          bgcolor="primary-600"
           onClick={() => setIsThem(true)}
         >
           Tạo mới tiêu chí

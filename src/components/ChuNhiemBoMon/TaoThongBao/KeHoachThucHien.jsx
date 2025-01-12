@@ -74,8 +74,8 @@ function KeHoachThucHien({ vaiTro }) {
           <Button
             type="normal"
             variation="outline"
-            bgcolor="var(--bs-blue)"
-            color="var(--bs-blue)"
+            bgcolor="primary-600"
+            color="primary-600"
             onClick={handleAddFile}
           >
             <span>
@@ -92,8 +92,8 @@ function KeHoachThucHien({ vaiTro }) {
           <Button
             type="normal"
             variation="outline"
-            bgcolor="var(--bs-blue)"
-            color="var(--bs-blue)"
+            bgcolor="primary-600"
+            color="primary-600"
             className="ml-3"
           >
             <span>

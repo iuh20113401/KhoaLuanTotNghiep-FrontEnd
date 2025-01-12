@@ -43,10 +43,7 @@ function ChatContent({ contact }) {
       {messagesLoading && <LoadingSpinner />}
       {messages?.map((msg, index) => (
         <MessageWrapper className={msg.sender === User._id ? "you" : ""}>
-          <MessageDiv
-            key={index}
-            className={msg.sender === User._id ? "you" : ""}
-          >
+          <MessageDiv key={index} you={msg.sender === User._id}>
             {msg.content}
           </MessageDiv>
         </MessageWrapper>

@@ -132,12 +132,12 @@ function TaoNoiDungThongBao() {
             <StyledInput
               type="text"
               placeholder="Nhập tiêu đề thông báo"
-              {...register("tieuDe")}
+              register={{ ...register("tieuDe") }}
             />
           </div>
           <div>
             <label>Thông báo dành cho</label>
-            <StyledSelect defaultValue={"0"} {...register("loai")}>
+            <StyledSelect defaultValue={"0"} register={{ ...register("loai") }}>
               <option value="0">Toàn bộ</option>
               <option value="1">Giảng viên</option>
               <option value="2">Sinh viên</option>

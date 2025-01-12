@@ -18,17 +18,8 @@ function ModalTaoDeTai({ sinhvien, setShowModal }) {
     );
   return (
     <Modal size="xl">
-      <Modal.Header>
+      <Modal.Header onClick={() => setShowModal((showModal) => !showModal)}>
         <h5>{sinhvien?.Info?.hoTen}</h5>
-        <button
-          type="button"
-          className="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          onClick={() => setShowModal((showModal) => !showModal)}
-        >
-          X
-        </button>
       </Modal.Header>
       <Modal.Body>
         <FormThemDeTai

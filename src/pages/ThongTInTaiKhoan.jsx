@@ -21,33 +21,6 @@ const SERVER = import.meta.env.PROD
   ? import.meta.env.VITE_SERVER_URL
   : import.meta.env.VITE_SERVER_URL_LOCAL;
 
-const Figure = styled.figure`
-  width: 9.6rem;
-  height: 9.6rem;
-  border: 3px solid var(--color--secondary_5);
-  border-radius: 50%;
-  box-sizing: content-box;
-  & > button {
-    position: absolute;
-    top: 60%;
-    left: 55%;
-  }
-`;
-const ImgBox = styled.div`
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  overflow: hidden;
-  & > img {
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    align-self: center;
-    border-radius: 50%;
-    justify-self: center;
-  }
-`;
-
 function ThongTInTaiKhoan() {
   const { data: user, isLoading: userLoading } = UseUser();
   const userData = user.user;
@@ -128,14 +101,14 @@ function ThongTInTaiKhoan() {
     <div>
       <h5>Thông tin tài khoản</h5>
       <Card className="mt-3 p-3 align-center justify-center">
-        <Figure>
-          <ImgBox>
+        <div className="figure">
+          <div className="img-box">
             <img
               src={`${SERVER}${userInfo.hinhAnh}`}
               crossorigin="anonymous | use-credentials"
               alt="Hình đại diện"
             />
-          </ImgBox>
+          </div>
           <Button
             size="sm"
             shadow="none"
@@ -154,7 +127,7 @@ function ThongTInTaiKhoan() {
             </form>
             <HiCamera />
           </Button>
-        </Figure>
+        </div>
       </Card>
       <Card className="mt-2 p-3">
         <div className="mb-2 text-end">
@@ -196,7 +169,7 @@ function ThongTInTaiKhoan() {
                 <StyledInput
                   placeholder="Họ tên"
                   disabled={!isEdit}
-                  {...register("hoTen")}
+                  register={{ ...register("hoTen") }}
                 />
               </Col9>
             </ColLg>
@@ -210,7 +183,7 @@ function ThongTInTaiKhoan() {
               </Col2>
               <Col9>
                 {isEdit ? (
-                  <StyledSelect {...register("gioiTinh")}>
+                  <StyledSelect register={{ ...register("gioiTinh") }}>
                     <option value={true}>Nam</option>
                     <option value={false}>Nữ</option>
                   </StyledSelect>
@@ -232,7 +205,7 @@ function ThongTInTaiKhoan() {
               <Col9>
                 {isEdit ? (
                   <StyledInput
-                    {...register("ngaySinh")}
+                    register={{ ...register("ngaySinh") }}
                     type="date"
                     placeholder="Ngày sinh"
                   />

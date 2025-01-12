@@ -7,6 +7,9 @@ const layThongTinTaiKhoan = (id) =>
 const capNhatAnhDaiDien = (data) =>
   fetchApi(`${BASE_URL}/me/hinhAnh`, {
     method: "PATCH",
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
     body: data,
   });
 const capNhatThongTinTaiKhoan = (data) =>
@@ -18,7 +21,7 @@ const capNhatThongTinTaiKhoan = (data) =>
     body: JSON.stringify(data),
   });
 const themNhieuSinhVien = (data) =>
-  fetchApi(`${BASE_URL}/nhieuUser`, {
+  fetchApi(`${BASE_URL}/nhieuSinhVien`, {
     method: "POST",
     body: data,
   });

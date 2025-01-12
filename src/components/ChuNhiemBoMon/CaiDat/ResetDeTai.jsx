@@ -12,18 +12,10 @@ function ResetDeTai() {
       </div>
       {showModal && (
         <Modal className="" size="lg">
-          <Modal.Header>
+          <Modal.Header onClick={() => setShowModal(false)}>
             <h5>
               Bạn có xác nhận muốn reset toàn bộ đề tài về trạng thái chờ duyệt
             </h5>
-
-            <Button
-              onClick={() => setShowModal(false)}
-              className="btn-close"
-              variation="icon"
-            >
-              X
-            </Button>
           </Modal.Header>
           <p className="error pl-4">
             (*) Bạn sẽ không thể tiếp tục thực hiện các tác vụ với các khóa luận

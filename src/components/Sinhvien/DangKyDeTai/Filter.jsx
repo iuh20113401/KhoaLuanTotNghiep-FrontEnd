@@ -5,9 +5,12 @@ import { ColLg, StyledRow } from "../../../ui/Row";
 import SortBy from "../../../ui/SortBy";
 
 function Filter({ DanhSachDeTai, handleFilterDeTai }) {
-  const danhMucSet = new Set(DanhSachDeTai.map((dt) => dt.danhMuc));
-  const soLuongDoAnSet = new Set(DanhSachDeTai.map((dt) => dt.soLuongDoAn));
-  const giangVienSet = new Set(DanhSachDeTai.map((dt) => dt.giangVien.hoTen));
+  console.log(DanhSachDeTai);
+  const danhMucSet = new Set(DanhSachDeTai?.map((dt) => dt?.danhMuc));
+  const soLuongDoAnSet = new Set(DanhSachDeTai?.map((dt) => dt?.soLuongDoAn));
+  const giangVienSet = new Set(
+    DanhSachDeTai?.map((dt) => dt?.giangVien?.hoTen)
+  );
   const uniqueDanhMuc = Array.from(danhMucSet);
   const uniqueSoLuongDoAn = Array.from(soLuongDoAnSet);
   const uniqueGiangVien = Array.from(giangVienSet);

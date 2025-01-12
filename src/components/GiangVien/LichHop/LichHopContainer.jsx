@@ -87,7 +87,7 @@ const LichHopContainer = () => {
     <div style={{ height: "auto" }}>
       <Button
         className="mb-2"
-        bgcolor="var(--bs-blue)"
+        bgcolor="bg-primary-600"
         onClick={() => setShowCanvas(true)}
       >
         <span>

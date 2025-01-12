@@ -45,7 +45,7 @@ function ChiTietDoAnHoiDong({ doAn, index, chamDiem, refetch }) {
             </div>
             <div className="mt-2">
               <Button
-                bgcolor="var(--bs-blue)"
+                bgcolor="bg-primary-600"
                 state={
                   !getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
                     ?.length > 0
@@ -69,7 +69,7 @@ function ChiTietDoAnHoiDong({ doAn, index, chamDiem, refetch }) {
             <div className="mt-2">
               <Button
                 size="sm"
-                bgcolor="var(--bs-danger)"
+                bgcolor="bg-red-500"
                 state={
                   getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
                     .length > 0

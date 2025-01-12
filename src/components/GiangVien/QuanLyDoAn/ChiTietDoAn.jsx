@@ -26,7 +26,7 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
 
   return (
     <>
-      <tr className={isOdd ? "strip" : ""}>
+      <tr>
         <td rowSpan={countSinhVien}>{index + 1}</td>
         <td rowSpan={countSinhVien}>{doAn.maDoAn}</td>
         <td width="20%" rowSpan={countSinhVien}>
@@ -53,10 +53,12 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
             )}
             <div className="mt-2">
               <Button
-                bgcolor="var(--bs-blue)"
+                bgcolor="bg-primary-600"
                 state={
-                  !getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
-                    ?.length > 0
+                  !(
+                    getNestedValue(doAn.sinhVien1Info.diem, newLoai)?.diemAbet
+                      ?.length > 0
+                  )
                     ? "disabled"
                     : ""
                 }
@@ -77,7 +79,7 @@ function ChiTietDoAn({ doAn, index, chamDiem, tieuChi, loai, refetch }) {
             <div className="mt-2">
               <Button
                 size="sm"
-                bgcolor="var(--bs-danger)"
+                bgcolor="bg-red-500"
                 state={
                   doAn.trangThai < 2
                     ? "disabled"

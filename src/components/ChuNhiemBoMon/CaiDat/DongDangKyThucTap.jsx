@@ -35,16 +35,8 @@ function DongDangKyThucTap({ refetch }) {
       </div>
       {showModal && (
         <Modal className="" size="lg">
-          <Modal.Header>
+          <Modal.Header onClick={() => setShowModal(false)}>
             <h5>Bạn có xác nhận muốn đóng chức năng đăng ký thực tập</h5>
-
-            <Button
-              onClick={() => setShowModal(false)}
-              className="btn-close"
-              variation="icon"
-            >
-              X
-            </Button>
           </Modal.Header>
           <p className="error pl-4">
             (*) Sinh viên không thể tiếp tục đăng ký thông tin thục tập ngay sau
@@ -58,7 +50,7 @@ function DongDangKyThucTap({ refetch }) {
               <Button
                 className="ml-2"
                 variation="outline"
-                color="var(--bs-primary)"
+                bgcolor="primary-600"
                 disabled={isPending}
                 onClick={() => setShowModal(false)}
               >

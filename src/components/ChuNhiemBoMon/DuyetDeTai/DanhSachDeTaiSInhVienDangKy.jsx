@@ -10,7 +10,7 @@ import DanhSachDeTaiSinhVien from "./DanhSachDeTaiSinhVien";
 function DanhSachDeTaiSinhVienDangKy() {
   const { DanhSachDeTai, filterDeTai, handleFilterDeTai, isLoading, refetch } =
     useDanhSachDeTai({
-      key: "danhSachDeTaiChoDuyet",
+      key: "danhSachDeTaiSinhVienChoDuyuet",
       fn: layDanhSachDeTaiSinhVienDangKy,
     });
   const [searchParams] = useSearchParams();

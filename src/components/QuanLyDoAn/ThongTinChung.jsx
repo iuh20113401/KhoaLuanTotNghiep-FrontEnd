@@ -8,40 +8,6 @@ import Comment from "./ThongTinChung/Comment";
 import CardXacNhan from "./ThongTinChung/CardXacNhan";
 import CardXacNhanCuoiKy from "./ThongTinChung/CardXacNhanCuoiKy";
 
-const StyledInfoDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  margin-bottom: 0.4rem;
-`;
-
-// Make StyledRow and columns responsive for mobile
-const ResponsiveRow = styled(StyledRow)`
-  flex-wrap: wrap;
-  @media (max-width: 768px) {
-    flex-direction: column-reverse;
-  }
-`;
-
-const ResponsiveCol9 = styled(Col9)`
-  @media (max-width: 768px) {
-    flex: 1 1 100%;
-    padding: 0;
-    width: 100%;
-    padding-right: 1.2rem;
-    padding-left: 1.2rem;
-    margin-top: 0.8rem;
-  }
-`;
-
-const ResponsiveCol3 = styled(Col3)`
-  @media (max-width: 768px) {
-    flex: 1 1 100%;
-    padding: 0;
-    width: 100%;
-  }
-`;
-
 function DisplayQuillContent({ content }) {
   const decodedContent = decodeHtml(content);
   return <div dangerouslySetInnerHTML={{ __html: decodedContent }} />;
@@ -49,47 +15,47 @@ function DisplayQuillContent({ content }) {
 
 function ThongTinChung({ user, doAn, refetch }) {
   const DeTai = doAn.deTai;
-
   return (
-    <ResponsiveRow>
-      <ResponsiveCol9>
+    <StyledRow>
+      <Col9>
         <Card className="p-2">
-          <StyledInfoDiv>
+          <div className="mb-2 gap-1 flex flex-col">
             <h6>
               <b>Tên đề tài:</b>
             </h6>
             <p>{DeTai.tenDeTai}</p>
-          </StyledInfoDiv>
-          <StyledInfoDiv>
+          </div>
+          <div className="flex flex-row items-center gap-2">
             <h6>
               <b>Giảng viên hướng dẫn:</b>
             </h6>
-          </StyledInfoDiv>
-          <StyledInfoDiv>
+            <p className="text-sm">{doAn.giangVien.hoTen}</p>
+          </div>
+          <div className="mb-2 gap-1 flex flex-col">
             <h6>
               <b>Mô tả:</b>
             </h6>
             <DisplayQuillContent content={DeTai.moTa} />
-          </StyledInfoDiv>
-          <StyledInfoDiv>
+          </div>
+          <div className="mb-2 gap-1 flex flex-col">
             <h6>
               <b>Kỹ năng cần có:</b>
             </h6>
             <DisplayQuillContent content={DeTai.kyNangCanCo} />
-          </StyledInfoDiv>
-          <StyledInfoDiv>
+          </div>
+          <div className="mb-2 gap-1 flex flex-col">
             <h6>
               <b>Kết quả cần đạt:</b>
             </h6>
             <DisplayQuillContent content={DeTai.ketQuaCanDat} />
-          </StyledInfoDiv>
+          </div>
         </Card>
         <div className="mt-3">
           <Comment comment={doAn.comment} idDoAn={doAn._id} refetch={refetch} />
         </div>
-      </ResponsiveCol9>
+      </Col9>
 
-      <ResponsiveCol3 className="pl-3 pr-3">
+      <Col3 className=" pl-3 pr-3">
         {user.vaiTro !== 0 && doAn.trangThai === 0 && (
           <Card>
             <CardXacNhan
@@ -114,8 +80,8 @@ function ThongTinChung({ user, doAn, refetch }) {
         <Card className="p-3 mt-2">
           <CardTaiLieu taiLieu={doAn.taiLieu} />
         </Card>
-      </ResponsiveCol3>
-    </ResponsiveRow>
+      </Col3>
+    </StyledRow>
   );
 }
 

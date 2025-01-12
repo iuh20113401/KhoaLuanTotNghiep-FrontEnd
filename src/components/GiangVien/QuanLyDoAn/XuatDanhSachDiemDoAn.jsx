@@ -77,7 +77,7 @@ function XuatDanhSachDiemDoAn({ DanhSachDoAn }) {
   return (
     <div className="mt-2 mr-3 text-end">
       <Button
-        bgcolor="var(--bs-success)"
+        bgcolor="bg-green-600"
         onClick={() => {
           exportToExcel(data, "DanhSachSinhVien");
         }}

@@ -159,13 +159,12 @@ function LoginPage() {
               onSubmit={handleDangNhap}
               disabled={isLoading}
             >
-              <div>
-                <label htmlFor="email" class="form-label">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="email" className="flex-1" class="form-label">
                   Tài khoản
                 </label>
                 <StyledInput
                   type="text"
-                  className="form-control"
                   id="email"
                   name="email-username"
                   placeholder="Enter your email or username"
@@ -179,7 +178,7 @@ function LoginPage() {
                   </p>
                 )}
               </div>
-              <div>
+              <div className="flex flex-col gap-2 mt-2">
                 <label class="form-label" htmlFor="password">
                   Mật khẩu
                 </label>
@@ -187,7 +186,6 @@ function LoginPage() {
                   <StyledInput
                     type="password"
                     id="password"
-                    class="form-control"
                     name="password"
                     placeholder="············"
                     aria-describedby="password"

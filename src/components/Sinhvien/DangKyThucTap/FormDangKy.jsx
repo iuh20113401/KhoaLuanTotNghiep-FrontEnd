@@ -49,7 +49,9 @@ function FormDangKy({ caiDatInfo }) {
             type="text"
             id="tenCongTy"
             placeholder="IUH ..."
-            {...register("tenCongTy", { required: "Tên công ty là bắt buộc" })} // Set required field
+            register={{
+              ...register("tenCongTy", { required: "Tên công ty là bắt buộc" }),
+            }} // Set required field
           />
           {errors.tenCongTy && (
             <p style={{ color: "red" }}>{errors.tenCongTy.message}</p>
@@ -66,7 +68,9 @@ function FormDangKy({ caiDatInfo }) {
             type="text"
             id="maSoThue"
             placeholder="340343000"
-            {...register("maSoThue", { required: "Mã số thuế là bắt buộc" })}
+            register={{
+              ...register("maSoThue", { required: "Mã số thuế là bắt buộc" }),
+            }}
           />
           {errors.maSoThue && (
             <p style={{ color: "red" }}>{errors.maSoThue.message}</p>
@@ -83,7 +87,9 @@ function FormDangKy({ caiDatInfo }) {
             type="text"
             id="diaChiCongTy"
             placeholder="Nhập địa chỉ công ty...."
-            {...register("diaChiCongTy", { required: "Địa chỉ là bắt buộc" })}
+            register={{
+              ...register("diaChiCongTy", { required: "Địa chỉ là bắt buộc" }),
+            }}
           />
           {errors.diaChiCongTy && (
             <p style={{ color: "red" }}>{errors.diaChiCongTy.message}</p>
@@ -100,9 +106,11 @@ function FormDangKy({ caiDatInfo }) {
             type="text"
             id="tenNguoiDaiDien"
             placeholder="Nguyễn Văn A"
-            {...register("tenNguoiDaiDien", {
-              required: "Tên người đại diện là bắt buộc",
-            })}
+            register={{
+              ...register("tenNguoiDaiDien", {
+                required: "Tên người đại diện là bắt buộc",
+              }),
+            }}
           />
           {errors.tenNguoiDaiDien && (
             <p style={{ color: "red" }}>{errors.tenNguoiDaiDien.message}</p>
@@ -119,13 +127,15 @@ function FormDangKy({ caiDatInfo }) {
             type="email"
             id="emailCongTy"
             placeholder="CongTYA@gmail.com"
-            {...register("emailCongTy", {
-              required: "Email công ty là bắt buộc",
-              pattern: {
-                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                message: "Email không hợp lệ",
-              },
-            })}
+            register={{
+              ...register("emailCongTy", {
+                required: "Email công ty là bắt buộc",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "Email không hợp lệ",
+                },
+              }),
+            }}
           />
           {errors.emailCongTy && (
             <p style={{ color: "red" }}>{errors.emailCongTy.message}</p>
@@ -142,9 +152,11 @@ function FormDangKy({ caiDatInfo }) {
             type="text"
             id="tenNguoiGiamSat"
             placeholder="Nguyễn Văn B"
-            {...register("tenNguoiGiamSat", {
-              required: "Tên người giám sát là bắt buộc",
-            })}
+            register={{
+              ...register("tenNguoiGiamSat", {
+                required: "Tên người giám sát là bắt buộc",
+              }),
+            }}
           />
           {errors.tenNguoiGiamSat && (
             <p style={{ color: "red" }}>{errors.tenNguoiGiamSat.message}</p>
@@ -163,13 +175,15 @@ function FormDangKy({ caiDatInfo }) {
             type="text"
             id="soDienThoaiNguoiGiamSat"
             placeholder="032312312..."
-            {...register("soDienThoaiNguoiGiamSat", {
-              required: "Số điện thoại là bắt buộc",
-              pattern: {
-                value: /^[0-9]{10,11}$/,
-                message: "Số điện thoại không hợp lệ",
-              },
-            })}
+            register={{
+              ...register("soDienThoaiNguoiGiamSat", {
+                required: "Số điện thoại là bắt buộc",
+                pattern: {
+                  value: /^[0-9]{10,11}$/,
+                  message: "Số điện thoại không hợp lệ",
+                },
+              }),
+            }}
           />
           {errors.soDienThoaiNguoiGiamSat && (
             <p style={{ color: "red" }}>
@@ -186,9 +200,11 @@ function FormDangKy({ caiDatInfo }) {
         <Col9>
           <StyledSelect
             id="trangThaiThucTap"
-            {...register("trangThaiThucTap", {
-              required: "Trạng thái là bắt buộc",
-            })}
+            register={{
+              ...register("trangThaiThucTap", {
+                required: "Trạng thái là bắt buộc",
+              }),
+            }}
           >
             <option value="0">Chờ phỏng vấn</option>
             <option value="1">Đang làm việc</option>

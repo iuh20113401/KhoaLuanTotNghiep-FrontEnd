@@ -16,11 +16,7 @@ import { useDanhSachDoAn } from "../../../../hooks/useDanhSachDoAn";
 function DanhSachChoPhanCong() {
   const {
     DanhSachDoAn,
-    filterDoAn,
-    handleFilterDoAn,
     isLoading: doAnLoading,
-    hocKy,
-    namHoc,
     refetch,
   } = useDanhSachDoAn({
     key: "DanhSachDoAnDat",
@@ -31,9 +27,11 @@ function DanhSachChoPhanCong() {
     queryKey: ["DanhSachGiangVien"],
     queryFn: layDanhSachToanBoGiangVien,
   });
-  const DanhSachGiangVien = giangVienData?.danhSachGiangVien || [];
+  let DanhSachGiangVien = giangVienData?.danhSachGiangVien || [];
   const isLoading = doAnLoading && giangVienLoading;
   const [updatedDoAn, setUpdatedDoAn] = useState([]);
+
+  const [giangVienCount, setGiangVienCount] = useState([]);
   useEffect(() => {
     setUpdatedDoAn(
       DanhSachDoAn?.filter(
@@ -47,6 +45,16 @@ function DanhSachChoPhanCong() {
       })) || []
     );
   }, [DanhSachDoAn]);
+  useEffect(() => {
+    if (giangVienData?.danhSachGiangVien)
+      setGiangVienCount(() => {
+        const count = {};
+        giangVienData?.danhSachGiangVien.forEach((gv) => {
+          count[gv._id] = 0;
+        });
+        return count;
+      });
+  }, [giangVienData]);
   const { mutate, isPending } = useMutation({
     mutationFn: themNhieuGiangVienPhanBien,
     onSuccess: () => {
@@ -57,18 +65,6 @@ function DanhSachChoPhanCong() {
   const shuffleArray = (array) => {
     return array.sort(() => Math.random() - 0.5);
   };
-
-  const getInitialGiangVienCount = () => {
-    const count = {};
-    DanhSachGiangVien.forEach((gv) => {
-      count[gv._id] = 0;
-    });
-    return count;
-  };
-
-  const [giangVienCount, setGiangVienCount] = useState(
-    getInitialGiangVienCount()
-  );
 
   const handleChangePhanBien = (doAnId, reviewerIndex, value) => {
     setUpdatedDoAn((prevDoAnList) =>
@@ -84,14 +80,17 @@ function DanhSachChoPhanCong() {
       )
     );
   };
+
   const handlePhanCongNgauNhien = () => {
     const danhSachPhanBien = updatedDoAn.map((doAn) => ({
       ...doAn,
       giangVienPhanBien: [...(doAn.giangVienPhanBien || [])],
     }));
-
-    const newGiangVienCount = { ...giangVienCount };
-
+    const count = {};
+    giangVienData?.danhSachGiangVien.forEach((gv) => {
+      count[gv._id] = 0;
+    });
+    const newGiangVienCount = { ...count };
     danhSachPhanBien.forEach((doAn) => {
       const giangVienHuongDan = doAn.giangVien._id;
 
@@ -158,7 +157,7 @@ function DanhSachChoPhanCong() {
           />
         </div>
 
-        <h5 className="mt-3">khóa luận chưa có giảng viên phản biện:</h5>
+        <h5 className="mt-3">Khóa luận chưa có giảng viên phản biện:</h5>
         {updatedDoAn?.length > 0 ? (
           <StyledTable>
             <thead>
@@ -193,7 +192,7 @@ function DanhSachChoPhanCong() {
         )}
         {doAnWithGiangVienPhanBien && (
           <>
-            <h5>khóa luận đã có giảng viên phản biện:</h5>
+            <h5>Khóa luận đã có giảng viên phản biện:</h5>
             {doAnWithGiangVienPhanBien.length ? (
               <StyledTable>
                 <thead>

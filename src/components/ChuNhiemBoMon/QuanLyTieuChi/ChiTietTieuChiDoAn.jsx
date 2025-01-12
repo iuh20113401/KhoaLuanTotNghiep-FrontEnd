@@ -3,8 +3,8 @@ import Badges from "../../../ui/Badges";
 import StyledTable from "../../../ui/Table";
 
 const TRANG_THAI_STYLED = {
-  false: { ten: "Không", bgcolor: "var(--bs-danger)" },
-  true: { ten: "Có", bgcolor: "var(--bs-success)" },
+  false: { ten: "Không", bgcolor: "bg-red-500" },
+  true: { ten: "Có", bgcolor: "bg-green-600" },
 };
 function ChiTietTieuChiDoAn({ tieuChi, index }) {
   const [chiTiet, setChiTiet] = useState(false);

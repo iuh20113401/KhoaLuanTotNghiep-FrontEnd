@@ -1,0 +1,74 @@
+/* table.css */
+
+.table-wrapper {
+  @apply w-full overflow-visible; /* overflow-x-auto can be added if needed */
+}
+
+.table-container {
+  @apply w-full mb-4 border-collapse border-spacing-2 box-border items-center justify-center align-middle;
+  background-color: theme("colors.white"); /* Default background color */
+  border-color: theme("colors.gray.300"); /* Default border color */
+  color: theme("colors.gray.900"); /* Default text color */
+}
+
+.table-container.dark {
+  @apply text-white;
+  background-color: theme("colors.gray.700");
+  border-color: theme("colors.gray.600");
+}
+
+.table-container.striped > tbody > tr:nth-child(odd) {
+  @apply bg-secondary-200;
+}
+
+.table-container.dark.striped > tbody > tr:nth-child(odd) {
+  @apply bg-secondary-400;
+}
+
+.table-container.hoverable tbody tr:hover {
+  @apply bg-gray-200;
+}
+
+.table-container.dark.hoverable tbody tr:hover {
+  @apply bg-gray-500;
+}
+
+.table-container thead > tr > th {
+  @apply text-left uppercase text-xs font-bold px-6 py-4 border-b;
+}
+
+.table-container tbody > tr > td {
+  @apply px-6 py-4 border-b;
+}
+
+.table-container tr.striped-row {
+  @apply bg-blue-100; /* Example active row color */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .table-wrapper table {
+    @apply w-full text-sm;
+  }
+
+  .table-container thead > tr > th {
+    @apply text-xs px-4 py-2;
+  }
+
+  .table-container tbody > tr > td {
+    @apply text-xs px-4 py-2;
+  }
+
+  .table-container.form th,
+  .table-container.form td {
+    @apply block w-full;
+  }
+
+  .table-container.form thead {
+    @apply hidden;
+  }
+
+  .table-container.form tr {
+    @apply flex flex-col mb-2 border;
+  }
+}

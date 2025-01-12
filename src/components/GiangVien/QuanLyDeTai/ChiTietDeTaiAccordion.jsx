@@ -8,7 +8,7 @@ function ChiTietDeTaiAccordion({ deTai, setIsEdit }) {
   const [edit, setEdit] = useState(false);
 
   const left = <img src={deTai.hinhAnh || hinhAnh} alt="Hình ảnh đề tài" />;
-  const rigth = (
+  const right = (
     <>
       <h6>{deTai.tenDeTai}</h6>
 
@@ -62,7 +62,7 @@ function ChiTietDeTaiAccordion({ deTai, setIsEdit }) {
         setIsEdit={setIsEdit}
         hidden={hiddenElement(deTai)}
         left={left}
-        rigth={rigth}
+        right={right}
         buttonContent={buttonContent(deTai)}
       />
     </div>

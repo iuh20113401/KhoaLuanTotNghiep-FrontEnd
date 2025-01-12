@@ -23,7 +23,7 @@ function ThongBaoContainer({ DanhSachThongBao, vaiTro }) {
               <Button
                 type="normal"
                 variation="outline"
-                bgcolor="var(--bs-blue)"
+                bgcolor="primary-600"
                 color="var(--bs-blue)"
               >
                 <span>

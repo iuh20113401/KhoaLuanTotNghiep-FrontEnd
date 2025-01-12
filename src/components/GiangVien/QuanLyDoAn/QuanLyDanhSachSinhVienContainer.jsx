@@ -54,8 +54,8 @@ function QuanLyDanhSachSinhVienContainer() {
   }
 
   return (
-    <div>
-      <Card className="mt-2">
+    <div className="mb-2">
+      <Card>
         {!isLoading && (
           <>
             <XuatDanhSachSinhVienExcel DanhSachSinhVien={danhSachSinhVien} />

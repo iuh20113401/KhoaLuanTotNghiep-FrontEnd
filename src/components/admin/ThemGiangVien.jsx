@@ -33,17 +33,8 @@ function ThemGiangVien({ setShowModal, refetch }) {
         </div>
       ) : (
         <>
-          <Modal.Header>
+          <Modal.Header onClick={() => setShowModal((showModal) => !showModal)}>
             <h5>Thêm tài khoản giảng viên</h5>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              onClick={() => setShowModal((showModal) => !showModal)}
-            >
-              X
-            </button>
           </Modal.Header>
           <Modal.Body>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -56,9 +47,11 @@ function ThemGiangVien({ setShowModal, refetch }) {
                     type="number"
                     id="mssv"
                     placeholder="Nhập mã số giảng viên"
-                    {...register(`maSo`, {
-                      required: "Vui lòng đúng định dạng mã số giảng viên",
-                    })}
+                    register={{
+                      ...register(`maSo`, {
+                        required: "Vui lòng đúng định dạng mã số giảng viên",
+                      }),
+                    }}
                   />
                 </Col9>
               </StyledRow>
@@ -72,9 +65,11 @@ function ThemGiangVien({ setShowModal, refetch }) {
                     type="text"
                     id="hoTen"
                     placeholder="Nhập họ tên"
-                    {...register(`hoTen`, {
-                      required: "Vui lòng nhập họ tên",
-                    })}
+                    register={{
+                      ...register(`hoTen`, {
+                        required: "Vui lòng nhập họ tên",
+                      }),
+                    }}
                   />
                 </Col9>
               </StyledRow>
@@ -88,9 +83,11 @@ function ThemGiangVien({ setShowModal, refetch }) {
                     type="text"
                     id="email"
                     placeholder="Nhập email"
-                    {...register(`email`, {
-                      required: "Vui lòng nhập email",
-                    })}
+                    register={{
+                      ...register(`email`, {
+                        required: "Vui lòng nhập email",
+                      }),
+                    }}
                   />
                 </Col9>
               </StyledRow>
@@ -104,7 +101,7 @@ function ThemGiangVien({ setShowModal, refetch }) {
                     type="text"
                     id="soDienThoai"
                     placeholder="Nhập số điện thoại"
-                    {...register(`soDienThoai`)}
+                    register={{ ...register(`soDienThoai`) }}
                   />
                 </Col9>
               </StyledRow>
@@ -114,7 +111,10 @@ function ThemGiangVien({ setShowModal, refetch }) {
                   <label htmlFor="gioiTinh">Giới tính</label>
                 </Col3>
                 <Col9>
-                  <StyledSelect id="gioiTinh" {...register(`gioiTinh`)}>
+                  <StyledSelect
+                    id="gioiTinh"
+                    register={{ ...register(`gioiTinh`) }}
+                  >
                     <option value={0}>Nam</option>
                     <option value={1}>Nữ</option>
                   </StyledSelect>
@@ -130,7 +130,7 @@ function ThemGiangVien({ setShowModal, refetch }) {
                     type="text"
                     id="lop"
                     placeholder="Nhập lớp"
-                    {...register(`lop`)}
+                    register={{ ...register(`lop`) }}
                   />
                 </Col9>
               </StyledRow>
@@ -140,7 +140,10 @@ function ThemGiangVien({ setShowModal, refetch }) {
                   <label htmlFor="gioiTinh">Vai trò</label>
                 </Col3>
                 <Col9>
-                  <StyledSelect id="vaiTro" {...register(`vaiTro`)}>
+                  <StyledSelect
+                    id="vaiTro"
+                    register={{ ...register(`vaiTro`) }}
+                  >
                     <option value={1}>Giảng viên</option>
                     <option value={2}>Chủ nhiệm môn học</option>
                     <option value={3}>Trưởng bộ môn</option>

@@ -32,17 +32,8 @@ function MoDangKyDeTai({ refetch }) {
       </div>
       {showModal && (
         <Modal className="" size="lg">
-          <Modal.Header>
+          <Modal.Header onClick={() => setShowModal(false)}>
             <h5>Bạn có xác nhận muốn mở chức năng đăng ký đề tài</h5>
-
-            <Button
-              onClick={() => setShowModal(false)}
-              className="btn-close"
-              variation="icon"
-              disabled={isPending}
-            >
-              X
-            </Button>
           </Modal.Header>
           <p className="error pl-4">
             (*) Sinh viên có thể đăng ký đề tài ngay sau khi bạn nhấn xác nhận
@@ -55,7 +46,7 @@ function MoDangKyDeTai({ refetch }) {
               <Button
                 className="ml-2"
                 variation="outline"
-                color="var(--bs-primary)"
+                bgcolor="primary-600"
                 disabled={isPending}
                 onClick={() => setShowModal(false)}
               >

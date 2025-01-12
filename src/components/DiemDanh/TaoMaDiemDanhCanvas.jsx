@@ -172,7 +172,7 @@ function TaoMaDiemDanhCanvas({ setIsDiemDanh }) {
           <div>
             <label htmlFor="loai">Chọn loại điểm danh</label>
             <StyledSelect
-              {...register("loai")}
+              register={{ ...register("loai") }}
               id="loai"
               defaultValue={""}
               disabled={qrCode}
@@ -186,7 +186,7 @@ function TaoMaDiemDanhCanvas({ setIsDiemDanh }) {
           <div>
             <label>Thời gian hiệu lực</label>
             <StyledSelect
-              {...register("hieuLuc")}
+              register={{ ...register("hieuLuc") }}
               defaultValue={"1day"}
               disabled={qrCode}
             >
@@ -200,7 +200,7 @@ function TaoMaDiemDanhCanvas({ setIsDiemDanh }) {
           <div>
             <label>Điều kiện</label>
             <StyledSelect
-              {...register("dieuKien")}
+              register={{ ...register("dieuKien") }}
               defaultValue={"none"}
               disabled={qrCode}
             >
@@ -213,7 +213,7 @@ function TaoMaDiemDanhCanvas({ setIsDiemDanh }) {
             <StyledInput
               type="text"
               placeholder="Nhập tên phòng"
-              {...register("phong")}
+              register={{ ...register("phong") }}
               disabled={qrCode}
             />
           </div>

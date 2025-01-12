@@ -38,9 +38,7 @@ function ChiTietBaoCao({
             <div className="mt-2">
               <Button
                 size="sm"
-                bgcolor={`${
-                  diemGiangVien ? "var(--bs-blue)" : "var(--bs-danger)"
-                }`}
+                bgcolor={`${diemGiangVien ? "bg-primary-600" : "bg-red-500"}`}
                 onClick={() => setShowModal(0)}
               >
                 <span>{diemGiangVien ? <HiEye /> : <HiPencilSquare />}</span>
@@ -50,9 +48,7 @@ function ChiTietBaoCao({
             <div className="mt-2">
               <Button
                 size="sm"
-                bgcolor={`${
-                  diemDoanhNghiep ? "var(--bs-blue)" : "var(--bs-danger)"
-                }`}
+                bgcolor={`${diemDoanhNghiep ? "bg-primary-600" : "bg-red-500"}`}
                 onClick={() => setShowModal(1)}
               >
                 <span>{diemDoanhNghiep ? <HiEye /> : <HiPencilSquare />}</span>

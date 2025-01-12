@@ -82,15 +82,8 @@ function ModalChamDiemHoiDong({
     doAn.sinhVien2Info?.diem.diemHoiDong?.[`diemHoiDong${doAn.stt}`]?.diemTong;
   return (
     <Modal size="xl">
-      <Modal.Header>
+      <Modal.Header onClick={() => setShowModal(false)}>
         <h5>Chấm điểm sinh viên</h5>
-        <Button
-          onClick={() => setShowModal(false)}
-          className="btn-close"
-          variation="icon"
-        >
-          X
-        </Button>
       </Modal.Header>
       {tieuChiLoading ? (
         <div>
@@ -141,12 +134,14 @@ function ModalChamDiemHoiDong({
                     <td className="text-center">
                       <StyledInput
                         type="number"
-                        {...register(`sv1_Lo${index}`, {
-                          required: "Vui lòng nhập điểm",
-                          validate: (value) =>
-                            (value > 0 && value <= 4) ||
-                            "Điểm phải lớn hơn 0 và nhỏ hơn 4",
-                        })}
+                        register={{
+                          ...register(`sv1_Lo${index}`, {
+                            required: "Vui lòng nhập điểm",
+                            validate: (value) =>
+                              (value > 0 && value <= 4) ||
+                              "Điểm phải lớn hơn 0 và nhỏ hơn 4",
+                          }),
+                        }}
                         className={`${
                           errors[`sv1_Lo${index}`] ? "error" : ""
                         } text-center`}
@@ -169,12 +164,14 @@ function ModalChamDiemHoiDong({
                           <StyledInput
                             type="number"
                             placeholder="Nhập điểm abet"
-                            {...register(`sv2_Lo${index}`, {
-                              required: "Vui lòng nhập điểm",
-                              validate: (value) =>
-                                (value > 0 && value <= 4) ||
-                                "Điểm phải lớn hơn 0 và nhỏ hơn 4",
-                            })}
+                            register={{
+                              ...register(`sv2_Lo${index}`, {
+                                required: "Vui lòng nhập điểm",
+                                validate: (value) =>
+                                  (value > 0 && value <= 4) ||
+                                  "Điểm phải lớn hơn 0 và nhỏ hơn 4",
+                              }),
+                            }}
                             className={`${
                               errors[`sv2_Lo${index}`] ? "error" : ""
                             } text-center`}
@@ -204,12 +201,14 @@ function ModalChamDiemHoiDong({
                     <StyledInput
                       type="number"
                       placeholder="Thang điểm 10"
-                      {...register(`sv1_d10`, {
-                        required: "Vui lòng nhập điểm",
-                        validate: (value) =>
-                          (value >= 0 && value <= 10) ||
-                          "Điểm phải lớn hơn 0 và nhỏ hơn 10",
-                      })}
+                      register={{
+                        ...register(`sv1_d10`, {
+                          required: "Vui lòng nhập điểm",
+                          validate: (value) =>
+                            (value >= 0 && value <= 10) ||
+                            "Điểm phải lớn hơn 0 và nhỏ hơn 10",
+                        }),
+                      }}
                       className={`${
                         errors[`sv1_d10`] ? "error" : ""
                       } text-center`}
@@ -229,12 +228,14 @@ function ModalChamDiemHoiDong({
                         <StyledInput
                           type="number"
                           placeholder="Thang điểm 10"
-                          {...register(`sv2_d10`, {
-                            required: "Vui lòng nhập điểm",
-                            validate: (value) =>
-                              (value >= 0 && value <= 10) ||
-                              "Điểm phải lớn hơn 0 và nhỏ hơn 10",
-                          })}
+                          register={{
+                            ...register(`sv2_d10`, {
+                              required: "Vui lòng nhập điểm",
+                              validate: (value) =>
+                                (value >= 0 && value <= 10) ||
+                                "Điểm phải lớn hơn 0 và nhỏ hơn 10",
+                            }),
+                          }}
                           className={`${
                             errors[`sv2_d10`] ? "error" : ""
                           } text-center`}

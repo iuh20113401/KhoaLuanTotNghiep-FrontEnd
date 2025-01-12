@@ -115,23 +115,15 @@ function Filter({
                 bgcolor={
                   isShowTable === true ? "var(--bs-primary)" : "var(--bs-white)"
                 }
-                color={
-                  isShowTable === true ? "var(--bs-white)" : "var(--bs-balck)"
-                }
+                color={isShowTable === true ? "white" : "secondary-900"}
                 onClick={(e) => setIsShowTable(true)}
               >
                 <HiTable size={"1.4rem"} />
               </Button>
               <Button
                 variation="icon"
-                bgcolor={
-                  isShowTable === false
-                    ? "var(--bs-primary)"
-                    : "var(--bs-white)"
-                }
-                color={
-                  isShowTable === false ? "var(--bs-white)" : "var(--bs-balck)"
-                }
+                bgcolor={isShowTable === false ? "bg-primary-600" : "bg-white"}
+                color={isShowTable === false ? "white" : "secondary-900"}
                 onClick={(e) => setIsShowTable(false)}
               >
                 <HiViewList size={"1.4rem"} />

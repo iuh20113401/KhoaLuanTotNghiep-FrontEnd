@@ -172,6 +172,7 @@ function App() {
       <Toaster
         position="top-center"
         gutter={12}
+        className="bg-primary-600 text-white"
         containerStyle={{ margin: "8px" }}
         toastOptions={{
           success: {
@@ -180,8 +181,8 @@ function App() {
               fontSize: "16px",
               maxWidth: "500px",
               padding: "16px 24px ",
-              backgroundColor: "var(--bs-primary)",
-              color: "var(--bs-white)",
+              backgroundColor: "bg-primary-600",
+              color: "text-white",
             },
           },
           error: {
@@ -190,8 +191,8 @@ function App() {
               fontSize: "16px",
               maxWidth: "500px",
               padding: "16px 24px",
-              backgroundColor: "var(--bs-danger)",
-              color: "var(--bs-white)",
+              backgroundColor: "bg-red-500",
+              color: "text-white",
             },
           },
         }}

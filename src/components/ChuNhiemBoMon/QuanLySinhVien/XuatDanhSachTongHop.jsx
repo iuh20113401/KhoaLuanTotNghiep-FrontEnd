@@ -1,9 +1,10 @@
 /* eslint-disable array-callback-return */
 import { useRef } from "react";
 import Button from "../../../ui/Button";
+import { useQuery } from "@tanstack/react-query";
+import { layTieuChiDoAn } from "../../../services/TieuChi";
 
 const getDanhSachSinhVien = (DanhSachDoAn) => {
-  // Initialize an empty array to store all sinhVien
   let danhSachSinhVien = [];
   const DanhSachDiemTheoLO = {};
   const DanhSachTrangThai = {};
@@ -194,13 +195,22 @@ export default function XuatDanhSachTongHop({ DanhSachDoAn }) {
   const contentRef = useRef();
   const [danhSachSinhVien, DanhSachDiemTheoLO, DanhSachTrangThai] =
     getDanhSachSinhVien(DanhSachDoAn);
+  const { data, isLoading } = useQuery({
+    queryKey: ["danhSachTieuChi"],
+    queryFn: layTieuChiDoAn,
+  });
+  const DanhSachTieuChi = data.result || [];
   const tongSoDiemLan1 = Object.values(DanhSachDiemTheoLO[1].lan1).reduce(
     (acc, vl) => acc + vl,
     0
   );
   const tongSoDiemLan2 =
-    DanhSachDiemTheoLO[1].lan2 &&
-    Object.values(DanhSachDiemTheoLO[1].lan2).reduce((acc, vl) => acc + vl, 0);
+    (DanhSachDiemTheoLO[1].lan2 &&
+      Object.values(DanhSachDiemTheoLO[1].lan2).reduce(
+        (acc, vl) => acc + vl,
+        0
+      )) ||
+    0;
   const SLDoAnDat = Object.keys(DanhSachTrangThai).reduce(
     (acc, tt) =>
       +tt >= 1 && +tt <= 4 ? (acc = acc + DanhSachTrangThai[tt]) : acc,
@@ -392,7 +402,12 @@ export default function XuatDanhSachTongHop({ DanhSachDoAn }) {
             </p>
             {Object.keys(DanhSachDiemTheoLO).map((a, i) => {
               const LO = DanhSachDiemTheoLO[a];
-
+              console.log(
+                LO,
+                parseFloat(LO.lan1?.[1]) || 0,
+                (parseFloat(LO.lan1?.[1]) || 0) +
+                  (parseFloat(LO.lan2?.[1]) || 0)
+              );
               return (
                 <>
                   <p
@@ -411,9 +426,8 @@ export default function XuatDanhSachTongHop({ DanhSachDoAn }) {
                         fontSize: "12pt",
                       }}
                     >
-                      <strong>Chuẩn đầu ra {a}:</strong> Thiết kế một hệ thống
-                      thông tin/đưa ra giải pháp đáp ứng được yêu cầu bài
-                      toán/hệ thống.
+                      <strong>Chuẩn đầu ra {a}:</strong>{" "}
+                      {DanhSachTieuChi?.LO?.[i].ten}
                     </span>
                   </p>
 
@@ -2169,7 +2183,6 @@ export default function XuatDanhSachTongHop({ DanhSachDoAn }) {
                           verticalAlign: "bottom",
                         }}
                       >
-                        {" "}
                         {/* note Phần trăm số điểm 1,2*/}
                         <p
                           style={{
@@ -2206,22 +2219,22 @@ export default function XuatDanhSachTongHop({ DanhSachDoAn }) {
                       marginBottom: "0pt",
                       lineHeight: 1,
                       marginLeft: "36pt",
-                      textAlign: "justify",
                     }}
                   >
-                    <span>Nhận xét về chuẩn đầu ra 3: </span>
+                    <span>Nhận xét về chuẩn đầu ra {a}: </span>
                     <span
                       style={{
                         fontFamily: '"Times New Roman"',
                         minHeight: "12pt",
                         fontSize: "12pt",
                       }}
-                    >
-                      Tỉ lệ đạt của LO này là 81.11%. Sinh viên yếu trong việc
-                      vẽ các sơ đồ thiết kế hệ thống (sequence…) dẫn đến điểm
-                      không cao mặc dù sv đưa ra giải pháp phù hợp -&gt; củng cố
-                      kiến thức trong môn PTTKHT{" "}
-                    </span>
+                    ></span>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
                   </p>
                 </>
               );
@@ -2268,10 +2281,7 @@ export default function XuatDanhSachTongHop({ DanhSachDoAn }) {
                   minHeight: "13pt",
                   fontSize: "13pt",
                 }}
-              >
-                Giảng viên hướng dẫn nên hướng dẫn kỹ cho sinh viên phần hiện
-                thực hệ thống.
-              </span>
+              ></span>
             </p>
             <p
               class="docx-num-2-0"
@@ -2291,34 +2301,14 @@ export default function XuatDanhSachTongHop({ DanhSachDoAn }) {
                   fontSize: "13pt",
                 }}
               >
-                Giảng viên nên bổ sung thểm cho sinh kiến thức phần kiểm thử
-                phần mềm vì sinh viên nghành Hệ thống thông tin không được học
-                kiến thức về môn này. Đặc biệt đưa cho sinh viên các mẫu tài
-                liệu về kiểm thử chương trình.{" "}
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
               </span>
             </p>
-            <p
-              class="docx-num-2-0"
-              style={{
-                marginTop: "0",
 
-                marginBottom: "0pt",
-                lineHeight: 1,
-                marginLeft: "72pt",
-                textAlign: "justify",
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: '"Times New Roman"',
-                  minHeight: "13pt",
-                  fontSize: "13pt",
-                }}
-              >
-                Giảng viên nên hướng cho sinh viên dành nhiều thời gian vào
-                trong việc viết báo cáo khóa luận.
-              </span>
-            </p>
             <p style={{ marginBottom: "0pt", lineHeight: 1 }}>
               <span
                 style={{
@@ -2349,54 +2339,14 @@ export default function XuatDanhSachTongHop({ DanhSachDoAn }) {
                   fontSize: "13pt",
                 }}
               >
-                Giảng viên hướng dẫn nên hướng dẫn kỹ cho sinh viên phần hiện
-                thực hệ thống.
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
               </span>
             </p>
-            <p
-              class="docx-num-2-0"
-              style={{
-                marginTop: "0",
 
-                marginBottom: "0pt",
-                lineHeight: 1,
-                textAlign: "justify",
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: "Times New Roman",
-                  minHeight: "13pt",
-                  fontSize: "13pt",
-                }}
-              >
-                Giảng viên nên bổ sung thêm cho sinh kiến thức phần kiểm thử
-                phần mềm vì sinh viên ngành Hệ thống Thông tin không được học
-                kiến thức về môn này. Đặc biệt đưa cho sinh viên các mẫu tài
-                liệu về kiểm thử chương trình.
-              </span>
-            </p>
-            <p
-              class="docx-num-2-0"
-              style={{
-                marginTop: "0",
-
-                marginBottom: "0pt",
-                lineHeight: 1,
-                textAlign: "justify",
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: "Times New Roman",
-                  minHeight: "13pt",
-                  fontSize: "13pt",
-                }}
-              >
-                Giảng viên nên hướng cho sinh viên dành nhiều thời gian vào
-                trong việc viết báo cáo khóa luận.
-              </span>
-            </p>
             <p
               style={{ marginBottom: "0pt", lineHeight: 1, textAlign: "right" }}
             >
@@ -2408,7 +2358,8 @@ export default function XuatDanhSachTongHop({ DanhSachDoAn }) {
                   fontSize: "12pt",
                 }}
               >
-                Tp. Hồ Chí Minh, ngày 18 tháng 9 năm 2020
+                Tp. Hồ Chí Minh, ngày {new Date().getDate()} tháng{" "}
+                {new Date().getMonth() + 1} năm {new Date().getFullYear()}
               </span>
             </p>
             <table

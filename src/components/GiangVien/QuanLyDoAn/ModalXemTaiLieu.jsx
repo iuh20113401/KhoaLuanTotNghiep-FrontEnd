@@ -12,7 +12,7 @@ function ModalXemTaiLieu({ doAn, setShowModal, loai }) {
   return (
     <Modal size="xl">
       <>
-        <Modal.Header>
+        <Modal.Header onClick={() => setShowModal((showModal) => !showModal)}>
           <div>
             <h5>{doAn.tenDoAn}</h5>
             <h6>
@@ -22,15 +22,6 @@ function ModalXemTaiLieu({ doAn, setShowModal, loai }) {
               <h6>{`${doAn.sinhVien2.maSo} / ${doAn.sinhVien2.hoTen}`}</h6>
             )}
           </div>
-          <button
-            type="button"
-            className="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-            onClick={() => setShowModal((showModal) => !showModal)}
-          >
-            X
-          </button>
         </Modal.Header>
         <Modal.Body>
           <h6 className="text-primary">Danh sách tài liệu</h6>

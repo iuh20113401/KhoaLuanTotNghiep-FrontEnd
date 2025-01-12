@@ -51,14 +51,13 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
     mutationFn: handleMutations,
     onSuccess: () => {
       toast.success("Chấm điểm thành công");
-      setShowModal(false);
       refetch();
+      setShowModal(false);
     },
   });
   // Handle form submission
   const onSubmit = (data) => {
     let newData, newData2;
-
     if (loai === "diemHuongDan") {
       newData = chamDiemHuongDan(data, doAn, tieuChi, true);
       if (isSinhVien2) newData2 = chamDiemHuongDan(data, doAn, tieuChi, false);
@@ -74,15 +73,8 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
 
   return (
     <Modal size="xl">
-      <Modal.Header>
+      <Modal.Header onClick={() => setShowModal(false)}>
         <h5>Chấm điểm sinh viên</h5>
-        <Button
-          onClick={() => setShowModal(false)}
-          className="btn-close"
-          variation="icon"
-        >
-          X
-        </Button>
       </Modal.Header>
       <Modal.Body className="p-0 m-0">
         <p>
@@ -125,12 +117,14 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
                   <td className="text-center">
                     <StyledInput
                       type="number"
-                      {...register(`sv1_Lo${index}`, {
-                        required: "Vui lòng nhập điểm",
-                        validate: (value) =>
-                          (value > 0 && value <= 4) ||
-                          "Điểm phải lớn hơn 0 và nhỏ hơn 4",
-                      })}
+                      register={{
+                        ...register(`sv1_Lo${index}`, {
+                          required: "Vui lòng nhập điểm",
+                          validate: (value) =>
+                            (value > 0 && value <= 4) ||
+                            "Điểm phải lớn hơn 0 và nhỏ hơn 4",
+                        }),
+                      }}
                       className={errors[`sv1_Lo${index}`] ? "error" : ""}
                       placeholder={`Nhập điểm abet  ${
                         isMobile ? "cho " + doAn.sinhVien1.hoTen : ""
@@ -149,12 +143,14 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
                     <td className="text-center">
                       <StyledInput
                         type="number"
-                        {...register(`sv2_Lo${index}`, {
-                          required: "Vui lòng nhập điểm",
-                          validate: (value) =>
-                            (value > 0 && value <= 4) ||
-                            "Điểm phải lớn hơn 0 và nhỏ hơn 4",
-                        })}
+                        register={{
+                          ...register(`sv2_Lo${index}`, {
+                            required: "Vui lòng nhập điểm",
+                            validate: (value) =>
+                              (value > 0 && value <= 4) ||
+                              "Điểm phải lớn hơn 0 và nhỏ hơn 4",
+                          }),
+                        }}
                         className={errors[`sv2_Lo${index}`] ? "error" : ""}
                         placeholder={`Nhập điểm abet  ${
                           isMobile ? "cho " + doAn.sinhVien2.hoTen : ""
@@ -172,7 +168,7 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
                   )}
                   <td>
                     <StyledInput
-                      {...register(`ghiChu${index}`)}
+                      register={{ ...register(`ghiChu${index}`) }}
                       type="text"
                       placeholder="Nhập ghi chú"
                     />
@@ -187,12 +183,14 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
                   <StyledInput
                     type="number"
                     placeholder="Thang điểm 10"
-                    {...register(`sv1_d10`, {
-                      required: "Vui lòng nhập điểm",
-                      validate: (value) =>
-                        (value >= 0 && value <= 10) ||
-                        "Điểm phải lớn hơn 0 và nhỏ hơn 10",
-                    })}
+                    register={{
+                      ...register(`sv1_d10`, {
+                        required: "Vui lòng nhập điểm",
+                        validate: (value) =>
+                          (value >= 0 && value <= 10) ||
+                          "Điểm phải lớn hơn 0 và nhỏ hơn 10",
+                      }),
+                    }}
                     className={errors[`sv1_d10`] ? "error" : ""}
                     min={0}
                     max={10}
@@ -207,12 +205,14 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
                     <StyledInput
                       type="number"
                       placeholder="Thang điểm 10"
-                      {...register(`sv2_d10`, {
-                        required: "Vui lòng nhập điểm",
-                        validate: (value) =>
-                          (value >= 0 && value <= 10) ||
-                          "Điểm phải lớn hơn 0 và nhỏ hơn 10",
-                      })}
+                      register={{
+                        ...register(`sv2_d10`, {
+                          required: "Vui lòng nhập điểm",
+                          validate: (value) =>
+                            (value >= 0 && value <= 10) ||
+                            "Điểm phải lớn hơn 0 và nhỏ hơn 10",
+                        }),
+                      }}
                       className={errors[`sv2_d10`] ? "error" : ""}
                       min={0}
                       max={10}
@@ -232,16 +232,20 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
                   <RadioContainer
                     label="Đạt"
                     value="1"
-                    register={register("sv1_ketQua", {
-                      required: "Kết quả cần thiết",
-                    })}
+                    register={{
+                      ...register("sv1_ketQua", {
+                        required: "Kết quả cần thiết",
+                      }),
+                    }}
                   />
                   <RadioContainer
                     label="Không đạt"
                     value="2"
-                    register={register("sv1_ketQua", {
-                      required: "Kết quả cần thiết",
-                    })}
+                    register={{
+                      ...register("sv1_ketQua", {
+                        required: "Kết quả cần thiết",
+                      }),
+                    }}
                   />
                 </td>
                 {isSinhVien2 === true && (
@@ -249,16 +253,20 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
                     <RadioContainer
                       label="Đạt"
                       value="1"
-                      register={register("sv2_ketQua", {
-                        required: "Kết quả cần thiết",
-                      })}
+                      register={{
+                        ...register("sv2_ketQua", {
+                          required: "Kết quả cần thiết",
+                        }),
+                      }}
                     />
                     <RadioContainer
                       label="Không đạt"
                       value="5"
-                      register={register("sv2_ketQua", {
-                        required: "Kết quả cần thiết",
-                      })}
+                      register={{
+                        ...register("sv2_ketQua", {
+                          required: "Kết quả cần thiết",
+                        }),
+                      }}
                     />
                   </td>
                 )}
@@ -271,7 +279,7 @@ function ModalChamDiem({ doAn, refetch, tieuChi, setShowModal, loai }) {
               <tr>
                 <td colSpan={5}>
                   <StyledTextarea
-                    {...register(`nhanXet`)}
+                    register={{ ...register(`nhanXet`) }}
                     placeholder="Nhận nhận xét...."
                     rows={5}
                   />

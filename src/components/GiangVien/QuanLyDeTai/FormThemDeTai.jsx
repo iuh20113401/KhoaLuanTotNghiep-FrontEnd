@@ -36,6 +36,7 @@ function FormThemDeTai({
     mode: "onSubmit",
   });
   const { data: user, isLoading: useLoading } = UseUser();
+  console.log(data);
   const userId = user.user._id;
   const { mutate: suaMutate, isPending: suaLoading } = useMutation({
     mutationFn: suaDeTai,
@@ -95,7 +96,9 @@ function FormThemDeTai({
           type="text"
           id="tendetai"
           placeholder="Nhập tên đề tài ..."
-          {...register("tenDeTai", { required: "Tên đề tài là bắt buộc" })}
+          register={{
+            ...register("tenDeTai", { required: "Tên đề tài là bắt buộc" }),
+          }}
           defaultValue={deTai?.tenDeTai || ""}
         />
         {errors.tenDeTai && (
@@ -154,7 +157,7 @@ function FormThemDeTai({
             type="text"
             id="danhMuc"
             placeholder="Nhập danh mục đề tài"
-            {...register("danhMuc")}
+            register={{ ...register("danhMuc") }}
             defaultValue={deTai?.danhMuc || ""}
             className="mt-1"
           />

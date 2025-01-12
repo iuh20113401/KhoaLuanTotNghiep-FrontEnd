@@ -9,7 +9,7 @@ const TRANG_THAI_STYLE = {
   0: {
     bgcolor: "var(--bs-secondary)",
   },
-  1: { bgcolor: "var(--bs-success)" },
+  1: { bgcolor: "bg-green-600" },
   2: { bgcolor: "var(--bs-danger)" },
 };
 function ChiTietSInhVien({ sinhvien, index }) {
@@ -37,17 +37,8 @@ function ChiTietSInhVien({ sinhvien, index }) {
       </tr>
       {showModal && (
         <Modal size="xl">
-          <Modal.Header>
+          <Modal.Header onClick={() => setShowModal((showModal) => !showModal)}>
             <h5>{sinhvien.ten}</h5>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              onClick={() => setShowModal((showModal) => !showModal)}
-            >
-              X
-            </button>
           </Modal.Header>
           <Modal.Body>
             <StyledRow className="align-center">

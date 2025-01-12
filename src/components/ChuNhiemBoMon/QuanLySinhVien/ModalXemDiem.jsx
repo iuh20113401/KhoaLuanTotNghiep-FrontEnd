@@ -8,15 +8,8 @@ function ModalXemDiem({ doAn, setShowModal }) {
   const countSoLuong = doAn.sinhVien2 ? 2 : 1;
   return (
     <Modal size="xl">
-      <Modal.Header>
+      <Modal.Header onClick={() => setShowModal(false)}>
         <h5>Xem điểm sinh viên</h5>
-        <Button
-          onClick={() => setShowModal(false)}
-          className="btn-close"
-          variation="icon"
-        >
-          X
-        </Button>
       </Modal.Header>
       <Modal.Body className="p-0 m-0">
         <p>

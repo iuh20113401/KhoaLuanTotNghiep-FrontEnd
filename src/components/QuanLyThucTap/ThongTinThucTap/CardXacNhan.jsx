@@ -48,17 +48,9 @@ function CardXacNhan({ trangThai, id, refetch }) {
       </div>
       {showModal && (
         <Modal size="lg">
-          <Modal.Header>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              onClick={() => setShowModal((showModal) => !showModal)}
-            >
-              X
-            </button>
-          </Modal.Header>
+          <Modal.Header
+            onClick={() => setShowModal((showModal) => !showModal)}
+          ></Modal.Header>
           <Modal.Body>
             <h5 className="text-center">
               Bạn xác nhận muốn cho khóa luận này{" "}
@@ -73,7 +65,7 @@ function CardXacNhan({ trangThai, id, refetch }) {
                 Xác nhận
               </Button>
               <Button
-                bgcolor="var(--bs-secondary)"
+                bgcolor="bg-secondary-300"
                 onClick={() => setShowModal((showModal) => !showModal)}
                 disabled={isPending}
               >

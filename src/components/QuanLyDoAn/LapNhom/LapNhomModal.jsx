@@ -27,17 +27,8 @@ function LapNhomModal({ setShowModal }) {
   }
   return (
     <Modal>
-      <Modal.Header>
+      <Modal.Header onClick={() => setShowModal((showModal) => !showModal)}>
         <h5>Mời sinh viên lập nhóm</h5>
-        <button
-          type="button"
-          className="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          onClick={() => setShowModal((showModal) => !showModal)}
-        >
-          X
-        </button>
       </Modal.Header>
       <Modal.Body>
         <StyledForm onSubmit={handleSubmit(handleGuiLoiMoi)}>
@@ -47,7 +38,7 @@ function LapNhomModal({ setShowModal }) {
               type="text"
               placeholder="Nhập mã số sinh viên của sinh viên cần mời"
               required
-              {...register("maSo", { required: true })}
+              register={{ ...register("maSo", { required: true }) }}
             />
           </div>
           <div>
@@ -55,7 +46,7 @@ function LapNhomModal({ setShowModal }) {
             <StyledTextarea
               type="text"
               placeholder="Nhập nội dung lời mời"
-              {...register("noiDung")}
+              register={{ ...register("noiDung") }}
             />
           </div>
           <div>

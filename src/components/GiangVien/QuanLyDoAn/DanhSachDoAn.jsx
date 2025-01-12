@@ -9,7 +9,7 @@ function DanhSachDoAnContainer({
   refetch,
 }) {
   return (
-    <StyledTable>
+    <StyledTable className="striped">
       <thead>
         <tr>
           <th>STT</th>

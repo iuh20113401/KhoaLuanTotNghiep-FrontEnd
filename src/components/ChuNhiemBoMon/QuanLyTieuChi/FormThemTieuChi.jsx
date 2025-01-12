@@ -84,9 +84,11 @@ function FormThemTieuChi() {
               <StyledInput
                 type="text"
                 placeholder={`Nhập tên LO1`}
-                {...register(`LO1-ten`, {
-                  required: "Tên LO là bắt buộc",
-                })}
+                register={{
+                  ...register(`LO1-ten`, {
+                    required: "Tên LO là bắt buộc",
+                  }),
+                }}
               />
               {errors[`LO1-ten`] && (
                 <p className="error">{errors[`LO1-ten`]?.message}</p>
@@ -97,9 +99,11 @@ function FormThemTieuChi() {
             <ColLg>
               <label>Cho hướng dân</label>
               <StyledSelect
-                {...register(`LO1-isHuongDan`, {
-                  required: "Tên LO là bắt buộc",
-                })}
+                register={{
+                  ...register(`LO1-isHuongDan`, {
+                    required: "Tên LO là bắt buộc",
+                  }),
+                }}
                 defaultValue={"true"}
               >
                 <option value={"true"}>Có</option>
@@ -109,9 +113,11 @@ function FormThemTieuChi() {
             <ColLg>
               <label>Cho phản biên</label>
               <StyledSelect
-                {...register(`LO1-isPhanBien`, {
-                  required: "Tên LO là bắt buộc",
-                })}
+                register={{
+                  ...register(`LO1-isPhanBien`, {
+                    required: "Tên LO là bắt buộc",
+                  }),
+                }}
                 defaultValue={"true"}
               >
                 <option value={"true"}>Có</option>
@@ -121,9 +127,11 @@ function FormThemTieuChi() {
             <ColLg>
               <label>Cho hội đồng</label>
               <StyledSelect
-                {...register(`LO1-isHoiDong`, {
-                  required: "Tên LO là bắt buộc",
-                })}
+                register={{
+                  ...register(`LO1-isHoiDong`, {
+                    required: "Tên LO là bắt buộc",
+                  }),
+                }}
                 defaultValue={"true"}
               >
                 <option value={"true"}>Có</option>
@@ -146,11 +154,13 @@ function FormThemTieuChi() {
                       <ColLg>
                         <StyledInput
                           placeholder="Nhỏ nhất"
-                          {...register(`LO1-${d}-nn`, {
-                            required: `Điểm nhỏ nhất ${d} là bắt buộc`,
-                            validate: (value, allValues) =>
-                              validateRange(value, allValues, `LO1-${d}-nn`),
-                          })}
+                          register={{
+                            ...register(`LO1-${d}-nn`, {
+                              required: `Điểm nhỏ nhất ${d} là bắt buộc`,
+                              validate: (value, allValues) =>
+                                validateRange(value, allValues, `LO1-${d}-nn`),
+                            }),
+                          }}
                         />
                         {errors[`LO1-${d}-nn`] && (
                           <p className="error">
@@ -161,11 +171,13 @@ function FormThemTieuChi() {
                       <ColLg className="ml-1">
                         <StyledInput
                           placeholder="Lớn nhất"
-                          {...register(`LO1-${d}-ln`, {
-                            required: `Điểm lớn nhất ${d} là bắt buộc`,
-                            validate: (value, allValues) =>
-                              validateRange(value, allValues, `LO1-${d}-ln`),
-                          })}
+                          register={{
+                            ...register(`LO1-${d}-ln`, {
+                              required: `Điểm lớn nhất ${d} là bắt buộc`,
+                              validate: (value, allValues) =>
+                                validateRange(value, allValues, `LO1-${d}-ln`),
+                            }),
+                          }}
                         />
                         {errors[`LO1-${d}-ln`] && (
                           <p className="error">
@@ -195,9 +207,11 @@ function FormThemTieuChi() {
                     <StyledTextarea
                       rows={5}
                       placeholder="Nội dung"
-                      {...register(`LO1-${d}-nd`, {
-                        required: "Nội dung là bắt buộc",
-                      })}
+                      register={{
+                        ...register(`LO1-${d}-nd`, {
+                          required: "Nội dung là bắt buộc",
+                        }),
+                      }}
                     />
                     {errors[`LO1-${d}-nd`] && (
                       <p className="error">{errors[`LO1-${d}-nd`]?.message}</p>
@@ -221,9 +235,11 @@ function FormThemTieuChi() {
                     <StyledInput
                       type="text"
                       placeholder={`Nhập tên LO${i + 2}`}
-                      {...register(`LO${i + 2}-ten`, {
-                        required: "Tên LO là bắt buộc",
-                      })}
+                      register={{
+                        ...register(`LO${i + 2}-ten`, {
+                          required: "Tên LO là bắt buộc",
+                        }),
+                      }}
                     />
                     {errors[`LO${i + 2}-ten`] && (
                       <p className="error">
@@ -236,9 +252,11 @@ function FormThemTieuChi() {
                   <ColLg>
                     <label>Cho hướng dân</label>
                     <StyledSelect
-                      {...register(`LO${i + 2}-isHuongDan`, {
-                        required: "Tên LO là bắt buộc",
-                      })}
+                      register={{
+                        ...register(`LO${i + 2}-isHuongDan`, {
+                          required: "Tên LO là bắt buộc",
+                        }),
+                      }}
                       defaultValue={"true"}
                     >
                       <option value={"true"}>Có</option>
@@ -248,9 +266,11 @@ function FormThemTieuChi() {
                   <ColLg>
                     <label>Cho phản biên</label>
                     <StyledSelect
-                      {...register(`LO${i + 2}-isPhanBien`, {
-                        required: "Tên LO là bắt buộc",
-                      })}
+                      register={{
+                        ...register(`LO${i + 2}-isPhanBien`, {
+                          required: "Tên LO là bắt buộc",
+                        }),
+                      }}
                       defaultValue={"true"}
                     >
                       <option value={"true"}>Có</option>
@@ -260,9 +280,11 @@ function FormThemTieuChi() {
                   <ColLg>
                     <label>Cho hội đồng</label>
                     <StyledSelect
-                      {...register(`LO${i + 2}-isHoiDong`, {
-                        required: "Tên LO là bắt buộc",
-                      })}
+                      register={{
+                        ...register(`LO${i + 2}-isHoiDong`, {
+                          required: "Tên LO là bắt buộc",
+                        }),
+                      }}
                       defaultValue={"true"}
                     >
                       <option value={"true"}>Có</option>
@@ -278,9 +300,11 @@ function FormThemTieuChi() {
                           <StyledTextarea
                             rows={5}
                             placeholder="Nội dung"
-                            {...register(`LO${i + 2}-${d}-nd`, {
-                              required: "Nội dung là bắt buộc",
-                            })}
+                            register={{
+                              ...register(`LO${i + 2}-${d}-nd`, {
+                                required: "Nội dung là bắt buộc",
+                              }),
+                            }}
                           />
                           {errors[`LO${i + 2}-${d}-nd`] && (
                             <p className="error">
@@ -307,7 +331,7 @@ function FormThemTieuChi() {
             className="ml-3"
             type="button"
             onClick={() => setLOIndex((i) => (i === 1 ? i : --i))}
-            bgcolor="var(--bs-danger)"
+            bgcolor="bg-red-500"
           >
             Xóa LO
           </Button>

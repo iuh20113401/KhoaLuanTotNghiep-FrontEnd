@@ -1,21 +1,5 @@
-import { BsPerson } from "react-icons/bs";
 import Card from "../../../ui/Card";
 import { Col3, ColLg, StyledRow } from "../../../ui/Row";
-import styled from "styled-components";
-
-const StyledIcon = styled.span`
-  width: 3rem;
-  height: 3rem;
-  background-color: ${(props) => props.bgcolor || "var(--bs-white)"};
-  border-radius: 999%;
-  display: inline-flex;
-  align-items: center;
-  & > svg {
-    width: 3rem;
-    height: 2rem;
-    color: ${(props) => props.color || "var(--bs-black)"};
-  }
-`;
 
 function ThongTinChung({ thongTinDashboad }) {
   return (

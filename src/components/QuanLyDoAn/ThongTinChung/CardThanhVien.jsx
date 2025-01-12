@@ -24,7 +24,7 @@ function CardThanhVien({ doAn }) {
             <ColLg>
               <Button
                 size="xs"
-                bgcolor="var(--bs-danger)"
+                bgcolor="bg-red-500"
                 onClick={() => setShowModal(true)}
               >
                 <span>

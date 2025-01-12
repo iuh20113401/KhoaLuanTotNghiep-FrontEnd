@@ -17,28 +17,30 @@ function DanhSachDeTaiChoDuyet() {
   const sortBy = searchParams.get("sortBy");
   const sortedDoAn = sortDoAnList(filterDeTai, sortBy);
   return (
-    <Card className="mt-3">
-      {isLoading ? (
-        <div className="p-5">
-          <LoadingSpinner />
-        </div>
-      ) : DanhSachDeTai?.length === 0 ? (
-        <div className="p-3">
-          <p>Hiện tại chưa có đề tài nào cần duyêt</p>
-        </div>
-      ) : (
-        <>
-          <Filter
-            DanhSachDeTai={DanhSachDeTai}
-            handleFilterDeTai={handleFilterDeTai}
-          />
-          <DanhSachDeTaiChoDuyetContainer
-            danhSachDeTai={sortedDoAn ?? DanhSachDeTai}
-            refetch={refetch}
-          />
-        </>
-      )}
-    </Card>
+    <div className="mt-3">
+      <Card>
+        {isLoading ? (
+          <div className="p-5">
+            <LoadingSpinner />
+          </div>
+        ) : DanhSachDeTai?.length === 0 ? (
+          <div className="p-3">
+            <p>Hiện tại chưa có đề tài nào cần duyêt</p>
+          </div>
+        ) : (
+          <>
+            <Filter
+              DanhSachDeTai={DanhSachDeTai}
+              handleFilterDeTai={handleFilterDeTai}
+            />
+            <DanhSachDeTaiChoDuyetContainer
+              danhSachDeTai={sortedDoAn ?? DanhSachDeTai}
+              refetch={refetch}
+            />
+          </>
+        )}
+      </Card>
+    </div>
   );
 }
 

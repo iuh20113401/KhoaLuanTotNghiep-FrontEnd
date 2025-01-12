@@ -1,22 +1,15 @@
-import styled from "styled-components";
-const MessageWrapper = styled.div`
-  display: flex;
-  margin-bottom: 3rem;
-  &.you {
-    justify-content: flex-end;
-  }
-`;
-const MessageDiv = styled.div`
-  background-color: #fff;
-  box-shadow: 0 0.0625rem 0.375rem 0 rgba(47, 43, 61, 0.1);
-  border-radius: 0.375rem;
-  border-top-left-radius: 0;
-  padding: 0.543rem 1rem;
-  &.you {
-    color: #fff;
-    background-color: #7367f0 !important;
-    border-top-left-radius: 0.375rem;
-    border-top-right-radius: 0;
-  }
-`;
-export { MessageDiv, MessageWrapper };
+export const MessageWrapper = ({ children, you }) => (
+  <div className={`flex mb-12 ${you ? "justify-end" : ""}`}>{children}</div>
+);
+
+export const MessageDiv = ({ children, you }) => (
+  <div
+    className={` shadow-[0_0.0625rem_0.375rem_0_rgba(47,43,61,0.1)] rounded-[0.375rem] border-t-l-0 p-[0.543rem_1rem] ${
+      you
+        ? "text-white bg-primary-400 !important border-t-l-[0.375rem] border-t-r-0"
+        : "bg-white"
+    }`}
+  >
+    {children}
+  </div>
+);

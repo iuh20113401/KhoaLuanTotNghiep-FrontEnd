@@ -1,0 +1,23 @@
+.tabHeader > li {
+  flex: 0 0 auto; /* Prevent shrinking to keep tabs visible */
+  white-space: nowrap; /* Prevent wrapping */
+}
+.tabHeader > li > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: capitalize;
+  margin-right: 0.25rem;
+  padding: 0.5435rem 1.375rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #444050;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.15s ease-in-out;
+}
+.tabHeader > li > button.active {
+  box-shadow: 0 -2px 0 #7367f0 inset; /* Active tab style */
+  color: #7367f0;
+}

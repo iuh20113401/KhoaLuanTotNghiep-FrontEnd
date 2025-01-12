@@ -1,20 +1,9 @@
 import { NavLink } from "react-router-dom";
 import Card from "../../ui/Card";
 import StyledTable from "../../ui/Table";
-import styled from "styled-components";
 import Button from "../../ui/Button";
 import { HiDownload } from "react-icons/hi";
-const StyledThongBaoDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  & > a > p {
-    color: var(--bs-text);
-  }
-  & > a:hover > p {
-    color: var(--bs-primary);
-  }
-`;
+
 function GiangVienTrangChu() {
   return (
     <div>
@@ -24,7 +13,7 @@ function GiangVienTrangChu() {
           <b>Thông báo</b>
         </h5>
         <Card className="p-2">
-          <StyledThongBaoDiv>
+          <div className="thong-bao-div">
             <NavLink to="#">
               <p>Some thing must read before do</p>
             </NavLink>
@@ -37,7 +26,7 @@ function GiangVienTrangChu() {
             <NavLink to="#">
               <p>Some thing must read before do</p>
             </NavLink>
-          </StyledThongBaoDiv>
+          </div>
         </Card>
       </div>
       <div className="mt-4">

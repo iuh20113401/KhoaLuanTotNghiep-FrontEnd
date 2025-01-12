@@ -57,48 +57,48 @@ const StyledRowResponsive = styled(StyledRow)`
 const StyledTrangThai = {
   0: {
     content: "Đang tiến hành",
-    bgcolor: "var(--bs-warning)",
-    color: "var(--bs-white)",
+    bgcolor: "bg-yellow-500",
+    color: "text-white",
   },
   1: {
     content: "Đạt giữa kỳ",
-    bgcolor: "var(--bs-warning)",
-    color: "var(--bs-white)",
+    bgcolor: "bg-yellow-500",
+    color: "text-white",
   },
   2: {
     content: "Chờ phản biện",
-    bgcolor: "var(--bs-warning)",
-    color: "var(--bs-white)",
+    bgcolor: "bg-yellow-500",
+    color: "text-white",
   },
   3: {
     content: "Chờ chấm điểm hội đồng",
-    bgcolor: "var(--bs-warning)",
-    color: "var(--bs-white)",
+    bgcolor: "bg-yellow-500",
+    color: "text-white",
   },
   4: {
     content: "Chờ chám điểm poster",
-    bgcolor: "var(--bs-warning)",
-    color: "var(--bs-white)",
+    bgcolor: "bg-yellow-500",
+    color: "text-white",
   },
   5: {
     content: "Cấm thi",
     bgcolor: "var(--bs-danger)",
-    color: "var(--bs-white)",
+    color: "text-white",
   },
   6: {
     content: "Không đạt phản biện",
     bgcolor: "var(--bs-danger)",
-    color: "var(--bs-white)",
+    color: "text-white",
   },
   7: {
     content: "Không đạt hội đồng",
     bgcolor: "var(--bs-danger)",
-    color: "var(--bs-white)",
+    color: "text-white",
   },
   8: {
     content: "Đạt",
     bgcolor: "var(--bs-danger)",
-    color: "var(--bs-white)",
+    color: "text-white",
   },
 };
 
